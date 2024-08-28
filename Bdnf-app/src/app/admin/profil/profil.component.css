@@ -1,0 +1,24 @@
+:root {
+  --redColor : #A12825;
+  --beigeColor : #E7DCD6;
+}
+.card-body img{
+  border-radius: 50%;
+  border: 1px solid var(--beigeColor);
+  box-shadow: 2px 4px 3px 0px var(--beigeColor);
+  margin:  0 auto;
+}
+.card{
+  border: 1px solid var(--beigeColor);
+}
+small{
+  color: var(--redColor);
+}
+.form-group button{
+  background-color: var(--redColor);
+}
+#imgProfil img{
+  height: 160px;
+  width: 160px;
+  border-radius: 50%;
+}

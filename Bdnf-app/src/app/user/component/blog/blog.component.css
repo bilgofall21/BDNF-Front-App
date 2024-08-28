@@ -1,0 +1,70 @@
+:root {
+  --redColor : #A12825;
+  --beigeColor : #E7DCD6;
+}
+.image-article img{
+  width: 100%;
+  height: 90vh;
+}
+.article-contenu .card{
+  background-color: var(--beigeColor);
+}
+.article-contenu .card-header{
+  color: var(--redColor);
+  font-weight: bold;
+}
+.article-contenu h3{
+  color: var(--redColor);
+  font-weight: bold;
+}
+.article-contenu .card-body ul li{
+list-style-type: none;
+margin-top: 10px;
+}
+.otherarticle{
+  background-color: aqua;
+  height: auto ;
+  border: 1px solid red;
+  border-radius: 4px;
+}
+.atricle-comment h4{
+font-size: 16px;
+}
+.atricle-comment .my-comment .comment{
+background-color: var(--beigeColor);
+border-radius: 10px;
+width: 75%;
+padding: 10px;
+margin-bottom: 10px;
+list-style-type: none;
+}
+.atricle-comment .comment-body h3{
+font-size: 14px;
+color: var(--redColor);
+font-weight: bold;
+}
+.atricle-comment .comment-body p{
+font-size: 14px;
+/* width: 50%; */
+}
+.atricle-comment .comment-form-wrap {
+width: 75%;
+}
+.atricle-comment .comment-form-wrap h3{
+  font-size: 16px;
+  color: var(--redColor);
+  font-weight: bold;
+}
+.atricle-comment .comment-form-wrap button{
+  font-size: 16px;
+  background-color: var(--redColor);
+  border: none;
+  padding: 4px 8px;
+  border-radius: 10px;
+  color: #fff;
+
+}
+form{
+  background-color: var(--beigeColor);
+  border-radius: 20px;
+}

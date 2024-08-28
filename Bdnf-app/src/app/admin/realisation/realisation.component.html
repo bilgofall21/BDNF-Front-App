@@ -1,0 +1,52 @@
+<app-sidebar></app-sidebar>
+<div class="admingestioncontainer mt-5">
+  <div class="ajoutservicebutton ">
+    <a href="" data-bs-toggle="modal" data-bs-target="#exampleModal" > Ajouter <i class="bi bi-plus-square-fill ms-2"></i></a>
+</div>
+
+<div class="searchbar mb-5">
+  <div class="d-flex justify-content-end">
+      <div class="input-group w-50 ">
+          <input type="search" class="form-control rounded " placeholder="Rechercher" aria-label="Search"  aria-describedby="search-addon"  />
+          <button type="button   " class="btn text-white" data-mdb-ripple-init   appBlueFont>rechercher</button>
+        </div>
+        <!-- http://127.0.0.1:8000/storage/{{dataDetailProfil.imageDeProfil}} -->
+  </div>
+</div>
+<h4 class="mt-4 text-center">Liste des realisations</h4>
+</div>
+
+<div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"   aria-hidden="true">
+  <div class="modal-dialog ">
+    <div class="modal-content ">
+      <div class="modal-header text-center">
+        <h5 class="modal-title " id="exampleModalLabel">Ajouter une realisation</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body  ">
+          <form  >
+            <div class="w-100 d-flex justify-content-center ">
+              <i class="me-3"><span class="lnr lnr-camera"></span></i>
+              <input class="form-control w-50"   type="file" (change)="getFile($event)" >
+            </div>
+              <div class="mb-3">
+                  <label for="nom_prof" class="form-label">titre</label>
+                  <input type="text" [(ngModel)]="titre" class="form-control" name="titre"   placeholder="Titre realisation" required>
+                </div>
+                <div class="mb-3">
+                  <label for="description" class="form-label">Description</label>
+                  <textarea class="form-control" [(ngModel)]="description"  name="description"  placeholder="description ici" rows="4"  required
+                  ></textarea>
+                </div>
+                <div class="validajout d-flex justify-content-end" id="valada-final">
+                  <button  data-bs-dismiss="modal" type="button" (click)="ajoutRealisation()"   class="btn-custom"> Ajouter</button>
+                  <a href="" class="ms-3" data-bs-dismiss="modal"> Annuler</a>
+                </div>
+          </form>
+
+
+      </div>
+
+    </div>
+  </div>
+</div>

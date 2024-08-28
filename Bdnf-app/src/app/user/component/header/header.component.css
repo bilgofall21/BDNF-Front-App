@@ -1,0 +1,86 @@
+:root {
+  --redColor : #A12825;
+  --beigeColor : #E7DCD6;
+}
+
+header{
+  height: 80px;
+  background-color: #E7DCD6;
+}
+.navbar-logo{
+  /* margin-top: 24px;
+  font-size: 22px; */
+}
+.navbar-logo img{
+ height: 100px;
+}
+.navbar-tag{
+display: flex;
+justify-content: end;
+}
+.navbar-tag #my-bloog{
+background-color: #A12825;
+padding: 5px 10px;
+border-radius: 5px;
+color: #fff;
+}
+.navbar-tag #my-bloog  a:hover{
+
+color: #fff;
+}
+.navbar-tag ul {
+  margin: 0;
+  padding: 0;
+  margin-top: 24px;
+}
+.navbar-tag ul li {
+ display: inline-block;
+ list-style-type: none;
+ margin-left: 20px;
+ font-weight: 600;
+ font-size: 18px;
+}
+.navbar-tag ul li a:hover {
+color: #A12825;
+transition: 0.4s ease-in-out;
+font-size: 19px;
+}
+.navbar-icon{
+  display: none;
+}
+@media screen and (min-width: 128px) and (max-width:500px) {
+  .navbar-tag{
+    position: fixed;
+    width : 300px;
+    top: 100px;
+    display: flex;
+    justify-content: start;
+    right: -300px;
+    /* transition: 0.4s ease-in-out; */
+    background-color: #A12825;
+    height: 100%;
+   }
+   .navbar-tag ul li a:hover {
+    color: #fff;
+
+    }
+   .navbar-tag ul li {
+    display:block;
+    /* margin-top: 20px; */
+    padding: 10px 80px;
+   }
+   .navbar-icon{
+    display: block;
+    text-align: end;
+    color: black;
+    margin-top: 24px;
+    font-size: 40px;
+  }
+  .navbar-mobile{
+    right: 0;
+    transition: 0.4s ease-in-out;
+  }
+}
+
+
+

@@ -1,0 +1,103 @@
+<app-header></app-header>
+<div class="article-continer">
+
+
+  <section class="image-article">
+    <div >
+      <img src="assets/image/realisation3.jpg" class="img-fluid" alt="">
+    </div>
+  </section>
+  <section class="article-contenu">
+    <div class="container">
+      <div class="row">
+        @if (articleByIdData) {
+          <div class="col-9 mt-4">
+
+            <h3># {{articleByIdData.titre}}  </h3>
+            <p class="read">
+              {{articleByIdData.contenue}}
+            </p>
+
+          </div>
+
+        }
+
+
+
+        <div class="col-3 mt-4">
+          <div class="card  mb-3" style="max-width: 18rem;">
+            <div class="card-header text-center">Articles recents</div>
+            <div class="card-body">
+              @for (recent of allArticleData ; track recent) {
+                  <ul>
+                    <li> {{recent.titre}} </li>
+
+                  </ul>
+                }
+                </div>
+              <!-- </div> -->
+
+            </div>
+          </div>
+      </div>
+    </div>
+  </section>
+  <section class="atricle-comment">
+    <div class="container">
+
+      <div class="my-comment pt-3 ">
+        <h4 class="mb-3 font-weight-bold">6 Comments</h4>
+        <ul class="comment-list">
+          <li class="comment">
+            <div class="vcard bio">
+              <!-- <img src="images/person_1.jpg" alt="Image placeholder"> -->
+            </div>
+            <div class="comment-body">
+              <h3>John Doe</h3>
+              <!-- <div class="meta">July 03, 2020 at 2:21pm</div> -->
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
+              <!-- <p><a href="#" class="reply">Reply</a></p> -->
+            </div>
+          </li>
+          <li class="comment">
+            <div class="vcard bio">
+              <!-- <img src="images/person_1.jpg" alt="Image placeholder"> -->
+            </div>
+            <div class="comment-body">
+              <h3>John Doe</h3>
+              <!-- <div class="meta">July 03, 2020 at 2:21pm</div> -->
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
+              <!-- <p><a href="#" class="reply">Reply</a></p> -->
+            </div>
+          </li>
+
+        </ul>
+        <!-- END comment-list -->
+
+        <div class="comment-form-wrap pt-2 ">
+          <h3 class="mb-2">Ajouter un commentaire</h3>
+
+          <!-- @if (articleByIdData ) { -->
+            <form action="#" class="p-2 ">
+              <div class="form-group">
+                <label for="name">Pseudo *</label>
+                <input type="text" name="pseudo" [(ngModel)]="pseudo" class="form-control" id="name">
+              </div>
+              <div class="form-group">
+                <label for="message">Message</label>
+                <textarea name="contenue"  [(ngModel)]="contenue" id="message" cols="30" rows="5" class="form-control"></textarea>
+              </div>
+              <div class="form-group mt-2">
+                <button type="submit"  (click)="addComment()" class="" > Commenter </button>
+              </div>
+
+            </form>
+
+          <!-- } -->
+        </div>
+
+      </div>
+    </div>
+  </section>
+</div>
+<app-footer></app-footer>

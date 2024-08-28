@@ -1,0 +1,50 @@
+<div class="content">
+  <!-- Navbar -->
+  <nav >
+    <form action="#"  (submit)="handleSearchToggle()">
+
+    </form>
+    <i class="bi bi-list"  (click)="toggleSidebar()" ></i>
+
+    <input type="checkbox" id="theme-toggle"  hidden (change)="toggleTheme()">
+    <label for="theme-toggle" class="theme-toggle"></label>
+    <a href="#" class="notif">
+        <i class='bx bx-bell'></i>
+        <span class="count">12</span>
+    </a>
+    <a [routerLink]="['/admin/profil']" class="profile">
+        <img src="images/logo.png">
+    </a>
+</nav>
+
+<!-- End of Navbar -->
+</div>
+
+
+
+<!-- Sidebar -->
+<div class="sidebar">
+      <a class="logo" [routerLink]="['/accueil']" >
+        <img src="./assets/image/logo.png" alt="">
+      </a>
+  <ul class="side-menu">
+      <li><a [routerLink]="['/admin/home-admin']"> <i class="bi bi-speedometer2 nav-icon "></i> Dashboard</a></li>
+      <li><a [routerLink]="['/admin/service']"><i class="bi bi-gear"></i> Service</a></li>
+      <li><a [routerLink]="['/admin/article']"><i class="bi bi-file-text"></i> Article</a></li>
+      <li ><a [routerLink]="['/admin/commentaire']"><i class="bi bi-chat"></i> Commentaire</a></li>
+      <li><a [routerLink]="['/admin/newsletter']"><i class="bi bi-envelope"></i> Newsletter</a></li>
+      <li><a [routerLink]="['/admin/realisation']"><i class="bi bi-award"></i> Realisation</a></li>
+      <li><a [routerLink]="['/admin/temoignage']"><i class="bi bi-quote"></i> Temoignage</a></li>
+  </ul>
+  <ul class="side-menu">
+      <li>
+          <a (click)="deconnexion()" class="logout">
+            <i class="bi bi-box-arrow-left"></i>
+              Deconnexion
+          </a>
+      </li>
+  </ul>
+</div>
+<!-- End of Sidebar -->
+
+

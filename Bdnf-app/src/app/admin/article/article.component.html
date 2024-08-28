@@ -1,0 +1,155 @@
+<app-sidebar></app-sidebar>
+<div class="admingestioncontainer mt-5">
+
+<div class="ajoutservicebutton ">
+
+
+<div class="searchbar mb-5">
+  <div class="d-flex justify-content-end">
+      <div class="input-group w-50 ">
+          <input type="search" class="form-control rounded " placeholder="Rechercher" aria-label="Search"  aria-describedby="search-addon"  />
+          <button type="button   " class="btn text-white" data-mdb-ripple-init   appBlueFont>rechercher</button>
+        </div>
+        <!-- http://127.0.0.1:8000/storage/{{dataDetailProfil.imageDeProfil}} -->
+  </div>
+</div>
+<div class="ajoutservicebutton d-flex justify-content-around ">
+  <a href="" data-bs-toggle="modal" data-bs-target="#exampleModal" > Ajouter <i class="bi bi-plus-square-fill ms-2"></i></a>
+  <a href="" data-bs-toggle="modal"  data-bs-target="#exampleModal-liste" > Liste des categories <i class="bi bi-plus-square-fill ms-2"></i></a>
+</div>
+<a href="" data-bs-toggle="modal" data-bs-target="#exampleModal-aritcle" > Ajouter Article <i class="bi bi-plus-square-fill ms-2"></i></a>
+<h4 class="mt-4 text-center">Liste des aticles</h4>
+</div>
+</div>
+
+<!-- **** Modal pour ajout categore -->
+<div class="modal fade  " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"   aria-hidden="true">
+  <div class="modal-dialog ">
+    <div class="modal-content ">
+      <div class="modal-header text-center">
+        <h5 class="modal-title " id="exampleModalLabel">Ajouter un service</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body  ">
+          <form >
+
+              <div class="mb-3">
+                  <label for="nom_prof" class="form-label">Nom</label>
+                  <input type="text" class="form-control" name="nomService" id="nomService" placeholder="nom service" [(ngModel)]="nomCategorie" required
+                  >
+                   <!-- <p class="message-erreur" *ngIf="!exactNomProfession">{{verifNomProfession}}</p>
+                   <p class="message-success" *ngIf="exactNomProfession"> <i class="bi bi-check-square-fill ms-1"></i> <i class="bi bi-check-square-fill ms-1"></i> <i class="bi bi-check-square-fill ms-1"></i> valide</p> -->
+
+                </div>
+
+                <div class="validajout d-flex justify-content-end" id="valada-final">
+                  <button  data-bs-dismiss="modal" type="submit" (click)="ajouterCategorie()"  class="btn-custom"> Ajouter</button>
+                  <a href="" class="ms-3" data-bs-dismiss="modal"> Annuler</a>
+                </div>
+          </form>
+
+
+      </div>
+
+    </div>
+  </div>
+</div>
+<!-- modal pour lister categorie  -->
+<div class="modal fade" id="exampleModal-liste" tabindex="-1" aria-labelledby="exampleModalLabel"   aria-hidden="true">
+  <div class="modal-dialog ">
+    <div class="modal-content ">
+      <div class="modal-header text-center">
+        <h5 class="modal-title " id="exampleModalLabel">Ajouter un service</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body  ">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">id</th>
+              <th scope="col">Nom</th>
+              <th scope="col">Action</th>
+            </tr>
+          </thead>
+          @for (item of dataCategorie ; track item) {
+
+            <tbody>
+              <tr>
+                <th scope="row">1</th>
+                <td class="col-8"> {{item.nomCategorie}} </td>
+                <td class="col-4">
+                  <ul class="d-flex justify-content-between">
+                    <li  ><i  class="bi bi-pencil" ></i></li>
+                    <li> <i  class="bi bi-trash3"></i></li>
+
+                  </ul>
+                </td>
+
+              </tr>
+            </tbody>
+          }
+        </table>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ***** Modal pour ajou article -->
+
+<div class="modal fade " id="exampleModal-aritcle" tabindex="-1" aria-labelledby="exampleModalLabel"   aria-hidden="true">
+  <div class="modal-dialog ">
+    <div class="modal-content ">
+      <div class="modal-header text-center">
+        <h5 class="modal-title " id="exampleModalLabel">Ajouter un article</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body  ">
+          <form  (ngSubmit)="ajouterArticle()">
+            <div class="w-100 d-flex justify-content-center ">
+              <i class="me-3"><span class="lnr lnr-camera"></span></i>
+              <input class="form-control w-50"   type="file" (change)="onFileSelected($event)" >
+            </div>
+              <div class="mb-3">
+                  <label for="titre" class="form-label">titre</label>
+                  <input type="text" class="form-control" name="titre" id="titre" [(ngModel)]="articleData.titre" placeholder="Titre realisation" required
+                  >
+                   <!-- <p class="message-erreur" *ngIf="!exactNomProfession">{{verifNomProfession}}</p>
+                   <p class="message-success" *ngIf="exactNomProfession"> <i class="bi bi-check-square-fill ms-1"></i> <i class="bi bi-check-square-fill ms-1"></i> <i class="bi bi-check-square-fill ms-1"></i> valide</p> -->
+
+                </div>
+                <div class="mb-3">
+                  <label for="categorie_id" class="form-label">Categorie</label>
+                  <select class="form-select" aria-label="Sélectionner Categorie" name="categorie_id" [(ngModel)]="articleData.categorie_id" required >
+                    <option value="" >Sélectionner Categorie</option>
+                    @for (catego of dataCategorie ; track catego) {
+                      <option  [value]="catego.id"> {{ catego.nomCategorie }}</option>
+
+                    }
+                  </select>
+
+
+                  <!-- <input type="number" class="form-control" placeholder="profession"  name = "profession_id" [(ngModel)]="profession_id"> -->
+                </div>
+                <div class="mb-3">
+                  <label for="description" class="form-label">Contenue</label>
+                  <textarea class="form-control" id=" contenue" name="contenue"  placeholder="description ici" [(ngModel)]="articleData.contenue" rows="4"  required
+                  ></textarea>
+
+                    <!-- <p class="message-erreur" *ngIf="!exactDescription">{{verifDescrip}}</p>
+                    <p class="message-success" *ngIf="exactDescription"><i class="bi bi-check-square-fill ms-1"></i> <i class="bi bi-check-square-fill ms-1"></i> <i class="bi bi-check-square-fill ms-1"></i> valide</p> -->
+                </div>
+                <div class="validajout d-flex justify-content-end" id="valada-final">
+                  <button  data-bs-dismiss="modal" type="submit"   class="btn-custom"> Ajouter</button>
+                  <a href="" class="ms-3" data-bs-dismiss="modal"> Annuler</a>
+                </div>
+          </form>
+
+
+      </div>
+
+    </div>
+  </div>
+</div>
+

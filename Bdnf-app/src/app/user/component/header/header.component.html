@@ -1,0 +1,26 @@
+<header class="fixed-top">
+  <div class="container">
+    <div class="row">
+      <div class=" navbar-logo col-md-5  col-sm-5 col-5">
+        <a class="" href="#"> <img src="./assets/image/logo.png" alt=""> </a>
+      </div>
+      <div class="col-md-7 col-sm-7 col-7">
+        <div class="navbar-icon ">
+          <i class="{{toggleIcon}}" (click)="afficherMenuToggle()" ></i>
+        </div>
+        <div class="navbar-tag"  [class.navbar-mobile]="toogleButton" id="ftco-nav">
+          <ul class="">
+            <!-- <li class="nav-item"><a href="" (click)="closeAll()" class="nav-link">Home</a></li> -->
+            <li class="nav-item"><a [routerLink]="['/accueil']"  (click)="closeAll()" class="nav-link">Accueil</a></li>
+            <li class="nav-item"><a [routerLink]="['/user-service']"   (click)="closeAll()"class="nav-link">Services</a></li>
+            <li class="nav-item"><a [routerLink]="['/about']" (click)="closeAll()" class="nav-link">A propos</a></li>
+            <li class="nav-item"><a href=""  (click)="closeAll()" class="nav-link">Contact</a></li>
+            <li class="nav-item" id="my-bloog"><a [routerLink]="['/blog']"   (click)="closeAll()" class="nav-link">Blog</a></li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</header>
+

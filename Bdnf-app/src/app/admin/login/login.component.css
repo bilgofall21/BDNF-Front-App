@@ -1,0 +1,43 @@
+:root {
+  --light: #f6f6f9;
+  --primary: #A12825;
+  --light-primary: #CFE8FF;
+  --grey: #eee;
+  --dark-grey: #AAAAAA;
+  --dark: #363949;
+  --danger: #D32F2F;
+  --light-danger: #FECDD3;
+  --warning: #FBC02D;
+  --light-warning: #FFF2C6;
+  --success: #388E3C;
+  --light-success: #BBF7D0;
+  --redColor: #A12825;
+  --beigeColor: #E7DCD6;
+}
+.row{
+  width: 75%;
+  margin: 0 auto;
+  gap: 0;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.row .login-wrap{
+  background-color: var(--beigeColor);
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+.img img {
+  width: 100%;
+  height: 415px;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  width: 100%;
+}
+.inscription button{
+  width: 20%;
+}
+button{
+  background-color: var(--redColor);
+  border: none;
+  color: #fff;
+  font-weight: bold;
+}
