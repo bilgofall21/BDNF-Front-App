@@ -80,3 +80,50 @@ table i{
 table li{
   list-style-type: none;
 }
+.card {
+  height: 26rem;
+  width: 17rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+border: none;
+overflow: hidden; /* Coupe le contenu qui dépasse */
+display: flex;
+}
+.card img{
+  height: 12rem;
+  border-bottom: 1px solid var(--redColor);
+}
+.card p{
+  color: #000000;
+font-weight: 300;
+font-size: 17px;
+  overflow: hidden; /* Empêche le débordement du texte */
+  text-overflow: ellipsis; /* Ajoute des points de suspension si le texte est trop long */
+  display: -webkit-box;
+  -webkit-line-clamp: 5; /* Limite à 3 lignes par exemple */
+  -webkit-box-orient: vertical;
+}
+#cardContainer{
+  margin: 0 auto;
+  row-gap: 10px;
+  column-gap: 8px;
+}
+
+ /* style pagination debut */
+
+ .pagiColor {
+  background-color: var(--redColor);
+  color: white;
+}
+.pagiColore.current {
+  background-color: var(--redColor);
+  color: white;
+}
+.pagiColore {
+  border:1px solid  var(--redColor);
+  color: var(--redColor);
+}
+#pagination{
+  margin-left: 180px;
+  margin-top: 20px;
+
+}

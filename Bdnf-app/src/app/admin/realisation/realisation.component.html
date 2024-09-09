@@ -7,15 +7,81 @@
 <div class="searchbar mb-5">
   <div class="d-flex justify-content-end">
       <div class="input-group w-50 ">
-          <input type="search" class="form-control rounded " placeholder="Rechercher" aria-label="Search"  aria-describedby="search-addon"  />
+          <input type="search" class="form-control rounded " placeholder="Rechercher" aria-label="Search" [(ngModel)]="searchRealisation" (input)="getArticlesPage()"  aria-describedby="search-addon"  />
           <button type="button   " class="btn text-white" data-mdb-ripple-init   appBlueFont>rechercher</button>
         </div>
         <!-- http://127.0.0.1:8000/storage/{{dataDetailProfil.imageDeProfil}} -->
   </div>
 </div>
 <h4 class="mt-4 text-center">Liste des realisations</h4>
+<div class="container">
+  <div class="row  my-4" id="myCard">
+    <ng-container *ngIf="getArticlesPage().length >0 , else noProfession">
+
+      <div class="col-lg-3 col-sm-6 " *ngFor="let service of getArticlesPage()">
+        <div class="card shadow-lg" style="width: 17rem; height: 25rem;"*ngIf="getArticlesPage()">
+          <div>
+            <img  src="assets/image/logo1.jpg" class="card-img-top" alt="..." style="height: 11rem;">
+            <div class="titleService">
+              <h5 class="text-center mt-1">{{service.titre}} </h5>
+            </div>
+
+          </div>
+          <div class="card-body py-2">
+            <p class="card-text"> {{service.description}} </p>
+          </div>
+          <div class="iconbottom w-50 d-flex justify-content-around">
+            <div>
+              <i class="bi bi-pencil"  (click)="loadRealisation(service)" data-bs-toggle="modal" data-bs-target="#modalModif" ></i>
+            </div>
+            <div>
+              <i  class="bi bi-trash3"(click)="supprimerRealisation(service.uuid)" ></i>
+            </div>
+          </div>
+          <div class="cardfooter"></div>
+        </div>
+      </div>
+    </ng-container>
+
+    <ng-template #noProfession>
+      <!-- <h4 class="text-center">Liste des services vide</h4> -->
+      <!-- <div class="text-center mt-5" *ngIf="loadingCard">
+        <div class="spinner-indicator">
+
+        </div>
+        <div class="spinner"></div>
+        <div class="mt2">Chargement en cour...</div>
+        </div> -->
+
+
+    </ng-template>
+
+
+
+
+
+  </div>
+
+  <div class="d-flex flex-wrap justify-content-center my-5 " id="pagination">
+    <button class="btn pagiColor me-2" [disabled]="pageActuelle === 1" (click)="pageActuelle = pageActuelle - 1">
+      Précédent
+    </button>
+    <button class="btn pagiColore ms-2"
+            *ngFor="let page of pages"
+            [class.current]="page === pageActuelle"
+            (click)="pageActuelle = page">
+      {{ page }}
+    </button>
+    <button class="btn pagiColor ms-2"
+            [disabled]="pageActuelle === totalPages"
+            (click)="pageActuelle = pageActuelle + 1">
+      Suivant
+    </button>
+  </div>
+</div>
 </div>
 
+<!-- modal ajout -->
 <div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"   aria-hidden="true">
   <div class="modal-dialog ">
     <div class="modal-content ">
@@ -24,26 +90,89 @@
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body  ">
-          <form  >
-            <div class="w-100 d-flex justify-content-center ">
-              <i class="me-3"><span class="lnr lnr-camera"></span></i>
-              <input class="form-control w-50"   type="file" (change)="getFile($event)" >
+
+
+
+          <form [formGroup]="realisationForm" (ngSubmit)="ajoutRealisation()" enctype="multipart/form-data">
+            <div class="mb-3">
+              <label for="titre" class="form-label">Titre</label>
+              <input type="text" class="form-control" id="titre" formControlName="titre" placeholder="Titre de la réalisation" required>
+              <div *ngIf="realisationForm.get('titre')?.invalid && realisationForm.get('titre')?.touched" class="text-danger">
+                Le titre est requis.
+              </div>
             </div>
-              <div class="mb-3">
-                  <label for="nom_prof" class="form-label">titre</label>
-                  <input type="text" [(ngModel)]="titre" class="form-control" name="titre"   placeholder="Titre realisation" required>
-                </div>
-                <div class="mb-3">
-                  <label for="description" class="form-label">Description</label>
-                  <textarea class="form-control" [(ngModel)]="description"  name="description"  placeholder="description ici" rows="4"  required
-                  ></textarea>
-                </div>
-                <div class="validajout d-flex justify-content-end" id="valada-final">
-                  <button  data-bs-dismiss="modal" type="button" (click)="ajoutRealisation()"   class="btn-custom"> Ajouter</button>
-                  <a href="" class="ms-3" data-bs-dismiss="modal"> Annuler</a>
-                </div>
+
+            <div class="mb-3">
+              <label for="description" class="form-label">Description</label>
+              <textarea class="form-control" id="description" formControlName="description" placeholder="Description ici" rows="4" required></textarea>
+              <div *ngIf="realisationForm.get('description')?.invalid && realisationForm.get('description')?.touched" class="text-danger">
+                La description est requise.
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="image" class="form-label">Ajouter une image</label>
+              <input type="file" class="form-control" id="image" (change)="onFileSelected($event)" required>
+              <div *ngIf="realisationForm.get('image')?.invalid && realisationForm.get('image')?.touched" class="text-danger">
+                L'image est requise.
+              </div>
+            </div>
+
+            <div class="d-flex justify-content-end" id="valada-final">
+              <button type="submit" class="btn-custom" data-bs-dismiss="modal" >Ajouter</button>
+              <a href="#" class="ms-3" data-bs-dismiss="modal">Annuler</a>
+            </div>
           </form>
 
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<!-- modal modifer -->
+<div class="modal fade " id="modalModif" tabindex="-1" aria-labelledby="exampleModalLabel"   aria-hidden="true">
+  <div class="modal-dialog ">
+    <div class="modal-content ">
+      <div class="modal-header text-center">
+        <h5 class="modal-title " id="exampleModalLabel">Modifier une realisation</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body  ">
+
+
+
+          <form [formGroup]="realisationForm" (ngSubmit)="modifierRealisa()" enctype="multipart/form-data">
+            <div class="mb-3">
+              <label for="titre" class="form-label">Titre</label>
+              <input type="text" class="form-control" id="titre" formControlName="titre" placeholder="Titre de la réalisation" required>
+              <div *ngIf="realisationForm.get('titre')?.invalid && realisationForm.get('titre')?.touched" class="text-danger">
+                Le titre est requis.
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="description" class="form-label">Description</label>
+              <textarea class="form-control" id="description" formControlName="description" placeholder="Description ici" rows="4" required></textarea>
+              <div *ngIf="realisationForm.get('description')?.invalid && realisationForm.get('description')?.touched" class="text-danger">
+                La description est requise.
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="image" class="form-label">Ajouter une image</label>
+              <input type="file" class="form-control" id="image" (change)="onFileSelected($event)" required>
+              <div *ngIf="realisationForm.get('image')?.invalid && realisationForm.get('image')?.touched" class="text-danger">
+                L'image est requise.
+              </div>
+            </div>
+
+            <div class="d-flex justify-content-end" id="valada-final">
+              <button type="submit" class="btn-custom"  data-bs-dismiss="modal" >Modifier</button>
+              <a href="#" class="ms-3" data-bs-dismiss="modal">Annuler</a>
+            </div>
+          </form>
 
       </div>
 

@@ -12,7 +12,13 @@ export class NewsletterService {
   constructor(private http: HttpClient) {}
 
   private getHeaders(): HttpHeaders {
-    const token = localStorage.getItem('access_token');
+    let token = '';
+
+    // Vérifier si window est défini pour savoir si on est dans un environnement navigateur
+    if (typeof window !== 'undefined' && localStorage.getItem('access_token')) {
+      token = localStorage.getItem('access_token') as string;
+    }
+
     return new HttpHeaders({
       'Authorization': `Bearer ${token}`,
       'Content-Type': 'application/json'

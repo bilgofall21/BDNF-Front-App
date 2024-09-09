@@ -9,7 +9,7 @@
     <div class="searchbar mb-5">
       <div class="d-flex justify-content-end">
           <div class="input-group w-50 ">
-              <input type="search" class="form-control rounded " placeholder="Rechercher" aria-label="Search"  aria-describedby="search-addon"  />
+              <input type="search" class="form-control rounded " placeholder="Rechercher" aria-label="Search"  [(ngModel)]="searchService" (input)="getArticlesPage()"   aria-describedby="search-addon"  />
               <button type="button   " class="btn text-white" data-mdb-ripple-init   appBlueFont>rechercher</button>
             </div>
             <!-- http://127.0.0.1:8000/storage/{{dataDetailProfil.imageDeProfil}} -->
@@ -22,7 +22,7 @@
 
 
       <div class="row">
-        @for (item of serviceData ; track item) {
+        @for (item of getArticlesPage() ; track item) {
           <div class="col-md-6 col-lg-4 toto">
             <div class="media block-6 services d-block rounded-lg shadow ftco-animate">
               <div class="icon d-flex align-items-center justify-content-center"><i class="bi bi-graph-up"></i></div>
@@ -35,7 +35,7 @@
                   <i (click)="loadService(item)" class="bi bi-pencil"  data-bs-toggle="modal" data-bs-target="#modifModal" ></i>
                 </div>
                 <div>
-                  <i (click)="supprimerSerice(item.uuid)" class="bi bi-trash3"></i>
+                  <i (click)="supprimerService(item.uuid)" class="bi bi-trash3"></i>
                 </div>
               </div>
             </div>
@@ -43,6 +43,20 @@
 
         }
 
+      </div>
+
+      <div class="d-flex flex-wrap justify-content-center my-5 " id="pagination">
+        <button class="btn pagiColor me-2" [disabled]="pageActuelle === 1" (click)="pageActuelle = pageActuelle - 1">
+          Précédent
+        </button>
+        <button class="btn pagiColore ms-2" *ngFor="let page of pages" [class.current]="page === pageActuelle"
+          (click)="pageActuelle = page">
+          {{ page }}
+        </button>
+        <button class="btn pagiColor ms-2" [disabled]="pageActuelle === totalPages"
+          (click)="pageActuelle = pageActuelle + 1">
+          Suivant
+        </button>
       </div>
 
     </div>

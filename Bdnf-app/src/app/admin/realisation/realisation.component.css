@@ -39,7 +39,7 @@ h4{
 }
 h5{
   color: var(--kergui-green);
-  font-weight: bold;
+  font-weight: regular;
 }
 .searchbar button{
   background-color: var(--redColor);
@@ -64,4 +64,18 @@ padding: 5px 20px;
   border: none;
   color: #fff;
   text-decoration: none;
+}
+
+
+.cardfooter{
+  background-color: var(--redColor);
+  height: 6px;
+}
+.card-body p {
+  height: 7.2rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+#myCard{
+  row-gap: 10px;
 }

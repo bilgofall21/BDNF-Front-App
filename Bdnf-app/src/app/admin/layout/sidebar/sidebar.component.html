@@ -12,7 +12,7 @@
         <i class='bx bx-bell'></i>
         <span class="count">12</span>
     </a>
-    <a [routerLink]="['/admin/profil']" class="profile">
+    <a [routerLink]="['/admin/profil']" class="profile" >
         <img src="images/logo.png">
     </a>
 </nav>
@@ -28,13 +28,13 @@
         <img src="./assets/image/logo.png" alt="">
       </a>
   <ul class="side-menu">
-      <li><a [routerLink]="['/admin/home-admin']"> <i class="bi bi-speedometer2 nav-icon "></i> Dashboard</a></li>
-      <li><a [routerLink]="['/admin/service']"><i class="bi bi-gear"></i> Service</a></li>
-      <li><a [routerLink]="['/admin/article']"><i class="bi bi-file-text"></i> Article</a></li>
-      <li ><a [routerLink]="['/admin/commentaire']"><i class="bi bi-chat"></i> Commentaire</a></li>
-      <li><a [routerLink]="['/admin/newsletter']"><i class="bi bi-envelope"></i> Newsletter</a></li>
-      <li><a [routerLink]="['/admin/realisation']"><i class="bi bi-award"></i> Realisation</a></li>
-      <li><a [routerLink]="['/admin/temoignage']"><i class="bi bi-quote"></i> Temoignage</a></li>
+      <li  [routerLinkActive]="['active']" ><a [routerLink]="['/admin/home-admin']"> <i class="bi bi-speedometer2 nav-icon "></i> Dashboard</a></li>
+      <li  [routerLinkActive]="['active']" ><a [routerLink]="['/admin/service']"><i class="bi bi-gear"></i> Service</a></li>
+      <li  [routerLinkActive]="['active']" ><a [routerLink]="['/admin/article']"><i class="bi bi-file-text"></i> Article</a></li>
+      <li   [routerLinkActive]="['active']" ><a [routerLink]="['/admin/commentaire']"><i class="bi bi-chat"></i> Commentaire</a></li>
+      <li  [routerLinkActive]="['active']" ><a [routerLink]="['/admin/newsletter']"><i class="bi bi-envelope"></i> Newsletter</a></li>
+      <li  [routerLinkActive]="['active']" ><a [routerLink]="['/admin/realisation']"><i class="bi bi-award"></i> Realisation</a></li>
+      <li  [routerLinkActive]="['active']" ><a [routerLink]="['/admin/temoignage']"><i class="bi bi-quote"></i> Temoignage</a></li>
   </ul>
   <ul class="side-menu">
       <li>

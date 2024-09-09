@@ -1,0 +1,75 @@
+.banner img{
+  height: 70vh;
+  width: 100%;
+}
+
+.heading-section h2 {
+  font-size: 40px;
+  font-weight: 600;
+  color: #a12825;
+  margin-top: 20px;
+}
+
+.my-blog{
+  row-gap: 40px;
+  column-gap: 10px;
+
+  }
+  .my-blog #my-blag-card{
+    width: 540px;
+    height: 240px;
+    border: none;
+    padding: 6px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  }
+  .my-blog #my-blag-card:hover{
+    background-color: var(--beigeColor);
+  }
+  .my-blog #my-blag-card .card{
+    /* background-color: #a12825; */
+    width: 33.5rem;
+    padding: 10px;
+    background-color: #fff;
+  }
+  .my-blog #my-blag-card .card:hover{
+    background-color: #E7DCD6;
+  }
+  .my-blog #my-blag-card .card .card-body a{
+  color: #A12825;
+  font-weight: 500;
+  font-size: 20px;
+  text-decoration: none;
+
+  }
+  .my-blog #my-blag-card .card .card-body a:hover{
+    transition: 0.4s ease-in-out;
+    color: #000;
+  }
+  .my-blog #my-blag-card .card:hover .card-body p{
+    color: #fff;
+    font-weight: 300;
+
+  }
+  .my-blog #my-blag-card .card .card-body p{
+  color: #000000;
+  font-weight: 300;
+  font-size: 17px;
+  overflow: hidden; /* Empêche le débordement du texte */
+  text-overflow: ellipsis; /* Ajoute des points de suspension si le texte est trop long */
+  display: -webkit-box;
+  -webkit-line-clamp: 4; /* Limite à 3 lignes par exemple */
+  -webkit-box-orient: vertical;
+
+  }
+  .my-blog #my-blag-card .card .card-body p small{
+  color: #000;
+  font-weight: 300;
+  font-size: 14px;
+  text-decoration: none;
+  }
+  .my-blog #my-blag-card img{
+    width: 100%;
+    height: 240px;
+    border-radius: 8px;
+  }
+

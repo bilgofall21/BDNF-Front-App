@@ -1,10 +1,13 @@
 <app-header></app-header>
+<div class="allContainer">
+
+
 <div class="article-continer">
 
 
   <section class="image-article">
     <div >
-      <img src="assets/image/realisation3.jpg" class="img-fluid" alt="">
+      <img src="assets/image/detail-blog.png" class="img-fluid" alt="">
     </div>
   </section>
   <section class="article-contenu">
@@ -21,9 +24,6 @@
           </div>
 
         }
-
-
-
         <div class="col-3 mt-4">
           <div class="card  mb-3" style="max-width: 18rem;">
             <div class="card-header text-center">Articles recents</div>
@@ -35,8 +35,6 @@
                   </ul>
                 }
                 </div>
-              <!-- </div> -->
-
             </div>
           </div>
       </div>
@@ -46,32 +44,28 @@
     <div class="container">
 
       <div class="my-comment pt-3 ">
-        <h4 class="mb-3 font-weight-bold">6 Comments</h4>
+        <h4 class="mb-3 font-weight-bold"> {{newDataComment.length}} Commentaires</h4>
         <ul class="comment-list">
-          <li class="comment">
-            <div class="vcard bio">
-              <!-- <img src="images/person_1.jpg" alt="Image placeholder"> -->
-            </div>
-            <div class="comment-body">
-              <h3>John Doe</h3>
-              <!-- <div class="meta">July 03, 2020 at 2:21pm</div> -->
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
-              <!-- <p><a href="#" class="reply">Reply</a></p> -->
-            </div>
-          </li>
-          <li class="comment">
-            <div class="vcard bio">
-              <!-- <img src="images/person_1.jpg" alt="Image placeholder"> -->
-            </div>
-            <div class="comment-body">
-              <h3>John Doe</h3>
-              <!-- <div class="meta">July 03, 2020 at 2:21pm</div> -->
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
-              <!-- <p><a href="#" class="reply">Reply</a></p> -->
-            </div>
-          </li>
+          @for (comment of newDataComment; track comment) {
+            <li class="comment">
+              <div class="vcard bio">
+                <!-- <img src="images/person_1.jpg" alt="Image placeholder"> -->
+              </div>
 
+              <div class="comment-body">
+                <h3>  {{comment.pseudo}}  </h3>
+                <div class="meta"> {{comment.created_at | date:'dd/MM/yyyy hh:mm'}} </div>
+                <p> {{comment.contenue}} </p>
+                <!-- <h6> {{comment.pseudo}} </h6> -->
+              </div>
+            </li>
+
+          }
         </ul>
+
+        <div *ngIf="newDataComment.length < dataCommnent.length" class="text-center">
+          <button class="btn " id="showPlus" (click)="loadMoreComments()">Charger plus</button>
+        </div>
         <!-- END comment-list -->
 
         <div class="comment-form-wrap pt-2 ">
@@ -99,5 +93,6 @@
       </div>
     </div>
   </section>
+</div>
 </div>
 <app-footer></app-footer>

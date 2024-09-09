@@ -58,7 +58,7 @@ dataProfil: any= [];
   }
 
   modifierProfil() {
-    const formData = new FormData();
+    let formData = new FormData();
     formData.append('prenom', this.registerProfil.prenom);
     formData.append('nom', this.registerProfil.nom);
     formData.append('email', this.registerProfil.email);
@@ -68,15 +68,23 @@ dataProfil: any= [];
       formData.append('photo', this.registerProfil.photo);
     }
 
+
+
     const formDataEntries = formData as any;
 
     // Pour déboguer les valeurs de FormData
     for (let [key, value] of formDataEntries.entries()) {
       console.log(`${key}:`, value);
   }
+   const newProfil = {
+      prenom: this.registerProfil.prenom,
+      nom: this.registerProfil.nom,
+      email: this.registerProfil.email,
+      password: this.registerProfil.password,
+    }
 
     // Appeler le service pour mettre à jour le profil
-    this.authService.updateProfil(formData, this.profilId).subscribe({
+    this.authService.updateProfil(newProfil).subscribe({
       next: (response) => {
         console.log('Profil mis à jour avec succès', response);
       },

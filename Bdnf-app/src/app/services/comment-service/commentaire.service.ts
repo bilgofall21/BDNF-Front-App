@@ -25,6 +25,7 @@ export class CommentaireService {
   }
 
   getCommentaire(uuidArticle: any):Observable<any>{
+     // const headers = this.getHeaders();
     return this.http.get<any>(`${this.apiUrl}/get/commentaire/artclie/all/${uuidArticle}`)
   }
 }

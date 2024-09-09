@@ -46,7 +46,6 @@ export class HomeComponent implements OnInit {
         return new Date(b.created_at).getTime() - new Date(a.created_at).getTime();
       })
       this.lastFourRealisation = lastRealisation.slice(0, 4);
-      console.log("😁✅Rea",this.lastFourRealisation)
 
     })
   }
@@ -54,11 +53,15 @@ export class HomeComponent implements OnInit {
 
 
   allArticleData: any[] = [];
+  lastFourArticel: any[] = [];
   allArticle(): void{
   this.articleService.allArticle().subscribe((data)=> {
     this.allArticleData = data.data
-    console.log("✅✅✅",this.allArticleData)
-
+    const lastArticle = this.allArticleData.sort((a: {created_at: string | number | Date}, b: {created_at: string | number | Date})=>{
+      return new Date(b.created_at).getTime() - new Date(a.created_at).getTime();
+    })
+    this.lastFourArticel = lastArticle.slice(0, 4)
+    console.log('step article', this.lastFourArticel)
   })
   }
   letsFo(id: any, event: Event): void {

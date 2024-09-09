@@ -1,5 +1,5 @@
-import { Routes } from '@angular/router';
-import path from 'path';
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
 
 export const routes: Routes = [
 
@@ -7,3 +7,11 @@ export const routes: Routes = [
   {path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)},
   { path: '**', redirectTo: '', pathMatch: 'full' }
 ];
+
+@NgModule({
+  imports: [RouterModule.forRoot(routes, {
+    scrollPositionRestoration: 'enabled' // Active la restauration de la position de défilement
+  })],
+  exports: [RouterModule]
+})
+export class AppRoutingModule { }

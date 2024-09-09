@@ -14,6 +14,9 @@ header{
 .navbar-logo img{
  height: 100px;
 }
+.nav-item.active{
+  border-bottom: 2px solid var(--redColor);
+}
 .navbar-tag{
 display: flex;
 justify-content: end;
@@ -52,14 +55,24 @@ font-size: 19px;
   .navbar-tag{
     position: fixed;
     width : 300px;
-    top: 100px;
+    top: 80px;
     display: flex;
     justify-content: start;
     right: -300px;
     /* transition: 0.4s ease-in-out; */
     background-color: #A12825;
+    color: #fff;
     height: 100%;
    }
+   .navbar-tag #my-bloog{
+    background-color:var(--beigeColor);
+    padding: 5px 10px;
+    border-radius: 5px;
+    text-align: center;
+    color: #fff;
+    width: 50%;
+    margin: 0 auto;
+    }
    .navbar-tag ul li a:hover {
     color: #fff;
 

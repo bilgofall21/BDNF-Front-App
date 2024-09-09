@@ -1,3 +1,8 @@
+@import "ngx-toastr/toastr";
+
+
+
+
 /* You can add global styles to this file, and also import other style files */
 :root {
   --light: #E7DCD6;
@@ -16,6 +21,24 @@
   --beigeColor : #E7DCD6;
 }
 
+.toast-success {
+  background-color: var(--success)!important;
+  color: #fff !important;
+}
+.toast-error {
+  background-color: var(--redColor);
+}
+
+.searchbar button{
+  background-color: var(--redColor);
+}
+.searchbar input{
+all: unset;
+flex-grow: 1;
+box-shadow: 3px 3px 10px -3px rgb(99, 97, 97);
+padding: 5px 20px;
+}
+
 
 body{
   font-family: 'Poppins', sans-serif;
@@ -28,4 +51,24 @@ font-weight: 400;
 }
 .allContainer{
   margin-top: 80px;
+}
+
+ /* style pagination debut */
+
+ .pagiColor {
+  background-color: var(--redColor);
+  color: white;
+}
+.pagiColore.current {
+  background-color: var(--redColor);
+  color: white;
+}
+.pagiColore {
+  border:1px solid  var(--redColor);
+  color: var(--redColor);
+}
+#pagination{
+  margin-left: 180px;
+  margin-top: 20px;
+
 }

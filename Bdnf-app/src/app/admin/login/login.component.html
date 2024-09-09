@@ -1,56 +1,63 @@
 
 @if (showConnexion ) {
 
-  <section class="  ftco-section mt-5" id="connexion" >
-      <div class="container">
+  <section class="ftco-section mt-5" id="connexion">
+    <div class="container">
       <div class="row justify-content-center">
-        <!-- <div class="col-md-12 col-lg-10"> -->
-
-            <div class="img col-lg-6 p-0">
-              <div class="img">
-                <img src="./assets/image/login2.jpg" alt="">
-
-              </div>
+        <div class="img col-lg-6 p-0">
+          <img src="./assets/image/login2.jpg" alt="">
+        </div>
+        <div class="login-wrap p-4 p-md-5 col-lg-6">
+          <div class="d-flex">
+            <div class="w-100">
+              <h5 class="mb-4">Connexion</h5>
             </div>
-            <div class="login-wrap p-4 p-md-5 col-lg-6">
-              <div class="d-flex">
-                <div class="w-100">
-                  <h5 class="mb-4">Connexion</h5>
-                </div>
-                <div class="w-100">
-                  <p class="social-media d-flex justify-content-end">
-                    <a href="#" class="social-icon d-flex align-items-center justify-content-center"><span class="fa fa-facebook"></span></a>
-                    <a href="#" class="social-icon d-flex align-items-center justify-content-center"><span class="fa fa-twitter"></span></a>
-                  </p>
-                </div>
-              </div>
-              <form (ngSubmit)="loginAdmin()"  class="signin-form">
-                <div class="form-group mb-3">
-                  <label class="label" for="name">Email</label>
-                  <input type="text" class="form-control" placeholder="Enter votre email"[(ngModel)]="formData.email" name="email" required>
-                </div>
-                <div class="form-group mb-3">
-                  <label class="label" for="password">Mot de pass</label>
-                  <input type="password" class="form-control" placeholder="Entrer votre mot de passe" [(ngModel)]="formData.password" name="password" required>
-                </div>
-                <div class="form-group">
-                  <button type="submit" class="form-control rounded submit px-3">Connexion</button>
-                </div>
-                <div class="form-group d-flex justify-content-around align-items-center mt-3">
-
-                  <div class="">
-                    <a class="text-decoration-none" href="#">Mot de passe oubié</a>
-                  </div>
-                  <div>
-                    <a class="text-decoration-none" data-toggle="tab" (click)="afficherSection('register', $event)" href="#signup">S'inscrire</a>
-
-                  </div>
-                </div>
-              </form>
+            <div class="w-100">
+              <p class="social-media d-flex justify-content-end">
+                <a href="#" class="social-icon d-flex align-items-center justify-content-center"><span class="fa fa-facebook"></span></a>
+                <a href="#" class="social-icon d-flex align-items-center justify-content-center"><span class="fa fa-twitter"></span></a>
+              </p>
             </div>
           </div>
+
+          <form [formGroup]="loginForm" (ngSubmit)="loginAdmin()" class="signin-form">
+            <div class="form-group mb-3">
+              <label class="label" for="email">Email</label>
+              <input type="text" formControlName="email" class="form-control" placeholder="Entrez votre email">
+              <div *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched" class="text-danger">
+                <small *ngIf="loginForm.get('email')?.hasError('required')">L'email est requis.</small>
+                <small *ngIf="loginForm.get('email')?.hasError('email')">L'email n'est pas valide.</small>
+              </div>
+            </div>
+
+            <div class="form-group mb-3">
+              <label class="label" for="password">Mot de passe</label>
+              <input type="password" formControlName="password" class="form-control" placeholder="Entrez votre mot de passe">
+              <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched" class="text-danger">
+                <small *ngIf="loginForm.get('password')?.hasError('required')">Le mot de passe est requis.</small>
+                <small *ngIf="loginForm.get('password')?.hasError('minlength')">Le mot de passe doit contenir au moins 6 caractères.</small>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <button type="submit" class="form-control rounded submit px-3" [disabled]="loginForm.invalid">
+                <ng-container *ngIf="!loadingLogin" >Connexion</ng-container>
+                <span class="spinner-border spinner-border-sm" *ngIf="loadingLogin"></span>
+
+                </button>
+            </div>
+          </form>
+
+          <div class="form-group d-flex justify-content-around align-items-center mt-3">
+
+            <div><a href="#" class="text-decoration-none">Mot de passe oublié</a></div>
+            <div><a class="text-decoration-none" data-toggle="tab" (click)="afficherSection('register', $event)" href="#signup">S'inscrire</a></div>
+          </div>
         </div>
+      </div>
+    </div>
   </section>
+
 }
 
 @if (showRegister) {

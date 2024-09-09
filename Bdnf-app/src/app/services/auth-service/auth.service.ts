@@ -50,11 +50,11 @@ getProfil(): Observable<any>{
   return this.http.get<any>(`${this.baseUrl}/profile`, {headers})
 }
 
-updateProfil(user: FormData, id: any): Observable<any> {
+updateProfil(user: any): Observable<any> {
   const headers = this.getHeaders();
 
 
-  return this.http.put<any>(`${this.baseUrl}/update-profile/${id}`, user, { headers });
+  return this.http.put<any>(`${this.baseUrl}/update-profile`, user, { headers });
 }
 
    // Méthode pour mettre à jour l'état de connexion

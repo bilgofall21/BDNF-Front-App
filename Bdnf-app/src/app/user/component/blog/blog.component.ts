@@ -6,17 +6,18 @@ import { ActivatedRoute } from '@angular/router';
 import { CommentaireService } from '../../../services/comment-service/commentaire.service';
 import { FormsModule } from '@angular/forms';
 import { close } from 'fs';
+import { CommonModule, NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-blog',
   standalone: true,
-  imports: [HeaderComponent, FooterComponent, FormsModule],
+  imports: [HeaderComponent, FooterComponent, FormsModule, NgIf, CommonModule],
   templateUrl: './blog.component.html',
   styleUrl: './blog.component.css'
 })
 export class BlogComponent implements OnInit{
   constructor(
-    private articleService: ArticleService, private activeRoute : ActivatedRoute, private commentService  : CommentaireService
+    private articleService: ArticleService, private activeRoute : ActivatedRoute, private commentService  : CommentaireService,
   ){}
 
   pseudo : string = '';
@@ -32,7 +33,7 @@ export class BlogComponent implements OnInit{
 allArticle(): void{
 this.articleService.allArticle().subscribe((data)=> {
   this.allArticleData = data.data
-  console.log("✅✅✅",this.allArticleData)
+  // console.log("✅✅✅",this.allArticleData)
 
 })
 }
@@ -47,6 +48,7 @@ articleById(): void{
     this.articleByIdData = data.data
     const IdComment = this.articleByIdData.id
     this.ariticle_uuid = this.articleByIdData.uuid
+    console.log('voir uuid article', this.ariticle_uuid)
     this.commentId = IdComment
 
     console.log('✅✅dddd✅',this.articleByIdData)
@@ -71,13 +73,28 @@ addComment(): void {
     this.contenue = '';
   })
 }
-
+dataCommnent: any[]=[];
+newDataComment: any[] = [];
+currentDisplayCount: number = 3;
 showComment(): void{
- const iddd = this.article_id;
- console.log('voir uuid accccccccccrticle', this.article_id )
-  this.commentService.getCommentaire(this.article_id).subscribe((data)=>{
-    console.log('step3', data)
+ const iddd = this.ariticle_uuid;
+ console.log('ffffff', iddd)
+ this.commentService.getCommentaire(this.ariticle_uuid).subscribe((data)=>{
+   this.dataCommnent = data.data
+   console.log('🤴🤴🤴 step1', this.dataCommnent)
+    this.dataCommnent.sort((a: {created_at: string| number| Date}, b: {created_at: string| number| Date}) =>{
+      console.log('step3', this.dataCommnent)
+      return new Date(b.created_at).getTime() - new Date(a.created_at).getTime();
+    })
+    this.newDataComment = this.dataCommnent.slice(0, this.currentDisplayCount)
+    console.log('step3', this.newDataComment)
+
   })
+}
+
+loadMoreComments(): void {
+  this.currentDisplayCount += 5; // Augmenter le nombre de commentaires à afficher
+  this.newDataComment = this.dataCommnent.slice(0, this.currentDisplayCount); // Mettre à jour la liste affichée
 }
 
 }

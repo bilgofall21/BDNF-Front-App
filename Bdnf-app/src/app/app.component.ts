@@ -13,7 +13,7 @@ import { TokenInterceptorService } from './interceptors/token-interceptor.servic
       provide: HTTP_INTERCEPTORS,
       useClass:TokenInterceptorService ,
       multi: true
-    }
+    }, 
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'

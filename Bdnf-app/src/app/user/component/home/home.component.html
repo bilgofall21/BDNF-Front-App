@@ -53,6 +53,9 @@
           }
 
         </div>
+        <div class="boutonService text-center mb-3">
+          <button class="btn" [routerLink]="['/user-service']" > Voir tous les services</button>
+        </div>
 
       </div>
     </section>
@@ -91,13 +94,16 @@
               <div class="project img shadow ftco-animate d-flex justify-content-center align-items-center" style="background-image: url(assets/image/realisation.jpg);">
                 <div class="overlay"></div>
                 <div class="text text-center p-4">
-                  <h3><a href="#">Branding &amp; {{realisa.titre}} </a></h3>
+                  <h3><a href="#"> {{realisa.titre}} </a></h3>
                   <span> {{realisa.description}} </span>
                 </div>
               </div>
             </div>
 
           }
+          <div class="boutonService text-center mb-3">
+            <button class="btn" [routerLink]="['/realisation-user']" > Voir toutes les realisations</button>
+          </div>
 
 
 
@@ -114,20 +120,20 @@
     <section id="blog-section">
       <div class="container">
         <div class="row justify-content-center mb-5 ">
-          <div class="col-md-7 heading-section  text-center ftco-animate">
+          <div class="col-md-7  heading-section  text-center ftco-animate">
             <!-- <span class="subheading">Blog</span> -->
             <h2 class="mb-4">Nos Articles</h2>
             <p>Restez informé avec nos articles sur les dernières tendances et stratégies en marketing digital.</p>
           </div>
         </div>
         <div class="row my-blog mb-5">
-          @for (article of allArticleData; track article) {
+          @for (article of  lastFourArticel; track article) {
 
             <div class="col-6  ms-4" id="my-blag-card">
               <div class="card border-0 mb-3" >
                 <div class="row g-0 ">
                   <div class="col-md-4 ">
-                    <!-- <img src="http://127.0.0.1:8000/{{article.image}}" class="img-fluid " alt="..."> -->
+                    <img src="assets/image/logo1.jpg" class="img-fluid " alt="...">
                   </div>
                   <div class="col-md-8">
                     <div class="card-body">
@@ -140,6 +146,9 @@
               </div>
             </div>
           }
+          <div class="boutonService text-center mb-3">
+            <button class="btn" [routerLink]="['/blog-user']" > Voir toutes les articles</button>
+          </div>
 
         </div>
       </div>

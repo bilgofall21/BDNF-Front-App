@@ -1,155 +1,265 @@
 <app-sidebar></app-sidebar>
 <div class="admingestioncontainer mt-5">
+  <div class="ajoutservicebutton">
 
-<div class="ajoutservicebutton ">
-
-
-<div class="searchbar mb-5">
-  <div class="d-flex justify-content-end">
-      <div class="input-group w-50 ">
-          <input type="search" class="form-control rounded " placeholder="Rechercher" aria-label="Search"  aria-describedby="search-addon"  />
-          <button type="button   " class="btn text-white" data-mdb-ripple-init   appBlueFont>rechercher</button>
+    <div class="mb-5">
+      <a href="" data-bs-toggle="modal" data-bs-target="#exampleModal-liste">
+        Liste des categories <i class="bi bi-plus-square-fill ms-2"></i></a>
+    </div>
+    <div class="ajoutservicebutton">
+      <div class="row">
+        <div class="col-6">
+          <a href="" data-bs-toggle="modal" data-bs-target="#exampleModal-aritcle">
+            Ajouter Article <i class="bi bi-plus-square-fill ms-2"></i></a>
         </div>
-        <!-- http://127.0.0.1:8000/storage/{{dataDetailProfil.imageDeProfil}} -->
+        <div class="col-6">
+          <a href="" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            Ajouter <i class="bi bi-plus-square-fill ms-2"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <h4 class="mt-4 text-center">Liste des aticles</h4>
+
   </div>
-</div>
-<div class="ajoutservicebutton d-flex justify-content-around ">
-  <a href="" data-bs-toggle="modal" data-bs-target="#exampleModal" > Ajouter <i class="bi bi-plus-square-fill ms-2"></i></a>
-  <a href="" data-bs-toggle="modal"  data-bs-target="#exampleModal-liste" > Liste des categories <i class="bi bi-plus-square-fill ms-2"></i></a>
-</div>
-<a href="" data-bs-toggle="modal" data-bs-target="#exampleModal-aritcle" > Ajouter Article <i class="bi bi-plus-square-fill ms-2"></i></a>
-<h4 class="mt-4 text-center">Liste des aticles</h4>
-</div>
+  <div class="searchbar mb-5">
+    <div class="d-flex justify-content-end">
+      <div class="input-group w-50">
+        <input type="search" class="form-control rounded" placeholder="Rechercher" aria-label="Search"
+          aria-describedby="search-addon" [(ngModel)]="searchArticle" (input)="getArticlesPage()" />
+        <button type="button   " class="btn text-white" data-mdb-ripple-init appBlueFont>
+          rechercher
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="container mb-4">
+    <div class="row" id="cardContainer">
+      @for (article of getArticlesPage() ; track article) {
+
+      <div class="col-3 card">
+        <img class="card-img-top" src="assets/image/login.jpg" alt="">
+        <div class="card-body">
+          <h5 class="card-title">{{article.titre}}</h5>
+          <p class="card-text">{{article.contenue}}</p>
+        </div>
+        <div class="iconbottom w-50 d-flex justify-content-around">
+          <div>
+            <i class="bi bi-pencil" (click)="loadRealisation(article)" data-bs-toggle="modal" data-bs-target="#modalModif"></i>
+          </div>
+          <div>
+            <i class="bi bi-trash3" (click)="supprimerArticle(article.uuid)" ></i>
+          </div>
+        </div>
+      </div>
+      }
+    </div>
+  </div>
+
+  <div class="d-flex flex-wrap justify-content-center my-5 " id="pagination">
+    <button class="btn pagiColor me-2" [disabled]="pageActuelle === 1" (click)="pageActuelle = pageActuelle - 1">
+      Précédent
+    </button>
+    <button class="btn pagiColore ms-2" *ngFor="let page of pages" [class.current]="page === pageActuelle"
+      (click)="pageActuelle = page">
+      {{ page }}
+    </button>
+    <button class="btn pagiColor ms-2" [disabled]="pageActuelle === totalPages"
+      (click)="pageActuelle = pageActuelle + 1">
+      Suivant
+    </button>
+  </div>
 </div>
 
 <!-- **** Modal pour ajout categore -->
-<div class="modal fade  " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"   aria-hidden="true">
-  <div class="modal-dialog ">
-    <div class="modal-content ">
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
       <div class="modal-header text-center">
-        <h5 class="modal-title " id="exampleModalLabel">Ajouter un service</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Ajouter un service</h5>
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body  ">
-          <form >
+      <div class="modal-body">
+        <form>
+          <div class="mb-3">
+            <label for="nom_prof" class="form-label">Nom</label>
+            <input type="text" class="form-control" name="nomService" id="nomService" placeholder="nom service"
+              [(ngModel)]="nomCategorie" required />
+          </div>
 
-              <div class="mb-3">
-                  <label for="nom_prof" class="form-label">Nom</label>
-                  <input type="text" class="form-control" name="nomService" id="nomService" placeholder="nom service" [(ngModel)]="nomCategorie" required
-                  >
-                   <!-- <p class="message-erreur" *ngIf="!exactNomProfession">{{verifNomProfession}}</p>
-                   <p class="message-success" *ngIf="exactNomProfession"> <i class="bi bi-check-square-fill ms-1"></i> <i class="bi bi-check-square-fill ms-1"></i> <i class="bi bi-check-square-fill ms-1"></i> valide</p> -->
-
-                </div>
-
-                <div class="validajout d-flex justify-content-end" id="valada-final">
-                  <button  data-bs-dismiss="modal" type="submit" (click)="ajouterCategorie()"  class="btn-custom"> Ajouter</button>
-                  <a href="" class="ms-3" data-bs-dismiss="modal"> Annuler</a>
-                </div>
-          </form>
-
-
+          <div class="validajout d-flex justify-content-end" id="valada-final">
+            <button data-bs-dismiss="modal" type="submit" (click)="ajouterCategorie()" class="btn-custom">
+              Ajouter
+            </button>
+            <a href="" class="ms-3" data-bs-dismiss="modal"> Annuler</a>
+          </div>
+        </form>
       </div>
-
     </div>
   </div>
 </div>
 <!-- modal pour lister categorie  -->
-<div class="modal fade" id="exampleModal-liste" tabindex="-1" aria-labelledby="exampleModalLabel"   aria-hidden="true">
-  <div class="modal-dialog ">
-    <div class="modal-content ">
+<div class="modal fade" id="exampleModal-liste" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
       <div class="modal-header text-center">
-        <h5 class="modal-title " id="exampleModalLabel">Ajouter un service</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Ajouter un service</h5>
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body  ">
+      <div class="modal-body">
         <table class="table">
           <thead>
             <tr>
-              <th scope="col">id</th>
               <th scope="col">Nom</th>
               <th scope="col">Action</th>
             </tr>
           </thead>
           @for (item of dataCategorie ; track item) {
 
-            <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td class="col-8"> {{item.nomCategorie}} </td>
-                <td class="col-4">
-                  <ul class="d-flex justify-content-between">
-                    <li  ><i  class="bi bi-pencil" ></i></li>
-                    <li> <i  class="bi bi-trash3"></i></li>
-
-                  </ul>
-                </td>
-
-              </tr>
-            </tbody>
+          <tbody>
+            <tr>
+              <td class="col-8">{{ item.nomCategorie }}</td>
+              <td class="col-4">
+                <ul class="d-flex justify-content-between">
+                  <li><i class="bi bi-pencil"></i></li>
+                  <li><i class="bi bi-trash3"></i></li>
+                </ul>
+              </td>
+            </tr>
+          </tbody>
           }
         </table>
-
       </div>
-
     </div>
   </div>
 </div>
 
 <!-- ***** Modal pour ajou article -->
 
-<div class="modal fade " id="exampleModal-aritcle" tabindex="-1" aria-labelledby="exampleModalLabel"   aria-hidden="true">
-  <div class="modal-dialog ">
-    <div class="modal-content ">
+<div class="modal fade" id="exampleModal-aritcle" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
       <div class="modal-header text-center">
-        <h5 class="modal-title " id="exampleModalLabel">Ajouter un article</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Ajouter un article</h5>
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body  ">
-          <form  (ngSubmit)="ajouterArticle()">
-            <div class="w-100 d-flex justify-content-center ">
-              <i class="me-3"><span class="lnr lnr-camera"></span></i>
-              <input class="form-control w-50"   type="file" (change)="onFileSelected($event)" >
+      <div class="modal-body">
+        <form [formGroup]="articleForm" (ngSubmit)="ajouterArticle()" enctype="multipart/form-data">
+          <div class="mb-3">
+            <label for="titre" class="form-label">Titre</label>
+            <input type="text" class="form-control" id="titre" formControlName="titre"
+              placeholder="Titre de la réalisation" required />
+            <div *ngIf="
+                articleForm.get('titre')?.invalid &&
+                articleForm.get('titre')?.touched
+              " class="text-danger">
+              Le titre est requis.
             </div>
-              <div class="mb-3">
-                  <label for="titre" class="form-label">titre</label>
-                  <input type="text" class="form-control" name="titre" id="titre" [(ngModel)]="articleData.titre" placeholder="Titre realisation" required
-                  >
-                   <!-- <p class="message-erreur" *ngIf="!exactNomProfession">{{verifNomProfession}}</p>
-                   <p class="message-success" *ngIf="exactNomProfession"> <i class="bi bi-check-square-fill ms-1"></i> <i class="bi bi-check-square-fill ms-1"></i> <i class="bi bi-check-square-fill ms-1"></i> valide</p> -->
+          </div>
 
-                </div>
-                <div class="mb-3">
-                  <label for="categorie_id" class="form-label">Categorie</label>
-                  <select class="form-select" aria-label="Sélectionner Categorie" name="categorie_id" [(ngModel)]="articleData.categorie_id" required >
-                    <option value="" >Sélectionner Categorie</option>
-                    @for (catego of dataCategorie ; track catego) {
-                      <option  [value]="catego.id"> {{ catego.nomCategorie }}</option>
+          <div class="mb-3">
+            <label for="description" class="form-label">Contenue</label>
+            <textarea class="form-control" id="description" formControlName="contenue" placeholder="Contenue ici"
+              rows="4" required></textarea>
+            <div *ngIf="
+                articleForm.get('contenue')?.invalid &&
+                articleForm.get('contenue')?.touched
+              " class="text-danger">
+              La contenue est requise.
+            </div>
+          </div>
 
-                    }
-                  </select>
-
-
-                  <!-- <input type="number" class="form-control" placeholder="profession"  name = "profession_id" [(ngModel)]="profession_id"> -->
-                </div>
-                <div class="mb-3">
-                  <label for="description" class="form-label">Contenue</label>
-                  <textarea class="form-control" id=" contenue" name="contenue"  placeholder="description ici" [(ngModel)]="articleData.contenue" rows="4"  required
-                  ></textarea>
-
-                    <!-- <p class="message-erreur" *ngIf="!exactDescription">{{verifDescrip}}</p>
-                    <p class="message-success" *ngIf="exactDescription"><i class="bi bi-check-square-fill ms-1"></i> <i class="bi bi-check-square-fill ms-1"></i> <i class="bi bi-check-square-fill ms-1"></i> valide</p> -->
-                </div>
-                <div class="validajout d-flex justify-content-end" id="valada-final">
-                  <button  data-bs-dismiss="modal" type="submit"   class="btn-custom"> Ajouter</button>
-                  <a href="" class="ms-3" data-bs-dismiss="modal"> Annuler</a>
-                </div>
-          </form>
-
-
+          <div class="mb-3">
+            <label for="categorie_id" class="form-label">Categorie</label>
+            <select class="form-select" aria-label="Sélectionner Categorie" name="categorie_id"
+              formControlName="categorie_id" required>
+              <option value="">Sélectionner Categorie</option>
+              @for (catego of dataCategorie ; track catego) {
+              <option [value]="catego.id">{{ catego.nomCategorie }}</option>
+              }
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="image" class="form-label">Ajouter une image</label>
+            <input type="file" class="form-control" id="image" (change)="onFileSelected($event)" required />
+            <div *ngIf="
+                articleForm.get('image')?.invalid &&
+                articleForm.get('image')?.touched
+              " class="text-danger">
+              L'image est requise.
+            </div>
+          </div>
+          <div class="d-flex justify-content-end" id="valada-final">
+            <button type="submit" class="btn-custom" data-bs-dismiss="modal">Ajouter</button>
+            <a href="#" class="ms-3" data-bs-dismiss="modal">Annuler</a>
+          </div>
+        </form>
       </div>
-
     </div>
   </div>
 </div>
 
+
+<!-- modal modif article -->
+<div class="modal fade" id="modalModif" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h5 class="modal-title" id="exampleModalLabel">Modifier un article</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="articleForm" (ngSubmit)="modifierAricle()">
+          <div class="mb-3">
+            <label for="titre" class="form-label">Titre</label>
+            <input type="text" class="form-control" id="titre" formControlName="titre"
+              placeholder="Titre de la réalisation" required />
+            <div *ngIf="
+                articleForm.get('titre')?.invalid &&
+                articleForm.get('titre')?.touched
+              " class="text-danger">
+              Le titre est requis.
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="description" class="form-label">Contenue</label>
+            <textarea class="form-control" id="description" formControlName="contenue" placeholder="Contenue ici"
+              rows="4" required></textarea>
+            <div *ngIf="
+                articleForm.get('contenue')?.invalid &&
+                articleForm.get('contenue')?.touched
+              " class="text-danger">
+              La contenue est requise.
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="categorie_id" class="form-label">Categorie</label>
+            <select class="form-select" aria-label="Sélectionner Categorie" name="categorie_id"
+              formControlName="categorie_id" required>
+              <option value="">Sélectionner Categorie</option>
+              @for (catego of dataCategorie ; track catego) {
+              <option [value]="catego.id">{{ catego.nomCategorie }}</option>
+              }
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="image" class="form-label">Ajouter une image</label>
+            <input type="file" class="form-control" id="image" (change)="onFileSelected($event)" required />
+            <div *ngIf="
+                articleForm.get('image')?.invalid &&
+                articleForm.get('image')?.touched
+              " class="text-danger">
+              L'image est requise.
+            </div>
+          </div>
+          <div class="d-flex justify-content-end" id="valada-final">
+            <button type="submit" class="btn-custom" data-bs-dismiss="modal">Modifier</button>
+            <a href="#" class="ms-3" data-bs-dismiss="modal">Annuler</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
