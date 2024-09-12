@@ -29,5 +29,9 @@ export class NewsletterService {
     const headers = this.getHeaders();
     return this.http.post(`${this.apiUrl}/subscribe/newsleter`, newsletter, { headers });
   }
+  getAllNewsLetter(): Observable<any>{
+    const headers = this.getHeaders();
+    return this.http.get(`${this.apiUrl}/getAll/newsleter`, {headers });
+  }
 
 }

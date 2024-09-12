@@ -55,7 +55,7 @@ width: 75%;
   color: var(--redColor);
   font-weight: bold;
 }
-.atricle-comment .comment-form-wrap button{
+.atricle-comment .comment-form-wrap button, button{
   font-size: 16px;
   background-color: var(--redColor);
   border: none;
@@ -64,10 +64,10 @@ width: 75%;
   color: #fff;
 
 }
-form{
+/* form{
   background-color: var(--beigeColor);
   border-radius: 20px;
-}
+} */
 #showPlus{
   font-size: 16px;
   background-color: var(--redColor);
@@ -75,4 +75,32 @@ form{
   padding: 4px 8px;
   border-radius: 10px;
   color: #fff;
+}
+
+#newAricleContainer{
+  border: 2px solid red;
+  width: 75%;
+  border-radius: 10px;
+  padding: 70px;
+}
+#lastArticleContainer{
+  width: 75%;
+}
+#lastCard .card{
+height: 20rem;
+}
+#lastCard .card img{
+height:10rem;
+}
+#lastCard .nbreComment p{
+font-size: 14px;
+}
+#lastCard .card h4{
+  font-size: 18px;
+  overflow: hidden; /* Empêche le débordement du texte */
+  text-overflow: ellipsis; /* Ajoute des points de suspension si le texte est trop long */
+  display: -webkit-box;
+  -webkit-line-clamp: 4; /* Limite à 3 lignes par exemple */
+  -webkit-box-orient: vertical;
+
 }

@@ -14,7 +14,7 @@
   letter-spacing: .1em;
 }
 
-.ftco-footer .ftco-footer-widget h2 {
+.ftco-footer .ftco-footer-widget h2, h4 {
   font-weight: normal;
   color: #fff;
   margin-bottom: 40px;
@@ -29,6 +29,11 @@
 .ftco-footer .ftco-footer-widget ul li a {
   color: rgba(255, 255, 255, 0.6);
   text-decoration: none;
+  cursor: pointer;
+}
+.ftco-footer .ftco-footer-widget ul li a:hover {
+color: #000;
+font-weight: bold;
 }
 
 .ftco-footer .ftco-footer-widget ul li a span {

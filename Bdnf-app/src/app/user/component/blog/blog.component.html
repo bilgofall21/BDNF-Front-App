@@ -10,7 +10,7 @@
       <img src="assets/image/detail-blog.png" class="img-fluid" alt="">
     </div>
   </section>
-  <section class="article-contenu">
+  <!-- <section class="article-contenu">
     <div class="container">
       <div class="row">
         @if (articleByIdData) {
@@ -39,12 +39,12 @@
           </div>
       </div>
     </div>
-  </section>
+  </section> -->
   <section class="atricle-comment">
     <div class="container">
 
       <div class="my-comment pt-3 ">
-        <h4 class="mb-3 font-weight-bold"> {{newDataComment.length}} Commentaires</h4>
+        <h4 class="mb-3 font-weight-bold"> {{dataCommnent.length}} Commentaires</h4>
         <ul class="comment-list">
           @for (comment of newDataComment; track comment) {
             <li class="comment">
@@ -94,5 +94,150 @@
     </div>
   </section>
 </div>
+
+
+<section class="newArticle">
+  @if (articleByIdData) {
+      <div class="container" id="newAricleContainer">
+
+  <div class="articleTile">
+    <h1># {{articleByIdData.titre}} </h1>
+  </div>
+  <div class="imageAricle">
+    <img src="assets/image/detail-blog.png" class="img-fluid" alt="">
+  </div>
+  <div class="articleText mt-3">
+    <p>{{articleByIdData.contenue}} .</p>
+
+  </div>
+  <hr>
+  <div class="detailAricle d-flex justify-content-between">
+    <div class="nbreComment">
+      <p> {{dataCommnent.length}} commentaires</p>
+    </div>
+    <div class="likeComment">
+      <i class="bi bi-hand-thumbs-up"></i>
+    </div>
+  </div>
+  <hr>
+</div>
+}
+</section>
+<section class="lastArticle my-4">
+  <div class="container" id="lastArticleContainer">
+    <div class="lastArticleDetail d-flex justify-content-between">
+      <p>Articles Recents</p>
+      <a href="">Voir tout</a>
+    </div>
+    <div class="row">
+      <div class=" col-sm-12 col-md-4 col-lg-4" id="lastCard">
+        <div class="card">
+          <img class="card-img-top img-fluid" src="assets/image/detail-blog.png" alt="">
+          <div class="card-body">
+            <h4 class="card-title text-start">Title de mon article Title de mon article Title de mon article Title de mon article Title de mon article</h4>
+            <hr>
+            <div class="detailAricle d-flex justify-content-between">
+              <div class="nbreComment">
+                <p> O commentaire</p>
+              </div>
+              <div class="likeComment">
+                <i class="bi bi-hand-thumbs-up"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class=" col-sm-12 col-md-4 col-lg-4" id="lastCard">
+        <div class="card">
+          <img class="card-img-top img-fluid" src="assets/image/detail-blog.png" alt="">
+          <div class="card-body">
+            <h4 class="card-title text-start">Title de mon article Title de mon article Title de mon article Title de mon article Title de mon article</h4>
+            <hr>
+            <div class="detailAricle d-flex justify-content-between">
+              <div class="nbreComment">
+                <p> O commentaire</p>
+              </div>
+              <div class="likeComment">
+                <i class="bi bi-hand-thumbs-up"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class=" col-sm-12 col-md-4 col-lg-4" id="lastCard">
+        <div class="card">
+          <img class="card-img-top img-fluid" src="assets/image/detail-blog.png" alt="">
+          <div class="card-body">
+            <h4 class="card-title text-start">Title de mon article Title de mon article Title de mon article Title de mon article Title de mon article</h4>
+            <hr>
+            <div class="detailAricle d-flex justify-content-between">
+              <div class="nbreComment">
+                <p> O commentaire</p>
+              </div>
+              <div class="likeComment">
+                <i class="bi bi-hand-thumbs-up"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="Comment"></section>
+<section style="background-color: #eee;">
+  <div class="container my-5 py-5">
+    <div class="row d-flex justify-content-center">
+      <div class="col-md-12 col-lg-10 col-xl-8">
+        <div class="card">
+          <div class="card-body">
+            <div class="d-flex flex-start align-items-center">
+              <img class="rounded-circle shadow-1-strong me-3"
+                src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(19).webp" alt="avatar" width="60"
+                height="60" />
+              <div>
+                <h6 class="fw-bold text-primary mb-1">Lily Coleman</h6>
+                <p class="text-muted small mb-0">
+                  Shared publicly - Jan 2020
+                </p>
+              </div>
+            </div>
+
+            <p class="mt-3 mb-4 pb-2">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+              tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+              quis nostrud exercitation ullamco laboris nisi ut aliquip consequat.
+            </p>
+
+
+          </div>
+          <div class="card-footer py-3 border-0" style="background-color: #f8f9fa;">
+            <div class="d-flex flex-start w-100">
+              <img class="rounded-circle shadow-1-strong me-3"
+                src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(19).webp" alt="avatar" width="40"
+                height="40" />
+                <div data-mdb-input-init class="form-outline w-100">
+                <form action="#" class="p-2 ">
+                  <div class="form-group">
+                    <label for="name">Pseudo <span class="text-danger">*</span></label>
+                    <input type="text" name="pseudo" [(ngModel)]="pseudo" class="form-control" id="name">
+                  </div>
+                  <div class="form-group">
+                    <label for="message">Message <span class="text-danger">*</span></label>
+                    <textarea name="contenue"  [(ngModel)]="contenue" id="message" cols="30" rows="4" class="form-control"></textarea>
+                  </div>
+                </form>
+              </div>
+            </div>
+            <div class="float-end mt-2 pt-1">
+              <button (click)="addComment()"  type="button"  class="btn  me-2">Poster commentaire</button>
+              <button  type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-outline-primary btn-sm">Annuler</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 </div>
 <app-footer></app-footer>

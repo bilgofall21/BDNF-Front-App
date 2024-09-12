@@ -28,7 +28,6 @@ border-radius: 5px;
 color: #fff;
 }
 .navbar-tag #my-bloog  a:hover{
-
 color: #fff;
 }
 .navbar-tag ul {
@@ -51,7 +50,7 @@ font-size: 19px;
 .navbar-icon{
   display: none;
 }
-@media screen and (min-width: 128px) and (max-width:500px) {
+@media screen and (min-width: 128px) and (max-width:990px) {
   .navbar-tag{
     position: fixed;
     width : 300px;
@@ -92,6 +91,13 @@ font-size: 19px;
   .navbar-mobile{
     right: 0;
     transition: 0.4s ease-in-out;
+  }
+
+}
+
+@media screen and (max-width:985px){
+  .navbar-tag ul li{
+    font-size: 16px;
   }
 }
 

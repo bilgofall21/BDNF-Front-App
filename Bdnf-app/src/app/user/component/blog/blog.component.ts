@@ -30,10 +30,10 @@ export class BlogComponent implements OnInit{
   }
 
   allArticleData: any[] = [];
+  lastTreArticle: any[] = [];
 allArticle(): void{
 this.articleService.allArticle().subscribe((data)=> {
   this.allArticleData = data.data
-  // console.log("✅✅✅",this.allArticleData)
 
 })
 }
@@ -43,11 +43,12 @@ article_id : any = '';
 ariticle_uuid : any = '';
 
 articleById(): void{
-  const uuid = this.activeRoute.snapshot.params['uuid']
-  this.articleService.getArticleById(uuid).subscribe((data:any) =>{
+  this.ariticle_uuid = this.activeRoute.snapshot.params['uuid']
+  this.articleService.getArticleById(this.ariticle_uuid).subscribe((data:any) =>{
     this.articleByIdData = data.data
+    this.showComment();
     const IdComment = this.articleByIdData.id
-    this.ariticle_uuid = this.articleByIdData.uuid
+    // this.ariticle_uuid = this.articleByIdData.uuid
     console.log('voir uuid article', this.ariticle_uuid)
     this.commentId = IdComment
 
@@ -67,8 +68,9 @@ addComment(): void {
   console.log('👌👌👌👌', this.ariticle_uuid)
 
   this.commentService.addComment(newComment).subscribe((response: any) =>{
-    console.log('voir id', newComment.article_id)
-    console.log("step 1",response)
+    // console.log('voir id', newComment.article_id)
+    // console.log("step 1",response)
+    this.showComment();
     this.pseudo = '';
     this.contenue = '';
   })

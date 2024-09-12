@@ -24,6 +24,7 @@
     "@supabase/supabase-js": "^2.45.3",
     "bootstrap": "^5.3.3",
     "bootstrap-icons": "^1.11.3",
+    "date-fns": "^3.6.0",
     "express": "^4.18.2",
     "jquery": "^3.7.1",
     "ngx-toastr": "^19.0.0",

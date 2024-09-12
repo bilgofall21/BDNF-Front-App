@@ -1,1 +1,93 @@
 <app-sidebar></app-sidebar>
+<div class="admingestioncontainer mt-5">
+
+  <div class="container">
+    <div class="card " id="cardTableContainer">
+      <div class="table-responsive  ">
+        <table class="table align-items-center mb-0">
+          <thead >
+            <tr>
+              <th class="text-uppercase text-secondary text-xxs font-weight-bolder ">Email</th>
+              <th class="text-uppercase text-secondary text-xxs font-weight-bolder  ps-2">Date inscription</th>
+              <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder ">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (news of allNewsletterData ; track news) {
+              <tr>
+                <td>
+                  <div class="d-flex px-2 py-1">
+                    <div>
+                    </div>
+                    <div class="d-flex flex-column justify-content-center">
+                      <h6 class="mb-0 dd">{{news.email}} </h6>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <p class="dd font-weight-bold mb-0">{{news.created_at | dateFormat}} </p>
+                </td>
+                <td class="align-middle text-center text-sm">
+                  <a   data-bs-toggle="modal" data-bs-target="#exampleModal" class="myRespone">repondre</a>
+                </td>
+
+              </tr>
+
+            }
+
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"   aria-hidden="true">
+    <div class="modal-dialog ">
+      <div class="modal-content ">
+        <div class="modal-header text-center">
+          <h5 class="modal-title " id="exampleModalLabel">Ajouter une realisation</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body  ">
+
+
+
+            <form [formGroup]="realisationForm" (ngSubmit)="ajoutRealisation()" enctype="multipart/form-data">
+              <div class="mb-3">
+                <label for="titre" class="form-label">Titre</label>
+                <input type="text" class="form-control" id="titre" formControlName="titre" placeholder="Titre de la réalisation" required>
+                <div *ngIf="realisationForm.get('titre')?.invalid && realisationForm.get('titre')?.touched" class="text-danger">
+                  Le titre est requis.
+                </div>
+              </div>
+
+              <div class="mb-3">
+                <label for="description" class="form-label">Description</label>
+                <textarea class="form-control" id="description" formControlName="description" placeholder="Description ici" rows="4" required></textarea>
+                <div *ngIf="realisationForm.get('description')?.invalid && realisationForm.get('description')?.touched" class="text-danger">
+                  La description est requise.
+                </div>
+              </div>
+
+              <div class="mb-3">
+                <label for="image" class="form-label">Ajouter une image</label>
+                <input type="file" class="form-control" id="image" (change)="onFileSelected($event)" required>
+                <div *ngIf="realisationForm.get('image')?.invalid && realisationForm.get('image')?.touched" class="text-danger">
+                  L'image est requise.
+                </div>
+              </div>
+
+              <div class="d-flex justify-content-end" id="valada-final">
+                <button type="submit" class="btn-custom" data-bs-dismiss="modal" >Ajouter</button>
+                <a href="#" class="ms-3" data-bs-dismiss="modal">Annuler</a>
+              </div>
+            </form>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</div>

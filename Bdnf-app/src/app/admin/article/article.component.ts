@@ -4,7 +4,6 @@ import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { CategorieService } from '../../services/catego-service/categorie.service';
 import { ArticleService } from '../../services/article-service/article.service';
 import { SidebarComponent } from "../layout/sidebar/sidebar.component";
-import { addIcons } from "ionicons";
 import { NgFor, NgIf } from '@angular/common';
 import { NotificationService } from '../../services/notification.service';
 import { ToastrService } from 'ngx-toastr';

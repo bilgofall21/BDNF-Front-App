@@ -5,11 +5,12 @@ import { ArticleService } from '../../../services/article-service/article.servic
 import { RouterLink ,Router} from '@angular/router';
 import { ServiceService } from '../../../services/services-service/service.service';
 import { RealisationService } from '../../../services/realisation-service/realisation.service';
+import { DateFormatPipe } from "../../../pipes/date-format.pipe";
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [HeaderComponent, FooterComponent,RouterLink],
+  imports: [HeaderComponent, FooterComponent, RouterLink, DateFormatPipe],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })

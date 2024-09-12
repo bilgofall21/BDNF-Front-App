@@ -2,11 +2,12 @@ import { HttpClientModule } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NewsletterService } from '../../../services/news-service/newsletter.service';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-footer',
   standalone: true,
-  imports: [FormsModule, HttpClientModule],
+  imports: [FormsModule, HttpClientModule, RouterLink],
   templateUrl: './footer.component.html',
   styleUrl: './footer.component.css',
   providers: [NewsletterService],
@@ -20,7 +21,8 @@ const myEmail = {
   email: this.email
 }
 this.newsletterService.addNewsletter(myEmail).subscribe((response: any)=>{
-  console.log("voir le nws", myEmail)
+  console.log("voir le nws", myEmail);
+  this.email = '';
 })
   }
 
