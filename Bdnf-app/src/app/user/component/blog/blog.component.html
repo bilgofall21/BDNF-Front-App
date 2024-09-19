@@ -5,94 +5,6 @@
 <div class="article-continer">
 
 
-  <section class="image-article">
-    <div >
-      <img src="assets/image/detail-blog.png" class="img-fluid" alt="">
-    </div>
-  </section>
-  <!-- <section class="article-contenu">
-    <div class="container">
-      <div class="row">
-        @if (articleByIdData) {
-          <div class="col-9 mt-4">
-
-            <h3># {{articleByIdData.titre}}  </h3>
-            <p class="read">
-              {{articleByIdData.contenue}}
-            </p>
-
-          </div>
-
-        }
-        <div class="col-3 mt-4">
-          <div class="card  mb-3" style="max-width: 18rem;">
-            <div class="card-header text-center">Articles recents</div>
-            <div class="card-body">
-              @for (recent of allArticleData ; track recent) {
-                  <ul>
-                    <li> {{recent.titre}} </li>
-
-                  </ul>
-                }
-                </div>
-            </div>
-          </div>
-      </div>
-    </div>
-  </section> -->
-  <section class="atricle-comment">
-    <div class="container">
-
-      <div class="my-comment pt-3 ">
-        <h4 class="mb-3 font-weight-bold"> {{dataCommnent.length}} Commentaires</h4>
-        <ul class="comment-list">
-          @for (comment of newDataComment; track comment) {
-            <li class="comment">
-              <div class="vcard bio">
-                <!-- <img src="images/person_1.jpg" alt="Image placeholder"> -->
-              </div>
-
-              <div class="comment-body">
-                <h3>  {{comment.pseudo}}  </h3>
-                <div class="meta"> {{comment.created_at | date:'dd/MM/yyyy hh:mm'}} </div>
-                <p> {{comment.contenue}} </p>
-                <!-- <h6> {{comment.pseudo}} </h6> -->
-              </div>
-            </li>
-
-          }
-        </ul>
-
-        <div *ngIf="newDataComment.length < dataCommnent.length" class="text-center">
-          <button class="btn " id="showPlus" (click)="loadMoreComments()">Charger plus</button>
-        </div>
-        <!-- END comment-list -->
-
-        <div class="comment-form-wrap pt-2 ">
-          <h3 class="mb-2">Ajouter un commentaire</h3>
-
-          <!-- @if (articleByIdData ) { -->
-            <form action="#" class="p-2 ">
-              <div class="form-group">
-                <label for="name">Pseudo *</label>
-                <input type="text" name="pseudo" [(ngModel)]="pseudo" class="form-control" id="name">
-              </div>
-              <div class="form-group">
-                <label for="message">Message</label>
-                <textarea name="contenue"  [(ngModel)]="contenue" id="message" cols="30" rows="5" class="form-control"></textarea>
-              </div>
-              <div class="form-group mt-2">
-                <button type="submit"  (click)="addComment()" class="" > Commenter </button>
-              </div>
-
-            </form>
-
-          <!-- } -->
-        </div>
-
-      </div>
-    </div>
-  </section>
 </div>
 
 
@@ -127,97 +39,72 @@
   <div class="container" id="lastArticleContainer">
     <div class="lastArticleDetail d-flex justify-content-between">
       <p>Articles Recents</p>
-      <a href="">Voir tout</a>
+      <a [routerLink]="['/blog-user']"  >Voir tout</a>
     </div>
     <div class="row">
-      <div class=" col-sm-12 col-md-4 col-lg-4" id="lastCard">
-        <div class="card">
-          <img class="card-img-top img-fluid" src="assets/image/detail-blog.png" alt="">
-          <div class="card-body">
-            <h4 class="card-title text-start">Title de mon article Title de mon article Title de mon article Title de mon article Title de mon article</h4>
-            <hr>
-            <div class="detailAricle d-flex justify-content-between">
-              <div class="nbreComment">
-                <p> O commentaire</p>
-              </div>
-              <div class="likeComment">
-                <i class="bi bi-hand-thumbs-up"></i>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class=" col-sm-12 col-md-4 col-lg-4" id="lastCard">
-        <div class="card">
-          <img class="card-img-top img-fluid" src="assets/image/detail-blog.png" alt="">
-          <div class="card-body">
-            <h4 class="card-title text-start">Title de mon article Title de mon article Title de mon article Title de mon article Title de mon article</h4>
-            <hr>
-            <div class="detailAricle d-flex justify-content-between">
-              <div class="nbreComment">
-                <p> O commentaire</p>
-              </div>
-              <div class="likeComment">
-                <i class="bi bi-hand-thumbs-up"></i>
+      @for (last of lastTreArticle ; track last) {
+        <div class=" col-sm-12 col-md-4 col-lg-4" id="lastCard">
+          <div class="card">
+            <img class="card-img-top img-fluid" src="assets/image/detail-blog.png" alt="">
+            <div class="card-body">
+              <h4 class="card-title text-start"> {{last.titre}} </h4>
+              <hr>
+              <div class="detailAricle d-flex justify-content-between">
+                <div class="nbreComment">
+                  <p> O commentaire</p>
+                </div>
+                <div class="likeComment">
+                  <i class="bi bi-hand-thumbs-up"></i>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-      <div class=" col-sm-12 col-md-4 col-lg-4" id="lastCard">
-        <div class="card">
-          <img class="card-img-top img-fluid" src="assets/image/detail-blog.png" alt="">
-          <div class="card-body">
-            <h4 class="card-title text-start">Title de mon article Title de mon article Title de mon article Title de mon article Title de mon article</h4>
-            <hr>
-            <div class="detailAricle d-flex justify-content-between">
-              <div class="nbreComment">
-                <p> O commentaire</p>
-              </div>
-              <div class="likeComment">
-                <i class="bi bi-hand-thumbs-up"></i>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+
+      }
+
     </div>
   </div>
 </section>
 <section class="Comment"></section>
-<section style="background-color: #eee;">
+<section >
   <div class="container my-5 py-5">
     <div class="row d-flex justify-content-center">
-      <div class="col-md-12 col-lg-10 col-xl-8">
-        <div class="card">
-          <div class="card-body">
-            <div class="d-flex flex-start align-items-center">
-              <img class="rounded-circle shadow-1-strong me-3"
-                src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(19).webp" alt="avatar" width="60"
-                height="60" />
-              <div>
-                <h6 class="fw-bold text-primary mb-1">Lily Coleman</h6>
-                <p class="text-muted small mb-0">
-                  Shared publicly - Jan 2020
-                </p>
+      <div class="col-md-12 col-lg-10 col-xl-10">
+        <div class="card " id="commentStyle">
+          <div style="max-height: 300px; overflow-y: auto;">
+            @for (comments of newDataComment; track comments) {
+              <div class="card-body">
+                <div class="d-flex  flex-start align-items-center">
+                  <img class="rounded-circle shadow-1-strong me-3"
+                    src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(19).webp" alt="avatar" width="40"
+                    height="40" />
+                  <div>
+                    <h6 class="fw-bold mb-1"> {{comments.pseudo}} </h6>
+                    <p class="text-muted small mb-0">
+                      Commenté le - {{comments.created_at | dateFormat}}
+                    </p>
+                  </div>
+                </div>
+
+                <p class="mt-3 mb-4 pb-2">{{comments.contenue}}</p>
               </div>
-            </div>
 
-            <p class="mt-3 mb-4 pb-2">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-              tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-              quis nostrud exercitation ullamco laboris nisi ut aliquip consequat.
-            </p>
-
-
+            }
           </div>
-          <div class="card-footer py-3 border-0" style="background-color: #f8f9fa;">
+          <div *ngIf="newDataComment.length < dataCommnent.length" class="text-end ">
+            <button class="btn " id="showPlus" (click)="loadMoreComments()">Charger plus</button>
+          </div>
+          <div *ngIf="newDataComment.length == dataCommnent.length" class="text-end">
+            <button class="btn " id="showPlus" (click)="loadLessComments()">Charger moins</button>
+          </div>
+          <div class="card-footer py-3 border-0 mt-2" >
             <div class="d-flex flex-start w-100">
               <img class="rounded-circle shadow-1-strong me-3"
                 src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(19).webp" alt="avatar" width="40"
                 height="40" />
                 <div data-mdb-input-init class="form-outline w-100">
-                <form action="#" class="p-2 ">
+                <form action="#" class="p-2  ">
                   <div class="form-group">
                     <label for="name">Pseudo <span class="text-danger">*</span></label>
                     <input type="text" name="pseudo" [(ngModel)]="pseudo" class="form-control" id="name">

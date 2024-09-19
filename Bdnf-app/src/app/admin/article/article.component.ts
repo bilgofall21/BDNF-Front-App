@@ -50,6 +50,7 @@ constructor(
 allCtagoreie(): void{
   this.categorieService.getCategorie().subscribe((data: any)=>{
 this.dataCategorie = data.data
+console.log('voir datacategorie✅✅', data)
 console.log('voir datacategorie✅✅', this.dataCategorie)
   })
 }

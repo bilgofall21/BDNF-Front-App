@@ -2,16 +2,17 @@ import { Component, OnInit } from '@angular/core';
 import { HeaderComponent } from "../header/header.component";
 import { FooterComponent } from "../footer/footer.component";
 import { ArticleService } from '../../../services/article-service/article.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { CommentaireService } from '../../../services/comment-service/commentaire.service';
 import { FormsModule } from '@angular/forms';
 import { close } from 'fs';
 import { CommonModule, NgIf } from '@angular/common';
+import { DateFormatPipe } from "../../../pipes/date-format.pipe";
 
 @Component({
   selector: 'app-blog',
   standalone: true,
-  imports: [HeaderComponent, FooterComponent, FormsModule, NgIf, CommonModule],
+  imports: [HeaderComponent, FooterComponent, FormsModule, NgIf, CommonModule, DateFormatPipe, RouterLink],
   templateUrl: './blog.component.html',
   styleUrl: './blog.component.css'
 })
@@ -33,7 +34,11 @@ export class BlogComponent implements OnInit{
   lastTreArticle: any[] = [];
 allArticle(): void{
 this.articleService.allArticle().subscribe((data)=> {
-  this.allArticleData = data.data
+  this.allArticleData = data.data;
+  const lastArticle = this.allArticleData.sort((a: {created_at: string | number | Date}, b: {created_at: string | number | Date})=>{
+    return new Date(b.created_at).getTime() - new Date(a.created_at).getTime();
+  })
+  this.lastTreArticle = lastArticle.slice(0, 3)
 
 })
 }
@@ -96,6 +101,11 @@ showComment(): void{
 
 loadMoreComments(): void {
   this.currentDisplayCount += 5; // Augmenter le nombre de commentaires à afficher
+  this.newDataComment = this.dataCommnent.slice(0, this.currentDisplayCount); // Mettre à jour la liste affichée
+}
+
+loadLessComments(): void {
+  this.currentDisplayCount = 3; // Diminuer le nombre de commentaires à afficher
   this.newDataComment = this.dataCommnent.slice(0, this.currentDisplayCount); // Mettre à jour la liste affichée
 }
 

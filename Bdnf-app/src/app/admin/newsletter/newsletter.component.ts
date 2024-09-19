@@ -3,11 +3,12 @@ import { SidebarComponent } from "../layout/sidebar/sidebar.component";
 import { NewsletterService } from '../../services/news-service/newsletter.service';
 import { DateFormatPipe } from "../../pipes/date-format.pipe";
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-newsletter',
   standalone: true,
-  imports: [SidebarComponent, DateFormatPipe, FormsModule, ReactiveFormsModule],
+  imports: [SidebarComponent, DateFormatPipe, FormsModule, ReactiveFormsModule, NgIf],
   templateUrl: './newsletter.component.html',
   styleUrl: './newsletter.component.css'
 })
