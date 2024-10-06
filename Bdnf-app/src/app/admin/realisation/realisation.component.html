@@ -21,7 +21,7 @@
       <div class="col-lg-3 col-sm-6 " *ngFor="let service of getArticlesPage()">
         <div class="card shadow-lg" style="width: 17rem; height: 25rem;"*ngIf="getArticlesPage()">
           <div>
-            <img  src="assets/image/logo1.jpg" class="card-img-top" alt="..." style="height: 11rem;">
+            <img  [src]="'https://dvlcvj8chyuyd.cloudfront.net' + service.image"  class="card-img-top" alt="..." style="height: 11rem;">
             <div class="titleService">
               <h5 class="text-center mt-1">{{service.titre}} </h5>
             </div>

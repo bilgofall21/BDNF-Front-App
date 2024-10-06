@@ -4,7 +4,6 @@ import { RealisationService } from '../../services/realisation-service/realisati
 import { HttpClientModule } from '@angular/common/http';
 import { SidebarComponent } from "../layout/sidebar/sidebar.component";
 import { Validators } from '@angular/forms';
-import { addIcons } from "ionicons";
 import { realisation } from '../../models/realisation';
 import { NgFor, NgIf } from '@angular/common';
 import { NotificationService } from '../../services/notification.service';
@@ -67,6 +66,7 @@ allRealisation(): void {
   this.realisationService.gatAllRealisation().subscribe((reasponse: any) =>{
     this.dataRealisation = reasponse.data;
     console.log("����Rea",this.dataRealisation)
+
   })
 }
 
@@ -90,6 +90,7 @@ ajoutRealisation(){
         console.log('Contenu de FormData avant l\'envoi :', formData);
         this.realisationService.addImageRealisation(response.data.uuid, formData).subscribe((respons)=>{
           console.log('Image ajoutée avec succes', respons)
+          this.allRealisation();
         },(error) =>{
           console.error('Erreur lors de l\'ajout de l\'image', error)
         }

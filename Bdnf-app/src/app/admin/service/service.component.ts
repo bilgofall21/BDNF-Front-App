@@ -34,7 +34,7 @@ serviceData: any[]= [];
   showAllService(){
     this.servicesService.allService().subscribe((data: any) =>{
 this.serviceData = data.data
-console.log(this.serviceData)
+console.log('voir me service',this.serviceData)
     })
   }
   ajouterService(){
@@ -47,6 +47,7 @@ console.log(this.serviceData)
     ).then(confirmed => {
       if(confirmed){
         this.servicesService.addService(newService).subscribe((data : any) =>{
+          console.log('😁😁😁😁😁😁😁')
           this.toastrService.success('Servuc ajouter avec succée')
           this.showAllService();
           this.nomService ='';

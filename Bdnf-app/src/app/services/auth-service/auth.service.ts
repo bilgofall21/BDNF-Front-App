@@ -11,8 +11,11 @@ export class AuthService {
   public isLoggedIn$: Observable<boolean> = this.isLoggedInSubject.asObservable();
 
   constructor(private http : HttpClient) {}
-private baseUrl = 'http://127.0.0.1:8000/api'
+// private baseUrl = 'https://dvlcvj8chyuyd.cloudfront.net/api'
+private baseUrl = 'https://api.bdnf-marketing-solutions.com/api'
   registerAdmin( registerData: any): Observable<any>{
+    console.log('😊😊😊')
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
 return this.http.post<any>(`${this.baseUrl}/register`, registerData)
   }
   private getHeaders(): HttpHeaders {
@@ -28,22 +31,20 @@ return this.http.post<any>(`${this.baseUrl}/register`, registerData)
       'Content-Type': 'application/json'
     });
   }
+loginAdmin(loginData: any): Observable<any> {
+  const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+  return this.http.post<any>(`${this.baseUrl}/login`, loginData, { headers }).pipe(
+    map(response => {
+      this.setLoggedIn(true);
+      return response;
+    }),
+    catchError(error => {
+      console.error('Erreur lors de la connexion :', error);
+      return throwError(error);
+    })
+  );
+}
 
-  loginAdmin(loginData: any): Observable<any> {
-    return this.http.post<any>(`${this.baseUrl}/login`, loginData).pipe(
-      map(response => {
-              // Si la connexion réussit, mettez à jour l'état d'authentification
-              this.setLoggedIn(true);
-              // console.log("ett bbb", this.utilisateurConnecte);
-              return response;
-            }),
-            catchError(error => {
-             // En cas d'erreur, vous pouvez gérer l'erreur ici ou la propager
-             console.error('Une erreur s\'est produite lors de la connexion :', error);
-              return throwError(error);
-            })
-    )
-  }
 getProfil(): Observable<any>{
   const headers = this.getHeaders();
 

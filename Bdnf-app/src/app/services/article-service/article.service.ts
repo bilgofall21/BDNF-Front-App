@@ -7,7 +7,8 @@ import { catchError, Observable, throwError } from 'rxjs';
 })
 export class ArticleService {
 
-  private apiUrl = 'http://127.0.0.1:8000/api';
+  // private apiUrl = 'http://127.0.0.1:8000/api';
+  private apiUrl = 'https://api.bdnf-marketing-solutions.com/api';
 
   constructor(private http: HttpClient) {}
   private getHeaders(isFileUpload: boolean = false): HttpHeaders {
@@ -36,7 +37,7 @@ export class ArticleService {
 
 addArticleImag(id: any, image: FormData): Observable<any> {
   const headers = this.getHeaders(true);
-  return this.http.post<any>(`${this.apiUrl}/ajouter-image/articlee/${id}`, image,{ headers })
+  return this.http.post<any>(`${this.apiUrl}/ajouter-image/article/${id}`, image,{ headers })
 }
 
 updateArticle(article: any, uuid: any ): Observable<any>{
@@ -50,12 +51,13 @@ delateArice(uuid: any): Observable<any>{
 
   allArticle():Observable<any>{
     const headers = this.getHeaders();
-    return this.http.get(`${this.apiUrl}/get/articlee/all`, {headers})
+
+    return this.http.get(`${this.apiUrl}/get/article/all`, {headers})
   }
 
   getArticleById(articleId:number): Observable<any> {
     const headers = this.getHeaders();
-   return this.http.get<any>(`${this.apiUrl}/show/articlee/${articleId}`, {headers} )
+   return this.http.get<any>(`${this.apiUrl}/show/article/${articleId}`, {headers} )
   }
 
 }

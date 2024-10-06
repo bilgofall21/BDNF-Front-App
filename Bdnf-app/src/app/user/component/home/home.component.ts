@@ -62,7 +62,7 @@ export class HomeComponent implements OnInit {
       return new Date(b.created_at).getTime() - new Date(a.created_at).getTime();
     })
     this.lastFourArticel = lastArticle.slice(0, 4)
-    console.log('step article', this.lastFourArticel)
+    console.log('step article 🤣🤣', this.lastFourArticel)
   })
   }
   letsFo(id: any, event: Event): void {

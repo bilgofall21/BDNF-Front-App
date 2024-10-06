@@ -8,11 +8,12 @@ import { NgFor, NgIf } from '@angular/common';
 import { NotificationService } from '../../services/notification.service';
 import { ToastrService } from 'ngx-toastr';
 import Swal from 'sweetalert2';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-article',
   standalone: true,
-  imports: [HttpClientModule, FormsModule, SidebarComponent, ReactiveFormsModule,NgIf, NgFor],
+  imports: [HttpClientModule, FormsModule, SidebarComponent, ReactiveFormsModule,NgIf, NgFor, RouterLink],
   templateUrl: './article.component.html',
   styleUrl: './article.component.css'
 })
@@ -87,6 +88,7 @@ ajouterArticle(): void {
   this.articleService.addArticle(newAricle).subscribe(
     (response) => {
       this.articleForm.reset();
+      this.allArticle();
       console.log("Réponse du serveur: ✅✅✅✅✅✅", response);
       if(response.status !== 200){
         throw new Error('article mal ajouté')
@@ -108,15 +110,17 @@ ajouterArticle(): void {
 dataArticle: any[]=[];
 allArticle(): void {
   try {
-    this.articleService.allArticle().subscribe((response)=>{
-      this.dataArticle = response.data
-      console.log('voir tous les articles������������', this.dataArticle);
-    })
+    this.articleService.allArticle().subscribe((response) => {
+      this.dataArticle = response.data.map((article: any) => {
+        article.image = `https://api.bdnf-marketing-solutions.com${article.image}`;
+        return article;
+      });
+      console.log('voir tous les articles', this.dataArticle);
+    });
   } catch (error) {
-
+    console.error('Erreur lors de la récupération des articles', error);
   }
-}
-
+  }
 elementSelectionner : any;
 
 loadRealisation(realisation: any){

@@ -4,7 +4,6 @@ import { AuthService } from '../../services/auth-service/auth.service';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { addIcons } from "ionicons";
 import { NgIf } from '@angular/common';
 
 @Component({
@@ -57,22 +56,22 @@ loginForm : FormGroup
     console.warn(event.target.files[0]);
     this.image= event.target.files[0] as File ;
   }
-  registerAdmin():void{
-    console.log("✅✅ donee saisie",this.registerData)
-    let formData = new FormData();
-    formData.append('nom', this.registerData.nom);
-    formData.append('prenom', this.registerData.prenom);
-    formData.append('email', this.registerData.email);
-    formData.append('password', this.registerData.password);
-    formData.append('photo', this.image);
+  // registerAdmin():void{
+  //   console.log("✅✅ donee saisie",this.registerData)
+  //   let formData = new FormData();
+  //   formData.append('nom', this.registerData.nom);
+  //   formData.append('prenom', this.registerData.prenom);
+  //   formData.append('email', this.registerData.email);
+  //   formData.append('password', this.registerData.password);
+  //   formData.append('photo', this.image);
 
-    console.log("✅✅✅", formData)
+  //   console.log("✅✅✅", formData)
 
-    this.authService.registerAdmin(formData).subscribe((response: any) =>{
-      console.log('inscription reussi',response);
-      this.loadingLogin  = false
-    })
-  }
+  //   this.authService.registerAdmin(formData).subscribe((response: any) =>{
+  //     console.log('inscription reussi 😊😊',response);
+  //     this.loadingLogin  = false
+  //   })
+  // }
 
   // loginAdmin(){
   //   const loginUser = {
@@ -101,6 +100,34 @@ loginForm : FormGroup
 
   // }
 
+  registerAdmin(): void {
+    console.log("✅✅ donee saisie", this.registerData);
+    let formData = new FormData();
+    formData.append('nom', this.registerData.nom);
+    formData.append('prenom', this.registerData.prenom);
+    formData.append('email', this.registerData.email);
+    formData.append('password', this.registerData.password);
+
+    if (this.image instanceof File) {
+      formData.append('photo', this.image);
+    } else {
+      console.error('The selected file is not valid.');
+    }
+
+    console.log("✅✅✅", formData);
+
+    this.authService.registerAdmin(formData).subscribe(
+      (response: any) => {
+        console.log('Inscription réussie 😊😊', response);
+        this.loadingLogin = false;
+      },
+      (error: any) => {
+        console.error('Erreur lors de l\'inscription', error);
+      }
+    );
+  }
+
+
   loginAdmin() {
     if (this.loginForm.invalid) {
       this.toastrService.error('Veuillez vérifier les champs', 'Erreur');
@@ -111,6 +138,7 @@ loginForm : FormGroup
 this.loadingLogin = true;
     this.authService.loginAdmin(loginUser).subscribe(
       (user: any) => {
+        console.log("voir user", user)
         if (user && user.access_token) {
           localStorage.setItem('access_token', user.access_token);
           this.authService.setLoggedIn(true);
