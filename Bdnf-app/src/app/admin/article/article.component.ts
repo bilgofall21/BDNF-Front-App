@@ -8,12 +8,14 @@ import { NgFor, NgIf } from '@angular/common';
 import { NotificationService } from '../../services/notification.service';
 import { ToastrService } from 'ngx-toastr';
 import Swal from 'sweetalert2';
-import { RouterLink } from '@angular/router';
+import { RouterLink, RouterModule } from '@angular/router';
+import { DateFormatPipe } from "../../pipes/date-format.pipe";
+import { ParagraphPipe } from "../../pipes/paragraph.pipe";
 
 @Component({
   selector: 'app-article',
   standalone: true,
-  imports: [HttpClientModule, FormsModule, SidebarComponent, ReactiveFormsModule,NgIf, NgFor, RouterLink],
+  imports: [HttpClientModule, FormsModule, SidebarComponent, ReactiveFormsModule, NgIf, NgFor, RouterLink, DateFormatPipe, ParagraphPipe,RouterModule],
   templateUrl: './article.component.html',
   styleUrl: './article.component.css'
 })
@@ -64,7 +66,7 @@ ajouterCategorie(){
   try {
     this.categorieService.addCategorie(newCatego).subscribe((response : any) =>{
       console.log('Service ajouté avec succès', response);
-      this.allCtagoreie;
+      this.allCtagoreie();
       this.nomCategorie = '';
       console.log('voir ajout',newCatego )
 
@@ -112,7 +114,8 @@ allArticle(): void {
   try {
     this.articleService.allArticle().subscribe((response) => {
       this.dataArticle = response.data.map((article: any) => {
-        article.image = `https://api.bdnf-marketing-solutions.com${article.image}`;
+        // article.image = `https://api.bdnf-marketing-solutions.com${article.image}`;
+        article.image = `https://127.0.0.1:8000${article.image}`;
         return article;
       });
       console.log('voir tous les articles', this.dataArticle);

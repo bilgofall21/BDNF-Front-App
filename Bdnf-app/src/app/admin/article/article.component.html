@@ -1,10 +1,19 @@
 <app-sidebar></app-sidebar>
 <div class="admingestioncontainer mt-5">
   <div class="ajoutservicebutton">
+    <div class="searchbar mb-5">
+      <div class="d-flex justify-content-end">
+        <div class="input-group w-25">
+          <input type="search" class="form-control rounded" placeholder="Rechercher" aria-label="Search"
+            aria-describedby="search-addon" [(ngModel)]="searchArticle" (input)="getArticlesPage()" />
 
-    <div class="mb-5">
+        </div>
+      </div>
+    </div>
+
+    <!-- <div class="mb-5">
       <a href="" data-bs-toggle="modal" data-bs-target="#exampleModal-liste">
-        Liste des categories <i class="bi bi-plus-square-fill ms-2"></i></a>
+        Liste des categories </a>
     </div>
     <div class="ajoutservicebutton">
       <div class="row">
@@ -17,37 +26,116 @@
             Ajouter <i class="bi bi-plus-square-fill ms-2"></i></a>
         </div>
       </div>
-    </div>
+    </div> -->
 
     <h4 class="mt-4 text-center">Liste des aticles</h4>
 
   </div>
-  <div class="searchbar mb-5">
-    <div class="d-flex justify-content-end">
-      <div class="input-group w-50">
-        <input type="search" class="form-control rounded" placeholder="Rechercher" aria-label="Search"
-          aria-describedby="search-addon" [(ngModel)]="searchArticle" (input)="getArticlesPage()" />
-        <button type="button   " class="btn text-white" data-mdb-ripple-init appBlueFont>
-          rechercher
-        </button>
+
+
+
+
+  <div class="container mb-4">
+
+    <div class="row">
+      <div class="col-md-3">
+        <div class="card card-round">
+          <div class="card-body">
+            <div class="card-head-row card-tools-still-right d-flex justify-content-around">
+              <div class="card-title">Liste des Categories</div>
+              <div class="card-tools">
+                <div class="">
+                  <a href="" data-bs-toggle="modal" data-bs-target="#exampleModal"> <i
+                      class="bi bi-plus-circle"></i></a>
+
+                </div>
+              </div>
+            </div>
+            @for (item of dataCategorie; track item) {
+
+            <div class="card-list py-1">
+              <div class="item-list d-flex justify-content-around">
+
+                <div class="info-user">
+                  <h6>{{ item.nomCategorie }}</h6>
+                </div>
+                <ul class="d-flex justify-content-between bg-warning">
+                  <li><i class="bi bi-pencil"></i></li>
+                  <li class="ms-3"><i class="bi bi-trash3"></i></li>
+                </ul>
+
+
+              </div>
+            </div>
+            }
+          </div>
+        </div>
+      </div>
+      <div class="col-md-9 ">
+        <div class="card card-round w-100">
+          <div class="card-header">
+            <div class="card-head-row   d-flex justify-content-around">
+              <div class="card-title">Liste des articles</div>
+
+              <div class="">
+                <a href="" data-bs-toggle="modal" data-bs-target="#exampleModal-aritcle"> <i
+                    class="bi bi-plus-circle"></i></a>
+              </div>
+
+            </div>
+          </div>
+          <div class="card-body p-0">
+            <div class="table-responsive">
+              <!-- Projects table -->
+              <table class="table align-items-center mb-0">
+                <thead class="thead-light">
+                  <tr>
+                    <th scope="col">Titre</th>
+                    <th scope="col" class="text-start">Date création</th>
+                    <th scope="col" class="text-start">Cotenue</th>
+                    <th scope="col" class="text-start">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  @for (article of getArticlesPage(); track article) {
+
+                  <tr>
+                    <th scope="row">
+                      {{article.titre}}
+                    </th>
+                    <td class="text-start"> {{article.created_at | dateFormat}}</td>
+                    <td class="text-start">
+                      <p>{{article.contenue | paragraph:10}} </p>
+                    </td>
+                    <td class="text-start">
+                      <a class="btn btn-link btn-rounded btn-sm" [routerLink]="['/admin/detail-blog', article.uuid]">
+                        Details
+                      </a>
+                    </td>
+                  </tr>
+                  }
+
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="container mb-4">
-    <div class="row" id="cardContainer">
+
+
+    <!-- <div class="row" id="cardContainer">
       @for (article of getArticlesPage() ; track article) {
 
       <div class="col-3 card">
-        <!-- <img class="card-img-top" [src]="'https://api.bdnf-marketing-solutions.com/uploads/images/' + article.image" alt=""> -->
         <img class="card-img-top" [src]="article.image" alt="Image de l'article">
-        <!-- <img class="card-img-top" src="https://api.bdnf-marketing-solutions.com/uploads/images{{article.image}} " alt=""> -->
         <div class="card-body">
           <h5 class="card-title">{{article.titre}}</h5>
           <p class="card-text">{{article.contenue}}</p>
         </div>
         <div class="iconbottom w-50 d-flex justify-content-around">
           <div>
-            <i class="bi bi-eye" [routerLink]="['/admin/commentaire']"  ></i>
+            <i class="bi bi-eye" [routerLink]="['/detail-blog', article.uuid]"  ></i>
           </div>
           <div>
             <i class="bi bi-pencil" (click)="loadRealisation(article)" data-bs-toggle="modal" data-bs-target="#modalModif"></i>
@@ -58,7 +146,7 @@
         </div>
       </div>
       }
-    </div>
+    </div> -->
   </div>
 
   <div class="d-flex flex-wrap justify-content-center my-5 " id="pagination">

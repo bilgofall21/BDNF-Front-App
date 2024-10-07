@@ -10,6 +10,7 @@ import { NewsletterComponent } from './newsletter/newsletter.component';
 import { TemoignageComponent } from './temoignage/temoignage.component';
 import { LoginComponent } from './login/login.component';
 import { ProfilComponent } from './profil/profil.component';
+import { DetailBlogComponent } from './detail-blog/detail-blog.component';
 
 const routes: Routes = [
 
@@ -20,6 +21,7 @@ const routes: Routes = [
       {path: 'home-admin', component: HomeAdminComponent,},
       {path: 'service', component : ServiceComponent,},
       {path: 'article', component : ArticleComponent,},
+      {path: 'detail-blog/:uuid', component: DetailBlogComponent,},
       {path: 'commentaire', component : CommentaireComponent,},
       {path: 'realisation', component: RealisationComponent,},
       {path: 'newsletter', component: NewsletterComponent,},

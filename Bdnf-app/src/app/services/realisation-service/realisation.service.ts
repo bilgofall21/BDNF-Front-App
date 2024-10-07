@@ -7,7 +7,9 @@ import { catchError, Observable, throwError } from 'rxjs';
 })
 export class RealisationService {
 
-  private apiUrl = 'https://api.bdnf-marketing-solutions.com/api';
+  // private apiUrl = 'https://api.bdnf-marketing-solutions.com/api';
+  private apiUrl = 'http://127.0.0.1:8000/api';
+
 
   constructor(private http: HttpClient) {}
 

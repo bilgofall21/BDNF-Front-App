@@ -10,7 +10,9 @@ export class CommentaireService {
   constructor(
     private http : HttpClient
   ) { }
-  private apiUrl = 'https://api.bdnf-marketing-solutions.com/api';
+  // private apiUrl = 'https://api.bdnf-marketing-solutions.com/api';
+  private apiUrl = 'http://127.0.0.1:8000/api';
+
 
 
   addComment(comment: any): Observable<any> {

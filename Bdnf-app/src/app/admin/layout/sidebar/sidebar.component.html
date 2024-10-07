@@ -1,50 +1,67 @@
-<div class="content">
+<!-- app.component.html -->
+ <div class="content" [ngClass]="{'expanded': isSidebarClosed}" [ngStyle]="{'margin-left': isSidebarClosed ? '60px' : '250px'}">
   <!-- Navbar -->
-  <nav >
-    <form action="#"  (submit)="handleSearchToggle()">
-
+  <nav>
+    <form (submit)="handleSearchToggle()">
+      <!-- Form content -->
     </form>
-    <i class="bi bi-list"  (click)="toggleSidebar()" ></i>
-
-    <input type="checkbox" id="theme-toggle"  hidden (change)="toggleTheme()">
+    <i class="bi bi-list" (click)="toggleSidebar()"></i>
+    <input type="checkbox" id="theme-toggle" hidden (change)="toggleTheme()">
     <label for="theme-toggle" class="theme-toggle"></label>
     <a href="#" class="notif">
-        <i class='bx bx-bell'></i>
-        <span class="count">12</span>
+      <i class='bx bx-bell'></i>
+      <span class="count">12</span>
     </a>
-    <a [routerLink]="['/admin/profil']" class="profile" >
-        <img src="images/logo.png">
+    <a [routerLink]="['/admin/profil']" class="profile">
+      <img src="images/logo.png">
     </a>
-</nav>
-
-<!-- End of Navbar -->
+  </nav>
+  <!-- End of Navbar -->
 </div>
 
-
-
 <!-- Sidebar -->
-<div class="sidebar">
-      <a class="logo" [routerLink]="['/accueil']" >
-        <img src="./assets/image/logo.png" alt="">
-      </a>
+<div class="sidebar" [ngClass]="{'close': isSidebarClosed}">
+  <a class="logo" [routerLink]="['/accueil']">
+    <img src="./assets/image/logo.png" alt="Logo">
+  </a>
   <ul class="side-menu">
-      <li  [routerLinkActive]="['active']" ><a [routerLink]="['/admin/home-admin']"> <i class="bi bi-speedometer2 nav-icon "></i> Dashboard</a></li>
-      <li  [routerLinkActive]="['active']" ><a [routerLink]="['/admin/service']"><i class="bi bi-gear"></i> Service</a></li>
-      <li  [routerLinkActive]="['active']" ><a [routerLink]="['/admin/article']"><i class="bi bi-file-text"></i> Article</a></li>
-      <!-- <li   [routerLinkActive]="['active']" ><a [routerLink]="['/admin/commentaire']"><i class="bi bi-chat"></i> Commentaire</a></li> -->
-      <li  [routerLinkActive]="['active']" ><a [routerLink]="['/admin/newsletter']"><i class="bi bi-envelope"></i> Newsletter</a></li>
-      <li  [routerLinkActive]="['active']" ><a [routerLink]="['/admin/realisation']"><i class="bi bi-award"></i> Realisation</a></li>
-      <li  [routerLinkActive]="['active']" ><a [routerLink]="['/admin/temoignage']"><i class="bi bi-quote"></i> Temoignage</a></li>
+    <li [routerLinkActive]="['active']">
+      <a [routerLink]="['/admin/home-admin']">
+        <i class="bi bi-speedometer2 nav-icon"></i> Dashboard
+      </a>
+    </li>
+    <li [routerLinkActive]="['active']">
+      <a [routerLink]="['/admin/service']">
+        <i class="bi bi-gear"></i> Service
+      </a>
+    </li>
+    <li [routerLinkActive]="['active']">
+      <a [routerLink]="['/admin/article']">
+        <i class="bi bi-file-text"></i> Article
+      </a>
+    </li>
+    <li [routerLinkActive]="['active']">
+      <a [routerLink]="['/admin/newsletter']">
+        <i class="bi bi-envelope"></i> Newsletter
+      </a>
+    </li>
+    <li [routerLinkActive]="['active']">
+      <a [routerLink]="['/admin/realisation']">
+        <i class="bi bi-award"></i> Realisation
+      </a>
+    </li>
+    <li [routerLinkActive]="['active']">
+      <a [routerLink]="['/admin/temoignage']">
+        <i class="bi bi-quote"></i> Temoignage
+      </a>
+    </li>
   </ul>
   <ul class="side-menu">
-      <li>
-          <a (click)="deconnexion()" class="logout">
-            <i class="bi bi-box-arrow-left"></i>
-              Deconnexion
-          </a>
-      </li>
+    <li>
+      <a (click)="deconnexion()" class="logout">
+        <i class="bi bi-box-arrow-left"></i> Deconnexion
+      </a>
+    </li>
   </ul>
 </div>
 <!-- End of Sidebar -->
-
-

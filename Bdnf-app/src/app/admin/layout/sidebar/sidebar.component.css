@@ -63,6 +63,7 @@ body.dark {
 
 .sidebar.closed {
   transform: translateX(-100%);
+  width: 0;
 }
 
 .sidebar-toggle-btn {
@@ -208,12 +209,12 @@ height: 200px;
 }
 
 /* Content Styles */
-.content {
+/* .content {
   position: relative;
   width: calc(100% - 230px);
   left: 230px;
   transition: all 0.3s ease;
-}
+} */
 
 .sidebar.close ~ .content {
   width: calc(100% - 60px);
@@ -395,3 +396,39 @@ height: 200px;
     display: none;
   }
 }
+
+
+/* styles.css */
+.sidebar {
+  width: 250px;
+  transition: width 0.3s;
+}
+
+.sidebar.closed {
+  width: 0;
+
+}
+
+.content {
+  transition: margin-left 0.3s;
+  margin-left: 250px;
+}
+
+.content.expanded {
+  margin-left: 0;
+}
+
+.dashboard {
+  width: 100%;
+  transition: all 0.3s ease;
+}
+
+.content.expanded .dashboard {
+  margin-left: 60px; /* Adjust this value according to your sidebar width */
+}
+
+.content .dashboard {
+  margin-left: 250px; /* Default margin when sidebar is open */
+}
+
+

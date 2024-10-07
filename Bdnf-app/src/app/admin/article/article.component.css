@@ -77,7 +77,7 @@ table i{
   font-size: 18px;
   font-weight: bold;
 }
-table li{
+table li, li{
   list-style-type: none;
 }
 .card {
@@ -101,6 +101,11 @@ font-size: 17px;
   display: -webkit-box;
   -webkit-line-clamp: 5; /* Limite à 3 lignes par exemple */
   -webkit-box-orient: vertical;
+}
+td p{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 #cardContainer{
   margin: 0 auto;
@@ -127,3 +132,20 @@ font-size: 17px;
   margin-top: 20px;
 
 }
+
+td button{
+  background-color: aqua;
+  /* width: 60px; */
+  height: 26px;
+  font-size: 12px;
+  text-decoration: none;
+}
+td button:hover{
+  background-color: aqua;
+  /* width: 60px; */
+  height: 26px;
+  font-size: 12px;
+  text-decoration: none;
+}
+
+

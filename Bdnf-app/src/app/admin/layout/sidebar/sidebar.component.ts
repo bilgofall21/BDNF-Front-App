@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { AuthService } from '../../../services/auth-service/auth.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-sidebar',
   standalone: true,
-  imports: [RouterLink, RouterLinkActive],
+  imports: [RouterLink, RouterLinkActive, CommonModule],
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.css'
 })
@@ -22,10 +23,11 @@ export class SidebarComponent {
     const target = event.target as HTMLElement;
     target.parentElement?.classList.add('active');
   }
-  toggleSidebar() {
-    const sideBar = document.querySelector('.sidebar');
-    sideBar?.classList.toggle('close');
-  }
+  // toggleSidebar() {
+  //   const sideBar = document.querySelector('.sidebar');
+  //   sideBar?.classList.toggle('close');
+
+  // }
 
   toggleTheme() {
     const toggler = document.getElementById('theme-toggle') as HTMLInputElement;
@@ -54,6 +56,12 @@ export class SidebarComponent {
       this.router.navigate(['admin/login']);
       localStorage.removeItem('access_token');
     })
+  }
+
+    isSidebarClosed = false;
+
+  toggleSidebar() {
+    this.isSidebarClosed = !this.isSidebarClosed;
   }
 
 }

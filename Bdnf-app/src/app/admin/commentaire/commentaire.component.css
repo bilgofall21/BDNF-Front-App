@@ -1,0 +1,15 @@
+button{
+  background-color: aqua;
+  /* width: 60px; */
+  height: 26px;
+  font-size: 12px;
+  text-decoration: none;
+}
+button:hover{
+  background-color: aqua;
+  /* width: 60px; */
+  height: 26px;
+  font-size: 12px;
+  text-decoration: none;
+}
+

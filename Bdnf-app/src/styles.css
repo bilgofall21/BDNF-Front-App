@@ -72,3 +72,23 @@ font-weight: 400;
   margin-top: 20px;
 
 }
+
+/* styles.css */
+.sidebar {
+  width: 250px;
+  transition: width 0.3s;
+}
+
+.sidebar.closed {
+  width: 0;
+}
+
+.content {
+  transition: margin-left 0.3s;
+  margin-left: 250px;
+}
+
+.content.expanded {
+  margin-left: 0;
+}
+
