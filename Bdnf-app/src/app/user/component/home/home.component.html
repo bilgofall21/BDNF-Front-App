@@ -91,7 +91,7 @@
         <div class="row">
           @for (realisa of lastFourRealisation; track realisa) {
             <div class="col-md-6">
-              <div class="project img shadow ftco-animate d-flex justify-content-center align-items-center" style="background-image: url(assets/image/realisation.jpg);">
+              <div class="project img shadow ftco-animate d-flex justify-content-center align-items-center">
                 <div class="overlay"></div>
                 <div class="text text-center p-4">
                   <h3><a href="#"> {{realisa.titre}} </a></h3>
@@ -133,7 +133,10 @@
               <div class="card border-0 mb-3" >
                 <div class="row g-0 ">
                   <div class=" col-md-4 ">
-                    <img src="http://127.0.0.1:8000/uploads/images/{{article.image}}" class="img-fluid " alt="...">
+                    <!-- <img [src]="article.image" class="img-fluid " alt="..."> -->
+                    <!-- <img src="https://api.bdnf-marketing-solutions.com/article_images/article_1728416151.png"  class="img-fluid " alt="..."> -->
+                    <img [src]="'https://api.bdnf-marketing-solutions.com/' + article.image" class="img-fluid" alt="...">
+
                   </div>
                   <div class="col-md-8">
                     <div class="card-body">

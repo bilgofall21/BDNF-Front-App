@@ -1,1 +1,62 @@
-<p>detail-blog works!</p>
+<app-sidebar></app-sidebar>
+<div class="admingestioncontainer mt-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 col-md-12 col-lg-10 text-article">
+        <div >
+          <h4># Titre</h4>
+          <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda, accusantium. Quia est reiciendis animi numquam at quidem similique molestiae nemo cumque architecto modi, tempore, obcaecati eveniet, omnis odit minus accusamus.</p>
+        </div>
+      </div>
+      <div class="col-sm-12 col-md-12 col-lg-12">
+        <h5 class="mt-2">Liste des commentaires</h5>
+        <div class="table-responsive mx-3">
+          <p class="text-end my-2">nombre de commentaire: 44</p>
+          <table class="table align-middle mb-4 bg-white">
+            <thead class="bg-light">
+              <tr>
+                <th>Pseudo</th>
+                <th>Contenue</th>
+                <th>Posté le</th>
+                <!-- <th>Position</th> -->
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (comment of onlyCommentaireData; track comment) {
+                <tr>
+                  <td>
+                    <div class=" align-items-center">
+
+                        <p class="fw-bold mb-1"> {{comment.pseudo}} </p>
+                    </div>
+                  </td>
+                  <td>
+                    <p class="fw-normal"> {{comment.contenue}} </p>
+                  </td>
+                  <td>
+                    <p>{{comment.created_at}} </p>
+                  </td>
+                  <!-- <td>Senior</td> -->
+                  <td>
+                    <button type="button" class="btn btn-link btn-sm btn-rounded">
+                      details
+                    </button>
+                    <button type="button" class=" ms-2 btn btn-link btn-sm btn-rounded">
+                      supprimer
+                    </button>
+                  </td>
+                </tr>
+
+              }
+
+            </tbody>
+          </table>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+

@@ -13,13 +13,16 @@
             <p class="w-100">Restez informé avec nos articles sur les dernières tendances et stratégies en marketing digital.</p>
           </div>
         </div>
+
         <div class="searchbar mb-5">
           <div class="d-flex justify-content-end">
-              <div class="input-group w-50 ">
-                  <input type="search" class="form-control rounded " placeholder="Rechercher" aria-label="Search" aria-label="Search" [(ngModel)]="searchArticle" (input)="getArticlesPage()"  aria-describedby="search-addon"  />
-                  <button type="button   " class="btn text-white" data-mdb-ripple-init   appBlueFont>rechercher</button>
-                </div>
-                <!-- http://127.0.0.1:8000/storage/{{dataDetailProfil.imageDeProfil}} -->
+            <div class="input-group w-25 ">
+              <input type="search" class="form-control rounded" placeholder="Rechercher" aria-label="Search"
+                aria-describedby="search-addon" [(ngModel)]="searchArticle" (input)="getArticlesPage()"   />
+              </div>
+              <span class="input-group-text" id="search-addon">
+                <i class="bi bi-search"></i>
+              </span>
           </div>
         </div>
         <div class="row my-blog mb-5">

@@ -46,15 +46,7 @@ h5{
   color: var(--kergui-green);
   font-weight: bold;
 }
-.searchbar button{
-  background-color: var(--redColor);
-}
-.searchbar input{
-all: unset;
-flex-grow: 1;
-box-shadow: 3px 3px 10px -3px rgb(99, 97, 97);
-padding: 5px 20px;
-}
+
 #valada-final button {
   background-color: var(--redColor);
   border-radius: 10px;
@@ -121,31 +113,55 @@ td p{
 }
 .pagiColore.current {
   background-color: var(--redColor);
+  border-radius: 5px;
   color: white;
 }
 .pagiColore {
   border:1px solid  var(--redColor);
   color: var(--redColor);
 }
-#pagination{
-  margin-left: 180px;
-  margin-top: 20px;
 
-}
+
 
 td button{
-  background-color: aqua;
+  background-color: var(--redColor);
+  color: #fff;
   /* width: 60px; */
   height: 26px;
   font-size: 12px;
   text-decoration: none;
 }
 td button:hover{
-  background-color: aqua;
+  background-color: var(--redColor);
+  color: #fff;
   /* width: 60px; */
   height: 26px;
   font-size: 12px;
   text-decoration: none;
 }
 
+/* style catego */
+
+.icon-cate .ddd{
+  color: var(--redColor);
+  border: 0.5px solid var(--redColor);
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+.icon-cate .ddd:hover{
+  color: #fff;
+  background-color: var(--redColor);
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
 

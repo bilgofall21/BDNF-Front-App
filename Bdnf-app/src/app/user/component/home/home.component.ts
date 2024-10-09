@@ -55,16 +55,31 @@ export class HomeComponent implements OnInit {
 
   allArticleData: any[] = [];
   lastFourArticel: any[] = [];
-  allArticle(): void{
-  this.articleService.allArticle().subscribe((data)=> {
-    this.allArticleData = data.data
-    const lastArticle = this.allArticleData.sort((a: {created_at: string | number | Date}, b: {created_at: string | number | Date})=>{
-      return new Date(b.created_at).getTime() - new Date(a.created_at).getTime();
-    })
-    this.lastFourArticel = lastArticle.slice(0, 4)
-    console.log('step article 🤣🤣', this.lastFourArticel)
-  })
+  // allArticle(): void{
+  // this.articleService.allArticle().subscribe((data)=> {
+  //   this.allArticleData = data.data
+
+  //   const lastArticle = this.allArticleData.sort((a: {created_at: string | number | Date}, b: {created_at: string | number | Date})=>{
+  //     return new Date(b.created_at).getTime() - new Date(a.created_at).getTime();
+  //   })
+  //   this.lastFourArticel = lastArticle.slice(0, 4)
+  //   console.log('step article 🤣🤣', this.lastFourArticel)
+  // })
+  // }
+  allArticle(): void {
+    this.articleService.allArticle().subscribe((data) => {
+      this.allArticleData = data.data.map((article: any) => {
+        // article.image = `https://api.bdnf-marketing-solutions.com/public${article.image}`;
+        return article;
+      });
+      const lastArticle = this.allArticleData.sort((a: { created_at: string | number | Date }, b: { created_at: string | number | Date }) => {
+        return new Date(b.created_at).getTime() - new Date(a.created_at).getTime();
+      });
+      this.lastFourArticel = lastArticle.slice(0, 4);
+      console.log('step article 🤣🤣', this.lastFourArticel);
+    });
   }
+
   letsFo(id: any, event: Event): void {
     event.preventDefault();
     this.router.navigate(['/blog', id]);

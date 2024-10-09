@@ -12,8 +12,8 @@ export class AuthService {
 
   constructor(private http : HttpClient) {}
 // private baseUrl = 'https://dvlcvj8chyuyd.cloudfront.net/api'
-// private baseUrl = 'https://api.bdnf-marketing-solutions.com/api'
-private baseUrl = 'http://127.0.0.1:8000/api';
+private baseUrl = 'https://api.bdnf-marketing-solutions.com/api'
+// private baseUrl = 'http://127.0.0.1:8000/api';
 
   registerAdmin( registerData: any): Observable<any>{
     console.log('😊😊😊')

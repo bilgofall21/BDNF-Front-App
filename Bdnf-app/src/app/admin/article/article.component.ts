@@ -99,7 +99,7 @@ ajouterArticle(): void {
         const formData = new FormData();
         formData.append('image', this.selectedFile);
         this.articleService.addArticleImag(response.data.uuid, formData).subscribe((response: any)=>{
-          console.log('ajout image response', response);
+          console.log('ajout image response 💕💕💕💕', response);
           this.allArticle();
         })
       }
@@ -166,6 +166,37 @@ modifierAricle(){
 
 }
 
+
+modifierCatego(){
+
+      let formData= new FormData();
+      formData.append('titre', this.articleForm.value.titre);
+      formData.append('contenue', this.articleForm.value.contenue );
+      formData.append('categorie_id', this.articleForm.value.categorie_id);
+      if(this.selectedFile){
+        formData.append('image', this.selectedFile);
+      }
+      this.notificationService.confirmAlert('voulez-vous vraiment modifier ce realisation'
+      ).then(confirmed =>{
+        if(confirmed){
+          this.categorieService.updateCategorie(formData, this.elementSelectionner).subscribe((response : any) =>{
+            console.log('step uuid', this.elementSelectionner)
+            console.log('stepp1', response)
+            this.toastrService.success('Realisation modifié avec succès')
+          this.allCtagoreie
+            this.articleForm.reset();
+          },
+          (error) =>{
+            console.error('Erreur lors de la modification de cette realisation',error)
+            this.toastrService.error('Erreur lors de la modification de cette realisation')
+          });
+        }else{
+          this.toastrService.warning('modification annulée')
+        }
+      })
+
+}
+
 supprimerArticle(id: any) {
   console.log('Demande de confirmation pour supprimer le service');
   Swal.fire({
@@ -191,6 +222,40 @@ supprimerArticle(id: any) {
       (error) => {
         console.error('Erreur lors de la suppression de cette realisation', error);
         this.toastrService.error('Erreur lors de la suppression de cette realisation');
+      });
+    } else {
+      console.log('Suppression annulée');
+      this.toastrService.warning('Suppression annulée');
+    }
+  }).catch((error) => {
+    console.error('Erreur lors de l\'affichage de l\'alerte', error);
+  });
+}
+supprimerCategorie(id: any) {
+  console.log('Demande de confirmation pour supprimer le service');
+  Swal.fire({
+    title: "Voulez-vous vraiment supprimer cette catégirie?",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#388E3C",
+    cancelButtonColor: "#A12825",
+    width: 450,
+    confirmButtonText: "Oui, Supprimer!",
+    padding: 10,
+    color: '#ffff',
+    background: '#E7DCD6'
+  }).then((result) => {
+    console.log('Résultat de l\'alerte:', result);
+    if (result.isConfirmed) {
+      console.log('Suppression confirmée');
+      this.categorieService.deleteCategorie(id).subscribe((response: any) => {
+        console.log('Réponse de la suppression:', response);
+        this.toastrService.success('Catégorie Supprimé avec succès');
+        this.allCtagoreie();
+      },
+      (error) => {
+        console.error('Erreur lors de la suppression de cette realisation', error);
+        this.toastrService.error('Erreur lors de la suppression de cette rcatégorie');
       });
     } else {
       console.log('Suppression annulée');

@@ -65,7 +65,7 @@ dataRealisation: any[] = [];
 allRealisation(): void {
   this.realisationService.gatAllRealisation().subscribe((reasponse: any) =>{
     this.dataRealisation = reasponse.data;
-    console.log("����Rea",this.dataRealisation)
+    console.log("����Rea ❤️❤️❤️ ",this.dataRealisation)
 
   })
 }

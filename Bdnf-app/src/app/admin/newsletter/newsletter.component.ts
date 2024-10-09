@@ -13,25 +13,24 @@ import { NgIf } from '@angular/common';
   styleUrl: './newsletter.component.css'
 })
 export class NewsletterComponent implements OnInit {
-ajoutRealisation() {
-throw new Error('Method not implemented.');
-}
+
   constructor(private newsLetterService: NewsletterService){}
 
 
- titre: string = '';
- description: string = '';
+ libelle: string = '';
+ contenu: string = '';
  public image: any;
   ngOnInit(): void {
-    this.realisationForm= new FormGroup({
-      titre: new FormControl('', [Validators.required]),
-      description: new FormControl('', [Validators.required]),
-      image: new FormControl(null, [Validators.required]) // Contrôle pour l'image
+    this.newsletterForm= new FormGroup({
+      libelle: new FormControl('', [Validators.required]),
+      contenu: new FormControl('', [Validators.required]),
+      email: new FormControl('', [Validators.required]),
+      // image: new FormControl(null, [Validators.required]) // Contrôle pour l'image
     });
     this.getAllNewsletter();
   }
 
-  realisationForm!: FormGroup
+  newsletterForm!: FormGroup
 
   onFileSelected(event: any) {
     this.selectedFile = event.target.files[0];
@@ -39,16 +38,30 @@ throw new Error('Method not implemented.');
   }
 
    selectedFile: File | null = null;
-   getFile(event: any) {
-    // Récupérer le fichier sélectionné
-    const file = event.target.files[0];
-    if (file) {
-      this.selectedFile = file;
-      console.log('Fichier sélectionné : ', this.selectedFile);
-    } else {
-      console.error('Aucun fichier sélectionné');
+
+   selectedElment: any;
+
+   selectedEmail(element: any): void {
+    this.newsletterForm.patchValue({
+      email: element.email
+    })
+    this.selectedElment = element.uuid;
+   }
+
+   addResponse() {
+    const newResonse = {
+      libelle: this.newsletterForm.get('libelle')?.value,
+      contenu: this.newsletterForm.get('contenu')?.value,
+      email: this.newsletterForm.get('email')?.value,
     }
-  }
+    this.newsLetterService.addNewsletter(newResonse).subscribe((response: any) =>{
+      console.log('voir reposeback����', response)
+      this.newsletterForm.reset();
+      if(response.status!== 200) {
+        throw new Error('Ajout non realise')
+      }
+    })
+    }
 
   allNewsletterData: any[]=[];
   getAllNewsletter(): void{
