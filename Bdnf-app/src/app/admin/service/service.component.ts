@@ -8,11 +8,12 @@ import { ToastrService } from 'ngx-toastr';
 import { error } from 'console';
 import Swal from 'sweetalert2';
 import { NgFor } from '@angular/common';
+import { DateFormatPipe } from "../../pipes/date-format.pipe";
 
 @Component({
   selector: 'app-service',
   standalone: true,
-  imports: [FormsModule, HttpClientModule, SidebarComponent, NgFor],
+  imports: [FormsModule, HttpClientModule, SidebarComponent, NgFor, DateFormatPipe],
   providers: [ServiceService],
   templateUrl: './service.component.html',
   styleUrl: './service.component.css'
@@ -92,7 +93,7 @@ console.log('voir me service ✅✅✅✅✅ ',this.serviceData)
         });
       } else {
         console.log('Suppression annulée');
-        this.toastrService.error('Suppression annulée');
+        this.toastrService.warning('Suppression annulée');
       }
     }).catch((error) => {
       console.error('Erreur lors de l\'affichage de l\'alerte', error);
@@ -130,6 +131,11 @@ this.descriptionService = service.descriptionService;
           }
         })
 
+  }
+  seriviceSelected: any;
+  getDetailService(service: any): void {
+    this.seriviceSelected = service;
+    console.log('rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr')
   }
 
 

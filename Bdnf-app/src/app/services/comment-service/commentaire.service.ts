@@ -48,6 +48,11 @@ export class CommentaireService {
     return this.http.get<any>(`${this.apiUrl}/get/commentaire/artclie/all/${uuidArticle}`)
   }
 
+  deleteCommentaire(uuidArticle: any):Observable<any>{
+    const headers = this.getHeaders();
+    return this.http.get<any>(`${this.apiUrl}/supprimer/commentaire/${uuidArticle}`, { headers })
+  }
+
   // getCommentaireById(uuidArticle: any):Observable<any>{
   //   const headers = this.getHeaders();
   //   return this.http.get<any>(`${this.apiUrl}/show/commentaire/${uuidArticle}`)

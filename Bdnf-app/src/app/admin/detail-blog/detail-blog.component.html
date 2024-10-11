@@ -3,60 +3,121 @@
   <div class="container">
     <div class="row">
       <div class="col-sm-12 col-md-12 col-lg-10 text-article">
-        <div >
-          <h4># Titre</h4>
-          <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda, accusantium. Quia est reiciendis animi numquam at quidem similique molestiae nemo cumque architecto modi, tempore, obcaecati eveniet, omnis odit minus accusamus.</p>
+        @if (onlyArticleData) {
+        <div class="article-icone mb-2 d-flex justify-content-end">
+          <button type="button" class="btn btn-link btn-sm btn-rounded"  data-bs-toggle="modal" data-bs-target="#exampleModal">
+            details
+          </button>
+          <button type="button" class="ms-2 btn btn-link btn-sm btn-rounded"  data-bs-toggle="modal" data-bs-target="#exampleModal">
+            Modifier
+          </button>
+          <button type="button" class=" ms-2 btn btn-link btn-sm btn-rounded" (click)="supprimerArticle(onlyArticleData.uuid)" >
+            supprimer
+          </button>
         </div>
+          <div >
+            <h4># {{onlyArticleData.titre}} </h4>
+            <p> {{onlyArticleData.contenue}} </p>
+          </div>
+        } @else {
+          <div *ngIf="articleSupprimeMessage" class="alert alert-success">
+            {{ articleSupprimeMessage }}
+          </div>
+        }
+
+
       </div>
       <div class="col-sm-12 col-md-12 col-lg-12">
         <h5 class="mt-2">Liste des commentaires</h5>
         <div class="table-responsive mx-3">
-          <p class="text-end my-2">nombre de commentaire: 44</p>
-          <table class="table align-middle mb-4 bg-white">
-            <thead class="bg-light">
-              <tr>
-                <th>Pseudo</th>
-                <th>Contenue</th>
-                <th>Posté le</th>
-                <!-- <th>Position</th> -->
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              @for (comment of onlyCommentaireData; track comment) {
+
+          <!-- Vérification si la liste des commentaires est vide -->
+          @if (onlyCommentaireData && onlyCommentaireData.length > 0) {
+            <p class="text-end my-2">nombre de commentaire: {{onlyCommentaireData.length}} </p>
+            <table class="table align-middle mb-4 bg-white">
+              <thead class="bg-light">
                 <tr>
-                  <td>
-                    <div class=" align-items-center">
-
-                        <p class="fw-bold mb-1"> {{comment.pseudo}} </p>
-                    </div>
-                  </td>
-                  <td>
-                    <p class="fw-normal"> {{comment.contenue}} </p>
-                  </td>
-                  <td>
-                    <p>{{comment.created_at}} </p>
-                  </td>
-                  <!-- <td>Senior</td> -->
-                  <td>
-                    <button type="button" class="btn btn-link btn-sm btn-rounded">
-                      details
-                    </button>
-                    <button type="button" class=" ms-2 btn btn-link btn-sm btn-rounded">
-                      supprimer
-                    </button>
-                  </td>
+                  <th>Pseudo</th>
+                  <th>Contenue</th>
+                  <th>Posté le</th>
+                  <th>Actions</th>
                 </tr>
-
-              }
-
-            </tbody>
-          </table>
-
+              </thead>
+              <tbody>
+                @for (comment of onlyCommentaireData; track comment) {
+                  <tr>
+                    <td>
+                      <div class="align-items-center">
+                        <p class="fw-bold mb-1"> {{comment.pseudo}} </p>
+                      </div>
+                    </td>
+                    <td>
+                      <p class="fw-normal"> {{comment.contenue | paragraph:20}} </p>
+                    </td>
+                    <td>
+                      <p>{{comment.created_at | dateFormat}} </p>
+                    </td>
+                    <td>
+                      <button type="button" class="btn btn-link btn-sm btn-rounded" data-bs-toggle="modal" data-bs-target="#exampleModal-detail" (click)="detailComment(comment)">
+                        details
+                      </button>
+                      <button type="button" class="ms-2 btn btn-link btn-sm btn-rounded" (click)="supprimerComment(comment.uuid)">
+                        supprimer
+                      </button>
+                    </td>
+                  </tr>
+                }
+              </tbody>
+            </table>
+          } @else {
+            <!-- Message affiché lorsqu'il n'y a pas de commentaires -->
+            <p class="text-center my-4">Aucun commentaire disponible pour cet article.</p>
+          }
         </div>
       </div>
+
     </div>
   </div>
 </div>
+
+
+<div class="modal fade" id="exampleModal-detail" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h5 class="modal-title" id="exampleModalLabel"> Details Commentaire</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        @if (comentSelected) {
+          <div class="info d-flex justify-content-between">
+            <div class="d-flex">
+              <i class="bi bi-person" style="font-size: 1.1em; color: #A12825;"></i>
+              <p class="ms-2"> {{comentSelected.pseudo}} </p>
+            </div>
+            <div class="d-flex">
+              <i class="bi bi-calendar" style="font-size: 1.1em; color: #A12825;"></i>
+              <p class="ms-2"> {{comentSelected.created_at | dateFormat}} </p>
+            </div>
+          </div>
+          <div class="border rounded">
+            <p class="text-center"> {{comentSelected.contenue}} </p>
+          </div>
+
+        }
+
+          <div class="validajout d-flex justify-content-end" id="valada-final">
+
+            <button href="" class="mt-2 btn btn-link btn-sm btn-rounded" data-bs-dismiss="modal"> FERMER</button>
+          </div>
+
+      </div>
+    </div>
+  </div>
+  </div>
+
+
+
+<!-- modal detail commetire -->
 
 

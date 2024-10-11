@@ -2,52 +2,63 @@
 
 <div class="admingestioncontainer mt-5">
 
-   <div class="ajoutservicebutton ">
+   <div class="ajoutservicebutton bg-warning d-flex   ">
         <a href="" data-bs-toggle="modal" data-bs-target="#exampleModal" > Ajouter <i class="bi bi-plus-square-fill ms-2"></i></a>
+        <div class="searchbar mb-5">
+          <div class="d-flex justify-content-end">
+            <div class="input-group ">
+              <input type="search" class="form-control rounded" placeholder="Rechercher" aria-label="Search"
+                aria-describedby="search-addon" [(ngModel)]="searchService" (input)="getArticlesPage()"   />
+              </div>
+              <span class="input-group-text" id="search-addon">
+                <i class="bi bi-search"></i>
+              </span>
+          </div>
+        </div>
     </div>
 
-    <div class="searchbar mb-5">
-      <div class="d-flex justify-content-end">
-        <div class="input-group w-25 ">
-          <input type="search" class="form-control rounded" placeholder="Rechercher" aria-label="Search"
-            aria-describedby="search-addon" [(ngModel)]="searchService" (input)="getArticlesPage()"   />
-          </div>
-          <span class="input-group-text" id="search-addon">
-            <i class="bi bi-search"></i>
-          </span>
-      </div>
-    </div>
     <h4 class="mt-4 text-center">Liste des services</h4>
 
 
     <div class="container mt-5">
-
-
       <div class="row">
-        @for (item of getArticlesPage() ; track item) {
-          <div class="col-md-6 col-lg-4 toto">
-            <div class="media block-6 services d-block rounded-lg shadow ftco-animate">
-              <div class="icon d-flex align-items-center justify-content-center"><i class="bi bi-graph-up"></i></div>
-              <div class="media-body">
-                <h3 class="heading mb-3"> {{item.nomService}} </h3>
-                <p> {{item.descriptionService}}</p>
-              </div>
-              <div class="iconbottom w-50 d-flex justify-content-around">
-                <div>
-                  <i (click)="loadService(item)" class="bi bi-pencil"  data-bs-toggle="modal" data-bs-target="#modifModal" ></i>
+        @for (item of getArticlesPage(); track item) {
+
+          <div class="col-lg-4  " id="mmm">
+            <div class="card border-0 rounded-2">
+              <div class="card-header  rounded-0 ">
+                <div class="icone-top">
+                  <i class="bi bi-graph-up"></i>
                 </div>
-                <div>
-                  <i (click)="supprimerService(item.uuid)" class="bi bi-trash3"></i>
+              </div>
+              <div>
+                <h6> {{item.nomService}}</h6>
+              </div>
+              <div class="card-body">
+
+                <p class="text-center"> {{item.descriptionService}} </p>
+              </div>
+              <div class="card-footer border-0">
+                <div class="iconbottom w-50 d-flex justify-content-around">
+                  <div>
+                    <i (click)="loadService(item)" class="bi bi-pencil"  data-bs-toggle="modal" data-bs-target="#modifModal" ></i>
+                  </div>
+                  <div>
+                    <i class="bi bi-eye" data-bs-toggle="modal" data-bs-target="#exampleModal-detail" (click)="getDetailService(item)"></i>
+                  </div>
+                  <div>
+                    <i (click)="supprimerService(item.uuid)" class="bi bi-trash3"></i>
+                  </div>
                 </div>
               </div>
             </div>
+
           </div>
-
         }
-
       </div>
 
-      <div class="d-flex flex-wrap justify-content-center my-5 " id="pagination">
+
+      <div class="d-flex flex-wrap justify-content-center my-5 ms-5 " id="pagination">
         <nav aria-label="Page navigation example">
           <ul class="pagination">
             <li class="page-item  "><button class="paginate"  [disabled]="pageActuelle === 1" (click)="pageActuelle = pageActuelle - 1"  >Précédent</button></li>
@@ -110,6 +121,7 @@
   </div>
 </div>
 
+<!-- modal modification -->
 
 <div class="modal fade " id="modifModal" tabindex="-1" aria-labelledby="exampleModalLabel"   aria-hidden="true">
   <div class="modal-dialog ">
@@ -150,4 +162,40 @@
 
 
 
-<!-- modal ajout fin -->
+<!-- modal detail -->
+<div class="modal fade" id="exampleModal-detail" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h5 class="modal-title" id="exampleModalLabel"> Details Commentaire</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        @if (seriviceSelected) {
+          <div class="info d-flex justify-content-between">
+            <div class="d-flex">
+              <i class="bi bi-person" style="font-size: 1.1em; color: #A12825;"></i>
+              <p class="ms-2"> {{seriviceSelected.nomService}} </p>
+            </div>
+            <div class="d-flex">
+              <i class="bi bi-calendar" style="font-size: 1.1em; color: #A12825;"></i>
+              <p class="ms-2"> {{seriviceSelected.created_at | dateFormat}} </p>
+            </div>
+
+          </div>
+          <div class="border rounded">
+            <p class="text-start"> {{seriviceSelected.descriptionService}} </p>
+          </div>
+
+        }
+
+          <div class="validajout d-flex justify-content-end" id="valada-final">
+
+            <button href="" class="mt-2 btn btn-link btn-sm btn-rounded" data-bs-dismiss="modal"> FERMER</button>
+          </div>
+
+      </div>
+    </div>
+  </div>
+  </div>
+

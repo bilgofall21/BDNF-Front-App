@@ -34,7 +34,7 @@ export class HomeComponent implements OnInit {
       const lastService = this.servicaData.sort((a: {created_at: string | number | Date}, b: {created_at: string | number | Date}) =>{
         return new Date(b.created_at).getTime() - new Date(a.created_at).getTime();
       })
-      this.lastFourService = lastService.slice(0, 4)
+      this.lastFourService = lastService.slice(0, 3)
       console.log("😁😁😁",this.lastFourService)
     })
   }

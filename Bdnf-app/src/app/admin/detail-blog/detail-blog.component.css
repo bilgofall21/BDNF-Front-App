@@ -1,12 +1,20 @@
+:root {
+
+  --redColor: #A12825;
+  --beigeColor: #E7DCD6;
+}
+
 button{
-  background-color: aqua;
+  background-color: var(--redColor);
+  color: #fff;
   /* width: 60px; */
   height: 26px;
   font-size: 12px;
   text-decoration: none;
 }
 button:hover{
-  background-color: aqua;
+  background-color: var(--redColor);
+  color: #fff;
   /* width: 60px; */
   height: 26px;
   font-size: 12px;
@@ -17,6 +25,32 @@ button:hover{
   border: 1px solid gainsboro;
   width: 80%;
   border-radius: 1px;
-  padding: 60px;
+  padding: 30px 60px;
+  border-radius: 5px;
+}
+
+/* style catego */
+
+.icon-cate .ddd{
+  color: var(--redColor);
+  border: 0.5px solid var(--redColor);
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+.icon-cate .ddd:hover{
+  color: #fff;
+  background-color: var(--redColor);
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
 }
 

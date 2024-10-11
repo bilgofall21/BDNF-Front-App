@@ -14,8 +14,8 @@
   </div>
   <div class="container mb-4">
 
-    <div class="row">
-      <div class="col-md-3">
+    <div class="row" id="row-style">
+      <div class="col-sm-12 col-md-12 col-lg-3 ">
         <div class="card card-round">
           <div class="card-body">
             <div class="card-head-row card-tools-still-right d-flex justify-content-around">
@@ -39,7 +39,7 @@
                 <ul class="d-flex justify-content-between icon-cate">
                   <li>
                     <div class="ddd">
-                      <i class="bi bi-pencil" data-bs-toggle="modal" data-bs-target="#exampleModal-modif"></i>
+                      <i class="bi bi-pencil" data-bs-toggle="modal" data-bs-target="#exampleModal-modif" (click)="loadCategorie(item)" ></i>
                     </div>
                   </li>
                   <li class="ms-3">
@@ -56,8 +56,8 @@
           </div>
         </div>
       </div>
-      <div class="col-md-9 ">
-        <div class="card card-round w-100">
+      <div class="col-sm-12 col-md-12 col-lg-9">
+        <div class="card card-round">
           <div class="card-header">
             <div class="card-head-row   d-flex justify-content-around">
               <div class="card-title">Liste des articles</div>
@@ -69,10 +69,10 @@
 
             </div>
           </div>
-          <div class="card-body p-0">
+          <div class="card-body p-0 ">
             <div class="table-responsive">
               <!-- Projects table -->
-              <table class="table align-items-center mb-0">
+              <table class="table align-items-center ">
                 <thead class="thead-light">
                   <tr>
                     <th scope="col">Titre</th>
@@ -103,8 +103,11 @@
                 </tbody>
               </table>
             </div>
+
           </div>
         </div>
+
+
       </div>
     </div>
 
@@ -114,8 +117,8 @@
 
 
 </div>
-  <div class="d-flex flex-wrap justify-content-center my-5 " id="pagination">
-    <nav aria-label="Page navigation example">
+  <div class="d-flex flex-wrap justify-content-end " id="pagination">
+    <nav aria-label="Page navigation example" class="me-3">
       <ul class="pagination">
         <li class="page-item  "><button class="paginate"  [disabled]="pageActuelle === 1" (click)="pageActuelle = pageActuelle - 1"  >Précédent</button></li>
         <li class="page-item"><button class="paginatee" *ngFor="let page of pages" [class.current]="page === pageActuelle"
@@ -171,13 +174,13 @@
         <form>
           <div class="mb-3">
             <label for="nom_prof" class="form-label">Nom</label>
-            <input type="text" class="form-control" name="nomService" id="nomService" placeholder="nom catégorie"
+            <input type="text" class="form-control" name="nomCategorie" id="nomCategorie" placeholder="nom catégorie"
               [(ngModel)]="nomCategorie" required />
           </div>
 
           <div class="validajout d-flex justify-content-end" id="valada-final">
-            <button data-bs-dismiss="modal" type="submit" (click)="ajouterCategorie()" class="btn-custom">
-              Ajouter
+            <button data-bs-dismiss="modal" type="submit" (click)="modifierService()" class="btn-custom">
+              Modifier
             </button>
             <a href="" class="ms-3" data-bs-dismiss="modal"> Annuler</a>
           </div>

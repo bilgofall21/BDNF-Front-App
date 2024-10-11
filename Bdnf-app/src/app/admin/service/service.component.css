@@ -24,7 +24,7 @@
   font-weight: bold;
 }
 .ajoutservicebutton a{
-  padding: 8px 20px;
+  /* padding: 8px 20px; */
   background-color: var(--redColor);
   color: white;
   font-weight: bold;
@@ -114,25 +114,43 @@ display: flex;
   font-size: 18px;
   font-weight: 500;
 }
-/* .services:hover {
-  background: #a12825 !important;
+
+#mmm .card-header {
+  border-bottom: 1px solid var(--redColor);
+  background-color: #fff;
 }
-.services:hover .icon {
-  background: #fff;
-  margin-left: 20px;
+#mmm .card{
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
-.services:hover .icon i {
-  color: #E7DCD6;
+#mmm h6{
+  color: var(--redColor);
+  margin-top: 8px;
+  padding-left: 20px;
+  font-weight:bold !important;
 }
-.services:hover h3 {
-  color: #fff;
+#mmm .card-body{
+  padding: 10px;
+  height: 8rem;
 }
-.services:hover p {
-  color: #fff;
+#mmm .icone-top{
+height: 40px;
+width: 40px;
+background-color: var(--redColor);
+border-radius: 50%;
+display:flex;
+justify-content: center;
+align-items: center;
+color: #fff;
+font-size: 1.3rem;
 }
-.services:hover .media-body {
-  color: rgba(255, 255, 255, 0.8);
-} */
+#mmm .card-body p{
+  overflow: hidden; /* Empêche le débordement du texte */
+  text-overflow: ellipsis; /* Ajoute des points de suspension si le texte est trop long */
+  display: -webkit-box;
+  -webkit-line-clamp: 4; /* Limite à 3 lignes par exemple */
+  -webkit-box-orient: vertical;
+}
+
 
 /* style call to contact */
 .ftco-hireme {

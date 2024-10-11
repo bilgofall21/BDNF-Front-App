@@ -98,29 +98,33 @@
           <div *ngIf="newDataComment.length == dataCommnent.length" class="text-end">
             <button class="btn " id="showPlus" (click)="loadLessComments()">Charger moins</button>
           </div>
-          <div class="card-footer py-3 border-0 mt-2" >
-            <div class="d-flex flex-start w-100">
-              <img class="rounded-circle shadow-1-strong me-3"
-                src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(19).webp" alt="avatar" width="40"
-                height="40" />
-                <div data-mdb-input-init class="form-outline w-100">
-                <form action="#" class="p-2  ">
-                  <div class="form-group">
-                    <label for="name">Pseudo <span class="text-danger">*</span></label>
-                    <input type="text" name="pseudo" [(ngModel)]="pseudo" class="form-control" id="name">
-                  </div>
-                  <div class="form-group">
-                    <label for="message">Message <span class="text-danger">*</span></label>
-                    <textarea name="contenue"  [(ngModel)]="contenue" id="message" cols="30" rows="4" class="form-control"></textarea>
-                  </div>
-                </form>
-              </div>
-            </div>
-            <div class="float-end mt-2 pt-1">
-              <button (click)="addComment()"  type="button"  class="btn  me-2">Poster commentaire</button>
-              <button  type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-outline-primary btn-sm">Annuler</button>
-            </div>
+          <div class="card-footer py-3 border-0 mt-2">
+  <div class="d-flex flex-start w-100">
+    <img class="rounded-circle shadow-1-strong me-3"
+      src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(19).webp" alt="avatar" width="40" height="40" />
+    <div class="form-outline w-100">
+      <form [formGroup]="categoForm" (ngSubmit)="ajouterCommentaire()">
+        <div class="form-group">
+          <label for="name">Pseudo <span class="text-danger">*</span></label>
+          <input type="text" formControlName="pseudo" class="form-control" id="name">
+          <div *ngIf="categoForm.get('pseudo')?.invalid && categoForm.get('pseudo')?.touched" class="text-danger">
+            Pseudo est requis
           </div>
+        </div>
+        <div class="form-group">
+          <label for="message">Message <span class="text-danger">*</span></label>
+          <textarea formControlName="contenue" id="message" cols="30" rows="4" class="form-control"></textarea>
+          <div *ngIf="categoForm.get('contenue')?.invalid && categoForm.get('contenue')?.touched" class="text-danger">
+            Message est requis
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary mt-2" [disabled]="categoForm.invalid">Poster commentaire</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+
         </div>
       </div>
     </div>

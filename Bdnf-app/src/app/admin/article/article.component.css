@@ -15,8 +15,14 @@
   --beigeColor: #E7DCD6;
 }
 
+#row-style{
+  row-gap: 10px;
+
+}
+
 .iconbottom{
   margin: 0 auto;
+  width: 250px;
 }
 .iconbottom i{
   color: var(--redColor);
@@ -74,7 +80,7 @@ table li, li{
 }
 .card {
   height: 26rem;
-  width: 17rem;
+  /* width: 17rem; */
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 border: none;
 overflow: hidden; /* Coupe le contenu qui dépasse */
@@ -99,29 +105,9 @@ td p{
   overflow: hidden;
   text-overflow: ellipsis;
 }
-#cardContainer{
-  margin: 0 auto;
-  row-gap: 10px;
-  column-gap: 8px;
-}
+
 
  /* style pagination debut */
-
- .pagiColor {
-  background-color: var(--redColor);
-  color: white;
-}
-.pagiColore.current {
-  background-color: var(--redColor);
-  border-radius: 5px;
-  color: white;
-}
-.pagiColore {
-  border:1px solid  var(--redColor);
-  color: var(--redColor);
-}
-
-
 
 td button{
   background-color: var(--redColor);

@@ -78,37 +78,63 @@ ajouterCategorie(){
 }
 
 ajouterArticle(): void {
-  // Utilisation de FormData pour envoyer des données, y compris un fichier
-  const newAricle ={
+  const newArticle = {
     titre: this.articleForm.value.titre,
     contenue: this.articleForm.value.contenue,
-    categorie_id: this.articleForm.value.categorie_id,
-  }
+    categorie_id: this.articleForm.value.categorie_id
+  };
+
   console.log('valeur categorie_id', this.articleForm.value.categorie_id);
 
-  // Envoyer le FormData via le service HTTP
-  this.articleService.addArticle(newAricle).subscribe(
-    (response) => {
-      this.articleForm.reset();
-      this.allArticle();
-      console.log("Réponse du serveur: ✅✅✅✅✅✅", response);
-      if(response.status !== 200){
-        throw new Error('article mal ajouté')
-      }
-      if(this.selectedFile){
-        const formData = new FormData();
-        formData.append('image', this.selectedFile);
-        this.articleService.addArticleImag(response.data.uuid, formData).subscribe((response: any)=>{
-          console.log('ajout image response 💕💕💕💕', response);
+  // Affichage de la confirmation via le service de notification
+  this.notificationService.confirmAlert(
+    'Voulez-vous vraiment ajouter cet article ?'
+  ).then(confirmed => {
+    if (confirmed) {
+      // Envoyer les données de l'article via le service HTTP
+      this.articleService.addArticle(newArticle).subscribe(
+        (response) => {
+          console.log("Réponse du serveur: ✅✅✅✅✅✅", response);
+
+          // Si la réponse n'est pas de succès, lever une erreur
+          if (response.status !== 200) {
+            throw new Error('article mal ajouté');
+          }
+
+          // Réinitialisation du formulaire et mise à jour de la liste des articles
+          this.articleForm.reset();
           this.allArticle();
-        })
-      }
-    },
-    (error) => {
-      console.error("Erreur lors de l'ajout de la réalisation", error);
+          this.toastrService.success('Article ajouté avec succès');
+
+          // Ajout de l'image si un fichier est sélectionné
+          if (this.selectedFile) {
+            const formData = new FormData();
+            formData.append('image', this.selectedFile);
+            this.articleService.addArticleImag(response.data.uuid, formData).subscribe(
+              (response: any) => {
+                console.log('ajout image response 💕💕💕💕', response);
+                this.allArticle(); // Mise à jour après ajout de l'image
+              },
+              (error) => {
+                console.error("Erreur lors de l'ajout de l'image", error);
+                this.toastrService.error('Erreur lors de l\'ajout de l\'image');
+              }
+            );
+          }
+        },
+        (error) => {
+          console.error("Erreur lors de l'ajout de l'article", error);
+          this.toastrService.error('Erreur lors de l\'ajout de l\'article');
+        }
+      );
+    } else {
+      this.toastrService.warning('Ajout d\'article annulé');
     }
-  );
+  });
 }
+
+
+
 dataArticle: any[]=[];
 allArticle(): void {
   try {
@@ -165,30 +191,33 @@ modifierAricle(){
       })
 
 }
-
-
+categoSelectionner: any
+loadCategorie(categorie: any){
+  this.categoSelectionner = categorie.uuid;
+  this.nomCategorie = categorie.nomCategorie;
+    }
 modifierCatego(){
 
-      let formData= new FormData();
-      formData.append('titre', this.articleForm.value.titre);
-      formData.append('contenue', this.articleForm.value.contenue );
-      formData.append('categorie_id', this.articleForm.value.categorie_id);
-      if(this.selectedFile){
-        formData.append('image', this.selectedFile);
+      const updateCategorie = {
+        nomCategorie: this.nomCategorie
       }
-      this.notificationService.confirmAlert('voulez-vous vraiment modifier ce realisation'
+      console.log('fffffffffffff', updateCategorie)
+      this.notificationService.confirmAlert('voulez-vous vraiment modifier cette categorie'
       ).then(confirmed =>{
         if(confirmed){
-          this.categorieService.updateCategorie(formData, this.elementSelectionner).subscribe((response : any) =>{
-            console.log('step uuid', this.elementSelectionner)
-            console.log('stepp1', response)
-            this.toastrService.success('Realisation modifié avec succès')
-          this.allCtagoreie
-            this.articleForm.reset();
+          this.categorieService.updateCategorie(updateCategorie, this.categoSelectionner).subscribe((response : any) =>{
+
+            console.log('step uuid 😒😒😒😒😒 ', this.categoSelectionner)
+            console.log('stepp1 😂😂😂😂', response)
+            this.toastrService.success('Categorie modifié avec succès')
+          this.allCtagoreie();
+            this.nomCategorie = '';
           },
           (error) =>{
-            console.error('Erreur lors de la modification de cette realisation',error)
-            this.toastrService.error('Erreur lors de la modification de cette realisation')
+            console.log('step uuid 😒😒😒😒😒 👌👌👌👌👌👌👌👌👌👌👌👌👌👌👌👌👌 ')
+
+            console.error('Erreur lors de la modification de cette Categorie',error)
+            this.toastrService.error('Erreur lors de la modification de cette categorie')
           });
         }else{
           this.toastrService.warning('modification annulée')
@@ -197,40 +226,30 @@ modifierCatego(){
 
 }
 
-supprimerArticle(id: any) {
-  console.log('Demande de confirmation pour supprimer le service');
-  Swal.fire({
-    title: "Voulez-vous vraiment supprimer cette realistation?",
-    icon: "warning",
-    showCancelButton: true,
-    confirmButtonColor: "#388E3C",
-    cancelButtonColor: "#A12825",
-    width: 450,
-    confirmButtonText: "Oui, Supprimer!",
-    padding: 10,
-    color: '#ffff',
-    background: '#E7DCD6'
-  }).then((result) => {
-    console.log('Résultat de l\'alerte:', result);
-    if (result.isConfirmed) {
-      console.log('Suppression confirmée');
-      this.articleService.delateArice(id).subscribe((response: any) => {
-        console.log('Réponse de la suppression:', response);
-        this.toastrService.success('Realisation Supprimé avec succès');
-        this.allArticle();
-      },
-      (error) => {
-        console.error('Erreur lors de la suppression de cette realisation', error);
-        this.toastrService.error('Erreur lors de la suppression de cette realisation');
-      });
-    } else {
-      console.log('Suppression annulée');
-      this.toastrService.warning('Suppression annulée');
-    }
-  }).catch((error) => {
-    console.error('Erreur lors de l\'affichage de l\'alerte', error);
-  });
+modifierService(){
+  const updateCategorie = {
+    nomCategorie: this.nomCategorie
+  }
+      this.notificationService.confirmAlert('voulez-vous vraiment modifier ce service'
+      ).then(confirmed =>{
+        if(confirmed){
+          this.categorieService.updateCategorie(updateCategorie, this.categoSelectionner).subscribe((response : any) =>{
+            this.toastrService.success('Service modifié avec succès')
+            this.allCtagoreie();
+            this.nomCategorie ='';
+          },
+          (error) =>{
+            console.error('Erreur lors de la modification du service',error)
+            this.toastrService.error('Erreur lors de la modification du service')
+          });
+        }else{
+          this.toastrService.warning('modification annulée')
+        }
+      })
+
 }
+
+
 supprimerCategorie(id: any) {
   console.log('Demande de confirmation pour supprimer le service');
   Swal.fire({
@@ -270,7 +289,7 @@ supprimerCategorie(id: any) {
 // pagination and search
 
    // Attribut pour la pagination
-   articlesParPage = 4; // Nombre d'articles par page
+   articlesParPage = 5; // Nombre d'articles par page
    pageActuelle = 1; // Page actuelle
 
 dataArticletrouve : any []=[];

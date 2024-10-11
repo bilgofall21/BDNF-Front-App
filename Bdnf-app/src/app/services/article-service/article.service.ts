@@ -47,7 +47,7 @@ updateArticle(article: any, uuid: any ): Observable<any>{
 }
 delateArice(uuid: any): Observable<any>{
   const headers = this.getHeaders();
-  return this.http.post<any>(`${this.apiUrl}/delete/articlee/${uuid}`, {}, { headers })
+  return this.http.post<any>(`${this.apiUrl}/delete/article/${uuid}`, {}, { headers })
 }
 
   allArticle():Observable<any>{
