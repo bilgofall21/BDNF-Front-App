@@ -84,20 +84,3 @@ font-size:  24px;
 
 
 
-.pagiColor {
-  background-color: var(--redColor);
-  color: white;
-}
-.pagiColore.current {
-  background-color: var(--redColor);
-  color: white;
-}
-.pagiColore {
-  border:1px solid  var(--redColor);
-  color: var(--redColor);
-}
-#pagination{
-  margin-left: 180px;
-  margin-top: 20px;
-
-}

@@ -2,6 +2,8 @@
 <div class="admingestioncontainer mt-5">
 
   <div class="container">
+    <h4 class="mt-4 text-center">Liste des Inscris aux newsletters</h4>
+
     <div class="card " id="cardTableContainer">
       <div class="table-responsive  ">
         <table class="table align-items-center mb-0">
@@ -13,26 +15,31 @@
             </tr>
           </thead>
           <tbody>
-            @for (news of allNewsletterData ; track news) {
-              <tr>
-                <td>
-                  <div class="d-flex px-2 py-1">
-                    <div>
-                    </div>
-                    <div class="d-flex flex-column justify-content-center">
-                      <h6 class="mb-0 dd">{{news.email}} </h6>
-                    </div>
-                  </div>
-                </td>
-                <td>
-                  <p class="dd font-weight-bold mb-0">{{news.created_at | dateFormat}} </p>
-                </td>
-                <td class="align-middle text-center text-sm">
-                  <a   data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="selectedEmail(news)" class="myRespone">repondre</a>
-                </td>
 
-              </tr>
+            @if ( allNewsletterData && allNewsletterData.length > 0 ) {
+              @for (news of allNewsletterData ; track news) {
+                <tr>
+                  <td>
+                    <div class="d-flex px-2 py-1">
+                      <div>
+                      </div>
+                      <div class="d-flex flex-column justify-content-center">
+                        <h6 class="mb-0 dd">{{news.email}} </h6>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <p class="dd font-weight-bold mb-0">{{news.created_at | dateFormat}} </p>
+                  </td>
+                  <td class="align-middle text-center text-sm">
+                    <a   data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="selectedEmail(news)" class="myRespone">repondre</a>
+                  </td>
 
+                </tr>
+
+              }
+            } @else {
+              <p class="text-center py-5"> Aucun inscris aux newsletters 😒</p>
             }
 
 
@@ -41,7 +48,7 @@
       </div>
     </div>
 
-    
+
   </div>
 
   <div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"   aria-hidden="true">

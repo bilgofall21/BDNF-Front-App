@@ -11,11 +11,12 @@ import Swal from 'sweetalert2';
 import { RouterLink, RouterModule } from '@angular/router';
 import { DateFormatPipe } from "../../pipes/date-format.pipe";
 import { ParagraphPipe } from "../../pipes/paragraph.pipe";
+import { SpinnerComponent } from "../../anmation/spinner/spinner.component";
 
 @Component({
   selector: 'app-article',
   standalone: true,
-  imports: [HttpClientModule, FormsModule, SidebarComponent, ReactiveFormsModule, NgIf, NgFor, RouterLink, DateFormatPipe, ParagraphPipe,RouterModule],
+  imports: [HttpClientModule, FormsModule, SidebarComponent, ReactiveFormsModule, NgIf, NgFor, RouterLink, DateFormatPipe, ParagraphPipe, RouterModule, SpinnerComponent],
   templateUrl: './article.component.html',
   styleUrl: './article.component.css'
 })
@@ -26,7 +27,9 @@ public image: any;
 categorie_id: any;
 titre: string = "";
 contenue: string = "";
-articleForm!: FormGroup
+articleForm!: FormGroup;
+loadingPage = true;
+loadingData : boolean = false;
 // categorie_id: any;
 constructor(
   private categorieService: CategorieService, private articleService : ArticleService, private notificationService: NotificationService,
@@ -39,6 +42,13 @@ constructor(
       categorie_id: new FormControl('', [Validators.required]),
     })
    this.allCtagoreie(); this.allArticle();
+   this.loadingPage = false;
+  }
+
+  checkLoadingStatus(): void {
+    if (this.dataCategorie.length > 0 && this.dataArticle.length > 0) {
+      this.loadingData = false; // Masquer le spinner lorsque les deux chargements sont terminés
+    }
   }
 
 
@@ -51,11 +61,19 @@ constructor(
 
 
 allCtagoreie(): void{
+  this.loadingData = true; // Afficher le spinner lors du chargement des données
   this.categorieService.getCategorie().subscribe((data: any)=>{
 this.dataCategorie = data.data
+// this.checkLoadingStatus();
+this.loadingData = false;
 console.log('voir datacategorie✅✅', data)
 console.log('voir datacategorie✅✅', this.dataCategorie)
   })
+}
+
+categoElement : any;
+showCatego(catego : any) : void {
+  this.categoElement = catego;
 }
 
 
@@ -85,7 +103,7 @@ ajouterArticle(): void {
   };
 
   console.log('valeur categorie_id', this.articleForm.value.categorie_id);
-
+try {
   // Affichage de la confirmation via le service de notification
   this.notificationService.confirmAlert(
     'Voulez-vous vraiment ajouter cet article ?'
@@ -131,17 +149,24 @@ ajouterArticle(): void {
       this.toastrService.warning('Ajout d\'article annulé');
     }
   });
+
+} catch (error) {
+this.toastrService.error(`{error}`);
+}
 }
 
 
 
 dataArticle: any[]=[];
 allArticle(): void {
+  this.loadingData = true;
   try {
     this.articleService.allArticle().subscribe((response) => {
       this.dataArticle = response.data.map((article: any) => {
         // article.image = `https://api.bdnf-marketing-solutions.com${article.image}`;
         article.image = `https://127.0.0.1:8000${article.image}`;
+        // this.checkLoadingStatus();
+        this.loadingData = false;
         return article;
       });
       console.log('voir tous les articles', this.dataArticle);
@@ -289,7 +314,7 @@ supprimerCategorie(id: any) {
 // pagination and search
 
    // Attribut pour la pagination
-   articlesParPage = 5; // Nombre d'articles par page
+   articlesParPage = 4; // Nombre d'articles par page
    pageActuelle = 1; // Page actuelle
 
 dataArticletrouve : any []=[];

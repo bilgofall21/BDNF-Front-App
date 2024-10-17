@@ -13,7 +13,8 @@
       <span class="count">12</span>
     </a>
     <a [routerLink]="['/admin/profil']" class="profile">
-      <img src="images/logo.png">
+      <img src="/assets/image/profil.avif">
+
     </a>
   </nav>
   <!-- End of Navbar -->
@@ -27,32 +28,32 @@
   <ul class="side-menu">
     <li [routerLinkActive]="['active']">
       <a [routerLink]="['/admin/home-admin']">
-        <i class="bi bi-speedometer2 nav-icon"></i> Dashboard
+        <i class="bi bi-grid"></i> Dashboard
       </a>
     </li>
     <li [routerLinkActive]="['active']">
       <a [routerLink]="['/admin/service']">
-        <i class="bi bi-gear"></i> Service
+        <i class="bi bi-bar-chart"></i> Service
       </a>
     </li>
     <li [routerLinkActive]="['active']">
       <a [routerLink]="['/admin/article']">
-        <i class="bi bi-file-text"></i> Article
+        <i class="bi bi-journal-text"></i> Article
       </a>
     </li>
     <li [routerLinkActive]="['active']">
       <a [routerLink]="['/admin/newsletter']">
-        <i class="bi bi-envelope"></i> Newsletter
+        <i class="bi bi-newspaper"></i> Newsletter
       </a>
     </li>
     <li [routerLinkActive]="['active']">
       <a [routerLink]="['/admin/realisation']">
-        <i class="bi bi-award"></i> Realisation
+        <i class="bi bi-trophy"></i> Realisation
       </a>
     </li>
     <li [routerLinkActive]="['active']">
       <a [routerLink]="['/admin/temoignage']">
-        <i class="bi bi-quote"></i> Temoignage
+        <i class="bi bi-chat-quote"></i> Temoignage
       </a>
     </li>
   </ul>

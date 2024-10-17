@@ -172,3 +172,49 @@ button:disabled {
     opacity: 0.6; /* Opacité réduite */
 }
 
+
+
+/* loadin css */
+
+
+/* style loader */
+
+
+
+.orange-text {
+  color: var(--redColor);
+  font-weight: 500;
+}
+
+.section-title h3 {
+  font-size: 40px;
+  position: relative;
+  font-weight: bold;
+  padding-bottom: 10px;
+}
+
+.section-title h3:after {
+  position: absolute;
+  content: '';
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  width: 50px;
+  height: 2px;
+  background-color: var(--redColor);
+  margin: 0 auto;
+}
+
+.section-title p {
+  font-size: 18px;
+  width: 530px;
+  margin: 0 auto;
+  color: #555;
+  margin-top: 10px;
+  line-height: 1.8;
+}
+
+.section-title {
+  margin-bottom: 40px;
+}
+

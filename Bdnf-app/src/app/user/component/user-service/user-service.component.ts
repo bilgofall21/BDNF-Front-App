@@ -25,7 +25,7 @@ export class UserServiceComponent implements OnInit {
     })
   }
 
-  articlesParPage = 4; // Nombre d'articles par page
+  articlesParPage = 6; // Nombre d'articles par page
 pageActuelle = 1; // Page actuelle
 
 dataServicetrouve : any []=[];

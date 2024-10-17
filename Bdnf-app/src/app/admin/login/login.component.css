@@ -40,3 +40,48 @@ button{
   color: #fff;
   font-weight: bold;
 }
+
+
+.position-relative {
+  position: relative; /* Assurez-vous que le parent soit en position relative */
+}
+
+.pe-5 {
+  padding-right: 2.5rem; /* Ajuste le padding pour laisser de l'espace pour l'icône */
+}
+
+.position-absolute {
+  position: absolute;
+  right: 15px; /* Ajuste selon le style de ton champ */
+  top: 50%; /* Centrer verticalement */
+  transform: translateY(-50%); /* Ajustement pour un centrage parfait */
+}
+
+.bi {
+  font-size: 1.2rem; /* Ajuster la taille de l'icône si nécessaire */
+  color: #000; /* Couleur de l'icône (Bootstrap primary) */
+}
+.vvvv{
+  border: 5px;
+  width: 12%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+
+  background-color: #fff;
+  border-left: 1px solid #000000b0;
+}
+.www{
+  width: 90%;
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: none; /* Couleur de la bordure Bootstrap */
+  border: none;
+  box-shadow: none; /* Ombre personnalisée */
+}

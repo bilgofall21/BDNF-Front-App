@@ -55,4 +55,16 @@ export class NotificationService {
       background: '#E7DCD6'
     });
   }
+  warningAlert(title: string, text: string): void {
+    Swal.fire({
+      title,
+      text,
+      icon: 'warning',
+      confirmButtonColor: '#388E3C',
+      width: 450,
+      padding: 10,
+      color: '#ffff',
+      background: '#E7DCD6'
+    });
+  }
 }

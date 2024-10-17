@@ -50,7 +50,7 @@ export class TemoignageService {
     return this.http.post<any[]>(`${this.apiUrl}/delete/temoignage/${uuid}`, {}, {headers})
   }
 
-  updateService(serviceUpdate: any, uuid: any): Observable<any>{
+  updateTemoignage(serviceUpdate: any, uuid: any): Observable<any>{
     const headers = this.getHeaders();
     return this.http.post<any>(`${this.apiUrl}/update/temoignage/${uuid}`, serviceUpdate, {headers})
   }

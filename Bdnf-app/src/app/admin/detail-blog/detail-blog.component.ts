@@ -53,6 +53,7 @@ onlyCommentaireData: any[]= [];
 }
 comentSelected: any;
 detailComment(comment: any): void {
+  console.log('😒😒😒😒😒😒😒😒😒')
 this.comentSelected = comment;
 }
 
@@ -111,7 +112,7 @@ supprimerArticle(id: any) {
       console.log('Suppression confirmée');
       this.articleService.delateArice(id).subscribe((response: any) => {
         console.log('Réponse de la suppression:', response);
-        this.toastrService.success('Realisation Supprimé avec succès');
+        // this.toastrService.success('Realisation Supprimé avec succès');
         this.onlyArticleData = null;
         this.articleSupprimeMessage = "L'article a été supprimé avec succès.";
       },

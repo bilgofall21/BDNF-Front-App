@@ -2,6 +2,9 @@
 <div class="allContainer">
   <div class="home-container">
     <!-- section hero -->
+    @if (loadingData ) {
+      <app-spinner></app-spinner>
+    }
     <section class="hero-section">
       <div class="home-slider owl-carousel">
         <div class="slider-item">
@@ -27,150 +30,200 @@
 
       </div>
     </section>
+
   <!-- section nos services -->
-    <section class="ftco-section" id="services-section">
-      <div class="container">
-        <div class="row justify-content-center">
-          <div class="col-md-12 heading-section text-center ftco-animate mb-5">
-            <!-- <span class="subheading">I am grat at</span> -->
-            <h2 class="mb-4">Nos Services</h2>
-            <p>Découvrez nos services personnalisés pour propulser votre marque et atteindre vos objectifs de communication.</p>
+   @if (!loadingData) {
+     <section class="ftco-section" id="services-section">
+       <div class="container">
+         <div class="row">
+          <div class="col-lg-8 offset-lg-2 text-center">
+            <div class="section-title">
+              <h3><span class="orange-text">Nos</span> Services</h3>
+              <p>Découvrez nos services personnalisés pour propulser votre marque et atteindre vos objectifs de communication.</p>
+            </div>
+          </div>
+        </div>
+         <div class="row mb-5 link-blog">
+          <div class="col-md-6">
+            <h4 class="section-title">Nos récents services</h4>
+          </div>
+          <div class="col-md-6 text-start text-md-end">
+            <a  class="text-decoration-none boxed-btn"  [routerLink]="['/user-service']">Voir toutes les services<i class="bi bi-arrow-right-circle ms-2" ></i></a>
           </div>
         </div>
 
-        <div class="row">
-          @for (service of lastFourService; track service) {
-            <div class="col-md-6 col-lg-4 toto">
-              <div class="media block-6 services d-block rounded-lg shadow ftco-animate">
-                <div class="icon d-flex align-items-center justify-content-center"><i class="bi bi-graph-up"></i></div>
-                <div class="media-body">
-                  <h3 class="heading mb-3"> {{service.nomService}} </h3>
-                  <p> {{service.descriptionService}} </p>
-                </div>
-              </div>
-            </div>
+         <div class="row">
+           @for (service of lastFourService; track service) {
+             <div class="col-md-6 col-lg-4 toto">
+               <div class="media block-6 services d-block rounded-lg shadow ftco-animate">
+                 <div class="icon d-flex align-items-center justify-content-center"><i class="bi bi-graph-up"></i></div>
+                 <div class="media-body">
+                   <h3 class="heading mb-3"> {{service.nomService}} </h3>
+                   <p> {{service.descriptionService}} </p>
+                 </div>
+               </div>
+             </div>
 
-          }
+           }
 
-        </div>
-        <div class="boutonService text-center mb-3">
-          <button class="btn" [routerLink]="['/user-service']" > Voir tous les services</button>
-        </div>
+         </div>
+         <!-- <div class="boutonService text-center mb-3">
+           <button class="btn" [routerLink]="['/user-service']" > Voir tous les services</button>
+         </div> -->
 
-      </div>
-    </section>
+       </div>
+     </section>
+
+   }
   <!-- Section call to contact -->
-    <section class="ftco-hireme">
-      <div class="container">
-        <div class="row  justify-content-between">
-          <div class="col-md-8 col-lg-8 d-flex align-items-center">
-            <div class="w-100 py-4">
-              <h2>Vous avez un projet en tête ?</h2>
-              <p class="text-white">Laissez-nous transformer vos idées en réalité. BDNF Marketing Solutions est votre partenaire pour une communication réussie. Contactez-nous pour commencer dès aujourd'hui !</p>
-              <!-- <p class="mb-0"><a href="#" class="btn btn-white py-3 px-4">Contact me</a></p> -->
-              <button class="btn" id="contactMe"> Contacter moi</button>
-            </div>
-          </div>
-          <div class="col-md-4 col-lg-4 d-flex align-items-end">
-            <img src="images/author.png" class="img-fluid" alt="">
-          </div>
-        </div>
-      </div>
-    </section>
+   @if (!loadingData) {
+     <section class="ftco-hireme">
+       <div class="container">
+         <div class="row ">
+           <div class="col-md-8 bg-danger col-lg-8 ">
+             <div class="">
+               <h2>Vous avez un projet en tête ?</h2>
+               <p class="text-white">Laissez-nous transformer vos idées en réalité. BDNF Marketing Solutions est votre partenaire pour une communication réussie. Contactez-nous pour commencer dès aujourd'hui !</p>
+               <!-- <p class="mb-0"><a href="#" class="btn btn-white py-3 px-4">Contact me</a></p> -->
+               <a class="button-btn" (click)="navigateToLinkeDin()" target="_blank" > Contacter moi</a>
+             </div>
+           </div>
+           <div class="col-md-4  col-lg-4 d-flex justify-content-center align-items-center">
+             <img src="assets/image/link2.png" class="img-fluid" alt="">
+           </div>
+         </div>
+       </div>
+     </section>
+
+   }
 
     <!-- section mes realisation -->
-    <section class="ftco-section ftco-project" id="projects-section">
-      <div class="container-fluid px-md-4">
-        <div class="row justify-content-center pb-5">
-          <div class="col-md-12 heading-section text-center ftco-animate">
-            <!-- <span class="subheading">Accomplishments</span> -->
-            <h2 class="mb-4">Nos Realisations</h2>
-            <p>Jetez un œil à nos projets récents et voyez comment nous avons aidé nos clients à réussir.</p>
-          </div>
-        </div>
-        <div class="row">
-          @for (realisa of lastFourRealisation; track realisa) {
-            <div class="col-md-6">
-              <div class="project img shadow ftco-animate d-flex justify-content-center align-items-center">
-                <div class="overlay"></div>
-                <div class="text text-center p-4">
-                  <h3><a href="#"> {{realisa.titre}} </a></h3>
-                  <span> {{realisa.description}} </span>
-                </div>
+     @if (!loadingData) {
+       <section class="ftco-section ftco-project" id="projects-section">
+         <div class="container ">
+
+           <div class="row">
+            <div class="col-lg-8 offset-lg-2 text-center">
+              <div class="section-title">
+                <h3><span class="orange-text">Nos</span> Realisations</h3>
+                <p>Jetez un œil à nos projets récents et voyez comment nous avons aidé nos clients à réussir.</p>
               </div>
             </div>
-
-          }
-          <div class="boutonService text-center mb-3">
-            <button class="btn" [routerLink]="['/realisation-user']" > Voir toutes les realisations</button>
           </div>
 
+           <div class="row mb-5 link-blog">
+            <div class="col-md-6">
+              <h4 class="section-title">Nos récentes réalisations</h4>
+            </div>
+            <div class="col-md-6 text-start text-md-end">
+              <a  class="text-decoration-none boxed-btn" [routerLink]="['/realisation-user']">Voir toutes les réalisations <i class="bi bi-arrow-right-circle ms-2" ></i></a>
+            </div>
+          </div>
+           <div class="row">
+             @for (realisa of lastFourRealisation; track realisa) {
+               <div class="col-md-6">
+                 <div class="project img shadow ftco-animate d-flex justify-content-center align-items-center"  [ngStyle]="{'background-image': 'url(' + 'https://api.bdnf-marketing-solutions.com/' + realisa.image + ')'}" >
+                   <div class="overlay"></div>
+                   <div class="text text-center p-4">
+                     <h3><a href="#"> {{realisa.titre}} </a></h3>
+                     <span class=""> {{realisa.description}} </span>
+                   </div>
+                 </div>
+               </div>
+
+             }
+             <!-- <div class="boutonService text-center mb-3">
+               <button class="btn" [routerLink]="['/realisation-user']" > Voir toutes les realisations</button>
+             </div> -->
 
 
-        </div>
-      </div>
-    </section>
 
+           </div>
+         </div>
+       </section>
 
-    <!-- section temoignage -->
-
+     }
 
     <!-- section blog -->
-
-    <section id="blog-section">
+    <section  class="blog-section ">
       <div class="container">
-        <div class="row justify-content-center mb-5 ">
-          <div class="col-md-7  heading-section  text-center ftco-animate">
-            <!-- <span class="subheading">Blog</span> -->
-            <h2 class="mb-4">Nos Articles</h2>
-            <p>Restez informé avec nos articles sur les dernières tendances et stratégies en marketing digital.</p>
+
+        <div class="row">
+          <div class="col-lg-8 offset-lg-2 text-center">
+            <div class="section-title">
+              <h3><span class="orange-text">Nos</span> Articles</h3>
+              <p>  Restez informé avec nos articles sur les dernières tendances et stratégies en marketing digital.</p>
+            </div>
           </div>
         </div>
+        <div class="row mb-5 link-blog">
+					<div class="col-md-6">
+						<h4 class="section-title">Nos récents articles</h4>
+					</div>
+					<div class="col-md-6 text-start text-md-end">
+						<a  class="text-decoration-none boxed-btn" [routerLink]="['/blog-user']">Voir tous les articles <i class="bi bi-arrow-right-circle ms-2" ></i></a>
+					</div>
+				</div>
+
         <div class="row  my-blog mb-5">
           @for (article of  lastFourArticel; track article) {
 
-            <div class="col-sm-6 col-md-6 col-lg-6  ms-4" id="my-blag-card">
-              <div class="card border-0 mb-3" >
-                <div class="row g-0 ">
-                  <div class=" col-md-4 ">
-                    <!-- <img [src]="article.image" class="img-fluid " alt="..."> -->
-                     <img src="./assets/image/tof1.jpg" alt="">
-                    <!-- <img src="https://api.bdnf-marketing-solutions.com/article_images/article_1728416151.png"  class="img-fluid " alt="..."> -->
-                    <img [src]="'https://api.bdnf-marketing-solutions.com/' + article.image" class="img-fluid" alt="...">
-
-                  </div>
-                  <div class="col-md-8">
-                    <div class="card-body">
-                      <h5 class="card-title"><a [routerLink]="['/blog',article.uuid]" > {{article.titre}} </a></h5>
-                      <p class="card-text"> {{article.contenue}} </p>
-                      <p class="card-text"><small> <i class="bi bi-calendar2-date"></i> {{article.created_at | dateFormat}} </small></p>
-                    </div>
+            <div class="col-12 col-sm-6 col-md-4 mb-4 mb-md-0">
+              <div class="post-entry">
+                <a [routerLink]="['/blog',article.uuid]"  class="post-thumbnail">
+                  <img [src]="'https://api.bdnf-marketing-solutions.com/' + article.image" class="img-fluid" alt="...">
+                </a>
+                <div class="post-content-entry">
+                  <h3><a [routerLink]="['/blog',article.uuid]" > {{article.titre}} </a></h3>
+                  <div class="meta">
+                    <span>by <a [routerLink]="['/blog',article.uuid]" >Kristin Watson</a></span> <span>on <a [routerLink]="['/blog',article.uuid]" > {{article.created_at | dateFormat}}  </a></span>
                   </div>
                 </div>
               </div>
             </div>
           }
-          <div class="boutonService text-center mb-3">
-            <button class="btn" [routerLink]="['/blog-user']" > Voir toutes les articles</button>
-          </div>
+
 
         </div>
       </div>
     </section>
 
-    <div class="container bg-warning">
+    <!-- Section About -->
 
-    </div>
+    <section class="about-section">
+      <div class="abt-section mb-150">
+        <div class="container">
+          <div class="row ">
+            <div class="col-lg-6  p-0 col-md-12">
+              <div class="abt-bg">
+                <img src="assets/image/abt.webp" class="img-fluid" alt="">
+              </div>
+            </div>
+            <div class="col-lg-6 col-md-12">
+              <div class="abt-text">
+                <!-- <p class="top-sub">Since Year 1999</p> -->
+                <h3 class="fw-bold">Nous sommes <span class="orange-text">BDNF Marketing Solutions</span></h3>
+                <p> BDNF Marketing Solutions est une entreprise individuelle dédiée à aider les entreprises et les particuliers à gérer leur communication, de la conception à la mise en œuvre de leur stratégie. J'offre une gamme de services, allant de la gestion des réseaux sociaux et de la création de contenu à l'analyse de données et aux campagnes publicitaires ciblées.</p>
+                <p>Ma passion est de voir chaque entreprise atteindre ses objectifs en maximisant sa visibilité et en optimisant son retour sur investissement. Avec une approche personnalisée et axée sur les résultats, BDNF Marketing Solutions est votre partenaire idéal pour réussir dans le paysage marketing moderne. Ensemble, faisons briller votre entreprise!</p>
+                <a [routerLink]="['/about']" class="boxed-btn mt-4">En savoir plus</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <!-- section temoignage -->
-
     <section class="ftco-section testimony-section">
       <div class="container">
-        <div class="row justify-content-center mb-5">
-          <div class="col-md-7 heading-section  text-center ftco-animate">
-            <!-- <span class="subheading">Blog</span> -->
-            <h2 class="">Temoignages</h2>
-            <p>Ne prenez pas notre parole pour acquise. Lisez ce que nos clients disent de nous.</p>
+
+
+        <div class="row">
+          <div class="col-lg-8 offset-lg-2 text-center">
+            <div class="section-title">
+              <h3><span class="orange-text">Nos</span> Temoignages</h3>
+              <p>Ne prenez pas notre parole pour acquise. Lisez ce que nos clients disent de nous.</p>
+            </div>
           </div>
         </div>
 

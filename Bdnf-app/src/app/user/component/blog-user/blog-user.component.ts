@@ -5,11 +5,12 @@ import { RouterLink } from '@angular/router';
 import { ArticleService } from '../../../services/article-service/article.service';
 import { FormsModule } from '@angular/forms';
 import { NgFor } from '@angular/common';
+import { DateFormatPipe } from "../../../pipes/date-format.pipe";
 
 @Component({
   selector: 'app-blog-user',
   standalone: true,
-  imports: [HeaderComponent, FooterComponent, RouterLink, FormsModule, NgFor],
+  imports: [HeaderComponent, FooterComponent, RouterLink, FormsModule, NgFor, DateFormatPipe],
   templateUrl: './blog-user.component.html',
   styleUrl: './blog-user.component.css'
 })
@@ -30,7 +31,7 @@ export class BlogUserComponent implements OnInit {
     })
     }
 
-    articlesParPage = 4; // Nombre d'articles par page
+    articlesParPage = 6; // Nombre d'articles par page
     pageActuelle = 1; // Page actuelle
 
     allArticleDatatrouve : any []=[];

@@ -9,11 +9,12 @@ import { NgFor, NgIf } from '@angular/common';
 import { NotificationService } from '../../services/notification.service';
 import { ToastrService } from 'ngx-toastr';
 import Swal from 'sweetalert2';
+import { ParagraphPipe } from "../../pipes/paragraph.pipe";
 
 @Component({
   selector: 'app-realisation',
   standalone: true,
-  imports: [FormsModule, HttpClientModule, SidebarComponent,ReactiveFormsModule, NgIf, NgFor],
+  imports: [FormsModule, HttpClientModule, SidebarComponent, ReactiveFormsModule, NgIf, NgFor, ParagraphPipe],
   templateUrl: './realisation.component.html',
   styleUrl: './realisation.component.css',
   providers: [RealisationService]
@@ -75,31 +76,44 @@ ajoutRealisation(){
     titre: this.realisationForm.value.titre,
     description: this.realisationForm.value.description,
   }
+  this.notificationService.confirmAlert(
+    'Voulez-vous vraiment ajoutez cette réalisation'
+  ).then(confirmed => {
+    if(confirmed){
+      try {
+        this.realisationService.addRealistion(newrea).subscribe((response : any)=>{
+          console.log('voir reposeback✅✅', response);
+          this.toastrService.success('Réalisation ajoutée avec succès')
+          this.realisationForm.reset();
 
-  try {
-    this.realisationService.addRealistion(newrea).subscribe((response : any)=>{
-      console.log('voir reposeback✅✅', response)
-      this.realisationForm.reset();
-      if(response.status !== 200) {
-        throw new Error('Ajout non realise')
-      }
-      if(this.selectedFile){
-        const formData = new FormData();
-        formData.append('image', this.selectedFile);
-        console.log('Contenu de FormData avant l\'envoi :', formData.get('image'));
-        console.log('Contenu de FormData avant l\'envoi :', formData);
-        this.realisationService.addImageRealisation(response.data.uuid, formData).subscribe((respons)=>{
-          console.log('Image ajoutée avec succes', respons)
-          this.allRealisation();
+          if(this.selectedFile){
+            const formData = new FormData();
+            formData.append('image', this.selectedFile);
+            console.log('Contenu de FormData avant l\'envoi :', formData.get('image'));
+            console.log('Contenu de FormData avant l\'envoi :', formData);
+            this.realisationService.addImageRealisation(response.data.uuid, formData).subscribe((respons)=>{
+              console.log('Image ajoutée avec succes', respons)
+              this.allRealisation();
+            },(error) =>{
+              console.error('Erreur lors de l\'ajout de l\'image', error)
+              this.toastrService.error('Erreur lors de l\'ajout de l\'image')
+            }
+          )
+          }
         },(error) =>{
-          console.error('Erreur lors de l\'ajout de l\'image', error)
+          console.error('Erreur lors de l\'ajout de la réalisation', error)
+          this.toastrService.error('Erreur lors de l\'ajout de la réalisation')
         }
       )
+      } catch (error) {
+        console.error(error, )
+
       }
-    })
-  } catch (error) {
-    console.error(error, )
-  }
+    } else{
+      this.toastrService.warning('Ajout réalisation annulé');
+      this.realisationForm.reset();
+    }
+  })
 }
 elementSelectionner : any;
 

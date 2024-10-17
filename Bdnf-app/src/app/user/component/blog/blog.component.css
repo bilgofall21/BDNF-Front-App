@@ -100,7 +100,9 @@ height: 20rem;
 height:10rem;
 }
 .imageAricle img{
-  height: 90vh;
+  height: 60vh;
+  width: 100%;
+  border-radius: 5px;
 }
 #lastCard .nbreComment p{
 font-size: 14px;

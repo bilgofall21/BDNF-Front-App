@@ -16,7 +16,9 @@
     <h1># {{articleByIdData.titre}} </h1>
   </div>
   <div class="imageAricle">
-    <img src="assets/image/detail-blog.png" class="img-fluid" alt="">
+    <!-- <img src="assets/image/detail-blog.png" class="img-fluid" alt=""> -->
+    <img [src]="'https://api.bdnf-marketing-solutions.com/' + articleByIdData.image" class="img-fluid" alt="...">
+
   </div>
   <div class="articleText mt-3">
     <p>{{articleByIdData.contenue}} .</p>

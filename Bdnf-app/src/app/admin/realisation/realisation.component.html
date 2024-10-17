@@ -1,49 +1,57 @@
 <app-sidebar></app-sidebar>
 <div class="admingestioncontainer mt-5">
-  <div class="ajoutservicebutton ">
+  <!-- <div class="ajoutservicebutton ">
     <a href="" data-bs-toggle="modal" data-bs-target="#exampleModal" > Ajouter <i class="bi bi-plus-square-fill ms-2"></i></a>
-</div>
+</div> -->
 
-<div class="searchbar mb-5">
-  <div class="d-flex justify-content-end">
-    <div class="input-group w-25 ">
-      <input type="search" class="form-control rounded" placeholder="Rechercher" aria-label="Search"
-        aria-describedby="search-addon" [(ngModel)]="searchRealisation" (input)="getArticlesPage()"   />
-      </div>
-      <span class="input-group-text" id="search-addon">
-        <i class="bi bi-search"></i>
-      </span>
+<div class="ajoutservicebutton d-flex justify-content-between align-items-center">
+  <a href=""  data-bs-toggle="modal" data-bs-target="#exampleModal" > <i class="bi bi-patch-plus-fill"></i> </a>
+  <div class="searchbar  ">
+    <div class="d-flex  w-100 justify-content-end">
+      <div class="input-group ">
+        <input type="search" class="form-control rounded" placeholder="Rechercher" aria-label="Search"
+          aria-describedby="search-addon" [(ngModel)]="searchRealisation" (input)="getArticlesPage()"   />
+        </div>
+        <span class="input-group-text" id="search-addon">
+          <i class="bi bi-search"></i>
+        </span>
+    </div>
   </div>
 </div>
 <h4 class="mt-4 text-center">Liste des realisations</h4>
 <div class="container">
   <div class="row  my-4" id="myCard">
-    <ng-container *ngIf="getArticlesPage().length >0 , else noProfession">
-
-      <div class="col-lg-3 col-sm-6 " *ngFor="let service of getArticlesPage()">
-        <div class="card shadow-lg" style="width: 17rem; height: 25rem;"*ngIf="getArticlesPage()">
-          <div>
-            <img [src]="'https://api.bdnf-marketing-solutions.com/' + service.image" class="img-fluid" alt="...">
-            <div class="titleService">
-              <h5 class="text-center mt-1">{{service.titre}} </h5>
-            </div>
-
-          </div>
-          <div class="card-body py-2">
-            <p class="card-text"> {{service.description}} </p>
-          </div>
-          <div class="iconbottom w-50 d-flex justify-content-around">
+    @if ( dataRealisation && dataRealisation.length > 0; ) {
+        <div class="col-sm-12 col-md-6 col-lg-3 "  id="card-real" *ngFor="let service of getArticlesPage()">
+          <div class="card shadow-lg">
             <div>
-              <i class="bi bi-pencil"  (click)="loadRealisation(service)" data-bs-toggle="modal" data-bs-target="#modalModif" ></i>
+              <!-- <img src="./assets/image/tof1.jpg" alt="image(realisation)"> -->
+              <img [src]="'https://api.bdnf-marketing-solutions.com/' + service.image" class="img-fluid" alt="...">
+
+              <!-- <img [src]="'https://api.bdnf-marketing-solutions.com/' + service.image" class="img-fluid" alt="..."> -->
+
             </div>
-            <div>
-              <i  class="bi bi-trash3"(click)="supprimerRealisation(service.uuid)" ></i>
+            <div class="card-body ">
+              <div class="titleService">
+                <h5 class="text-center mt-1 fw-bold">{{service.titre | paragraph:10}} </h5>
+              </div>
+              <p class="card-text"> {{service.description}} </p>
             </div>
+            <div class="iconbottom w-50 d-flex justify-content-around">
+              <div>
+                <i class="bi bi-pencil"  (click)="loadRealisation(service)" data-bs-toggle="modal" data-bs-target="#modalModif" ></i>
+              </div>
+              <div>
+                <i  class="bi bi-trash3"(click)="supprimerRealisation(service.uuid)" ></i>
+              </div>
+            </div>
+            <div class="cardfooter"></div>
           </div>
-          <div class="cardfooter"></div>
         </div>
-      </div>
-    </ng-container>
+      } @else {
+        <p class="text-center my-4">Aucune réalisation disponible 😒.</p>
+      }
+
 
     <ng-template #noProfession>
       <!-- <h4 class="text-center">Liste des services vide</h4> -->
@@ -64,7 +72,7 @@
 
   </div>
 
-  <div class="d-flex flex-wrap justify-content-center my-5 " id="pagination">
+  <div class="d-flex flex-wrap justify-content-center my-5 ms-5 " id="pagination">
     <nav aria-label="Page navigation example">
       <ul class="pagination">
         <li class="page-item  "><button class="paginate"  [disabled]="pageActuelle === 1" (click)="pageActuelle = pageActuelle - 1"  >Précédent</button></li>

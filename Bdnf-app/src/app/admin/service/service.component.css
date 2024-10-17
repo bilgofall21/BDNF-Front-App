@@ -24,13 +24,13 @@
   font-weight: bold;
 }
 .ajoutservicebutton a{
-  /* padding: 8px 20px; */
-  background-color: var(--redColor);
-  color: white;
+  color: var(--redColor);
   font-weight: bold;
-  border-radius: 10px;
-  margin-left: 300px;
+  margin-left: 80px;
   text-decoration: none;
+}
+.ajoutservicebutton a i{
+font-size: 30px;
 }
 .cardfooter{
   background-color: var(--redColor);

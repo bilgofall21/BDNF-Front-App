@@ -2,6 +2,10 @@
   --redColor : #A12825;
   --beigeColor : #E7DCD6;
 }
+h4{
+  color: var(--redColor);
+  font-weight: 600;
+}
 
 th{
   font-size: 12px;

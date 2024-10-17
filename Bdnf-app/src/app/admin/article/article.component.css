@@ -128,22 +128,34 @@ td button:hover{
 
 /* style catego */
 
+.bi-patch-plus-fill{
+  color: var(--redColor);
+  font-size: 20px;
+}
+
 .icon-cate .ddd{
   color: var(--redColor);
   border: 0.5px solid var(--redColor);
-  width: 30px;
-  height: 30px;
+  width: 20px;
+  height: 20px;
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
 }
+.item-list{
+  border-bottom: 0.5px solid var(--redColor);
+}
+.icon-cate .ddd .bi{
+font-size: 12px;
+
+}
 .icon-cate .ddd:hover{
   color: #fff;
   background-color: var(--redColor);
-  width: 30px;
-  height: 30px;
+  width: 20px;
+  height: 20px;
   border-radius: 50%;
   display: flex;
   justify-content: center;

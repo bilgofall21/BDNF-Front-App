@@ -4,12 +4,12 @@ import { AuthService } from '../../services/auth-service/auth.service';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { NgIf } from '@angular/common';
+import { NgClass, NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [FormsModule, HttpClientModule, ReactiveFormsModule, NgIf],
+  imports: [FormsModule, HttpClientModule, ReactiveFormsModule, NgIf, NgClass],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
   providers: [AuthService]
@@ -32,6 +32,11 @@ loadingLogin = false;
 loginForm : FormGroup
   showConnexion = true;
   showRegister = false;
+  showPassword = false;
+
+  togglePasswordVisibility() {
+    this.showPassword = !this.showPassword; // Toggle la visibilité
+  }
 
   registerData = {
     nom: '',
@@ -142,7 +147,7 @@ this.loadingLogin = true;
         if (user && user.access_token) {
           localStorage.setItem('access_token', user.access_token);
           this.authService.setLoggedIn(true);
-          this.toastrService.success('Connexion réussie', 'Connexion');
+          this.toastrService.success('Connexion réussie', 'Connexion 👍');
           this.router.navigate(['admin/home-admin']);
           this.loadingLogin = false;
         }

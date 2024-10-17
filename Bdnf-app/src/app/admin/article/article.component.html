@@ -14,6 +14,9 @@
   </div>
   <div class="container mb-4">
 
+    @if (loadingData ) {
+      <app-spinner></app-spinner>
+    }
     <div class="row" id="row-style">
       <div class="col-sm-12 col-md-12 col-lg-3 ">
         <div class="card card-round">
@@ -22,37 +25,48 @@
               <div class="card-title">Liste des Categories</div>
               <div class="card-tools">
                 <div class="">
-                  <a href="" data-bs-toggle="modal" data-bs-target="#exampleModal"> <i
-                      class="bi bi-plus-circle"></i></a>
+                  <a href="" data-bs-toggle="modal" data-bs-target="#exampleModal"> <i class="bi bi-patch-plus-fill"></i> </a>
+
 
                 </div>
               </div>
             </div>
-            @for (item of dataCategorie; track item) {
+            @if (dataCategorie && dataCategorie.length > 0 && !loadingData) {
+              @for (item of dataCategorie; track item) {
 
-            <div class="card-list py-1">
-              <div class="item-list d-flex justify-content-around">
+                <div class="card-list py-1 ">
+                  <div class="item-list d-flex ">
 
-                <div class="info-user">
-                  <h6>{{ item.nomCategorie }}</h6>
+                    <div class="info-user w-100 ">
+                      <h6>{{ item.nomCategorie | paragraph:8 }}</h6>
+                    </div>
+                    <ul class="d-flex justify-content-center icon-cate w-50 ">
+                      <li>
+                        <div class="ddd">
+                          <i class="bi bi-pencil" data-bs-toggle="modal" data-bs-target="#exampleModal-modif" (click)="loadCategorie(item)" ></i>
+                        </div>
+                      </li>
+                      <li class="ms-3">
+                        <div class="ddd">
+                          <i class="bi bi-eye"   data-bs-toggle="modal" data-bs-target="#exampleModal-detail-catego" (click)="showCatego(item)"  ></i>
+                        </div>
+                      </li>
+                      <li class="ms-3">
+                        <div class="ddd">
+                          <i class="bi bi-trash3"(click)="supprimerCategorie(item.uuid)" ></i>
+                        </div>
+                      </li>
+                    </ul>
+
+
+                  </div>
                 </div>
-                <ul class="d-flex justify-content-between icon-cate">
-                  <li>
-                    <div class="ddd">
-                      <i class="bi bi-pencil" data-bs-toggle="modal" data-bs-target="#exampleModal-modif" (click)="loadCategorie(item)" ></i>
-                    </div>
-                  </li>
-                  <li class="ms-3">
-                    <div class="ddd">
-                      <i class="bi bi-trash3"(click)="supprimerCategorie(item.uuid)" ></i>
-                    </div>
-                  </li>
-                </ul>
+                }
+            } @else {
+              <p class="text-center my-4">Aucune catégorie disponible 😒.</p>
 
-
-              </div>
-            </div>
             }
+
           </div>
         </div>
       </div>
@@ -63,8 +77,7 @@
               <div class="card-title">Liste des articles</div>
 
               <div class="">
-                <a href="" data-bs-toggle="modal" data-bs-target="#exampleModal-aritcle"> <i
-                    class="bi bi-plus-circle"></i></a>
+                <a href="" data-bs-toggle="modal" data-bs-target="#exampleModal-aritcle"> <i class="bi bi-patch-plus-fill"></i> </a>
               </div>
 
             </div>
@@ -81,26 +94,31 @@
                     <th scope="col" class="text-start">Action</th>
                   </tr>
                 </thead>
-                <tbody>
-                  @for (article of getArticlesPage(); track article) {
+                <tbody >
+                    @if ( getArticlesPage() && getArticlesPage().length > 0 && !loadingData) {
+                    @for (article of getArticlesPage(); track article) {
 
-                  <tr>
-                    <th scope="row">
-                      {{article.titre}}
-                    </th>
-                    <td class="text-start"> {{article.created_at | dateFormat}}</td>
-                    <td class="text-start">
-                      <p>{{article.contenue | paragraph:10}} </p>
-                    </td>
-                    <td class="text-start">
-                      <button class="btn btn-link btn-rounded btn-sm" [routerLink]="['/admin/detail-blog', article.uuid]">
-                        Details
-                      </button>
-                    </td>
-                  </tr>
+                    <tr>
+                      <th scope="row">
+                        {{article.titre}}
+                      </th>
+                      <td class="text-start"> {{article.created_at | dateFormat}}</td>
+                      <td class="text-start">
+                        <p>{{article.contenue | paragraph:10}} </p>
+                      </td>
+                      <td class="text-start">
+                        <button class="btn btn-link btn-rounded btn-sm" [routerLink]="['/admin/detail-blog', article.uuid]">
+                          Details
+                        </button>
+                      </td>
+                    </tr>
+                    }
+                  } @else {
+                    <p class="text-center my-4">Aucun article disponible 😒.</p>
+
                   }
-
                 </tbody>
+
               </table>
             </div>
 
@@ -190,47 +208,49 @@
   </div>
 </div>
 
-
-
-
-
-
-
-<!-- modal pour lister categorie  -->
-<div class="modal fade" id="exampleModal-liste" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- **** Modal Detail Categorie -->
+<div class="modal fade" id="exampleModal-detail-catego" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h5 class="modal-title" id="exampleModalLabel">Ajouter un service</h5>
+        <h5 class="modal-title" id="exampleModalLabel"> Details Commentaire</h5>
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <table class="table">
-          <thead>
-            <tr>
-              <th scope="col">Nom</th>
-              <th scope="col">Action</th>
-            </tr>
-          </thead>
-          @for (item of dataCategorie ; track item) {
+        @if (categoElement) {
+          <div class="info d-flex justify-content-between">
+            <div class="d-flex">
+              <i class="bi bi-person" style="font-size: 1.1em; color: #A12825;"></i>
+              <!-- <p class="ms-2"> {{comentSelected.pseudo}} </p> -->
+            </div>
+            <div class="d-flex">
+              <i class="bi bi-calendar" style="font-size: 1.1em; color: #A12825;"></i>
+              <p class="ms-2"> {{categoElement.created_at | dateFormat}} </p>
+            </div>
+          </div>
+          <div class="border rounded">
+            <p class="text-center"> {{categoElement.nomCategorie}} </p>
+          </div>
 
-          <tbody>
-            <tr>
-              <td class="col-8">{{ item.nomCategorie }}</td>
-              <td class="col-4">
-                <ul class="d-flex justify-content-between">
-                  <li><i class="bi bi-pencil"></i></li>
-                  <li><i class="bi bi-trash3"></i></li>
-                </ul>
-              </td>
-            </tr>
-          </tbody>
-          }
-        </table>
+        }
+
+          <div class="validajout d-flex justify-content-end" id="valada-final">
+
+            <button href="" class="mt-2 btn btn-link btn-sm btn-rounded text-decoration-none" data-bs-dismiss="modal"> Fermer</button>
+          </div>
+
       </div>
     </div>
   </div>
-</div>
+  </div>
+
+
+
+
+
+
+
+
 
 <!-- ***** Modal pour ajou article -->
 

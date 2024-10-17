@@ -3,12 +3,12 @@ import { HeaderComponent } from '../header/header.component';
 import { FooterComponent } from '../footer/footer.component';
 import { RealisationService } from '../../../services/realisation-service/realisation.service';
 import { FormsModule } from '@angular/forms';
-import { NgFor } from '@angular/common';
+import { NgFor, NgStyle } from '@angular/common';
 
 @Component({
   selector: 'app-realisation-user',
   standalone: true,
-  imports: [HeaderComponent, FooterComponent, FormsModule, NgFor],
+  imports: [HeaderComponent, FooterComponent, FormsModule, NgFor, NgStyle],
   templateUrl: './realisation-user.component.html',
   styleUrl: './realisation-user.component.css'
 })

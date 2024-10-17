@@ -14,8 +14,8 @@
             </div>
             <div class="w-100">
               <p class="social-media d-flex justify-content-end">
-                <a href="#" class="social-icon d-flex align-items-center justify-content-center"><span class="fa fa-facebook"></span></a>
-                <a href="#" class="social-icon d-flex align-items-center justify-content-center"><span class="fa fa-twitter"></span></a>
+                <!-- <a href="#" class="social-icon d-flex align-items-center justify-content-center"><span class="fa fa-facebook"></span></a> -->
+                <!-- <a href="#" class="social-icon d-flex align-items-center justify-content-center"><span class="fa fa-twitter"></span></a> -->
               </p>
             </div>
           </div>
@@ -32,7 +32,13 @@
 
             <div class="form-group mb-3">
               <label class="label" for="password">Mot de passe</label>
-              <input type="password" formControlName="password" class="form-control" placeholder="Entrez votre mot de passe">
+              <div class="d-flex justify-content-between ">
+
+                <input [type]="showPassword ? 'text' : 'password'" formControlName="password" class="form-control   www" placeholder="Entrez votre mot de passe">
+                <div class="vvvv form-control"  (click)="togglePasswordVisibility()">
+                  <i class="bi" [ngClass]="showPassword ? 'bi-eye' : 'bi-eye-slash'" style="cursor: pointer;"></i>
+                </div>
+              </div>
               <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched" class="text-danger">
                 <small *ngIf="loginForm.get('password')?.hasError('required')">Le mot de passe est requis.</small>
                 <small *ngIf="loginForm.get('password')?.hasError('minlength')">Le mot de passe doit contenir au moins 6 caractères.</small>

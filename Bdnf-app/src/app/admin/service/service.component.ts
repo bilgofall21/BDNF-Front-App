@@ -9,11 +9,12 @@ import { error } from 'console';
 import Swal from 'sweetalert2';
 import { NgFor } from '@angular/common';
 import { DateFormatPipe } from "../../pipes/date-format.pipe";
+import { SpinnerComponent } from '../../anmation/spinner/spinner.component';
 
 @Component({
   selector: 'app-service',
   standalone: true,
-  imports: [FormsModule, HttpClientModule, SidebarComponent, NgFor, DateFormatPipe],
+  imports: [FormsModule, HttpClientModule, SidebarComponent, NgFor, DateFormatPipe, SpinnerComponent],
   providers: [ServiceService],
   templateUrl: './service.component.html',
   styleUrl: './service.component.css'
@@ -25,6 +26,8 @@ export class ServiceComponent implements OnInit  {
   ngOnInit(): void {
     this.showAllService();
   }
+  isloadingService = true;
+  loadinData : boolean = false;
 
   nomService ='';
   descriptionService = '';
@@ -33,8 +36,11 @@ export class ServiceComponent implements OnInit  {
 serviceData: any[]= [];
 
   showAllService(){
+    this.loadinData = true
     this.servicesService.allService().subscribe((data: any) =>{
+      this.isloadingService = false;
 this.serviceData = data.data
+this.loadinData = false;
 console.log('voir me service ✅✅✅✅✅ ',this.serviceData)
     })
   }
@@ -49,7 +55,7 @@ console.log('voir me service ✅✅✅✅✅ ',this.serviceData)
       if(confirmed){
         this.servicesService.addService(newService).subscribe((data : any) =>{
           console.log('😁😁😁😁😁😁😁', data)
-          this.toastrService.success('Servuc ajouter avec succée')
+          this.toastrService.success('Service ajouter avec succée')
           this.showAllService();
           this.nomService ='';
           this.descriptionService ='';
@@ -60,7 +66,7 @@ console.log('voir me service ✅✅✅✅✅ ',this.serviceData)
         });
 
       }else{
-        this.toastrService.warning('ajout service annulé')
+        this.toastrService.warning('ajout du service annulé')
       }
     })
 
@@ -68,7 +74,7 @@ console.log('voir me service ✅✅✅✅✅ ',this.serviceData)
   supprimerService(id: any) {
     console.log('Demande de confirmation pour supprimer le service');
     Swal.fire({
-      title: "Voulez-vous vraiment supprimer ce service?",
+      title: "Voulez-vous vraiment supprimer ce service ?",
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#388E3C",
@@ -142,7 +148,7 @@ this.descriptionService = service.descriptionService;
   // pagination and search
 
    // Attribut pour la pagination
-   articlesParPage = 3; // Nombre d'articles par page
+   articlesParPage = 4; // Nombre d'articles par page
    pageActuelle = 1; // Page actuelle
 
 serviceDatatrouve : any []=[];

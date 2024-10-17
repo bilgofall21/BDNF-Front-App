@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { AuthService } from '../../../services/auth-service/auth.service';
 import { CommonModule } from '@angular/common';
+import { NotificationService } from '../../../services/notification.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -13,7 +14,7 @@ import { CommonModule } from '@angular/common';
 export class SidebarComponent {
 
   constructor(
-    private authService : AuthService, private router : Router
+    private authService : AuthService, private router : Router, private notificationService: NotificationService
   ){}
 
   isClosed: boolean = false;
@@ -51,10 +52,24 @@ export class SidebarComponent {
 
 
   deconnexion(): void {
-    this.authService.logout().subscribe((respons) =>{
-      this.authService.setLoggedIn(false);
-      this.router.navigate(['admin/login']);
-      localStorage.removeItem('access_token');
+    this.notificationService.confirmAlert(
+      'Êtes vous sur de vouloir vous déconnectez'
+    ).then(confirmed =>{
+      if(confirmed) {
+        this.authService.logout().subscribe((respons) => {
+          this.notificationService.successAlert('Bravo', 'Deconnexion réussie')
+          this.authService.setLoggedIn(false);
+          this.router.navigate(['admin/login']);
+          localStorage.removeItem('access_token');
+        },
+      (error) => {
+        console.error('Error during logout:', error);
+        this.notificationService.errorAlert( 'Erreur', 'Une erreur est survenue lors de la déconnexion'  );
+      });
+      }else{
+        console.log('Déconnexion annulée');
+        this.notificationService.warningAlert( 'Echec', 'Déconnexion annulée'  );
+      }
     })
   }
 

@@ -4,11 +4,14 @@
       <img class="img-fluid" src="/assets/image/services.png" alt="">
     </div>
     <div class="container">
-      <div class="row service-title justify-content-center">
-        <div class="col-md-12 heading-section text-center ftco-animate mb-5">
-          <!-- <span class="subheading">I am grat at</span> -->
-          <h2 class="mb-4 mt-5">Nos Services</h2>
-          <p>Découvrez nos services personnalisés pour propulser votre marque et atteindre vos objectifs de communication.</p>
+
+
+      <div class="row mt-4">
+        <div class="col-lg-8 offset-lg-2 text-center">
+          <div class="section-title">
+            <h3><span class="orange-text">Nos</span> Services</h3>
+            <p>Découvrez nos services personnalisés pour propulser votre marque et atteindre vos objectifs de communication.</p>
+          </div>
         </div>
       </div>
       <div class="searchbar mb-5">
@@ -36,22 +39,19 @@
           </div>
         }
       </div>
-      <div class="d-flex flex-wrap justify-content-center my-2 " id="pagination">
-        <button class="btn pagiColor me-2" [disabled]="pageActuelle === 1" (click)="pageActuelle = pageActuelle - 1">
-          Précédent
-        </button>
-        <button class="btn pagiColore ms-2"
-                *ngFor="let page of pages"
-                [class.current]="page === pageActuelle"
-                (click)="pageActuelle = page">
-          {{ page }}
-        </button>
-        <button class="btn pagiColor ms-2"
-                [disabled]="pageActuelle === totalPages"
-                (click)="pageActuelle = pageActuelle + 1">
-          Suivant
-        </button>
-      </div>
+      <div class="d-flex flex-wrap justify-content-center my-5 ms-5 " id="pagination">
+        <nav aria-label="Page navigation example">
+          <ul class="pagination">
+            <li class="page-item  "><button class="paginate"  [disabled]="pageActuelle === 1" (click)="pageActuelle = pageActuelle - 1"  >Précédent</button></li>
+            <li class="page-item"><button class="paginatee" *ngFor="let page of pages" [class.current]="page === pageActuelle"
+              (click)="pageActuelle = page"> {{ page }}</button></li>
+            <li class="page-item"><button class="paginat"  [disabled]="pageActuelle === totalPages"
+              (click)="pageActuelle = pageActuelle + 1">Suivant</button></li>
+          </ul>
+        </nav>
+    </div>
+
+
     </div>
   </div>
 <app-footer></app-footer>

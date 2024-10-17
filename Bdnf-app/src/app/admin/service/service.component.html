@@ -2,10 +2,10 @@
 
 <div class="admingestioncontainer mt-5">
 
-   <div class="ajoutservicebutton bg-warning d-flex   ">
-        <a href="" data-bs-toggle="modal" data-bs-target="#exampleModal" > Ajouter <i class="bi bi-plus-square-fill ms-2"></i></a>
-        <div class="searchbar mb-5">
-          <div class="d-flex justify-content-end">
+   <div class="ajoutservicebutton d-flex justify-content-between align-items-center">
+        <a href=""  data-bs-toggle="modal" data-bs-target="#exampleModal" > <i class="bi bi-patch-plus-fill"></i> </a>
+        <div class="searchbar  ">
+          <div class="d-flex  w-100 justify-content-end">
             <div class="input-group ">
               <input type="search" class="form-control rounded" placeholder="Rechercher" aria-label="Search"
                 aria-describedby="search-addon" [(ngModel)]="searchService" (input)="getArticlesPage()"   />
@@ -22,38 +22,45 @@
 
     <div class="container mt-5">
       <div class="row">
-        @for (item of getArticlesPage(); track item) {
+        @if (loadinData) {
+          <app-spinner></app-spinner>
+        }
+        @if (serviceData && serviceData.length > 0 ) {
+          @for (item of getArticlesPage(); track item) {
 
-          <div class="col-lg-4  " id="mmm">
-            <div class="card border-0 rounded-2">
-              <div class="card-header  rounded-0 ">
-                <div class="icone-top">
-                  <i class="bi bi-graph-up"></i>
-                </div>
-              </div>
-              <div>
-                <h6> {{item.nomService}}</h6>
-              </div>
-              <div class="card-body">
-
-                <p class="text-center"> {{item.descriptionService}} </p>
-              </div>
-              <div class="card-footer border-0">
-                <div class="iconbottom w-50 d-flex justify-content-around">
-                  <div>
-                    <i (click)="loadService(item)" class="bi bi-pencil"  data-bs-toggle="modal" data-bs-target="#modifModal" ></i>
-                  </div>
-                  <div>
-                    <i class="bi bi-eye" data-bs-toggle="modal" data-bs-target="#exampleModal-detail" (click)="getDetailService(item)"></i>
-                  </div>
-                  <div>
-                    <i (click)="supprimerService(item.uuid)" class="bi bi-trash3"></i>
+            <div class="col-sm-12 col-md-6 col-lg-3  " id="mmm">
+              <div class="card border-0 rounded-2">
+                <div class="card-header  rounded-0 ">
+                  <div class="icone-top">
+                    <i class="bi bi-graph-up"></i>
                   </div>
                 </div>
+                <div>
+                  <h6> {{item.nomService}}</h6>
+                </div>
+                <div class="card-body">
+
+                  <p class="text-center"> {{item.descriptionService}} </p>
+                </div>
+                <div class="card-footer border-0">
+                  <div class="iconbottom w-50 d-flex justify-content-around">
+                    <div>
+                      <i (click)="loadService(item)" class="bi bi-pencil"  data-bs-toggle="modal" data-bs-target="#modifModal" ></i>
+                    </div>
+                    <div>
+                      <i class="bi bi-eye" data-bs-toggle="modal" data-bs-target="#exampleModal-detail" (click)="getDetailService(item)"></i>
+                    </div>
+                    <div>
+                      <i (click)="supprimerService(item.uuid)" class="bi bi-trash3"></i>
+                    </div>
+                  </div>
+                </div>
               </div>
+
             </div>
-
-          </div>
+          }
+        } @else {
+          <p class="text-center py-5">Aucun service disponible 😒</p>
         }
       </div>
 
@@ -191,7 +198,7 @@
 
           <div class="validajout d-flex justify-content-end" id="valada-final">
 
-            <button href="" class="mt-2 btn btn-link btn-sm btn-rounded" data-bs-dismiss="modal"> FERMER</button>
+            <button href="" class="mt-2 btn btn-link btn-sm btn-rounded text-decoration-none" data-bs-dismiss="modal"> Fermer</button>
           </div>
 
       </div>

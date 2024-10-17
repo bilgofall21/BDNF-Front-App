@@ -1,54 +1,63 @@
 <app-sidebar></app-sidebar>
 <div class="admingestioncontainer mt-5">
-  <div class="ajoutservicebutton ">
-    <a href="" data-bs-toggle="modal" data-bs-target="#exampleModal" > Ajouter <i class="bi bi-plus-square-fill ms-2"></i></a>
-</div>
 
-
-<div class="searchbar mb-5">
-  <div class="d-flex justify-content-end">
-    <div class="input-group w-25 ">
-      <input type="search" class="form-control rounded" placeholder="Rechercher" aria-label="Search"
-        aria-describedby="search-addon"    />
-      </div>
-      <span class="input-group-text" id="search-addon">
-        <i class="bi bi-search"></i>
-      </span>
+<div class="ajoutservicebutton d-flex justify-content-between align-items-center">
+  <a href=""  data-bs-toggle="modal" data-bs-target="#exampleModal" > <i class="bi bi-patch-plus-fill"></i> </a>
+  <div class="searchbar  ">
+    <div class="d-flex  w-100 justify-content-end">
+      <div class="input-group ">
+        <input type="search" class="form-control rounded" placeholder="Rechercher" aria-label="Search"
+          aria-describedby="search-addon"  />
+        </div>
+        <span class="input-group-text" id="search-addon">
+          <i class="bi bi-search"></i>
+        </span>
+    </div>
   </div>
 </div>
-<h4 class="mt-4 text-center">Liste des realisations</h4>
+
+
+
+<h4 class="mt-4 text-center">Liste des témoignages</h4>
 
 <div class="container">
   <div class="row">
-    @for (item of temoignageData; track item) {
-      <div class="col-3">
-        <div class="card text-bg-light mb-3" style="max-width: 18rem;">
-          <div class="card-header"> {{item.nomClient}} </div>
-          <div class="card-body">
-            <!-- <h5 class="card-title">Primary card title</h5> -->
-            <p class="card-text"> {{item.contenue}} </p>
-          </div>
-          <div class="iconbottom w-50 d-flex justify-content-around">
-            <div>
-              <i (click)="loadTemoignage(item)" class="bi bi-pencil"  data-bs-toggle="modal" data-bs-target="#modifModal" ></i>
+    @if (temoignageData && temoignageData.length > 0) {
+
+      @for (item of temoignageData; track item) {
+        <div class="col-sm-12 col-md-6 col-lg-3" id="card-temoi">
+          <div class="card text-bg-light mb-3" style="max-width: 18rem;">
+            <div class="card-header"> {{item.nomClient}} </div>
+            <div class="card-body">
+              <!-- <h5 class="card-title">Primary card title</h5> -->
+              <p class="card-text"> {{item.contenue}} </p>
             </div>
-            <div>
-              <i (click)="supprimerTemoignage(item.uuid)" class="bi bi-trash3"></i>
+            <div class="iconbottom w-50 d-flex justify-content-around">
+              <div>
+                <i (click)="loadTemoignage(item)" class="bi bi-pencil"  data-bs-toggle="modal" data-bs-target="#modifModal" ></i>
+              </div>
+              <div>
+                <i (click)="supprimerTemoignage(item.uuid)" class="bi bi-trash3"></i>
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
+      }
+    } @else {
+      <p class="text-center py-5"> Aucune témoignage disponible 😒</p>
     }
   </div>
 </div>
 </div>
 
+<!-- modal pour ajaouter témoignage -->
+
 <div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"   aria-hidden="true">
   <div class="modal-dialog ">
     <div class="modal-content ">
       <div class="modal-header text-center">
-        <h5 class="modal-title " id="exampleModalLabel">Ajouter une realisation</h5>
+        <h5 class="modal-title " id="exampleModalLabel">Ajouter un Témoignage</h5>
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body  ">
@@ -82,11 +91,13 @@
     </div>
   </div>
 </div>
+
+<!-- Model pour modifier témoignage -->
 <div class="modal fade " id="modifModal" tabindex="-1" aria-labelledby="exampleModalLabel"   aria-hidden="true">
   <div class="modal-dialog ">
     <div class="modal-content ">
       <div class="modal-header text-center">
-        <h5 class="modal-title " id="exampleModalLabel">Ajouter une realisation</h5>
+        <h5 class="modal-title " id="exampleModalLabel">  Modifier cette realisation</h5>
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body  ">
