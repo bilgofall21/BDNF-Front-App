@@ -63,6 +63,10 @@ font-weight: bold;
   margin: 0 10px 0 0;
   display: inline-block;
 }
+.ftco-footer-social li .bi{
+color: #fff;
+margin-right: 5px;
+}
 
 .ftco-footer-social li a {
   height: 40px;

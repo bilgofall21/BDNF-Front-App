@@ -489,32 +489,23 @@
 
 
 /* style call to contact */
-.ftco-hireme {
-  background: #a12825;
-  padding: 80px 0;
-  color: rgba(255, 255, 255, 0.9);
+.ftco-hirem {
+  background-color: #a12825;
+
 }
-.ftco-hireme  img{
-height: 30vh;
+.ftco-hirem  img{
+height: 50vh;
 border-radius: 50px;
-margin-top: 300px;
+/* margin-top: 300px; */
 
 }
-.ftco-hireme  .col-lg-4{
-  background-color: aqua;
-  height: 100%;
 
-/* margin-top: 30px; */
+.ftco-hirem  .row{
+background-color: var(--redColor);
+padding: 8vh 4vh;
 
 }
-.ftco-hireme  .row{
-background-color: blue;
-/* height: 50vh; */
-display: flex;
-justify-content: center;
-align-items: center;
-}
-.ftco-hireme h2 {
+.ftco-hirem h2 {
   color: #fff;
   font-size: 34px;
   font-weight: 600;
