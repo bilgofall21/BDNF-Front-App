@@ -4,11 +4,12 @@ import { NewsletterService } from '../../services/news-service/newsletter.servic
 import { DateFormatPipe } from "../../pipes/date-format.pipe";
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { NgIf } from '@angular/common';
+import { SpinnerComponent } from '../../anmation/spinner/spinner.component';
 
 @Component({
   selector: 'app-newsletter',
   standalone: true,
-  imports: [SidebarComponent, DateFormatPipe, FormsModule, ReactiveFormsModule, NgIf],
+  imports: [SidebarComponent, DateFormatPipe, FormsModule, ReactiveFormsModule, NgIf, SpinnerComponent],
   templateUrl: './newsletter.component.html',
   styleUrl: './newsletter.component.css'
 })
@@ -20,6 +21,7 @@ export class NewsletterComponent implements OnInit {
  libelle: string = '';
  contenu: string = '';
  public image: any;
+ loadinData : boolean = false;
   ngOnInit(): void {
     this.newsletterForm= new FormGroup({
       libelle: new FormControl('', [Validators.required]),
@@ -65,8 +67,10 @@ export class NewsletterComponent implements OnInit {
 
   allNewsletterData: any[]=[];
   getAllNewsletter(): void{
+    this.loadinData  = true;
     this.newsLetterService.getAllNewsLetter().subscribe((respose: any)=> {
       this.allNewsletterData = respose.data;
+      this.loadinData = false;
       console.log('voir mes news',this.allNewsletterData);
     })
   }

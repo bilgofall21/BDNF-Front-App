@@ -5,11 +5,12 @@ import { TemoignageService } from '../../services/temoigna-service/temoignage.se
 import { SidebarComponent } from "../layout/sidebar/sidebar.component";
 import { NotificationService } from '../../services/notification.service';
 import { ToastrService } from 'ngx-toastr';
+import { SpinnerComponent } from '../../anmation/spinner/spinner.component';
 
 @Component({
   selector: 'app-temoignage',
   standalone: true,
-  imports: [FormsModule, HttpClientModule, SidebarComponent],
+  imports: [FormsModule, HttpClientModule, SidebarComponent, SpinnerComponent],
   templateUrl: './temoignage.component.html',
   styleUrl: './temoignage.component.css',
   providers: [TemoignageService]
@@ -23,12 +24,15 @@ export class TemoignageComponent  implements OnInit{
   }
 nomClient: any;
 contenue: any;
+loadinData : boolean = false;
 
 
 
 showAllTemoignage(){
+  this.loadinData = true;
   this.temoignageService.allTemoignage().subscribe((data: any) =>{
 this.temoignageData = data.data
+this.loadinData = false;
 console.log( '❤️❤️❤️❤️❤️❤️ ', this.temoignageData)
   })
 }

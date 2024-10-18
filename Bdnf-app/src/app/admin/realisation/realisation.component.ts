@@ -10,11 +10,12 @@ import { NotificationService } from '../../services/notification.service';
 import { ToastrService } from 'ngx-toastr';
 import Swal from 'sweetalert2';
 import { ParagraphPipe } from "../../pipes/paragraph.pipe";
+import { SpinnerComponent } from '../../anmation/spinner/spinner.component';
 
 @Component({
   selector: 'app-realisation',
   standalone: true,
-  imports: [FormsModule, HttpClientModule, SidebarComponent, ReactiveFormsModule, NgIf, NgFor, ParagraphPipe],
+  imports: [FormsModule, HttpClientModule, SidebarComponent, ReactiveFormsModule, NgIf, NgFor, ParagraphPipe, SpinnerComponent],
   templateUrl: './realisation.component.html',
   styleUrl: './realisation.component.css',
   providers: [RealisationService]
@@ -37,6 +38,7 @@ constructor(private realisationService : RealisationService, private fb: FormBui
   }
 
 
+  loadinData : boolean = false;
 
  titre: string = '';
  description: string = '';
@@ -64,8 +66,10 @@ onFileSelected(event: any) {
 
 dataRealisation: any[] = [];
 allRealisation(): void {
+  this.loadinData = true;
   this.realisationService.gatAllRealisation().subscribe((reasponse: any) =>{
     this.dataRealisation = reasponse.data;
+    this.loadinData = false;
     console.log("����Rea ❤️❤️❤️ ",this.dataRealisation)
 
   })

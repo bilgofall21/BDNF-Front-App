@@ -3,6 +3,9 @@
   <!-- <div class="ajoutservicebutton ">
     <a href="" data-bs-toggle="modal" data-bs-target="#exampleModal" > Ajouter <i class="bi bi-plus-square-fill ms-2"></i></a>
 </div> -->
+@if (loadinData) {
+  <app-spinner></app-spinner>
+}
 
 <div class="ajoutservicebutton d-flex justify-content-between align-items-center">
   <a href=""  data-bs-toggle="modal" data-bs-target="#exampleModal" > <i class="bi bi-patch-plus-fill"></i> </a>

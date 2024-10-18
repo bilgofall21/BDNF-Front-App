@@ -1,6 +1,8 @@
 <app-sidebar></app-sidebar>
 <div class="admingestioncontainer mt-5">
-
+  @if (loadinData) {
+    <app-spinner></app-spinner>
+  }
   <div class="container">
     <h4 class="mt-4 text-center">Liste des Inscris aux newsletters</h4>
 
