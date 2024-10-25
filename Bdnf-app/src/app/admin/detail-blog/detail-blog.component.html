@@ -8,7 +8,7 @@
           <button type="button" class="btn btn-link btn-sm btn-rounded"  data-bs-toggle="modal" data-bs-target="#exampleModal">
             details
           </button>
-          <button type="button" class="ms-2 btn btn-link btn-sm btn-rounded"  data-bs-toggle="modal" data-bs-target="#exampleModal">
+          <button type="button" class="ms-2 btn btn-link btn-sm btn-rounded"  data-bs-toggle="modal" data-bs-target="#modalModif"(click)="loadRealisation(onlyArticleData)">
             Modifier
           </button>
           <button type="button" class=" ms-2 btn btn-link btn-sm btn-rounded" (click)="supprimerArticle(onlyArticleData.uuid)" >
@@ -116,8 +116,70 @@
   </div>
   </div>
 
-
-
 <!-- modal detail commetire -->
 
+<!-- modal modifier article -->
+ <!-- modal modif article -->
+<div class="modal fade" id="modalModif" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h5 class="modal-title" id="exampleModalLabel">Modifier un article</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="articleForm" (ngSubmit)="modifierAricle()">
+          <div class="mb-3">
+            <label for="titre" class="form-label">Titre</label>
+            <input type="text" class="form-control" id="titre" formControlName="titre"
+              placeholder="Titre de la réalisation" required />
+            <div *ngIf="
+                articleForm.get('titre')?.invalid &&
+                articleForm.get('titre')?.touched
+              " class="text-danger">
+              Le titre est requis.
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="description" class="form-label">Contenue</label>
+            <textarea class="form-control" id="description" formControlName="contenue" placeholder="Contenue ici"
+              rows="4" required></textarea>
+            <div *ngIf="
+                articleForm.get('contenue')?.invalid &&
+                articleForm.get('contenue')?.touched
+              " class="text-danger">
+              La contenue est requise.
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="categorie_id" class="form-label">Categorie</label>
+            <select class="form-select" aria-label="Sélectionner Categorie" name="categorie_id"
+              formControlName="categorie_id" required>
+              <option value="">Sélectionner Categorie</option>
+              @for (catego of dataCategorie ; track catego) {
+              <option [value]="catego.id">{{ catego.nomCategorie }}</option>
+              }
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="image" class="form-label">Ajouter une image</label>
+            <input type="file" class="form-control" id="image" (change)="onFileSelected($event)" required />
+            <div *ngIf="
+                articleForm.get('image')?.invalid &&
+                articleForm.get('image')?.touched
+              " class="text-danger">
+              L'image est requise.
+            </div>
+          </div>
+          <div class="d-flex justify-content-end" id="valada-final">
+            <button type="submit" class="btn-custom" data-bs-dismiss="modal">Modifier</button>
+            <a href="#" class="ms-3" data-bs-dismiss="modal">Annuler</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
 

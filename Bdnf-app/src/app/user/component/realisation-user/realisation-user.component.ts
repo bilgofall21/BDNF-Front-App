@@ -4,11 +4,12 @@ import { FooterComponent } from '../footer/footer.component';
 import { RealisationService } from '../../../services/realisation-service/realisation.service';
 import { FormsModule } from '@angular/forms';
 import { NgFor, NgStyle } from '@angular/common';
+import { SpinnerComponent } from '../../../anmation/spinner/spinner.component';
 
 @Component({
   selector: 'app-realisation-user',
   standalone: true,
-  imports: [HeaderComponent, FooterComponent, FormsModule, NgFor, NgStyle],
+  imports: [HeaderComponent, FooterComponent, FormsModule, NgFor, NgStyle, SpinnerComponent],
   templateUrl: './realisation-user.component.html',
   styleUrl: './realisation-user.component.css'
 })
@@ -18,11 +19,13 @@ export class RealisationUserComponent implements OnInit {
   ngOnInit(): void {
     this.allRealisation();
   }
-
+  loadingData : boolean =  false;
   dataRealisation: any[] = [];
   allRealisation(): void {
+    this.loadingData = true;
     this.realisationService.gatAllRealisation().subscribe((data: any)=>{
       this.dataRealisation = data.data;
+      this.loadingData = false;
       console.log("😁✅Rea",this.dataRealisation)
 
     })
@@ -36,6 +39,7 @@ export class RealisationUserComponent implements OnInit {
 
 dataRealisationtrouve : any []=[];
 searchRealisation : string= '';
+noResultsMessage: string = '';
 getArticlesPage(): any[] {
   const indexDebut = (this.pageActuelle - 1) * this.articlesParPage;
   const indexFin = indexDebut + this.articlesParPage;
@@ -43,6 +47,11 @@ getArticlesPage(): any[] {
     service.titre.toLowerCase().includes(this.searchRealisation.toLowerCase()) ||
     service.description.toLowerCase().includes(this.searchRealisation.toLowerCase())
     );
+    if(this.searchRealisation && this.dataRealisationtrouve.length === 0){
+      this.noResultsMessage = 'Désolé aucun résultat trouvé pour votre recherche';
+    }else{
+      this.noResultsMessage = '';
+    }
   return this.dataRealisationtrouve.slice(indexDebut, indexFin);
 }
    // Méthode pour générer la liste des pages

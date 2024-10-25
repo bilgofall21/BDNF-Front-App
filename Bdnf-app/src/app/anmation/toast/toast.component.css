@@ -1,0 +1,11 @@
+/* You can add global styles to this file, and also import other style files */
+:root {
+
+  --redColor : #A12825;
+  --beigeColor : #E7DCD6;
+}
+
+.toast-container{
+  background-color: var(--beigeColor);
+  border-radius: 8px;
+}

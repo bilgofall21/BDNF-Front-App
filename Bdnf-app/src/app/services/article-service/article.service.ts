@@ -45,7 +45,7 @@ addArticleImag(id: any, image: FormData): Observable<any> {
 
 updateArticle(article: any, uuid: any ): Observable<any>{
   const headers = this.getHeaders(true);
-  return this.http.post<any>(`${this.apiUrl}/update/articlee/${uuid}`, article, { headers })
+  return this.http.post<any>(`${this.apiUrl}/update/article/${uuid}`, article, { headers })
 }
 delateArice(uuid: any): Observable<any>{
   const headers = this.getHeaders();

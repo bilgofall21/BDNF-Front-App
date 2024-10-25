@@ -4,23 +4,27 @@ import { FooterComponent } from '../footer/footer.component';
 import { ServiceService } from '../../../services/services-service/service.service';
 import { FormsModule } from '@angular/forms';
 import { NgFor } from '@angular/common';
+import { SpinnerComponent } from '../../../anmation/spinner/spinner.component';
 
 @Component({
   selector: 'app-user-service',
   standalone: true,
-  imports: [HeaderComponent, FooterComponent, FormsModule, NgFor],
+  imports: [HeaderComponent, FooterComponent, FormsModule, NgFor, SpinnerComponent],
   templateUrl: './user-service.component.html',
   styleUrl: './user-service.component.css'
 })
 export class UserServiceComponent implements OnInit {
-  constructor(private serviceService: ServiceService){}
+  constructor(private serviceService: ServiceService,){}
   ngOnInit(): void {
     this.allService();
   }
   dataService: any[]= [];
+  loadingData : boolean =  false;
   allService(): void {
+    this.loadingData = true;
     this.serviceService.allService().subscribe((response)=> {
       this.dataService = response.data;
+      this.loadingData = false;
       console.log('dataService', this.dataService);
     })
   }
@@ -30,6 +34,7 @@ pageActuelle = 1; // Page actuelle
 
 dataServicetrouve : any []=[];
 searchService : string= '';
+
 getArticlesPage(): any[] {
 const indexDebut = (this.pageActuelle - 1) * this.articlesParPage;
 const indexFin = indexDebut + this.articlesParPage;

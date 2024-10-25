@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { HeaderComponent } from "../header/header.component";
 import { FooterComponent } from "../footer/footer.component";
 import { ArticleService } from '../../../services/article-service/article.service';
@@ -8,11 +8,12 @@ import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { close } from 'fs';
 import { CommonModule, NgIf } from '@angular/common';
 import { DateFormatPipe } from "../../../pipes/date-format.pipe";
+import { ToastComponent } from '../../../anmation/toast/toast.component';
 
 @Component({
   selector: 'app-blog',
   standalone: true,
-  imports: [HeaderComponent, FooterComponent, FormsModule, NgIf, CommonModule, DateFormatPipe, RouterLink, ReactiveFormsModule],
+  imports: [HeaderComponent, FooterComponent, FormsModule, NgIf, CommonModule, DateFormatPipe, RouterLink, ReactiveFormsModule,ToastComponent],
   templateUrl: './blog.component.html',
   styleUrl: './blog.component.css'
 })
@@ -34,6 +35,8 @@ export class BlogComponent implements OnInit{
     this.showComment();
 
   }
+
+  @ViewChild('ToastComponent') toast?: ToastComponent;
 
   allArticleData: any[] = [];
   lastTreArticle: any[] = [];
@@ -106,6 +109,8 @@ ajouterCommentaire(): void {
 
   this.commentService.addComment(newComment).subscribe((response: any) => {
     console.log('Réponse du serveur', response);
+    this.toast?.showToast('Commentaire ajouter avec succée')
+
     this.showComment();
     this.categoForm.reset();
   });

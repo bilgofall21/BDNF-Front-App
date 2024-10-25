@@ -53,17 +53,22 @@
         </div>
 
          <div class="row">
-           @for (service of lastFourService; track service) {
-             <div class="col-md-6 col-lg-4 toto">
-               <div class="media block-6 services d-block rounded-lg shadow ftco-animate">
-                 <div class="icon d-flex align-items-center justify-content-center"><i class="bi bi-graph-up"></i></div>
-                 <div class="media-body">
-                   <h3 class="heading mb-3"> {{service.nomService}} </h3>
-                   <p> {{service.descriptionService}} </p>
-                 </div>
-               </div>
-             </div>
+          @if (lastFourService && lastFourService.length > 0 ) {
 
+            @for (service of lastFourService; track service) {
+              <div class="col-md-6 col-lg-4 toto">
+                <div class="media block-6 services d-block rounded-lg shadow ftco-animate">
+                  <div class="icon d-flex align-items-center justify-content-center"><i class="bi bi-graph-up"></i></div>
+                  <div class="media-body">
+                    <h3 class="heading mb-3"> {{service.nomService}} </h3>
+                    <p> {{service.descriptionService}} </p>
+                  </div>
+                </div>
+              </div>
+
+            }
+          } @else {
+            <p class="text-center my-4">Aucun service disponible pour le moment 😒.</p>
            }
 
          </div>
@@ -75,6 +80,7 @@
      </section>
 
    }
+
   <!-- Section call to contact -->
    @if (!loadingData) {
      <section class=" ftco-hirem">
@@ -95,11 +101,11 @@
          </div>
        </div>
      </section>
-
    }
 
     <!-- section mes realisation -->
-     @if (!loadingData) {
+
+     @if (!loadingData ) {
        <section class="ftco-section ftco-project" id="projects-section">
          <div class="container ">
 
@@ -121,29 +127,29 @@
             </div>
           </div>
            <div class="row">
-             @for (realisa of lastFourRealisation; track realisa) {
-               <div class="col-md-6">
-                 <div class="project img shadow ftco-animate d-flex justify-content-center align-items-center"  [ngStyle]="{'background-image': 'url(' + 'https://api.bdnf-marketing-solutions.com/' + realisa.image + ')'}" >
-                   <div class="overlay"></div>
-                   <div class="text text-center p-4">
-                     <h3><a href="#"> {{realisa.titre}} </a></h3>
-                     <span class=""> {{realisa.description}} </span>
-                   </div>
-                 </div>
-               </div>
+            @if (lastFourRealisation && lastFourRealisation.length > 0 ) {
+              @for (realisa of lastFourRealisation; track realisa) {
+                <div class="col-md-6">
+                  <div class="project img shadow ftco-animate d-flex justify-content-center align-items-center"  [ngStyle]="{'background-image': 'url(' + 'https://api.bdnf-marketing-solutions.com/' + realisa.image + ')'}" >
+                    <div class="overlay"></div>
+                    <div class="text text-center p-4">
+                      <h3><a href="#"> {{realisa.titre}} </a></h3>
+                      <span class=""> {{realisa.description}} </span>
+                    </div>
+                  </div>
+                </div>
+
+              }
+            } @else {
+              <p class="text-center my-4">Aucune réalisation disponible pour le moment 😒.</p>
 
              }
-             <!-- <div class="boutonService text-center mb-3">
-               <button class="btn" [routerLink]="['/realisation-user']" > Voir toutes les realisations</button>
-             </div> -->
-
-
-
            </div>
          </div>
        </section>
 
      }
+
 
     <!-- section blog -->
     <section  class="blog-section ">
@@ -167,22 +173,26 @@
 				</div>
 
         <div class="row  my-blog mb-5">
-          @for (article of  lastFourArticel; track article) {
+          @if(lastFourArticel && lastFourArticel.length > 0){
+            @for (article of  lastFourArticel; track article) {
 
-            <div class="col-12 col-sm-6 col-md-4 mb-4 mb-md-0">
-              <div class="post-entry">
-                <a [routerLink]="['/blog',article.uuid]"  class="post-thumbnail">
-                  <img [src]="'https://api.bdnf-marketing-solutions.com/' + article.image" class="img-fluid" alt="...">
-                </a>
-                <div class="post-content-entry">
-                  <h3><a [routerLink]="['/blog',article.uuid]" > {{article.titre}} </a></h3>
-                  <div class="meta">
-                    <span>by <a [routerLink]="['/blog',article.uuid]" >Kristin Watson</a></span> <span>on <a [routerLink]="['/blog',article.uuid]" > {{article.created_at | dateFormat}}  </a></span>
+              <div class="col-12 col-sm-6 col-md-4 mb-4 mb-md-0">
+                <div class="post-entry">
+                  <a [routerLink]="['/blog',article.uuid]"  class="post-thumbnail">
+                    <img [src]="'https://api.bdnf-marketing-solutions.com/' + article.image" class="img-fluid" alt="...">
+                  </a>
+                  <div class="post-content-entry">
+                    <h3><a [routerLink]="['/blog',article.uuid]" > {{article.titre}} </a></h3>
+                    <div class="meta">
+                      <span>by <a [routerLink]="['/blog',article.uuid]" >Kristin Watson</a></span> <span>on <a [routerLink]="['/blog',article.uuid]" > {{article.created_at | dateFormat}}  </a></span>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          }
+            }
+          } @else {
+            <p class="text-center my-4">Aucun article disponible pour le moment 😒.</p>
+           }
 
 
         </div>

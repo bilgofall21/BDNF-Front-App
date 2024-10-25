@@ -6,11 +6,12 @@ import { ArticleService } from '../../../services/article-service/article.servic
 import { FormsModule } from '@angular/forms';
 import { NgFor } from '@angular/common';
 import { DateFormatPipe } from "../../../pipes/date-format.pipe";
+import { SpinnerComponent } from '../../../anmation/spinner/spinner.component';
 
 @Component({
   selector: 'app-blog-user',
   standalone: true,
-  imports: [HeaderComponent, FooterComponent, RouterLink, FormsModule, NgFor, DateFormatPipe],
+  imports: [HeaderComponent, FooterComponent, RouterLink, FormsModule, NgFor, DateFormatPipe, SpinnerComponent],
   templateUrl: './blog-user.component.html',
   styleUrl: './blog-user.component.css'
 })
@@ -22,9 +23,12 @@ export class BlogUserComponent implements OnInit {
 
 
   allArticleData: any[] = [];
+  loadingData : boolean =  false;
 
   allArticle(): void{
+    this.loadingData = true;
     this.articleService.allArticle().subscribe((data)=> {
+      this.loadingData = false;
       this.allArticleData = data.data
       console.log("✅✅✅",this.allArticleData)
 
@@ -36,6 +40,7 @@ export class BlogUserComponent implements OnInit {
 
     allArticleDatatrouve : any []=[];
     searchArticle : string= '';
+    noResultatFound :  string= '';
     getArticlesPage(): any[] {
     const indexDebut = (this.pageActuelle - 1) * this.articlesParPage;
     const indexFin = indexDebut + this.articlesParPage;
@@ -43,6 +48,11 @@ export class BlogUserComponent implements OnInit {
      service.titre.toLowerCase().includes(this.searchArticle.toLowerCase()) ||
      service.contenue.toLowerCase().includes(this.searchArticle.toLowerCase())
      );
+     if(this.searchArticle && this.allArticleDatatrouve.length === 0){
+       this.noResultatFound = 'Désolé aucun résultat trouvé pour votre recherche'
+     }else{
+       this.noResultatFound = '';
+     }
     return this.allArticleDatatrouve.slice(indexDebut, indexFin);
     }
     // Méthode pour générer la liste des pages
