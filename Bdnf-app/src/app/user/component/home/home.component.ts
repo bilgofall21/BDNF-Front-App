@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { HeaderComponent } from "../header/header.component";
 import { FooterComponent } from "../footer/footer.component";
 import { ArticleService } from '../../../services/article-service/article.service';
@@ -8,26 +8,31 @@ import { RealisationService } from '../../../services/realisation-service/realis
 import { DateFormatPipe } from "../../../pipes/date-format.pipe";
 import { SpinnerComponent } from '../../../anmation/spinner/spinner.component';
 import { NgStyle } from '@angular/common';
+import { NewsletterService } from '../../../services/news-service/newsletter.service';
+import { ToastComponent } from '../../../anmation/toast/toast.component';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [HeaderComponent, FooterComponent, RouterLink, DateFormatPipe, SpinnerComponent, NgStyle],
+  imports: [HeaderComponent, FooterComponent, RouterLink, DateFormatPipe, SpinnerComponent, NgStyle, ToastComponent, FormsModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
 export class HomeComponent implements OnInit {
   constructor(
     private articleService: ArticleService, private router : Router, private serviceService : ServiceService,
-    private realisationSerice: RealisationService
+    private realisationSerice: RealisationService, private newsletterService: NewsletterService
   ){}
   ngOnInit(): void {
     this.allService();
     this.allArticle();
     this.allRealisation();
   }
-  loadingData : boolean = false;
+  @ViewChild('ToastComponent') toast?: ToastComponent;
 
+  loadingData : boolean = false;
+  email = '';
   servicaData: any[]=[];
   lastFourService: any[] = [];
 
@@ -35,6 +40,18 @@ export class HomeComponent implements OnInit {
   navigateToLinkeDin(): void {
     window.open('https://www.linkedin.com/in/ndeye-diama-niang?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app', '_blank');
   }
+
+  addNewsletter(): void{
+    const myEmail = {
+      email: this.email
+    }
+    this.newsletterService.addNewsletter(myEmail).subscribe((response: any)=>{
+      console.log("voir le nws", response);
+      this.toast?.showToast('Inscription aux newsletter réussi')
+
+      this.email = '';
+    })
+      }
   allService(): void {
     this.loadingData = true;
     this.serviceService.allService().subscribe((data: any)=> {

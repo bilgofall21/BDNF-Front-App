@@ -7,8 +7,8 @@ import { catchError, Observable, throwError } from 'rxjs';
 })
 export class RealisationService {
 
-  private apiUrl = 'https://api.bdnf-marketing-solutions.com/api';
-  // private apiUrl = 'http://127.0.0.1:8000/api';
+  // private apiUrl = 'https://api.bdnf-marketing-solutions.com/api';
+  private apiUrl = 'http://127.0.0.1:8000/api';
 
 
   constructor(private http: HttpClient) {}
@@ -49,6 +49,7 @@ gatAllRealisation(): Observable<any>{
   }
 
 
+
   addImageRealisation(id: any, image: FormData) {
     console.log('❓❓voir image envoyé', image);
     const headers = this.getHeaders(true); // Passer `true` pour les en-têtes de fichier
@@ -59,6 +60,12 @@ updateRealisation(realisation: any, uuid: any): Observable<any> {
   console.log('❓❓voir image envoyé', realisation);
   const headers = this.getHeaders(true);
   return this.http.post<any>(`${this.apiUrl}/update/realisation/${uuid}`, realisation,{ headers })
+}
+
+updateImageRealisation(formData: FormData ,id: any) {
+  const headers = this.getHeaders(true); // Passer `true` pour les en-têtes de fichier
+  return this.http.post<any>(`${this.apiUrl}/modifier-image/realisation/${id}`, formData, { headers });
+
 }
 
 delatRealisation(id: number): Observable<any>{

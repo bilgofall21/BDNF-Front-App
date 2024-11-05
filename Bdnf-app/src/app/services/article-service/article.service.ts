@@ -7,8 +7,8 @@ import { catchError, Observable, throwError } from 'rxjs';
 })
 export class ArticleService {
 
-  // private apiUrl = 'http://127.0.0.1:8000/api';
-  private apiUrl = 'https://api.bdnf-marketing-solutions.com/api';
+  private apiUrl = 'http://127.0.0.1:8000/api';
+  // private apiUrl = 'https://api.bdnf-marketing-solutions.com/api';
 
   constructor(private http: HttpClient) {}
   private getHeaders(isFileUpload: boolean = false): HttpHeaders {

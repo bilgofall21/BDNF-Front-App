@@ -2,3 +2,36 @@
   height: 70vh;
   width: 100%;
 }
+
+
+
+:root {
+  --redColor: #A12825;
+  --beigeColor: #E7DCD6;
+}
+
+
+.service-item {
+  background: var(--beigeColor);
+  transition: .5s;
+}
+
+
+
+.service-item:hover {
+  margin-top: -10px;
+  background: var(--redColor);
+  color: #fff;
+}
+
+.service-item * {
+  transition: .5s;
+}
+
+.service-item:hover * {
+  color: var(--light) !important;
+}
+
+.about-up h6{
+  color: var(--redColor);
+}

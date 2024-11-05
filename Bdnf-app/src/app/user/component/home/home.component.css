@@ -651,7 +651,7 @@ row-gap: 14px;
 
 .blog-section {
   padding: 5rem 0 5rem 0;
-  background-color: #e7dcd673;
+  /* background-color: #e7dcd673; */
 }
   .blog-section .post-entry a {
     text-decoration: none; }
@@ -763,7 +763,15 @@ row-gap: 14px;
     a.button-btn:hover {
       font-family: 'Poppins', sans-serif;
       display: inline-block;
-      background-color: #fff;
+      bac
+    *, *::before, *::after {
+        box-sizing: border-box;
+    }
+    user agent stylesheet
+    div {
+        display: block;
+        unicode-bidi: isolate;
+    }kground-color: #fff;
       /* border: 2px solid var(--redColor); */
       color: var(--redColor);
       text-decoration: none;
@@ -780,3 +788,16 @@ row-gap: 14px;
       padding: 10px 20px;
       border-radius: 50px;
     }
+    .hero-header {
+      background: var(--beigeColor);
+    }
+
+    #newsletter button{
+      background-color: var(--redColor);
+    }
+    #newsletter h2{
+      color: var(--redColor);
+    }
+
+
+

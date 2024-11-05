@@ -1,0 +1,37 @@
+:root {
+  --redColor: #a12825;
+  --beigeColor: #e7dcd6;
+}
+
+.bi, h1{
+  color: var(--redColor);
+}
+a{
+  background-color: var(--redColor);
+  color: #fff;
+  font-weight: bold;
+}
+a:hover{
+  border: 2px solid var(--redColor);
+  color: var(--redColor);
+}
+
+.py-5 {
+  padding-top: 3rem !important;
+  padding-bottom: 3rem !important;
+}
+.container, .container-fluid, .container-xxl, .container-xl, .container-lg, .container-md, .container-sm {
+  width: 100%;
+  padding-right: var(--bs-gutter-x, 0.75rem);
+  padding-left: var(--bs-gutter-x, 0.75rem);
+  margin-right: auto;
+  margin-left: auto;
+}
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+user agent stylesheet
+div {
+  display: block;
+  unicode-bidi: isolate;
+}

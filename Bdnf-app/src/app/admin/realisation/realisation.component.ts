@@ -131,37 +131,43 @@ loadRealisation(realisation: any){
   this.imageURL = realisation.image;
     }
 
-modifierRealisa(){
-  const updatedData = {
-    titre: this.realisationForm.value.titre,
-    description: this.realisationForm.value.description,
-      }
-      let formData= new FormData();
-      formData.append('titre', this.realisationForm.value.titre);
-      formData.append('description', this.realisationForm.value.description );
-      if(this.selectedFile){
-        formData.append('image', this.selectedFile);
-      }
-      this.notificationService.confirmAlert('voulez-vous vraiment modifier ce realisation'
-      ).then(confirmed =>{
-        if(confirmed){
-          this.realisationService.updateRealisation(formData, this.elementSelectionner).subscribe((response : any) =>{
-            console.log('step uuid', this.elementSelectionner)
-            console.log('stepp1', response)
-            this.toastrService.success('Realisation modifié avec succès')
+
+    // Méthode de modification avec FormData
+modifierRealisa() {
+  const formData = new FormData();
+  formData.append('titre', this.realisationForm.value.titre);
+  formData.append('description', this.realisationForm.value.description);
+
+  // Ajoutez l'image si elle est sélectionnée
+  if (this.selectedFile) {
+    formData.append('image', this.selectedFile);
+  } else {
+    console.error("Image non sélectionnée.");
+  }
+
+  this.notificationService.confirmAlert('Voulez-vous vraiment modifier cette réalisation')
+    .then(confirmed => {
+      if (confirmed) {
+        this.realisationService.updateRealisation(formData, this.elementSelectionner).subscribe(
+          (response: any) => {
+            console.log('Réalisation modifiée avec succès', response);
+            this.toastrService.success('Réalisation modifiée avec succès');
             this.allRealisation();
             this.realisationForm.reset();
           },
-          (error) =>{
-            console.error('Erreur lors de la modification de cette realisation',error)
-            this.toastrService.error('Erreur lors de la modification de cette realisation')
-          });
-        }else{
-          this.toastrService.warning('modification annulée')
-        }
-      })
-
+          (error) => {
+            console.error('Erreur lors de la modification de cette réalisation', error);
+            this.toastrService.error('Erreur lors de la modification de cette réalisation');
+          }
+        );
+      } else {
+        this.toastrService.warning('Modification annulée');
+        this.realisationForm.reset();
+      }
+    });
 }
+
+
 
 supprimerRealisation(id: any) {
   console.log('Demande de confirmation pour supprimer le service');
@@ -205,6 +211,7 @@ pageActuelle = 1; // Page actuelle
 
 dataRealisationtrouve : any []=[];
 searchRealisation : string= '';
+noSearchResult : string= '';
 getArticlesPage(): any[] {
 const indexDebut = (this.pageActuelle - 1) * this.articlesParPage;
 const indexFin = indexDebut + this.articlesParPage;
@@ -212,6 +219,11 @@ this.dataRealisationtrouve= this.dataRealisation.filter((service: { titre: strin
  service.titre.toLowerCase().includes(this.searchRealisation.toLowerCase()) ||
  service.description.toLowerCase().includes(this.searchRealisation.toLowerCase())
  );
+ if(this.searchRealisation && this.dataRealisationtrouve.length === 0){
+   this.noSearchResult = 'Désolé aucun résultat pour votre recherche';
+ }else{
+   this.noSearchResult = '';
+ }
 return this.dataRealisationtrouve.slice(indexDebut, indexFin);
 }
 // Méthode pour générer la liste des pages

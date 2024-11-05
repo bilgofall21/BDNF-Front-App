@@ -25,7 +25,10 @@
         @if (loadinData) {
           <app-spinner></app-spinner>
         }
-        @if (serviceData && serviceData.length > 0 ) {
+        @else if(noResultSearch){
+          <p class="text-center"> {{noResultSearch}} </p>
+        }
+        @else if (serviceData && serviceData.length > 0 ) {
           @for (item of getArticlesPage(); track item) {
 
             <div class="col-sm-12 col-md-6 col-lg-3  " id="mmm">

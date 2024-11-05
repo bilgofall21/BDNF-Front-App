@@ -3,13 +3,13 @@ import { SidebarComponent } from "../layout/sidebar/sidebar.component";
 import { NewsletterService } from '../../services/news-service/newsletter.service';
 import { DateFormatPipe } from "../../pipes/date-format.pipe";
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { NgIf } from '@angular/common';
+import { NgFor, NgIf } from '@angular/common';
 import { SpinnerComponent } from '../../anmation/spinner/spinner.component';
 
 @Component({
   selector: 'app-newsletter',
   standalone: true,
-  imports: [SidebarComponent, DateFormatPipe, FormsModule, ReactiveFormsModule, NgIf, SpinnerComponent],
+  imports: [SidebarComponent, DateFormatPipe, FormsModule, ReactiveFormsModule, NgIf, SpinnerComponent, NgFor],
   templateUrl: './newsletter.component.html',
   styleUrl: './newsletter.component.css'
 })
@@ -74,4 +74,36 @@ export class NewsletterComponent implements OnInit {
       console.log('voir mes news',this.allNewsletterData);
     })
   }
+
+
+articlesParPage = 8; // Nombre d'articles par page
+pageActuelle = 1; // Page actuelle
+
+dataNewslettertrouve : any []=[];
+searchNewsletter : string= '';
+noSearchResult : string= '';
+getArticlesPage(): any[] {
+const indexDebut = (this.pageActuelle - 1) * this.articlesParPage;
+const indexFin = indexDebut + this.articlesParPage;
+this.dataNewslettertrouve= this.allNewsletterData.filter((service: {email: string; }) =>
+//  service.contenu.toLowerCase().includes(this.searchNewsletter.toLowerCase()) ||
+ service.email.toLowerCase().includes(this.searchNewsletter.toLowerCase())
+ );
+ if(this.searchNewsletter && this.dataNewslettertrouve.length === 0){
+   this.noSearchResult = 'Désolé aucun résultat pour votre recherche';
+ }else{
+   this.noSearchResult = '';
+ }
+return this.dataNewslettertrouve.slice(indexDebut, indexFin);
+}
+// Méthode pour générer la liste des pages
+get pages(): number[] {
+ const totalPages = Math.ceil(this. allNewsletterData.length / this.articlesParPage);
+ return Array(totalPages).fill(0).map((_, index) => index + 1);
+}
+
+// Méthode pour obtenir le nombre total de pages
+get totalPages(): number {
+ return Math.ceil(this. allNewsletterData.length / this.articlesParPage);
+}
 }

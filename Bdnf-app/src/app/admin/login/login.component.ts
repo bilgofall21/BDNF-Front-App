@@ -5,11 +5,12 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { NgClass, NgIf } from '@angular/common';
+import { HeaderComponent } from '../../user/component/header/header.component';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [FormsModule, HttpClientModule, ReactiveFormsModule, NgIf, NgClass],
+  imports: [FormsModule, HttpClientModule, ReactiveFormsModule, NgIf, NgClass, HeaderComponent],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
   providers: [AuthService]
@@ -148,7 +149,7 @@ this.loadingLogin = true;
           localStorage.setItem('access_token', user.access_token);
           this.authService.setLoggedIn(true);
           this.toastrService.success('Connexion réussie', 'Connexion 👍');
-          this.router.navigate(['admin/home-admin']);
+          this.router.navigate(['/admin/home-admin']);
           this.loadingLogin = false;
         }
       },

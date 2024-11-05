@@ -229,20 +229,20 @@ modifierCatego(){
       const updateCategorie = {
         nomCategorie: this.nomCategorie
       }
-      console.log('fffffffffffff', updateCategorie)
+      console.log('fffffffffffff😒😒😒😒', updateCategorie)
+      console.log('step uuid 😒😒😒😒😒 ', this.categoSelectionner)
       this.notificationService.confirmAlert('voulez-vous vraiment modifier cette categorie'
       ).then(confirmed =>{
         if(confirmed){
           this.categorieService.updateCategorie(updateCategorie, this.categoSelectionner).subscribe((response : any) =>{
 
-            console.log('step uuid 😒😒😒😒😒 ', this.categoSelectionner)
             console.log('stepp1 😂😂😂😂', response)
             this.toastrService.success('Categorie modifié avec succès')
           this.allCtagoreie();
             this.nomCategorie = '';
           },
           (error) =>{
-            console.log('step uuid 😒😒😒😒😒 👌👌👌👌👌👌👌👌👌👌👌👌👌👌👌👌👌 ')
+            console.log('❌❌❌❌❌❌')
 
             console.error('Erreur lors de la modification de cette Categorie',error)
             this.toastrService.error('Erreur lors de la modification de cette categorie')
@@ -322,6 +322,7 @@ supprimerCategorie(id: any) {
 
 dataArticletrouve : any []=[];
 searchArticle : string= '';
+nosearchResult : string= '';
 getArticlesPage(): any[] {
   const indexDebut = (this.pageActuelle - 1) * this.articlesParPage;
   const indexFin = indexDebut + this.articlesParPage;
@@ -329,6 +330,11 @@ getArticlesPage(): any[] {
     service.titre.toLowerCase().includes(this.searchArticle.toLowerCase()) ||
     service.contenue.toLowerCase().includes(this.searchArticle.toLowerCase())
     );
+    if(this.searchArticle && this.dataArticletrouve.length === 0){
+      this.nosearchResult = 'Désolé aucun résultat pour votre recherche';
+    }else{
+      this.nosearchResult = '';
+    }
   return this.dataArticletrouve.slice(indexDebut, indexFin);
 }
    // Méthode pour générer la liste des pages

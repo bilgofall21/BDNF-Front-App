@@ -16,6 +16,8 @@
 
     @if (loadingData ) {
       <app-spinner></app-spinner>
+    } @else if (nosearchResult) {
+      <p class="text-center"> {{nosearchResult}} </p>
     }
     <div class="row" id="row-style">
       <div class="col-sm-12 col-md-12 col-lg-3 ">
@@ -113,7 +115,10 @@
                       </td>
                     </tr>
                     }
-                  } @else {
+                  } @else if(nosearchResult){
+                    <p class="text-center"> {{nosearchResult}} </p>
+                  }
+                  @else {
                     <p class="text-center my-4">Aucun article disponible 😒.</p>
 
                   }
@@ -197,7 +202,7 @@
           </div>
 
           <div class="validajout d-flex justify-content-end" id="valada-final">
-            <button data-bs-dismiss="modal" type="submit" (click)="modifierService()" class="btn-custom">
+            <button data-bs-dismiss="modal" type="submit" (click)="modifierCatego()" class="btn-custom">
               Modifier
             </button>
             <a href="" class="ms-3" data-bs-dismiss="modal"> Annuler</a>

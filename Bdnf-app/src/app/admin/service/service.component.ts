@@ -153,6 +153,7 @@ this.descriptionService = service.descriptionService;
 
 serviceDatatrouve : any []=[];
 searchService : string= '';
+noResultSearch : string ='';
 getArticlesPage(): any[] {
   const indexDebut = (this.pageActuelle - 1) * this.articlesParPage;
   const indexFin = indexDebut + this.articlesParPage;
@@ -160,6 +161,11 @@ getArticlesPage(): any[] {
     service.nomService.toLowerCase().includes(this.searchService.toLowerCase()) ||
     service.descriptionService.toLowerCase().includes(this.searchService.toLowerCase())
     );
+    if(this.searchService && this.serviceDatatrouve.length === 0){
+      this.noResultSearch = 'Désolé aucun résultat pour votre recherche';
+    }else{
+      this.noResultSearch = '';
+    }
   return this.serviceDatatrouve.slice(indexDebut, indexFin);
 }
    // Méthode pour générer la liste des pages

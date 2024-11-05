@@ -3,9 +3,7 @@
   <!-- <div class="ajoutservicebutton ">
     <a href="" data-bs-toggle="modal" data-bs-target="#exampleModal" > Ajouter <i class="bi bi-plus-square-fill ms-2"></i></a>
 </div> -->
-@if (loadinData) {
-  <app-spinner></app-spinner>
-}
+
 
 <div class="ajoutservicebutton d-flex justify-content-between align-items-center">
   <a href=""  data-bs-toggle="modal" data-bs-target="#exampleModal" > <i class="bi bi-patch-plus-fill"></i> </a>
@@ -24,7 +22,12 @@
 <h4 class="mt-4 text-center">Liste des realisations</h4>
 <div class="container">
   <div class="row  my-4" id="myCard">
-    @if ( dataRealisation && dataRealisation.length > 0; ) {
+    @if (loadinData) {
+      <app-spinner></app-spinner>
+    }@else if (noSearchResult) {
+    <p class="text-center"> {{noSearchResult}}</p>
+    }
+    @else if ( dataRealisation && dataRealisation.length > 0; ) {
         <div class="col-sm-12 col-md-6 col-lg-3 "  id="card-real" *ngFor="let service of getArticlesPage()">
           <div class="card shadow-lg">
             <div>

@@ -3,7 +3,9 @@
     <div class="row ">
       <div class="col-md">
         <div class="ftco-footer-widget mb-4">
-          <img src="assets/image/logo1.jpg" alt="">
+          <a [routerLink]="['/home']" >
+            <img src="assets/image/logo1.jpg" alt="">
+          </a>
           <p class="mt-2">BDNF Marketing Solutions est une entreprise individuelle dédiée à aider les entreprises et les particuliers à gérer leur communication, de la conception à la mise en œuvre de leur stratégie. </p>
         </div>
       </div>
@@ -11,7 +13,7 @@
         <div class="ftco-footer-widget mb-4 ml-md-4">
           <h2 class="ftco-heading-2">Liens</h2>
           <ul class="list-unstyled">
-            <li><a [routerLink]="['/accueil']" ><span class="fa fa-chevron-right mr-2"></span>Accueil</a></li>
+            <li><a [routerLink]="['/home']" ><span class="fa fa-chevron-right mr-2"></span>Accueil</a></li>
             <li><a [routerLink]="['/about']" ><span class="fa fa-chevron-right mr-2"></span>A propos</a></li>
             <li><a [routerLink]="['/realisation-user']"><span class="fa fa-chevron-right mr-2"></span>Realisations</a></li>
             <li><a [routerLink]="['/user-service']"><span class="fa fa-chevron-right mr-2"></span>Services</a></li>
