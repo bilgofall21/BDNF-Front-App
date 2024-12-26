@@ -5,7 +5,7 @@
       <div class="col-sm-12 col-md-12 col-lg-10 text-article">
         @if (onlyArticleData) {
         <div class="article-icone mb-2 d-flex justify-content-end">
-          <button type="button" class="btn btn-link btn-sm btn-rounded"  data-bs-toggle="modal" data-bs-target="#exampleModal">
+          <button type="button" class="btn btn-link btn-sm btn-rounded"  data-bs-toggle="modal" data-bs-target="#exampleModal-detail-aricle" (click)="detailArticle(onlyArticleData)">
             details
           </button>
           <button type="button" class="ms-2 btn btn-link btn-sm btn-rounded"  data-bs-toggle="modal" data-bs-target="#modalModif"(click)="loadRealisation(onlyArticleData)">
@@ -80,7 +80,7 @@
   </div>
 </div>
 
-
+<!-- modal detail commentaire -->
 <div class="modal fade" id="exampleModal-detail" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -102,6 +102,41 @@
           </div>
           <div class="border rounded">
             <p class="text-center"> {{comentSelected.contenue}} </p>
+          </div>
+
+        }
+
+          <div class="validajout d-flex justify-content-end" id="valada-final">
+
+            <button href="" class="mt-2 btn btn-link btn-sm btn-rounded" data-bs-dismiss="modal"> FERMER</button>
+          </div>
+
+      </div>
+    </div>
+  </div>
+  </div>
+  <!-- Modal detail article -->
+<div class="modal fade bd-example-modal-lg" id="exampleModal-detail-aricle" tabindex="-1" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h5 class="modal-title" id="exampleModalLabel"> Details Commentaire</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        @if (articleSelected) {
+          <div class="info d-flex justify-content-between">
+            <div class="d-flex">
+              <i class="bi bi-person" style="font-size: 1.1em; color: #A12825;"></i>
+              <p class="ms-2"> {{articleSelected.titre}} </p>
+            </div>
+            <div class="d-flex">
+              <i class="bi bi-calendar" style="font-size: 1.1em; color: #A12825;"></i>
+              <p class="ms-2"> {{articleSelected.created_at | dateFormat}} </p>
+            </div>
+          </div>
+          <div class="border rounded">
+            <p class="text-center"> {{articleSelected.contenue}} </p>
           </div>
 
         }
@@ -174,7 +209,7 @@
             </div>
           </div>
           <div class="d-flex justify-content-end" id="valada-final">
-            <button type="submit" class="btn-custom" data-bs-dismiss="modal">Modifier</button>
+            <button type="submit" class="btn-custom btn btn-link btn-sm btn-rounded " data-bs-dismiss="modal">Modifier</button>
             <a href="#" class="ms-3" data-bs-dismiss="modal">Annuler</a>
           </div>
         </form>

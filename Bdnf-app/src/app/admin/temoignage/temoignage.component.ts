@@ -6,11 +6,13 @@ import { SidebarComponent } from "../layout/sidebar/sidebar.component";
 import { NotificationService } from '../../services/notification.service';
 import { ToastrService } from 'ngx-toastr';
 import { SpinnerComponent } from '../../anmation/spinner/spinner.component';
+import { DateFormatPipe } from "../../pipes/date-format.pipe";
+import { NgFor } from '@angular/common';
 
 @Component({
   selector: 'app-temoignage',
   standalone: true,
-  imports: [FormsModule, HttpClientModule, SidebarComponent, SpinnerComponent],
+  imports: [FormsModule, HttpClientModule, SidebarComponent, SpinnerComponent, DateFormatPipe, NgFor],
   templateUrl: './temoignage.component.html',
   styleUrl: './temoignage.component.css',
   providers: [TemoignageService]
@@ -63,6 +65,18 @@ ajouterTemoignage(): void{
       this.contenue  = '';
     }
   });
+}
+
+temoignageSelected: any;
+
+getDetailTemoignage(temoignage: any): void {
+  this.temoignageSelected = temoignage;
+}
+
+annuler(): void {
+  this.temoignageSelected = null;
+  this.nomClient = '';
+  this.contenue  = '';
 }
 
 supprimerTemoignage(uuid: any){
@@ -118,6 +132,37 @@ loadTemoignage(temoignage: any){
           })
 
     }
+
+    articlesParPage = 4; // Nombre d'articles par page
+pageActuelle = 1; // Page actuelle
+
+dataTemoignagetrouve : any []=[];
+searchTemoignage : string= '';
+noSearchResult : string= '';
+getArticlesPage(): any[] {
+const indexDebut = (this.pageActuelle - 1) * this.articlesParPage;
+const indexFin = indexDebut + this.articlesParPage;
+this.dataTemoignagetrouve= this.temoignageData.filter((service: { nomClient: string; contenue: string; }) =>
+ service.nomClient.toLowerCase().includes(this.searchTemoignage.toLowerCase()) ||
+ service.contenue.toLowerCase().includes(this.searchTemoignage.toLowerCase())
+ );
+ if(this.searchTemoignage && this.dataTemoignagetrouve.length === 0){
+   this.noSearchResult = 'Désolé aucun résultat pour votre recherche';
+ }else{
+   this.noSearchResult = '';
+ }
+return this.dataTemoignagetrouve.slice(indexDebut, indexFin);
+}
+// Méthode pour générer la liste des pages
+get pages(): number[] {
+ const totalPages = Math.ceil(this. temoignageData.length / this.articlesParPage);
+ return Array(totalPages).fill(0).map((_, index) => index + 1);
+}
+
+// Méthode pour obtenir le nombre total de pages
+get totalPages(): number {
+ return Math.ceil(this. temoignageData.length / this.articlesParPage);
+}
 
 
 }

@@ -120,7 +120,7 @@
                 </div>
                 <div class="validajout d-flex justify-content-end" id="valada-final">
                   <button  data-bs-dismiss="modal" type="submit" (click)="ajouterService()"  class="btn-custom"> Ajouter</button>
-                  <a href="" class="ms-3" data-bs-dismiss="modal"> Annuler</a>
+                  <a href="" class="ms-3" data-bs-dismiss="modal"(click)="annuler()"  > Annuler</a>
                 </div>
           </form>
 
@@ -159,7 +159,7 @@
                 </div>
                 <div class="validajout d-flex justify-content-end" id="valada-final">
                   <button (click)=" modifierService()" data-bs-dismiss="modal" type="submit"  class="btn-custom"> Modifier</button>
-                  <a href="" class="ms-3" data-bs-dismiss="modal"> Annuler</a>
+                  <a href="" class="ms-3" data-bs-dismiss="modal"  (click)="annuler()"> Annuler</a>
                 </div>
           </form>
 
@@ -177,7 +177,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h5 class="modal-title" id="exampleModalLabel"> Details Commentaire</h5>
+        <h5 class="modal-title" id="exampleModalLabel"> Details Service</h5>
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">

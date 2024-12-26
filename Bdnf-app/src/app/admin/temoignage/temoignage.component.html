@@ -1,8 +1,6 @@
 <app-sidebar></app-sidebar>
 <div class="admingestioncontainer mt-5">
-  @if (loadinData) {
-    <app-spinner></app-spinner>
-  }
+
 
 
 <div class="ajoutservicebutton d-flex justify-content-between align-items-center">
@@ -11,7 +9,7 @@
     <div class="d-flex  w-100 justify-content-end">
       <div class="input-group ">
         <input type="search" class="form-control rounded" placeholder="Rechercher" aria-label="Search"
-          aria-describedby="search-addon"  />
+          aria-describedby="search-addon"  [(ngModel)]="searchTemoignage" (input)="getArticlesPage()"   />
         </div>
         <span class="input-group-text" id="search-addon">
           <i class="bi bi-search"></i>
@@ -26,9 +24,15 @@
 
 <div class="container">
   <div class="row">
-    @if (temoignageData && temoignageData.length > 0) {
 
-      @for (item of temoignageData; track item) {
+    @if (loadinData) {
+      <app-spinner></app-spinner>
+    }@else if (noSearchResult) {
+      <p class="text-center"> {{noSearchResult}} </p>
+    }
+    @else if (temoignageData && temoignageData.length > 0) {
+
+      @for (item of getArticlesPage(); track item) {
         <div class="col-sm-12 col-md-6 col-lg-3" id="card-temoi">
           <div class="card text-bg-light mb-3" style="max-width: 18rem;">
             <div class="card-header"> {{item.nomClient}} </div>
@@ -39,6 +43,9 @@
             <div class="iconbottom w-50 d-flex justify-content-around">
               <div>
                 <i (click)="loadTemoignage(item)" class="bi bi-pencil"  data-bs-toggle="modal" data-bs-target="#modifModal" ></i>
+              </div>
+              <div>
+                <i (click)="getDetailTemoignage(item)" class="bi bi-eye"  data-bs-toggle="modal" data-bs-target="#modalDetail" ></i>
               </div>
               <div>
                 <i (click)="supprimerTemoignage(item.uuid)" class="bi bi-trash3"></i>
@@ -53,11 +60,23 @@
     }
   </div>
 </div>
+
+<div class="d-flex flex-wrap justify-content-center my-5 ms-5 " id="pagination">
+  <nav aria-label="Page navigation example">
+    <ul class="pagination">
+      <li class="page-item  "><button class="paginate"  [disabled]="pageActuelle === 1" (click)="pageActuelle = pageActuelle - 1"  >Précédent</button></li>
+      <li class="page-item"><button class="paginatee" *ngFor="let page of pages" [class.current]="page === pageActuelle"
+        (click)="pageActuelle = page"> {{ page }}</button></li>
+      <li class="page-item"><button class="paginat"  [disabled]="pageActuelle === totalPages"
+        (click)="pageActuelle = pageActuelle + 1">Suivant</button></li>
+    </ul>
+  </nav>
+</div>
 </div>
 
 <!-- modal pour ajaouter témoignage -->
 
-<div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"   aria-hidden="true">
+<div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="Modal-detail"   aria-hidden="true">
   <div class="modal-dialog ">
     <div class="modal-content ">
       <div class="modal-header text-center">
@@ -69,7 +88,7 @@
 
               <div class="mb-3">
                   <label for="nom_prof" class="form-label">nomClient</label>
-                  <input type="text" class="form-control" name="titre" id="titre" [(ngModel)]="nomClient" placeholder="Titre realisation" required
+                  <input type="text" class="form-control" name="titre" id="titre" [(ngModel)]="nomClient" placeholder="Nom client" required
                   >
                    <!-- <p class="message-erreur" *ngIf="!exactNomProfession">{{verifNomProfession}}</p>
                    <p class="message-success" *ngIf="exactNomProfession"> <i class="bi bi-check-square-fill ms-1"></i> <i class="bi bi-check-square-fill ms-1"></i> <i class="bi bi-check-square-fill ms-1"></i> valide</p> -->
@@ -85,7 +104,7 @@
                 </div>
                 <div class="validajout d-flex justify-content-end" id="valada-final">
                   <button  data-bs-dismiss="modal" type="submit" (click)="ajouterTemoignage()"  class="btn-custom"> Ajouter</button>
-                  <a href="" class="ms-3" data-bs-dismiss="modal"> Annuler</a>
+                  <a href="" class="ms-3" data-bs-dismiss="modal" (click)="annuler()"> Annuler</a>
                 </div>
           </form>
 
@@ -96,12 +115,48 @@
   </div>
 </div>
 
+<!-- modal detail temoignage -->
+<div class="modal fade" id="modalDetail" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h5 class="modal-title" id="exampleModalLabel"> Details Témoignage</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        @if (temoignageSelected) {
+          <div class="info d-flex justify-content-between">
+            <div class="d-flex">
+              <i class="bi bi-person" style="font-size: 1.1em; color: #A12825;"></i>
+              <p class="ms-2"> {{temoignageSelected.nomClient}} </p>
+            </div>
+            <div class="d-flex">
+              <i class="bi bi-calendar" style="font-size: 1.1em; color: #A12825;"></i>
+              <p class="ms-2"> {{temoignageSelected.created_at | dateFormat}} </p>
+            </div>
+          </div>
+          <div class="border rounded">
+            <p class="text-center"> {{temoignageSelected.contenue}} </p>
+          </div>
+
+        }
+
+          <div class="validajout d-flex justify-content-end" id="valada-final">
+
+            <button href="" class="mt-2 btn btn-link btn-sm btn-rounded text-decoration-none" data-bs-dismiss="modal"> FERMER</button>
+          </div>
+
+      </div>
+    </div>
+  </div>
+  </div>
+
 <!-- Model pour modifier témoignage -->
 <div class="modal fade " id="modifModal" tabindex="-1" aria-labelledby="exampleModalLabel"   aria-hidden="true">
   <div class="modal-dialog ">
     <div class="modal-content ">
       <div class="modal-header text-center">
-        <h5 class="modal-title " id="exampleModalLabel">  Modifier cette realisation</h5>
+        <h5 class="modal-title " id="exampleModalLabel">  Modifier ce Temoignage</h5>
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body  ">
@@ -125,7 +180,7 @@
                 </div>
                 <div class="validajout d-flex justify-content-end" id="valada-final">
                   <button  data-bs-dismiss="modal" type="submit" (click)="modifierTemoignage()"  class="btn-custom"> Modifier</button>
-                  <a href="" class="ms-3" data-bs-dismiss="modal"> Annuler</a>
+                  <a href="" class="ms-3" data-bs-dismiss="modal" (click)="annuler()" > Annuler</a>
                 </div>
           </form>
 

@@ -277,6 +277,13 @@ modifierService(){
 
 }
 
+annuler(): void {
+  this.articleForm.reset();
+  this.selectedFile = null;
+  this.image = false;
+  this.nomCategorie = '';
+}
+
 
 supprimerCategorie(id: any) {
   console.log('Demande de confirmation pour supprimer le service');

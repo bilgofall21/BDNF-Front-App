@@ -141,7 +141,12 @@ this.descriptionService = service.descriptionService;
   seriviceSelected: any;
   getDetailService(service: any): void {
     this.seriviceSelected = service;
-    console.log('rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr')
+  }
+
+  annuler(): void {
+    this.nomService ='';
+    this.descriptionService ='';
+    this.elementSelectionner = null;
   }
 
 

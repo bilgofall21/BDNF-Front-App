@@ -11,11 +11,12 @@ import { ToastrService } from 'ngx-toastr';
 import Swal from 'sweetalert2';
 import { ParagraphPipe } from "../../pipes/paragraph.pipe";
 import { SpinnerComponent } from '../../anmation/spinner/spinner.component';
+import { DateFormatPipe } from "../../pipes/date-format.pipe";
 
 @Component({
   selector: 'app-realisation',
   standalone: true,
-  imports: [FormsModule, HttpClientModule, SidebarComponent, ReactiveFormsModule, NgIf, NgFor, ParagraphPipe, SpinnerComponent],
+  imports: [FormsModule, HttpClientModule, SidebarComponent, ReactiveFormsModule, NgIf, NgFor, ParagraphPipe, SpinnerComponent, DateFormatPipe],
   templateUrl: './realisation.component.html',
   styleUrl: './realisation.component.css',
   providers: [RealisationService]
@@ -73,6 +74,12 @@ allRealisation(): void {
     console.log("����Rea ❤️❤️❤️ ",this.dataRealisation)
 
   })
+}
+
+realisationSelected: any;
+
+detailRealisation(realisation: any): void {
+  this.realisationSelected = realisation;
 }
 
 ajoutRealisation(){
@@ -158,6 +165,7 @@ modifierRealisa() {
           (error) => {
             console.error('Erreur lors de la modification de cette réalisation', error);
             this.toastrService.error('Erreur lors de la modification de cette réalisation');
+            this.realisationForm.reset();
           }
         );
       } else {
@@ -165,6 +173,12 @@ modifierRealisa() {
         this.realisationForm.reset();
       }
     });
+}
+
+annuler(): void {
+  this.realisationForm.reset();
+  this.selectedFile = null;
+  this.imageURL = false;
 }
 
 

@@ -696,17 +696,23 @@ row-gap: 14px;
 }
 
     .abt-bg {
-      /* background-image: url(src/assetsimage/abt.webp); */
+      /* background-image: url('/src/assets/image/abt.webp'); */
       height: 100%;
       width: 100%;
       background-size: cover;
       background-position: center;
+      background-repeat: no-repeat;
+      position: relative;
+      z-index: 0;
+    }
       border-top-right-radius: 10px;
       border-bottom-left-radius: 10px;
       position: relative;
       z-index: 1;
       overflow: hidden;
     }
+
+
 
     /* .abt-bg:after {
       position: absolute;

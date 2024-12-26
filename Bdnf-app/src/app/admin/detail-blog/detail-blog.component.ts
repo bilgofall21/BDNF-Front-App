@@ -80,6 +80,12 @@ detailComment(comment: any): void {
 this.comentSelected = comment;
 }
 
+articleSelected: any;
+  detailArticle(article: any): void {
+    console.log('������������������')
+this.articleSelected = article;
+}
+
 supprimerComment(id: any) {
   console.log('Demande de confirmation pour supprimer le service');
   Swal.fire({

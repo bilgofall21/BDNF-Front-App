@@ -29,6 +29,15 @@ button:hover{
   border-radius: 5px;
 }
 
+#valada-final a{
+  background-color: var(--beigeColor);
+  border-radius: 10px;
+  padding: 8px;
+  border: none;
+  color: #fff;
+  text-decoration: none;
+}
+
 /* style catego */
 
 .icon-cate .ddd{
