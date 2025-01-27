@@ -8,7 +8,8 @@ import { catchError, Observable, throwError } from 'rxjs';
 export class ServiceService {
 
   // private apiUrl = 'https://api.bdnf-marketing-solutions.com/api';
-  private apiUrl = 'http://127.0.0.1:8000/api';
+  // private apiUrl = 'http://127.0.0.1:8000/api';
+  private apiUrl = 'https://bdnf-api.terangacode.com/api';
 
 
   constructor(private http: HttpClient) {}
@@ -28,6 +29,7 @@ export class ServiceService {
   }
 
   allService(): Observable<any>{
+    console.log('allService HHHHHHHHHHHHHHHHHHHHHHHH');
     const headers = this.getHeaders();
     return this.http.get<any[]>(`${this.apiUrl}/get/service/all`, { headers });
   }

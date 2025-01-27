@@ -11,6 +11,7 @@ import { NgStyle } from '@angular/common';
 import { NewsletterService } from '../../../services/news-service/newsletter.service';
 import { ToastComponent } from '../../../anmation/toast/toast.component';
 import { FormsModule } from '@angular/forms';
+import { TemoignageService } from '../../../services/temoigna-service/temoignage.service';
 
 @Component({
   selector: 'app-home',
@@ -22,18 +23,20 @@ import { FormsModule } from '@angular/forms';
 export class HomeComponent implements OnInit {
   constructor(
     private articleService: ArticleService, private router : Router, private serviceService : ServiceService,
-    private realisationSerice: RealisationService, private newsletterService: NewsletterService
+    private realisationSerice: RealisationService, private newsletterService: NewsletterService, private temoignageService: TemoignageService
   ){}
   ngOnInit(): void {
     this.allService();
     this.allArticle();
     this.allRealisation();
+    this.allTemoignage();
   }
   @ViewChild('ToastComponent') toast?: ToastComponent;
 
   loadingData : boolean = false;
   email = '';
   servicaData: any[]=[];
+
   lastFourService: any[] = [];
 
 
@@ -51,7 +54,23 @@ export class HomeComponent implements OnInit {
 
       this.email = '';
     })
-      }
+  }
+   temoignageData: any[]=[];
+   lastFourTemoignage: any[] = [];
+  allTemoignage(): void {
+    this.loadingData = true;
+    this.temoignageService.allTemoignage().subscribe((response: any) => {
+      this.loadingData = false;
+      this.temoignageData = response.data;
+      console.log("All temoignage", this.temoignageData);
+      const lastTemoignage = this.temoignageData.sort((a: {created_at: string | number | Date}, b: {created_at: string | number | Date}) =>{
+        return new Date(b.created_at).getTime() - new Date(a.created_at).getTime();
+      })
+      this. lastFourTemoignage = lastTemoignage.slice(0, 4);
+      console.log("Liste des 4 temoignages", this. lastFourTemoignage)
+
+    })
+  }
   allService(): void {
     this.loadingData = true;
     this.serviceService.allService().subscribe((data: any)=> {

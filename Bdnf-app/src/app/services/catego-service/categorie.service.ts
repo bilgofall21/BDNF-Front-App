@@ -8,7 +8,8 @@ import { catchError, map, Observable, throwError } from 'rxjs';
 export class CategorieService {
 
   // private apiUrl = 'https://api.bdnf-marketing-solutions.com/api';
-  private apiUrl = 'http://127.0.0.1:8000/api';
+  // private apiUrl = 'http://127.0.0.1:8000/api';
+  private apiUrl = 'https://bdnf-api.terangacode.com/api';
 
 
 

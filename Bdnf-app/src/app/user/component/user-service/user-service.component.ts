@@ -46,8 +46,13 @@ return this.dataServicetrouve.slice(indexDebut, indexFin);
 }
 // Méthode pour générer la liste des pages
 get pages(): number[] {
- const totalPages = Math.ceil(this. dataService.length / this.articlesParPage);
- return Array(totalPages).fill(0).map((_, index) => index + 1);
+//  const totalPages = Math.ceil(this. dataService.length / this.articlesParPage);
+//   return Array(totalPages).fill(0).map((_, index) => index + 1);
+      // Ensure serviceData is an array (default to an empty array if undefined)
+    const totalPages = this.dataService ? Math.ceil(this.dataService.length / this.articlesParPage) : 0;
+
+    // Return an array of page numbers if totalPages is greater than 0
+    return totalPages > 0 ? Array(totalPages).fill(0).map((_, index) => index + 1) : [];
 }
 
 // Méthode pour obtenir le nombre total de pages

@@ -92,6 +92,7 @@ ajouterCategorie(){
     })
   } catch (error) {
     console.error('Erreur lors de l\'ajout du service:', error);
+     this.annuler();
   }
 }
 
@@ -147,6 +148,7 @@ try {
       );
     } else {
       this.toastrService.warning('Ajout d\'article annulé');
+       this.annuler();
     }
   });
 
@@ -214,7 +216,8 @@ modifierAricle(){
             this.toastrService.error('Erreur lors de la modification de cette realisation')
           });
         }else{
-          this.toastrService.warning('modification annulée')
+          this.toastrService.warning('modification annulée');
+           this.annuler();
         }
       })
 
@@ -248,7 +251,8 @@ modifierCatego(){
             this.toastrService.error('Erreur lors de la modification de cette categorie')
           });
         }else{
-          this.toastrService.warning('modification annulée')
+          this.toastrService.warning('modification annulée');
+           this.annuler();
         }
       })
 
@@ -271,7 +275,8 @@ modifierService(){
             this.toastrService.error('Erreur lors de la modification du service')
           });
         }else{
-          this.toastrService.warning('modification annulée')
+          this.toastrService.warning('modification annulée');
+          this.annuler();
         }
       })
 
@@ -346,8 +351,13 @@ getArticlesPage(): any[] {
 }
    // Méthode pour générer la liste des pages
    get pages(): number[] {
-    const totalPages = Math.ceil(this. dataArticle.length / this.articlesParPage);
-    return Array(totalPages).fill(0).map((_, index) => index + 1);
+    // const totalPages = Math.ceil(this. dataArticle.length / this.articlesParPage);
+    //  return Array(totalPages).fill(0).map((_, index) => index + 1);
+         // Ensure serviceData is an array (default to an empty array if undefined)
+    const totalPages = this.dataArticle ? Math.ceil(this.dataArticle.length / this.articlesParPage) : 0;
+
+    // Return an array of page numbers if totalPages is greater than 0
+    return totalPages > 0 ? Array(totalPages).fill(0).map((_, index) => index + 1) : [];
   }
 
   // Méthode pour obtenir le nombre total de pages

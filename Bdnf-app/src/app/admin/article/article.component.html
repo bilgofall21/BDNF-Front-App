@@ -28,8 +28,6 @@
               <div class="card-tools">
                 <div class="">
                   <a href="" data-bs-toggle="modal" data-bs-target="#exampleModal"> <i class="bi bi-patch-plus-fill"></i> </a>
-
-
                 </div>
               </div>
             </div>
@@ -223,17 +221,13 @@
       </div>
       <div class="modal-body">
         @if (categoElement) {
-          <div class="info d-flex justify-content-between">
-            <div class="d-flex">
-              <i class="bi bi-person" style="font-size: 1.1em; color: #A12825;"></i>
-              <!-- <p class="ms-2"> {{comentSelected.pseudo}} </p> -->
-            </div>
-            <div class="d-flex">
+          <div class="info d-flex justify-content-center">
+            <div class="d-flex justify-content-center">
               <i class="bi bi-calendar" style="font-size: 1.1em; color: #A12825;"></i>
               <p class="ms-2"> {{categoElement.created_at | dateFormat}} </p>
             </div>
           </div>
-          <div class="border rounded">
+          <div class="border rounded d-flex justify-content-center align-items-center">
             <p class="text-center"> {{categoElement.nomCategorie}} </p>
           </div>
 
@@ -248,15 +242,6 @@
     </div>
   </div>
   </div>
-
-
-
-
-
-
-
-
-
 <!-- ***** Modal pour ajou article -->
 
 <div class="modal fade" id="exampleModal-aritcle" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -271,7 +256,7 @@
           <div class="mb-3">
             <label for="titre" class="form-label">Titre</label>
             <input type="text" class="form-control" id="titre" formControlName="titre"
-              placeholder="Titre de la réalisation" required />
+              placeholder="Titre de l'article" required />
             <div *ngIf="
                 articleForm.get('titre')?.invalid &&
                 articleForm.get('titre')?.touched

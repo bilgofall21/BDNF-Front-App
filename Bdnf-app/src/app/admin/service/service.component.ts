@@ -7,14 +7,14 @@ import { NotificationService } from '../../services/notification.service';
 import { ToastrService } from 'ngx-toastr';
 import { error } from 'console';
 import Swal from 'sweetalert2';
-import { NgFor } from '@angular/common';
+import { NgFor, NgIf } from '@angular/common';
 import { DateFormatPipe } from "../../pipes/date-format.pipe";
 import { SpinnerComponent } from '../../anmation/spinner/spinner.component';
 
 @Component({
   selector: 'app-service',
   standalone: true,
-  imports: [FormsModule, HttpClientModule, SidebarComponent, NgFor, DateFormatPipe, SpinnerComponent],
+  imports: [FormsModule, HttpClientModule, SidebarComponent, NgFor, DateFormatPipe, SpinnerComponent,NgIf],
   providers: [ServiceService],
   templateUrl: './service.component.html',
   styleUrl: './service.component.css'
@@ -39,6 +39,7 @@ serviceData: any[]= [];
     this.loadinData = true
     this.servicesService.allService().subscribe((data: any) =>{
       this.isloadingService = false;
+      console.log('voir me service 1111✅✅✅✅✅ ',data)
 this.serviceData = data.data
 this.loadinData = false;
 console.log('voir me service ✅✅✅✅✅ ',this.serviceData)
@@ -49,10 +50,13 @@ console.log('voir me service ✅✅✅✅✅ ',this.serviceData)
       nomService: this.nomService,
       descriptionService: this.descriptionService
     }
+    console.log('voir nesssss', newService)
     this.notificationService.confirmAlert(
       'Voulez-vous vraiment ajouter ce service'
     ).then(confirmed => {
+      console.log('111111111111')
       if(confirmed){
+        console.log('111111111111222222222')
         this.servicesService.addService(newService).subscribe((data : any) =>{
           console.log('😁😁😁😁😁😁😁', data)
           this.toastrService.success('Service ajouter avec succée')
@@ -66,7 +70,8 @@ console.log('voir me service ✅✅✅✅✅ ',this.serviceData)
         });
 
       }else{
-        this.toastrService.warning('ajout du service annulé')
+        this.toastrService.warning('ajout du service annulé');
+        this.annuler();
       }
     })
 
@@ -133,7 +138,8 @@ this.descriptionService = service.descriptionService;
               this.toastrService.error('Erreur lors de la modification du service')
             });
           }else{
-            this.toastrService.warning('modification annulée')
+            this.toastrService.warning('modification annulée');
+           this.annuler();
           }
         })
 
@@ -166,7 +172,7 @@ getArticlesPage(): any[] {
     service.nomService.toLowerCase().includes(this.searchService.toLowerCase()) ||
     service.descriptionService.toLowerCase().includes(this.searchService.toLowerCase())
     );
-    if(this.searchService && this.serviceDatatrouve.length === 0){
+    if(this.searchService && this.serviceDatatrouve?.length === 0){
       this.noResultSearch = 'Désolé aucun résultat pour votre recherche';
     }else{
       this.noResultSearch = '';
@@ -174,14 +180,20 @@ getArticlesPage(): any[] {
   return this.serviceDatatrouve.slice(indexDebut, indexFin);
 }
    // Méthode pour générer la liste des pages
-   get pages(): number[] {
-    const totalPages = Math.ceil(this. serviceData.length / this.articlesParPage);
-    return Array(totalPages).fill(0).map((_, index) => index + 1);
-  }
+  //  get pages(): number[] {
+  //   const totalPages = Math.ceil(this. serviceData?.length / this.articlesParPage);
+  //   return Array(totalPages).fill(0).map((_, index) => index + 1);
+  // }
+  get pages(): number[] {
+    // Ensure serviceData is an array (default to an empty array if undefined)
+    const totalPages = this.serviceData ? Math.ceil(this.serviceData.length / this.articlesParPage) : 0;
 
+    // Return an array of page numbers if totalPages is greater than 0
+    return totalPages > 0 ? Array(totalPages).fill(0).map((_, index) => index + 1) : [];
+  }
   // Méthode pour obtenir le nombre total de pages
   get totalPages(): number {
-    return Math.ceil(this. serviceData.length / this.articlesParPage);
+    return Math.ceil(this. serviceData?.length / this.articlesParPage);
   }
 
 }
