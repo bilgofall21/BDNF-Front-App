@@ -16,7 +16,7 @@ import { TemoignageService } from '../../../services/temoigna-service/temoignage
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [HeaderComponent, FooterComponent, RouterLink, DateFormatPipe, SpinnerComponent, NgStyle, ToastComponent, FormsModule],
+  imports: [HeaderComponent, FooterComponent, RouterLink, DateFormatPipe, NgStyle, ToastComponent, FormsModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })

@@ -3,7 +3,68 @@
   --beigeColor: #e7dcd6;
 }
 
-.heading-section h2 {
+.hero {
+  width: 100%;
+  min-height: 60vh;
+  position: relative;
+  padding: 10px 0 30px 0;
+  display: flex;
+  align-items: center;
+}
+
+.hero h1 {
+  margin: 0;
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 56px;
+}
+
+.hero p {
+  color: color-mix(in srgb, var(--default-color), transparent 30%);
+  margin: 5px 0 30px 0;
+  font-size: 20px;
+  font-weight: 400;
+}
+
+
+.hero .btn-watch-video:hover {
+  color: var(--accent-color);
+}
+
+
+.hero .animated {
+  animation: up-down 2s ease-in-out infinite alternate-reverse both;
+}
+
+@media (max-width: 640px) {
+  .hero h1 {
+    font-size: 28px;
+    line-height: 36px;
+  }
+
+  .hero p {
+    font-size: 18px;
+    line-height: 24px;
+    margin-bottom: 30px;
+  }
+
+  .hero .btn-get-started,
+  .hero .btn-watch-video {
+    font-size: 13px;
+  }
+}
+
+@keyframes up-down {
+  0% {
+    transform: translateY(10px);
+  }
+
+  100% {
+    transform: translateY(-10px);
+  }
+}
+
+/* .heading-section h2 {
   font-size: 40px;
   font-weight: 600;
   color: #a12825;
@@ -458,7 +519,7 @@
 .slider-text .bread {
   font-weight: 700;
   color: #000000;
-}
+} */
 
 /* style  service */
 
@@ -469,18 +530,22 @@
   -ms-transition: all 0.3s ease;
   transition: all 0.3s ease;
   width: 100%;
-  padding: 30px;
+  padding:  30px;
   margin-bottom: 60px;
-  height: 220px;
+  height: 260px;
   margin-right: 850px;
   display: flex;
+  align-items: center;
+  justify-content: center;
   /* overflow: hidden; */
 }
 
 .services p {
+  margin-top: 30px;
   overflow: hidden;
   /* Empêche le débordement du texte */
   text-overflow: ellipsis;
+  font-size: 18px;
   /* Ajoute des points de suspension si le texte est trop long */
   display: -webkit-box;
   -webkit-line-clamp: 4;
@@ -515,7 +580,7 @@
 }
 
 .services .media-body h3 {
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 500;
 }
 
@@ -705,7 +770,7 @@
 /* section tremoignage about deebut */
 .mytestitimonial .card {
   background-color: #e7dcd6;
-  width: 17rem;
+  width: 18.5rem;
 }
 
 .mytestitimonial :hover {
@@ -720,7 +785,7 @@
 }
 
 .temoignageaboutcontainer .row {
-  row-gap: 14px;
+  /* gap: 5px; */
 }
 
 .temoignageaboutcontainer .crochet {
@@ -778,7 +843,7 @@
 }
 
 .blog-section .post-entry .post-content-entry h3 {
-  font-size: 16px;
+  font-size: 20px;
   margin-bottom: 0;
   font-weight: 600;
   margin-bottom: 7px;
@@ -812,7 +877,6 @@
 }
 
 .abt-bg {
-  /* background-image: url('/src/assets/image/abt.webp'); */
   height: 100%;
   width: 100%;
   background-size: cover;
@@ -821,6 +885,15 @@
   position: relative;
   z-index: 0;
 }
+.abt-bg img {
+ height: 100%;
+  width: 100%;
+  border-radius: 20px;
+  object-fit: cover;
+/* .abt-bg img {
+} */
+
+}
 
 .abt-section .abt-text {
   padding: 50px;
@@ -828,9 +901,14 @@
 }
 
 .abt-text p {
-  font-size: 14px;
+  font-size: 17px;
   line-height: 1.6;
   margin-bottom: 10px;
+}
+.abt-text h3 {
+  font-size: 20px;
+  /* line-height: 1.6;
+  margin-bottom: 10px; */
 }
 
 .abt-text p.top-sub {

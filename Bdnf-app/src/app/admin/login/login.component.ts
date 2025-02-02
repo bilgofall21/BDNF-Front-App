@@ -133,32 +133,59 @@ loginForm : FormGroup
     );
   }
 
-
   loginAdmin() {
-    if (this.loginForm.invalid) {
-      this.toastrService.error('Veuillez vérifier les champs', 'Erreur');
-      return;
-    }
-
-    const loginUser = this.loginForm.value;
-this.loadingLogin = true;
-    this.authService.loginAdmin(loginUser).subscribe(
-      (user: any) => {
-        console.log("voir user", user)
-        if (user && user.access_token) {
-          localStorage.setItem('access_token', user.access_token);
-          this.authService.setLoggedIn(true);
-          this.toastrService.success('Connexion réussie', 'Connexion 👍');
-          this.router.navigate(['/admin/home-admin']);
-          this.loadingLogin = false;
-        }
-      },
-      (error) => {
-        this.toastrService.error('Erreur de connexion', 'Erreur');
-        console.error('Erreur de connexion :', error);
-      }
-    );
+  if (this.loginForm.invalid) {
+    this.toastrService.error('Veuillez vérifier les champs', 'Erreur');
+    return;
   }
+
+  const loginUser = this.loginForm.value;
+  this.loadingLogin = true;
+  this.authService.loginAdmin(loginUser).subscribe(
+    (user: any) => {
+      console.log("voir user", user);
+      if (user && user.access_token) {
+        localStorage.setItem('access_token', user.access_token);
+        this.authService.setLoggedIn(true);
+        this.toastrService.success('Connexion réussie', 'Connexion 👍');
+        this.router.navigate(['/admin/home-admin']);
+      }
+      this.loadingLogin = false;
+    },
+    (error) => {
+      this.toastrService.error('Erreur de connexion', 'Erreur');
+      console.error('Erreur de connexion :', error);
+      this.loadingLogin = false;
+    }
+  );
+}
+
+
+//   loginAdmin() {
+//     if (this.loginForm.invalid) {
+//       this.toastrService.error('Veuillez vérifier les champs', 'Erreur');
+//       return;
+//     }
+
+//     const loginUser = this.loginForm.value;
+// this.loadingLogin = true;
+//     this.authService.loginAdmin(loginUser).subscribe(
+//       (user: any) => {
+//         console.log("voir user", user)
+//         if (user && user.access_token) {
+//           localStorage.setItem('access_token', user.access_token);
+//           this.authService.setLoggedIn(true);
+//           this.toastrService.success('Connexion réussie', 'Connexion 👍');
+//           this.router.navigate(['/admin/home-admin']);
+//           this.loadingLogin = false;
+//         }
+//       },
+//       (error) => {
+//         this.toastrService.error('Erreur de connexion', 'Erreur');
+//         console.error('Erreur de connexion :', error);
+//       }
+//     );
+//   }
 
 
 }
