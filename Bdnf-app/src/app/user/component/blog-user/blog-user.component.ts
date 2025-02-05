@@ -41,6 +41,16 @@ export class BlogUserComponent implements OnInit {
     allArticleDatatrouve : any []=[];
     searchArticle : string= '';
     noResultatFound :  string= '';
+
+    getArticleImage(article: any) {
+      if (!article || !article.image) {
+        console.error('Article image is undefined');
+        return '';
+      }
+      // Utilisez une expression régulière pour extraire le chemin relatif correct
+      const relativePath = article.image.replace(/^.*public\//, '');
+      return `https://bdnf-api.terangacode.com/public/${relativePath}`;
+    }
     getArticlesPage(): any[] {
     const indexDebut = (this.pageActuelle - 1) * this.articlesParPage;
     const indexFin = indexDebut + this.articlesParPage;

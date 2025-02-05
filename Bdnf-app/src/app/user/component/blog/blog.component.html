@@ -8,7 +8,7 @@
 </div>
 
 
-<section class="newArticle">
+<section class="newArticle ">
   @if (articleByIdData) {
       <div class="container" id="newAricleContainer">
 
@@ -17,11 +17,13 @@
   </div>
   <div class="imageAricle">
     <!-- <img src="assets/image/detail-blog.png" class="img-fluid" alt=""> -->
-    <img [src]="'https://api.bdnf-marketing-solutions.com/' + articleByIdData.image" class="img-fluid" alt="...">
+    <!-- <img [src]="'https://api.bdnf-marketing-solutions.com/' + articleByIdData.image" class="img-fluid" alt="..."> -->
+    <img [src]="getArticleImage(articleByIdData)" class="img-fluid" alt="...">
 
   </div>
   <div class="articleText mt-3">
-    <p>{{articleByIdData.contenue}} .</p>
+    <!-- <p>{{articleByIdData.contenue | textEditor}} . | </p> -->
+    <p [innerHTML]="articleByIdData.contenue | textEditor"></p>
 
   </div>
   <hr>
@@ -47,9 +49,11 @@
       @for (last of lastTreArticle ; track last) {
         <div class=" col-sm-12 col-md-4 col-lg-4" id="lastCard">
           <div class="card">
-            <img class="card-img-top img-fluid" src="assets/image/detail-blog.png" alt="">
+            <!-- <img class="card-img-top img-fluid" src="assets/image/detail-blog.png" alt=""> -->
+            <img [src]="getArticleImage(last)" class="img-fluid" alt="...">
             <div class="card-body">
-              <h4 class="card-title text-start"> {{last.titre}} </h4>
+              <a class="text-decoration-none" [routerLink]="['/blog', last.uuid]" > <h4 class="card-title text-start"> {{last.titre}} </h4> </a>
+
               <hr>
               <div class="detailAricle d-flex justify-content-between">
                 <div class="nbreComment">

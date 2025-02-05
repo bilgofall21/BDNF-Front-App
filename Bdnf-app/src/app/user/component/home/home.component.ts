@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { HeaderComponent } from "../header/header.component";
 import { FooterComponent } from "../footer/footer.component";
 import { ArticleService } from '../../../services/article-service/article.service';
-import { RouterLink ,Router} from '@angular/router';
+import { RouterLink ,Router, NavigationEnd} from '@angular/router';
 import { ServiceService } from '../../../services/services-service/service.service';
 import { RealisationService } from '../../../services/realisation-service/realisation.service';
 import { DateFormatPipe } from "../../../pipes/date-format.pipe";
@@ -12,20 +12,26 @@ import { NewsletterService } from '../../../services/news-service/newsletter.ser
 import { ToastComponent } from '../../../anmation/toast/toast.component';
 import { FormsModule } from '@angular/forms';
 import { TemoignageService } from '../../../services/temoigna-service/temoignage.service';
+import { ParagraphPipe } from '../../../pipes/paragraph.pipe';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [HeaderComponent, FooterComponent, RouterLink, DateFormatPipe, NgStyle, ToastComponent, FormsModule],
+  imports: [HeaderComponent, FooterComponent, RouterLink, DateFormatPipe, NgStyle, ToastComponent, FormsModule, ParagraphPipe],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
 export class HomeComponent implements OnInit {
   constructor(
     private articleService: ArticleService, private router : Router, private serviceService : ServiceService,
-    private realisationSerice: RealisationService, private newsletterService: NewsletterService, private temoignageService: TemoignageService
+    private realisationSerice: RealisationService, private newsletterService: NewsletterService, private temoignageService: TemoignageService,
   ){}
   ngOnInit(): void {
+    this.router.events.subscribe((event: any) => {
+      if (event instanceof NavigationEnd) {
+        window.scrollTo(0, 0);
+      }
+    });
     this.allService();
     this.allArticle();
     this.allRealisation();
@@ -55,6 +61,16 @@ export class HomeComponent implements OnInit {
       this.email = '';
     })
   }
+  getArticleImage(article: any) {
+    // Utilisez une expression régulière pour extraire le chemin relatif correct
+    const relativePath = article.image.replace(/^.*public\//, '');
+    return `https://bdnf-api.terangacode.com/public/${relativePath}`;
+}
+getRealisationImage(realisa: any) {
+    // Utilisez une expression régulière pour extraire le chemin relatif correct
+    const relativePath = realisa.image.replace(/^.*public\//, '');
+    return `https://bdnf-api.terangacode.com/public/${relativePath}`;
+}
    temoignageData: any[]=[];
    lastFourTemoignage: any[] = [];
   allTemoignage(): void {

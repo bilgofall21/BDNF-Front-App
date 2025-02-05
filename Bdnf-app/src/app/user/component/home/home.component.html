@@ -148,8 +148,9 @@
             @if (lastFourRealisation && lastFourRealisation.length > 0 ) {
               @for (realisa of lastFourRealisation; track realisa) {
                 <div class="col-md-6">
-                  <!-- <div class="project img shadow ftco-animate d-flex justify-content-center align-items-center"  [ngStyle]="{'background-image': 'url(' + 'https://api.bdnf-marketing-solutions.com/' + realisa.image + ')'}" > -->
-                    <div class="project img shadow ftco-animate d-flex justify-content-center align-items-center" [ngStyle]="{'background-image': 'url(' + 'assets/test/rea5.webp' + ')'}">
+                  <div class="project img shadow ftco-animate d-flex justify-content-center align-items-center" [ngStyle]="{'background-image': 'url(' + getRealisationImage(realisa) + ')'}" >
+                  <!-- <div class="project img shadow ftco-animate d-flex justify-content-center align-items-center"  [ngStyle]="{'background-image': 'url(' + 'https://api.bdnf-marketing-solutions.com/public/' + realisa.image + ')'}" > -->
+                    <!-- <div class="project img shadow ftco-animate d-flex justify-content-center align-items-center" [ngStyle]="{'background-image': 'url(' + 'assets/test/rea5.webp' + ')'}"> -->
                     <div class="overlay"></div>
                     <div class="text text-center p-4">
                       <h3><a href="#"> {{realisa.titre}} </a></h3>
@@ -236,14 +237,19 @@
               <div class="col-12 col-sm-6 col-md-4 mb-4 mb-md-0">
                 <div class="post-entry">
                   <a [routerLink]="['/blog',article.uuid]"  class="post-thumbnail">
-                    <img [src]="'https://bdnf-api.terangacode.com/' + article.image" class="img-fluid" alt="...">
+                    <img [src]="getArticleImage(article)" class="img-fluid" alt="...">
+                    <!-- <img [src]="'https://bdnf-api.terangacode.com/' + article.image" class="img-fluid" alt="..."> -->
+                    <!-- <img [src]="'https://bdnf-api.terangacode.com/' + article.image" class="img-fluid" alt="..."> -->
                     <!-- <img [src]="'https://api.bdnf-marketing-solutions.com/' + article.image" class="img-fluid" alt="..."> -->
                     <!-- <img src="./assets/test/blog2.webp" class="img-fluid" alt="..."> -->
                   </a>
                   <div class="post-content-entry">
                     <h3><a [routerLink]="['/blog',article.uuid]" > {{article.titre}} </a></h3>
                     <div class="meta">
-                      <span>by <a [routerLink]="['/blog',article.uuid]" >Kristin Watson</a></span> <span>on <a [routerLink]="['/blog',article.uuid]" > {{article.created_at | dateFormat}}  </a></span>
+                       <span>Publié le <a [routerLink]="['/blog',article.uuid]" > {{article.created_at | dateFormat}}  </a></span>
+                    </div>
+                    <div class="mt-2">
+                         <a [routerLink]="['/blog',article.uuid]" ><p>{{article.contenue | paragraph:100}} </p></a>
                     </div>
                   </div>
                 </div>

@@ -37,7 +37,7 @@
             <div class="col-12 col-sm-6 col-md-4 mb-4 mb-md-0">
               <div class="post-entry">
                 <a [routerLink]="['/blog',article.uuid]"  class="post-thumbnail">
-                  <img [src]="'https://api.bdnf-marketing-solutions.com/' + article.image" class="img-fluid" alt="...">
+                  <img [src]="getArticleImage(article)" class="img-fluid" alt="...">
                 </a>
                 <div class="post-content-entry">
                   <h3><a [routerLink]="['/blog',article.uuid]" > {{article.titre}} </a></h3>

@@ -2,29 +2,42 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { HeaderComponent } from "../header/header.component";
 import { FooterComponent } from "../footer/footer.component";
 import { ArticleService } from '../../../services/article-service/article.service';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router, RouterLink } from '@angular/router';
 import { CommentaireService } from '../../../services/comment-service/commentaire.service';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { close } from 'fs';
 import { CommonModule, NgIf } from '@angular/common';
 import { DateFormatPipe } from "../../../pipes/date-format.pipe";
 import { ToastComponent } from '../../../anmation/toast/toast.component';
+import { TextEditorPipe } from '../../../pipes/text-editor.pipe';
+import { subscribe } from 'diagnostics_channel';
 
 @Component({
   selector: 'app-blog',
   standalone: true,
-  imports: [HeaderComponent, FooterComponent, FormsModule, NgIf, CommonModule, DateFormatPipe, RouterLink, ReactiveFormsModule,ToastComponent],
+  imports: [HeaderComponent, FooterComponent, FormsModule, NgIf, CommonModule, DateFormatPipe, RouterLink, ReactiveFormsModule,ToastComponent, TextEditorPipe],
   templateUrl: './blog.component.html',
   styleUrl: './blog.component.css'
 })
 export class BlogComponent implements OnInit{
   constructor(
     private articleService: ArticleService, private activeRoute : ActivatedRoute, private commentService  : CommentaireService,
+    private router : Router
   ){}
 
   pseudo : string = '';
   contenue: string = '';
   ngOnInit(): void {
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        window.scrollTo(0, 0);
+      }
+      // window.scrollTo(0, 0);
+    });
+    this.activeRoute.params.subscribe((params) => {
+      this.ariticle_uuid = params['uuid'];
+      this.articleById();
+    })
     this.categoForm = new FormGroup({
       pseudo: new FormControl('', Validators.required),
       contenue: new FormControl('', Validators.required),
@@ -47,7 +60,7 @@ this.articleService.allArticle().subscribe((data)=> {
     return new Date(b.created_at).getTime() - new Date(a.created_at).getTime();
   })
   this.lastTreArticle = lastArticle.slice(0, 3)
-
+console.log('step article 🤣🤣', this.lastTreArticle)
 })
 }
 articleByIdData: any=[];
@@ -70,6 +83,15 @@ articleById(): void{
 
     console.log('✅✅dddd✅',this.articleByIdData)
   })
+}
+getArticleImage(article: any) {
+  if (!article || !article.image) {
+    console.error('Article image is undefined');
+    return '';
+  }
+  // Utilisez une expression régulière pour extraire le chemin relatif correct
+  const relativePath = article.image.replace(/^.*public\//, '');
+  return `https://bdnf-api.terangacode.com/public/${relativePath}`;
 }
 
 
@@ -143,6 +165,12 @@ loadMoreComments(): void {
 loadLessComments(): void {
   this.currentDisplayCount = 3; // Diminuer le nombre de commentaires à afficher
   this.newDataComment = this.dataCommnent.slice(0, this.currentDisplayCount); // Mettre à jour la liste affichée
+}
+
+letsFo(id: any, event: Event): void {
+  event.preventDefault();
+  this.router.navigate(['/blog', id]);
+  console.log("✅✅✅")
 }
 
 }
