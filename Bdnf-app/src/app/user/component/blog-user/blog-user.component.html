@@ -26,7 +26,7 @@
               </span>
           </div>
         </div>
-        <div class="row blog-section  mb-2">
+        <div class="row blog-section row-gap-5 mb-2">
         @if (loadingData) {
           <app-spinner></app-spinner>
         } @else if(noResultatFound) {
@@ -34,7 +34,7 @@
         }@else if(getArticlesPage() && getArticlesPage().length > 0) {
           @for (article of getArticlesPage(); track article) {
 
-            <div class="col-12 col-sm-6 col-md-4 mb-4 mb-md-0">
+            <div class="col-12 col-sm-6  col-md-4 mb-4 mb-md-0">
               <div class="post-entry">
                 <a [routerLink]="['/blog',article.uuid]"  class="post-thumbnail">
                   <img [src]="getArticleImage(article)" class="img-fluid" alt="...">
@@ -42,7 +42,10 @@
                 <div class="post-content-entry">
                   <h3><a [routerLink]="['/blog',article.uuid]" > {{article.titre}} </a></h3>
                   <div class="meta">
-                    <span>by <a [routerLink]="['/blog',article.uuid]" >Kristin Watson</a></span> <span>on <a [routerLink]="['/blog',article.uuid]" > {{article.created_at | dateFormat}}  </a></span>
+                     <span>Publié le <a [routerLink]="['/blog',article.uuid]" > {{article.created_at | dateFormat}}  </a></span>
+                  </div>
+                  <div class="mt-2">
+                       <a [routerLink]="['/blog',article.uuid]" ><p>{{article.contenue | paragraph:150}} </p></a>
                   </div>
                 </div>
               </div>

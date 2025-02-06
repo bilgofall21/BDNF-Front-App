@@ -1,16 +1,5 @@
 :root {
-  --light: #f6f6f9;
-  --primary: #A12825;
-  --light-primary: #CFE8FF;
-  --grey: #eee;
-  --dark-grey: #AAAAAA;
-  --dark: #363949;
-  --danger: #D32F2F;
-  --light-danger: #FECDD3;
-  --warning: #FBC02D;
-  --light-warning: #FFF2C6;
-  --success: #388E3C;
-  --light-success: #BBF7D0;
+
   --redColor: #A12825;
   --beigeColor: #E7DCD6;
 }
@@ -23,15 +12,7 @@
   font-size: 18px;
   font-weight: bold;
 }
-/* .ajoutservicebutton a{
-  padding: 8px 20px;
-  background-color: var(--redColor);
-  color: white;
-  font-weight: bold;
-  border-radius: 10px;
-  margin-left: 300px;
-  text-decoration: none;
-} */
+
 
 .ajoutservicebutton a{
   color: var(--redColor);
@@ -88,8 +69,8 @@ color: var(--redColor);
 }
 
 #card-real .card{
-  width: 15rem;
-  height: 22rem;
+  width: 18rem;
+  height: 24rem;
 
 }
 #card-real .card-body{
@@ -98,4 +79,5 @@ color: var(--redColor);
 #card-real img{
   height: 10rem;
   width: 100%;
+  object-fit: cover;
 }

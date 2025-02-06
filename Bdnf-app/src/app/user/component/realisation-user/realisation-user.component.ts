@@ -5,11 +5,14 @@ import { RealisationService } from '../../../services/realisation-service/realis
 import { FormsModule } from '@angular/forms';
 import { NgFor, NgStyle } from '@angular/common';
 import { SpinnerComponent } from '../../../anmation/spinner/spinner.component';
+import { DateFormatPipe } from '../../../pipes/date-format.pipe';
+import { RouterLink } from '@angular/router';
+import { ParagraphPipe } from '../../../pipes/paragraph.pipe';
 
 @Component({
   selector: 'app-realisation-user',
   standalone: true,
-  imports: [HeaderComponent, FooterComponent, FormsModule, NgFor, NgStyle, SpinnerComponent],
+  imports: [HeaderComponent, FooterComponent, FormsModule, NgFor, NgStyle, SpinnerComponent,DateFormatPipe, RouterLink,ParagraphPipe ],
   templateUrl: './realisation-user.component.html',
   styleUrl: './realisation-user.component.css'
 })
@@ -34,7 +37,7 @@ export class RealisationUserComponent implements OnInit {
   // pagination and search
 
    // Attribut pour la pagination
-   articlesParPage = 6; // Nombre d'articles par page
+   articlesParPage = 3; // Nombre d'articles par page
    pageActuelle = 1; // Page actuelle
 
 dataRealisationtrouve : any []=[];
@@ -53,6 +56,12 @@ getArticlesPage(): any[] {
       this.noResultsMessage = '';
     }
   return this.dataRealisationtrouve.slice(indexDebut, indexFin);
+}
+
+getRealisationImage(realisa: any) {
+  // Utilisez une expression régulière pour extraire le chemin relatif correct
+  const relativePath = realisa.image.replace(/^.*public\//, '');
+  return `https://bdnf-api.terangacode.com/public/${relativePath}`;
 }
    // Méthode pour générer la liste des pages
    get pages(): number[] {

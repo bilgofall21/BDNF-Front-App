@@ -64,6 +64,11 @@ onFileSelected(event: any) {
     console.error('Aucun fichier sélectionné');
   }
 }
+getRealisationImage(realisa: any) {
+  // Utilisez une expression régulière pour extraire le chemin relatif correct
+  const relativePath = realisa.image.replace(/^.*public\//, '');
+  return `https://bdnf-api.terangacode.com/public/${relativePath}`;
+}
 
 dataRealisation: any[] = [];
 allRealisation(): void {

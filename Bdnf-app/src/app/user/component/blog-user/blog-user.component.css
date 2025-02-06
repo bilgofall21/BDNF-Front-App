@@ -22,8 +22,8 @@
     .blog-section .post-entry .post-thumbnail img {
       border-radius: 20px;
       height: 50vh;
-      /* height: 50vh;
-      width: 100%; */
+
+      width: 100%;
       -webkit-transition: .3s all ease;
       -o-transition: .3s all ease;
       transition: .3s all ease; }
@@ -41,3 +41,11 @@
         font-weight: 600; }
   .blog-section .post-entry:hover .post-thumbnail img, .blog-section .post-entry:focus .post-thumbnail img {
     opacity: .7; }
+    .blog-section .post-entry a:hover, .blog-section .post-entry p:hover {
+      color: var(--redColor);
+      cursor: pointer;
+    }
+    .blog-section .post-entry p {
+      font-size: 15px;
+      font-weight:200;
+    }

@@ -31,8 +31,8 @@
       </div> -->
 
       <div class="container">
-        <div class="row gy-4">
-          <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center" data-aos="fade-up">
+        <div class="row gy-4 ">
+          <div class="col-sm-12 col-md-6 col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center" data-aos="fade-up">
             <h1>Avec BDNF Marketing Solutions</h1>
             <p>Transformez votre présence digitale Designer &amp; en succès</p>
             <div class="d-flex">
@@ -51,8 +51,8 @@
    @if (!loadingData) {
      <section class="ftco-section" id="services-section">
        <div class="container">
-         <div class="row">
-          <div class="col-lg-8 offset-lg-2 text-center">
+         <div class="row ">
+          <div class="col-lg-8 offset-lg-2 text-center hhhh">
             <div class="section-title">
               <h3><span class="orange-text">Nos</span> Services</h3>
               <p>Découvrez nos services personnalisés pour propulser votre marque et atteindre vos objectifs de communication.</p>
@@ -68,7 +68,7 @@
           </div>
         </div>
 
-         <div class="row">
+         <div class="row row-gap-5">
           @if (lastFourService && lastFourService.length > 0 ) {
 
             @for (service of lastFourService; track service) {
@@ -103,7 +103,7 @@
        <div class="">
          <div class="container">
             <div class="row  ">
-              <div class="col-md-8 col-lg-8 d-flex justify-content-center align-items-center  ">
+              <div class=" col-sm-12 col-md-8 col-lg-8 d-flex justify-content-center align-items-center  ">
                 <div class="">
                   <h2>Vous avez un projet en tête ?</h2>
                   <p class="text-white">Laissez-nous transformer vos idées en réalité. BDNF Marketing Solutions est votre partenaire pour une communication réussie. Contactez-nous pour commencer dès aujourd'hui !</p>
@@ -147,14 +147,20 @@
            <div class="row">
             @if (lastFourRealisation && lastFourRealisation.length > 0 ) {
               @for (realisa of lastFourRealisation; track realisa) {
-                <div class="col-md-6">
-                  <div class="project img shadow ftco-animate d-flex justify-content-center align-items-center" [ngStyle]="{'background-image': 'url(' + getRealisationImage(realisa) + ')'}" >
-                  <!-- <div class="project img shadow ftco-animate d-flex justify-content-center align-items-center"  [ngStyle]="{'background-image': 'url(' + 'https://api.bdnf-marketing-solutions.com/public/' + realisa.image + ')'}" > -->
-                    <!-- <div class="project img shadow ftco-animate d-flex justify-content-center align-items-center" [ngStyle]="{'background-image': 'url(' + 'assets/test/rea5.webp' + ')'}"> -->
-                    <div class="overlay"></div>
-                    <div class="text text-center p-4">
-                      <h3><a href="#"> {{realisa.titre}} </a></h3>
-                      <span class=""> {{realisa.description}} </span>
+
+                <div class="col-lg-4 col-md-6">
+                  <div class="single-latest-news">
+                    <a href="single-news.html"><div class="latest-news-bg news-bg-1" [ngStyle]="{'background-image': 'url(' + getRealisationImage(realisa) + ')'}">
+
+                    </div></a>
+                    <div class="news-text-box">
+                      <h3><a class="text-decoration-none">{{realisa.titre}}.</a></h3>
+                      <p class="blog-meta">
+
+                        <span class="date"><i class="fas fa-calendar"></i> {{realisa.created_at | dateFormat}}</span>
+                      </p>
+                      <p class="excerpt">{{realisa.description | paragraph: 250}}</p>
+                      <a [routerLink]="['/realisation', realisa.uuid]" class="read-more-btn text-decoration-none">read more <i class="bi bi-arrow-right-circle ms-2" ></i></a>
                     </div>
                   </div>
                 </div>
@@ -210,7 +216,7 @@
 
 
     <!-- section blog -->
-    <section  class="blog-section ">
+    <section  class="blog-section  ">
       <div class="container">
 
         <div class="row">
@@ -234,14 +240,11 @@
           @if(lastFourArticel && lastFourArticel.length > 0){
             @for (article of  lastFourArticel; track article) {
 
-              <div class="col-12 col-sm-6 col-md-4 mb-4 mb-md-0">
+              <div class=" col-sm-12 col-md-6 col-lg-6 mb-4 mb-md-0">
                 <div class="post-entry">
                   <a [routerLink]="['/blog',article.uuid]"  class="post-thumbnail">
                     <img [src]="getArticleImage(article)" class="img-fluid" alt="...">
                     <!-- <img [src]="'https://bdnf-api.terangacode.com/' + article.image" class="img-fluid" alt="..."> -->
-                    <!-- <img [src]="'https://bdnf-api.terangacode.com/' + article.image" class="img-fluid" alt="..."> -->
-                    <!-- <img [src]="'https://api.bdnf-marketing-solutions.com/' + article.image" class="img-fluid" alt="..."> -->
-                    <!-- <img src="./assets/test/blog2.webp" class="img-fluid" alt="..."> -->
                   </a>
                   <div class="post-content-entry">
                     <h3><a [routerLink]="['/blog',article.uuid]" > {{article.titre}} </a></h3>
@@ -249,7 +252,7 @@
                        <span>Publié le <a [routerLink]="['/blog',article.uuid]" > {{article.created_at | dateFormat}}  </a></span>
                     </div>
                     <div class="mt-2">
-                         <a [routerLink]="['/blog',article.uuid]" ><p>{{article.contenue | paragraph:100}} </p></a>
+                         <a [routerLink]="['/blog',article.uuid]" ><p>{{article.contenue | paragraph:250}} </p></a>
                     </div>
                   </div>
                 </div>
@@ -266,13 +269,13 @@
 
     <!-- Section About -->
 
-    <section class="about-section">
+    <section class="about-section ">
       <div class="abt-section mb-150">
         <div class="container">
           <div class="row ">
             <div class="col-lg-6  p-0 col-md-12">
               <div class="abt-bg">
-                <img src="assets/image/bndfabout.png" class="img-fluid position-absolute rounded w-100 h-100" alt="">
+                <img src="assets/image/bndfabout.png" class="img-fluid  rounded w-100 h-100" alt="">
               </div>
             </div>
             <div class="col-lg-6 col-md-12">
@@ -308,15 +311,12 @@
 <section class="abouttemoignage mb-4">
   <div class="temoignageaboutcontainer">
       <div class="container">
-        <div class="row">
+        <div class="row row-gap-3">
             @if (lastFourTemoignage && lastFourTemoignage.length > 0) {
             @for (temoignage of lastFourTemoignage; track temoignage) {
               <div class=" col-sm-12 col-md-6 col-lg-3 mytestitimonial">
                 <div class="card shadow-lg border-0" >
                   <div class="d-flex justify-content-around mt-2">
-                    <!-- <div class="imagecard">
-                      <img class="img-fluid" src="https://media.istockphoto.com/id/1278622653/photo/young-woman-baking.jpg?s=612x612&w=0&k=20&c=froE165iUFRxUdUhHV1Mnpo94tbHqs6PlAy3fMkfFY4=" alt="">
-                    </div> -->
                     <div class="namecardtop">
                       <p>{{temoignage.nomClient}} </p>
                     </div>

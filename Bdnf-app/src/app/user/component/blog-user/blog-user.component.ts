@@ -7,11 +7,12 @@ import { FormsModule } from '@angular/forms';
 import { NgFor } from '@angular/common';
 import { DateFormatPipe } from "../../../pipes/date-format.pipe";
 import { SpinnerComponent } from '../../../anmation/spinner/spinner.component';
+import { ParagraphPipe } from '../../../pipes/paragraph.pipe';
 
 @Component({
   selector: 'app-blog-user',
   standalone: true,
-  imports: [HeaderComponent, FooterComponent, RouterLink, FormsModule, NgFor, DateFormatPipe, SpinnerComponent],
+  imports: [HeaderComponent, FooterComponent, RouterLink, FormsModule, NgFor, DateFormatPipe, SpinnerComponent, ParagraphPipe],
   templateUrl: './blog-user.component.html',
   styleUrl: './blog-user.component.css'
 })

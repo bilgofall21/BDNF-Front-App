@@ -110,7 +110,7 @@ getRealisationImage(realisa: any) {
       const lastRealisation = this.dataRealisation.sort((a: {created_at: string | number | Date}, b:{created_at: string | number | Date}) =>{
         return new Date(b.created_at).getTime() - new Date(a.created_at).getTime();
       })
-      this.lastFourRealisation = lastRealisation.slice(0, 4);
+      this.lastFourRealisation = lastRealisation.slice(0, 3);
 
     })
   }
@@ -140,7 +140,7 @@ getRealisationImage(realisa: any) {
       const lastArticle = this.allArticleData.sort((a: { created_at: string | number | Date }, b: { created_at: string | number | Date }) => {
         return new Date(b.created_at).getTime() - new Date(a.created_at).getTime();
       });
-      this.lastFourArticel = lastArticle.slice(0, 3);
+      this.lastFourArticel = lastArticle.slice(0, 2);
       this.loadingData = false;
       console.log('step article 🤣🤣', this.lastFourArticel);
     });
