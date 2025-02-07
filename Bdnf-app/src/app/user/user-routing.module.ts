@@ -6,6 +6,7 @@ import { AboutComponent } from './component/about/about.component';
 import { UserServiceComponent } from './component/user-service/user-service.component';
 import { RealisationUserComponent } from './component/realisation-user/realisation-user.component';
 import { BlogUserComponent } from './component/blog-user/blog-user.component';
+import { DetailRealisationComponent } from './component/detail-realisation/detail-realisation.component';
 
 const routes: Routes = [
   { path: '', redirectTo : 'home', pathMatch : 'full',},
@@ -14,7 +15,8 @@ const routes: Routes = [
   {path: 'about', component: AboutComponent},
   {path: 'user-service', component: UserServiceComponent},
   {path: 'realisation-user', component: RealisationUserComponent},
-  {path: 'blog-user', component: BlogUserComponent}
+  {path: 'blog-user', component: BlogUserComponent},
+  {path: 'detail-realisation/:uuid', component: DetailRealisationComponent},
 ];
 
 @NgModule({

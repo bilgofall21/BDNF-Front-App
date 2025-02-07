@@ -42,6 +42,11 @@ gatAllRealisation(): Observable<any>{
   const headers = this.getHeaders();
   return this.http.get<any>(`${this.apiUrl}/get/realisation/all`, { headers})
 }
+getRealisationById(uuid: any): Observable<any>{
+  const headers = this.getHeaders();
+  return this.http.get<any>(`${this.apiUrl}/show/realisation/${uuid}`, { headers})
+  
+}
 
   addRealistion(realisation: any): Observable<any> {
     const headers = this.getHeaders();

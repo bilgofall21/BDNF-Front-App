@@ -48,10 +48,12 @@
                   <div class="news-text-box">
                     <h3><a class="text-decoration-none">{{realisa.titre}}.</a></h3>
                     <p class="blog-meta">
-                     
+
                       <span class="date"><i class="fas fa-calendar"></i> {{realisa.created_at | dateFormat}}</span>
                     </p>
                     <p class="excerpt">{{realisa.description | paragraph: 250}}</p>
+                  </div>
+                  <div class="news-footer">
                     <a [routerLink]="['/realisation', realisa.uuid]" class="read-more-btn text-decoration-none">read more <i class="bi bi-arrow-right-circle ms-2" ></i></a>
                   </div>
                 </div>

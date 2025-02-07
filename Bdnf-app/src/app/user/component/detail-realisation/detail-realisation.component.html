@@ -1,1 +1,53 @@
-<p>detail-realisation works!</p>
+<div class="container py-5">
+  <div class="row align-items-center shadow-lg border-0 rounded-3 overflow-hidden bg-white p-4">
+    @if (dataRealisationData) {
+      <div class="col-md-6 p-0">
+        <!-- <img src="https://via.placeholder.com/800x400" class="img-fluid w-100 rounded-start" alt="Image de la réalisation" style="object-fit: cover; height: 100%; max-height: 450px; transition: transform 0.3s ease-in-out; border-radius: 10px;"> -->
+        <img [src]="getRealisationImage(dataRealisationData)" class="img-fluid w-100 rounded-start" alt="Image de la réalisation" style="object-fit: cover; height: 100%; max-height: 450px; transition: transform 0.3s ease-in-out; border-radius: 10px;">
+      </div>
+      <div class="col-md-6 p-5">
+        <h2 class="fw-bold text-center text-md-start">{{ dataRealisationData.titre }}</h2>
+        <div class="text-muted text-justify overflow-auto" style="max-height: 400px; font-size: 1.1rem; line-height: 1.6; padding-right: 10px;">
+          <p>  {{ dataRealisationData.description }}</p>
+
+        </div>
+        <div class="text-center text-md-start mt-4">
+          <button class="btn btn-primary px-4 py-2 shadow-sm" [routerLink]="['/realisation-user']"  >&#8592; Retour</button>
+        </div>
+      </div>
+
+    }
+  </div>
+
+<!-- Section Témoignages -->
+<div class="container mt-5">
+  <h3 class="text-center mb-4  fw-bold">Témoignages</h3>
+  <div class="row justify-content-center">
+    @for (temoignage of lastTwoTemoignage ; track temoignage) {
+      <div class="col-md-6">
+        <div class="card p-4 shadow-sm">
+          <p class="text-muted">{{temoignage.contenue}}</p>
+          <h5 class="fw-bold"> {{temoignage.nomClient}}</h5>
+        </div>
+      </div>
+
+    }
+  </div>
+</div>
+
+<!-- Section Contact -->
+<div class="container mb-2 text-center mt-5">
+
+  <div class="row justify-content-center align-items-center mt-4 py-3" style="background: linear-gradient(135deg, #E7DCD6, #dddbda); border-radius: 15px;">
+    <div class="col-md-4">
+      <img src="assets/image/link2.png" class="img-fluid rounded shadow-sm" alt="Contactez-nous">
+    </div>
+    <div class="col-md-6">
+      <h3 class=" fw-bold">Contactez-nous</h3>
+      <p class="text-muted my-4">Besoin d'une stratégie marketing efficace ? Parlons-en !</p>
+      <a (click)="navigateToLinkeDin()" target="_blank" class="btn btn-primary px-4 py-2 shadow-sm mt-3">Visitez notre LinkedIn</a>
+    </div>
+  </div>
+</div>
+
+</div>

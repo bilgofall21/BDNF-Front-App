@@ -37,7 +37,7 @@ export class RealisationUserComponent implements OnInit {
   // pagination and search
 
    // Attribut pour la pagination
-   articlesParPage = 3; // Nombre d'articles par page
+   articlesParPage = 6; // Nombre d'articles par page
    pageActuelle = 1; // Page actuelle
 
 dataRealisationtrouve : any []=[];

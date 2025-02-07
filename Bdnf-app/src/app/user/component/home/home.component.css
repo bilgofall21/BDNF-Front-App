@@ -276,7 +276,15 @@ a.button-btn {
 }
 .news-text-box {
   padding: 25px;
-  height: 22rem;
+  height: 18rem;
+
+}
+.news-footer  {
+  padding-left: 25px;
+  padding-bottom: 20px;
+  display: flex;
+  align-items: center;
+  height: 3rem;
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
 }

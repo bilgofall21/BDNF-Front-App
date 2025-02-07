@@ -6,35 +6,13 @@
       <app-spinner></app-spinner>
     } -->
     <section class="hero section">
-      <!-- <div class="home-slider owl-carousel">
-        <div class="slider-item">
-          <div class="overlay"></div>
-          <div class="container-fluid px-md-0">
-            <div class="row d-md-flex no-gutters slider-text align-items-end justify-content-end">
-              <div class="one-third order-md-last img" style="background-image:url(assets/image/tof1.jpg);">
-                <div class="overlay"></div>
-                <div class="overlay-1"></div>
-              </div>
-              <div class="one-forth d-flex  align-items-center ftco-animate" >
-                <div class="text">
-                  <span class="subheading">Avec BDNF Marketing Solutions</span>
 
-                  <h1 class="mb-4 mt-3">Transformez votre présence <span>digitale </span> Designer &amp; en succès</h1>
-
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-
-      </div> -->
 
       <div class="container">
         <div class="row gy-4 ">
           <div class="col-sm-12 col-md-6 col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center" data-aos="fade-up">
             <h1>Avec BDNF Marketing Solutions</h1>
-            <p>Transformez votre présence digitale Designer &amp; en succès</p>
+            <p>Transformez votre présence digitale &amp; gagner en notoriété</p>
             <div class="d-flex">
               <!-- <a href="#about" class="btn-get-started">Get Started</a> -->
               <!-- <a href="https://www.youtube.com/watch?v=Y7f98aduVJ8" class="glightbox btn-watch-video d-flex align-items-center"><i class="bi bi-play-circle"></i><span>Watch Video</span></a> -->
@@ -160,7 +138,10 @@
                         <span class="date"><i class="fas fa-calendar"></i> {{realisa.created_at | dateFormat}}</span>
                       </p>
                       <p class="excerpt">{{realisa.description | paragraph: 250}}</p>
-                      <a [routerLink]="['/realisation', realisa.uuid]" class="read-more-btn text-decoration-none">read more <i class="bi bi-arrow-right-circle ms-2" ></i></a>
+                    </div>
+                    <div class="news-footer ">
+                      <a [routerLink]="['/detail-realisation', realisa.uuid]" class="read-more-btn text-decoration-none">voir plus <i class="bi bi-arrow-right-circle ms-2" ></i></a>
+
                     </div>
                   </div>
                 </div>

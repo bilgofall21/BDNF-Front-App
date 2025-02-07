@@ -40,6 +40,15 @@ p.blog-meta span {
   color: #a12825;
   font-size: 0.85em;
 }
+.news-footer  {
+  padding-left: 25px;
+  padding-bottom: 20px;
+  display: flex;
+  align-items: center;
+  height: 3rem;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
 
 p.blog-meta span:last-child {
   margin-right: 0;
