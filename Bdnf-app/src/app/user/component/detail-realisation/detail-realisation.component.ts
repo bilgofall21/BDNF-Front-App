@@ -1,12 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { RealisationService } from '../../../services/realisation-service/realisation.service';
-import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router, RouterLink } from '@angular/router';
 import { TemoignageService } from '../../../services/temoigna-service/temoignage.service';
+import { HeaderComponent } from '../header/header.component';
+import { FooterComponent } from '../footer/footer.component';
+import { SpinnerComponent } from '../../../anmation/spinner/spinner.component';
 
 @Component({
   selector: 'app-detail-realisation',
   standalone: true,
-  imports: [RouterLink],
+  imports: [RouterLink, HeaderComponent, FooterComponent, SpinnerComponent],
   templateUrl: './detail-realisation.component.html',
   styleUrl: './detail-realisation.component.css'
 })
@@ -16,6 +19,12 @@ export class DetailRealisationComponent implements OnInit {
     private temoignageService: TemoignageService
   ) {}
   ngOnInit(): void {
+     this.router.events.subscribe(event => {
+              if (event instanceof NavigationEnd) {
+                window.scrollTo(0, 0);
+              }
+              // window.scrollTo(0, 0);
+            });
     this.activeRoute.params.subscribe((params) => {
       this.realisation_uuid = params['uuid'];
       this.gatRealisationById();
@@ -23,13 +32,16 @@ export class DetailRealisationComponent implements OnInit {
     this.gatRealisationById();
     this.allTemoignage();
   }
+  loadingData : boolean =  false;
   dataRealisationData : any= [];
   realisation_uuid : any;
   gatRealisationById(): void{
     this.realisation_uuid =  this.activeRoute.snapshot.params['uuid'];
     console.log('realisation uuid', this.realisation_uuid);
+    this.loadingData = true;
     this.realisationService.getRealisationById( this.realisation_uuid).subscribe((response: any)=>{
       console.log('voir la realisation', response);
+      this.loadingData = false;
       this.dataRealisationData = response.data;
       this.dataRealisationData = response.data;
     })

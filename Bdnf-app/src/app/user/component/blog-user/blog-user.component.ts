@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HeaderComponent } from '../header/header.component';
 import { FooterComponent } from '../footer/footer.component';
-import { RouterLink } from '@angular/router';
+import { NavigationEnd, Router, RouterLink } from '@angular/router';
 import { ArticleService } from '../../../services/article-service/article.service';
 import { FormsModule } from '@angular/forms';
 import { NgFor } from '@angular/common';
@@ -17,8 +17,14 @@ import { ParagraphPipe } from '../../../pipes/paragraph.pipe';
   styleUrl: './blog-user.component.css'
 })
 export class BlogUserComponent implements OnInit {
-  constructor(private articleService: ArticleService){}
+  constructor(private articleService: ArticleService, private router: Router){}
   ngOnInit(): void {
+     this.router.events.subscribe(event => {
+              if (event instanceof NavigationEnd) {
+                window.scrollTo(0, 0);
+              }
+              // window.scrollTo(0, 0);
+            });
     this.allArticle();
   }
 

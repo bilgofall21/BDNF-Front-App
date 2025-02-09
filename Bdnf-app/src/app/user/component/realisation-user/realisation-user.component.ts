@@ -6,20 +6,26 @@ import { FormsModule } from '@angular/forms';
 import { NgFor, NgStyle } from '@angular/common';
 import { SpinnerComponent } from '../../../anmation/spinner/spinner.component';
 import { DateFormatPipe } from '../../../pipes/date-format.pipe';
-import { RouterLink } from '@angular/router';
+import { NavigationEnd, Router, RouterLink } from '@angular/router';
 import { ParagraphPipe } from '../../../pipes/paragraph.pipe';
 
 @Component({
   selector: 'app-realisation-user',
   standalone: true,
-  imports: [HeaderComponent, FooterComponent, FormsModule, NgFor, NgStyle, SpinnerComponent,DateFormatPipe, RouterLink,ParagraphPipe ],
+  imports: [HeaderComponent, FooterComponent, FormsModule, NgFor, NgStyle, SpinnerComponent,DateFormatPipe, RouterLink,ParagraphPipe],
   templateUrl: './realisation-user.component.html',
   styleUrl: './realisation-user.component.css'
 })
 export class RealisationUserComponent implements OnInit {
 
-  constructor(private realisationService: RealisationService){}
+  constructor(private realisationService: RealisationService, private router: Router){}
   ngOnInit(): void {
+     this.router.events.subscribe(event => {
+          if (event instanceof NavigationEnd) {
+            window.scrollTo(0, 0);
+          }
+          // window.scrollTo(0, 0);
+        });
     this.allRealisation();
   }
   loadingData : boolean =  false;

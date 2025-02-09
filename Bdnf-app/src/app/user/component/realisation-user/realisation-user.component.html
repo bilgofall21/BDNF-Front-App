@@ -18,7 +18,7 @@
 
       <div class="searchbar mb-5">
         <div class="d-flex justify-content-end">
-          <div class="input-group w-25 ">
+          <div class="input-group " id="mysearch">
             <input type="search" class="form-control rounded" placeholder="Rechercher" aria-label="Search"
               aria-describedby="search-addon" [(ngModel)]="searchRealisation" (input)="getArticlesPage()"   />
             </div>
@@ -42,7 +42,7 @@
 
               <div class="col-lg-4 col-md-6">
                 <div class="single-latest-news">
-                  <a href="single-news.html"><div class="latest-news-bg news-bg-1" [ngStyle]="{'background-image': 'url(' + getRealisationImage(realisa) + ')'}">
+                  <a [routerLink]="['/detail-realisation', realisa.uuid]"><div class="latest-news-bg news-bg-1" [ngStyle]="{'background-image': 'url(' + getRealisationImage(realisa) + ')'}">
 
                   </div></a>
                   <div class="news-text-box">
@@ -54,7 +54,7 @@
                     <p class="excerpt">{{realisa.description | paragraph: 250}}</p>
                   </div>
                   <div class="news-footer">
-                    <a [routerLink]="['/realisation', realisa.uuid]" class="read-more-btn text-decoration-none">read more <i class="bi bi-arrow-right-circle ms-2" ></i></a>
+                    <a [routerLink]="['/detail-realisation', realisa.uuid]" class="read-more-btn text-decoration-none">Voir plus <i class="bi bi-arrow-right-circle ms-2" ></i></a>
                   </div>
                 </div>
               </div>

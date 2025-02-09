@@ -1,6 +1,10 @@
+<app-header></app-header>
 <div class="container py-5">
   <div class="row align-items-center shadow-lg border-0 rounded-3 overflow-hidden bg-white p-4">
-    @if (dataRealisationData) {
+    @if (loadingData) {
+      <app-spinner></app-spinner>
+    }
+    @else if (dataRealisationData) {
       <div class="col-md-6 p-0">
         <!-- <img src="https://via.placeholder.com/800x400" class="img-fluid w-100 rounded-start" alt="Image de la réalisation" style="object-fit: cover; height: 100%; max-height: 450px; transition: transform 0.3s ease-in-out; border-radius: 10px;"> -->
         <img [src]="getRealisationImage(dataRealisationData)" class="img-fluid w-100 rounded-start" alt="Image de la réalisation" style="object-fit: cover; height: 100%; max-height: 450px; transition: transform 0.3s ease-in-out; border-radius: 10px;">
@@ -16,13 +20,16 @@
         </div>
       </div>
 
+    }@else{
+      <p class="text-center my-4">Réalisation indisponible pour le moment 😒.</p>
     }
+
   </div>
 
 <!-- Section Témoignages -->
 <div class="container mt-5">
   <h3 class="text-center mb-4  fw-bold">Témoignages</h3>
-  <div class="row justify-content-center">
+  <div class="row row-gap-4 justify-content-center">
     @for (temoignage of lastTwoTemoignage ; track temoignage) {
       <div class="col-md-6">
         <div class="card p-4 shadow-sm">
@@ -51,3 +58,4 @@
 </div>
 
 </div>
+<app-footer></app-footer>

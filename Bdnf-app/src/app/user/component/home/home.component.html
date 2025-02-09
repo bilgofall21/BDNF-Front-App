@@ -27,10 +27,10 @@
 
   <!-- section nos services -->
    @if (!loadingData) {
-     <section class="ftco-section" id="services-section">
+     <section class="ftco-section mb-4" id="services-section">
        <div class="container">
-         <div class="row ">
-          <div class="col-lg-8 offset-lg-2 text-center hhhh">
+         <div class="row mb-4 ">
+          <div class=" col-lg-8 offset-lg-2 text-center hhhh">
             <div class="section-title">
               <h3><span class="orange-text">Nos</span> Services</h3>
               <p>Découvrez nos services personnalisés pour propulser votre marque et atteindre vos objectifs de communication.</p>
@@ -85,7 +85,6 @@
                 <div class="">
                   <h2>Vous avez un projet en tête ?</h2>
                   <p class="text-white">Laissez-nous transformer vos idées en réalité. BDNF Marketing Solutions est votre partenaire pour une communication réussie. Contactez-nous pour commencer dès aujourd'hui !</p>
-                  <!-- <p class="mb-0"><a href="#" class="btn btn-white py-3 px-4">Contact me</a></p> -->
                   <a class="button-btn" (click)="navigateToLinkeDin()" target="_blank" > Contacter moi</a>
                 </div>
               </div>
@@ -128,7 +127,7 @@
 
                 <div class="col-lg-4 col-md-6">
                   <div class="single-latest-news">
-                    <a href="single-news.html"><div class="latest-news-bg news-bg-1" [ngStyle]="{'background-image': 'url(' + getRealisationImage(realisa) + ')'}">
+                    <a [routerLink]="['/detail-realisation', realisa.uuid]"><div class="latest-news-bg news-bg-1" [ngStyle]="{'background-image': 'url(' + getRealisationImage(realisa) + ')'}">
 
                     </div></a>
                     <div class="news-text-box">
@@ -137,7 +136,7 @@
 
                         <span class="date"><i class="fas fa-calendar"></i> {{realisa.created_at | dateFormat}}</span>
                       </p>
-                      <p class="excerpt">{{realisa.description | paragraph: 250}}</p>
+                      <p class="excerpt">{{realisa.description | paragraph: 150}}</p>
                     </div>
                     <div class="news-footer ">
                       <a [routerLink]="['/detail-realisation', realisa.uuid]" class="read-more-btn text-decoration-none">voir plus <i class="bi bi-arrow-right-circle ms-2" ></i></a>
@@ -166,8 +165,8 @@
                     <h4 class="mb-3 text-black fw-bold">BDNF Marketing Solutions </h4>
                     <h2 class="mb-5 display-6 ">S'abonner aux Newsletters &amp; Restez informer</h2>
                     <div class="position-relative mx-auto" >
-                        <input class="form-control border-2 border-light w-75 py-3 px-4 rounded-pill"  [(ngModel)]="email" type="text" placeholder="Votre email">
-                        <button type="submit" (click)="addNewsletter()" class="btn border-2 py-3 px-4 position-absolute rounded-pill text-white h-100" style="top: 0; right: 25%;">S'inscrire ici</button>
+                        <input class="form-control inputNewsletter border-2 border-light mb-4 py-3 px-4 rounded-pill"  [(ngModel)]="email" type="text" placeholder="Votre email">
+                        <button type="submit" (click)="addNewsletter()" class="btn button-contact border-2 py-3 px-4 rounded-pill text-white h-100" >S'inscrire ici</button>
                     </div>
                 </div>
                 <div class="col-md-12 col-lg-5">

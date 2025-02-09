@@ -1,6 +1,9 @@
 .banner img{
-  height: 70vh;
+  /* height: 70vh;
+  width: 100%; */
+  height: auto;
   width: 100%;
+  object-fit: cover;
 }
 
 .heading-section h2 {

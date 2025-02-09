@@ -9,7 +9,11 @@
 
 
 <section class="newArticle ">
-  @if (articleByIdData) {
+  @if (loadingData) {
+      <app-spinner></app-spinner>
+
+  }
+  @else if (articleByIdData) {
       <div class="container" id="newAricleContainer">
 
   <div class="articleTile">
@@ -37,6 +41,8 @@
   </div>
   <hr>
 </div>
+}@else{
+  <p class="text-center my-4">Détail article indisponible pour le moment 😒.</p>
 }
 </section>
 <section class="lastArticle my-4">
@@ -45,7 +51,7 @@
       <p>Articles Recents</p>
       <a [routerLink]="['/blog-user']"  >Voir tout</a>
     </div>
-    <div class="row">
+    <div class="row row-gap-4">
       @for (last of lastTreArticle ; track last) {
         <div class=" col-sm-12 col-md-4 col-lg-4" id="lastCard">
           <div class="card">
@@ -75,7 +81,7 @@
 <section class="Comment"></section>
 <section >
   <div class="container my-5 py-5">
-    <div class="row d-flex justify-content-center">
+    <div class="row  d-flex justify-content-center">
       <div class="col-md-12 col-lg-10 col-xl-10">
         <div class="card " id="commentStyle">
           <div style="max-height: 300px; overflow-y: auto;">

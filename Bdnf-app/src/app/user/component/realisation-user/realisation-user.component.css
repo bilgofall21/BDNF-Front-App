@@ -1,6 +1,9 @@
 .banner img{
-  height: 70vh;
+  /* height: 70vh;
+  width: 100%; */
+  height: auto;
   width: 100%;
+  object-fit: cover;
 }
 
 .heading-section h2 {
@@ -9,6 +12,8 @@
   color: #a12825;
   margin-top: 20px;
 }
+
+
 
 
 
@@ -100,3 +105,4 @@ a.read-more-btn {
 a.read-more-btn:hover {
   color: #a12825;
 }
+

@@ -11,13 +11,17 @@
 
 #connexion,
 #inscription {
-  margin-right: 200px;
+  margin: 0 auto;
+  width: 80%;
+  padding: 0px;
 }
 
 .row {
-  width: 100%;
+  /* width: 100%; */
+  /* background-color: rgb(255, 47, 234); */
   margin: 0 auto;
-  gap: 0;
+  /* width: 100%; */
+  /* gap: 0; */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
@@ -39,18 +43,37 @@
 }
 
 /* Responsive styles */
+@media (max-width: 1300px) {
+
+  #connexion,
+  #inscription {
+    margin-right: 200px;
+    /* background-color: royalblue; */
+  }
+  .row {
+    /* flex-direction: column; */
+    margin: 0 auto;
+  }
+}
 @media (max-width: 1200px) {
 
   #connexion,
   #inscription {
-    margin-right: 100px;
+    /* margin: 0 auto; */
+    /* background-color: royalblue; */
+  }
+  .row {
+    /* flex-direction: column; */
+    margin: 0 auto;
   }
 }
 
 @media (max-width: 992px) {
   .row {
-    flex-direction: column;
+    /* flex-direction: column; */
+    margin: 0 auto;
   }
+
 
   .row .login-wrap,
   .img img {
@@ -58,7 +81,7 @@
   }
 
   .img img {
-    height: auto;
+    /* height: auto; */
   }
 
   .inscription button {
@@ -70,7 +93,7 @@
 
   #connexion,
   #inscription {
-    margin-right: 50px;
+    /* margin-right: 50px; */
   }
 
   .inscription button {
@@ -79,10 +102,16 @@
 }
 
 @media (max-width: 740px) {
-  .row {
+  /* .row {
     flex-direction: column;
     padding: 0 15px;
-  }
+  } */
+   #connexion,
+#inscription {
+  margin: 0 auto;
+  width: 100%;
+  padding: 0px;
+}
 
   .row .login-wrap,
   .img img {
@@ -97,21 +126,43 @@
     width: 100%;
   }
 
-  #connexion,
-  #inscription {
-    margin-right: 0;
-    margin-bottom: 20px;
-  }
+
 }
 
 @media (max-width: 576px) {
 
+
+
+  .inscription button {
+    width: 100%;
+  }
+}
+@media (max-width: 800px) {
+
   #connexion,
   #inscription {
-    margin-right: 20px;
+
+  /* .row {
+    flex-direction: column;
+    padding: 0 15px;
+  } */
+
+  .row .login-wrap,
+  .img img {
+    border-radius: 10px;
+  }
+
+  .img img {
+    /* height: auto; */
   }
 
   .inscription button {
     width: 100%;
+  }
+
+  #connexion,
+  #inscription {
+    margin: 0 auto;
+    /* margin-bottom: 20px; */
   }
 }

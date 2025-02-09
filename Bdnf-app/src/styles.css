@@ -21,6 +21,7 @@
   --beigeColor : #E7DCD6;
 }
 
+
 .toast-success {
   background-color: var(--success)!important;
   color: #fff !important;
@@ -126,6 +127,22 @@ height: 20px;
 /* border-right: none !important; */
 }
 
+#mysearch{
+  width: 25%;
+  }
+
+@media screen and (max-width: 1175px) {
+  #mysearch{
+    width: 50%;
+    }
+}
+@media screen and (max-width: 750px) {
+  #mysearch{
+    width: 100%;
+    }
+}
+
+
 
 
 #pagination{
@@ -188,12 +205,12 @@ button:disabled {
 
 .section-title h3 {
   font-size: 40px;
-  position: relative;
+  /* position: relative; */
   font-weight: bold;
   padding-bottom: 10px;
 }
 
-.section-title h3:after {
+/* .section-title h3:after {
   position: absolute;
   content: '';
   left: 0px;
@@ -203,11 +220,11 @@ button:disabled {
   height: 2px;
   background-color: var(--redColor);
   margin: 0 auto;
-}
+} */
 
 .section-title p {
   font-size: 18px;
-  width: 530px;
+  /* width: 530px; */
   margin: 0 auto;
   color: #555;
   margin-top: 10px;

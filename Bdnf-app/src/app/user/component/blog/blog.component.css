@@ -91,6 +91,23 @@ width: 75%;
   padding: 60px;
 
 }
+@media screen and (max-width: 999px){
+  #newAricleContainer{
+    width: 100%;
+    /* background-color: var(--redColor); */
+    padding:30px;
+  }
+
+}
+@media screen and (max-width: 1175px){
+  #newAricleContainer{
+    width: 90%;
+    /* background-color: var(--redColor); */
+    padding:40px;
+  }
+
+}
+
 #newAricleContainer p{
  font-size: 17px;
  font-weight: 200;

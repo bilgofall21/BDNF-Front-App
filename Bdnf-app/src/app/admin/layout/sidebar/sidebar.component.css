@@ -1,5 +1,5 @@
 :root {
- 
+
   --redColor: #A12825;
   --beigeColor: #E7DCD6;
 }
@@ -83,7 +83,7 @@ body.dark {
 }
 
 .sidebar.close {
-  width: 60px;
+  width: 80px;
 }
 
 .sidebar .logo {

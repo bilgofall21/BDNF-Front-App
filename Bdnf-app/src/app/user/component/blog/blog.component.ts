@@ -11,11 +11,12 @@ import { DateFormatPipe } from "../../../pipes/date-format.pipe";
 import { ToastComponent } from '../../../anmation/toast/toast.component';
 import { TextEditorPipe } from '../../../pipes/text-editor.pipe';
 import { subscribe } from 'diagnostics_channel';
+import { SpinnerComponent } from '../../../anmation/spinner/spinner.component';
 
 @Component({
   selector: 'app-blog',
   standalone: true,
-  imports: [HeaderComponent, FooterComponent, FormsModule, NgIf, CommonModule, DateFormatPipe, RouterLink, ReactiveFormsModule,ToastComponent, TextEditorPipe],
+  imports: [HeaderComponent, FooterComponent, FormsModule, NgIf, CommonModule, DateFormatPipe, RouterLink, ReactiveFormsModule,ToastComponent, TextEditorPipe, SpinnerComponent],
   templateUrl: './blog.component.html',
   styleUrl: './blog.component.css'
 })
@@ -50,7 +51,7 @@ export class BlogComponent implements OnInit{
   }
 
   @ViewChild('ToastComponent') toast?: ToastComponent;
-
+  loadingData : boolean =  false;
   allArticleData: any[] = [];
   lastTreArticle: any[] = [];
 allArticle(): void{
@@ -71,8 +72,11 @@ categoForm! : FormGroup;
 
 articleById(): void{
   this.ariticle_uuid = this.activeRoute.snapshot.params['uuid']
+  this.loadingData = true;
   this.articleService.getArticleById(this.ariticle_uuid).subscribe((data:any) =>{
+    this.loadingData = false;
     this.articleByIdData = data.data
+
 
     console.log('💕💕💕💕💕💕💕💕💕💕💕💕💕💕💕💕', this.articleService)
     this.showComment();

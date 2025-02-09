@@ -42,6 +42,7 @@
     line-height: 36px;
   }
 
+
   .hero p {
     font-size: 18px;
     line-height: 24px;
@@ -242,11 +243,11 @@ a.button-btn {
 @media screen and (max-width: 532px) {
 .home-container {
  /* margin: 0 auto; */
-
-
 }
+
+
+
 .ftco-section .services {
-  background-color: #dad6e7;
   margin: 0 auto;
 }
 
@@ -256,6 +257,7 @@ a.button-btn {
     margin-top: -90px;
   }
 }
+
 
 /* style realisation */
 
@@ -353,6 +355,14 @@ a.read-more-btn:hover {
 #contactMe {
   background-color: white;
   color: #a12825;
+}
+.inputNewsletter{
+  width: 100%;
+}
+.button-contact{
+  position: absolute;
+  top: 0;
+  right: 0%;
 }
 
 

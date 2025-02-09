@@ -5,6 +5,7 @@ import { ServiceService } from '../../../services/services-service/service.servi
 import { FormsModule } from '@angular/forms';
 import { NgFor } from '@angular/common';
 import { SpinnerComponent } from '../../../anmation/spinner/spinner.component';
+import { NavigationEnd, Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-service',
@@ -14,8 +15,14 @@ import { SpinnerComponent } from '../../../anmation/spinner/spinner.component';
   styleUrl: './user-service.component.css'
 })
 export class UserServiceComponent implements OnInit {
-  constructor(private serviceService: ServiceService,){}
+  constructor(private serviceService: ServiceService,private router: Router){}
   ngOnInit(): void {
+     this.router.events.subscribe(event => {
+              if (event instanceof NavigationEnd) {
+                window.scrollTo(0, 0);
+              }
+              // window.scrollTo(0, 0);
+            });
     this.allService();
   }
   dataService: any[]= [];
