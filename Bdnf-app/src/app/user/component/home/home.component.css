@@ -36,6 +36,12 @@
   animation: up-down 2s ease-in-out infinite alternate-reverse both;
 }
 
+.img-objectfif {
+  height: 30px;
+  width: 30px;
+  object-fit: cover;
+}
+
 @media (max-width: 640px) {
   .hero h1 {
     font-size: 28px;
@@ -192,6 +198,9 @@
   background-color: var(--redColor);
   padding: 8vh 4vh;
 
+}
+.icon-about {
+  color: var(--redColor);
 }
 
 .ftco-hirem h2 {

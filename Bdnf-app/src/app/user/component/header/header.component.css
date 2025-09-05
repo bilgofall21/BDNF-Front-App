@@ -12,7 +12,7 @@ header{
   font-size: 22px; */
 }
 .navbar-logo img{
- height: 100px;
+ height: 80px;
 }
 .nav-item.active{
   border-bottom: 2px solid var(--redColor);

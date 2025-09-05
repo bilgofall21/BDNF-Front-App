@@ -6,43 +6,20 @@
 
   <div class="container-xxl py-5">
     <div class="container">
-        <div class="row g-4">
+        <div class="row g-2">
+          @for ( service of last4Service ; track service) {
             <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s" style="visibility: visible; animation-delay: 0.1s; animation-name: fadeInUp;">
                 <div class="service-item text-center pt-3 rounded-5">
-                    <div class="p-4">
+                    <div class="p-4 service">
                         <i class="fa fa-3x fa-graduation-cap text-primary mb-4"></i>
-                        <h5 class="mb-3">Skilled Instructors</h5>
-                        <p>Diam elitr kasd sed at elitr sed ipsum justo dolor sed clita amet diam</p>
+                        <h5 class="mb-3">{{service.nomService}}</h5>
+                        <p>{{service.descriptionService}}</p>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.3s" style="visibility: visible; animation-delay: 0.3s; animation-name: fadeInUp;">
-                <div class="service-item text-center pt-3 rounded-5">
-                    <div class="p-4">
-                        <i class="fa fa-3x fa-globe text-primary mb-4"></i>
-                        <h5 class="mb-3">Online Classes</h5>
-                        <p>Diam elitr kasd sed at elitr sed ipsum justo dolor sed clita amet diam</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.5s" style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInUp;">
-                <div class="service-item text-center pt-3 rounded-5">
-                    <div class="p-4">
-                        <i class="fa fa-3x fa-home text-primary mb-4"></i>
-                        <h5 class="mb-3">Home Projects</h5>
-                        <p>Diam elitr kasd sed at elitr sed ipsum justo dolor sed clita amet diam</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.7s" style="visibility: visible; animation-delay: 0.7s; animation-name: fadeInUp;">
-                <div class="service-item text-center pt-3 rounded-5">
-                    <div class="p-4">
-                        <i class="fa fa-3x fa-book-open text-primary mb-4"></i>
-                        <h5 class="mb-3">Book Library</h5>
-                        <p>Diam elitr kasd sed at elitr sed ipsum justo dolor sed clita amet diam</p>
-                    </div>
-                </div>
-            </div>
+
+          }
+
         </div>
     </div>
 </div>
@@ -58,9 +35,23 @@
           </div>
           <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.3s" style="visibility: visible; animation-delay: 0.3s; animation-name: fadeInUp;">
               <h6 class="section-title fw-bold  text-start  pe-3">A propos de nous !</h6>
-              <h2 class="mb-3">Bienvenue chez  BDNF Marketing Solutions</h2>
-              <p class="mb-3">BDNF Marketing Solutions est une entreprise individuelle dédiée à aider les entreprises et les particuliers à gérer leur communication, de la conception à la mise en œuvre de leur stratégie. J'offre une gamme de services, allant de la gestion des réseaux sociaux et de la création de contenu à l'analyse de données et aux campagnes publicitaires ciblées.</p>
-              <p class="mb-3">Ma passion est de voir chaque entreprise atteindre ses objectifs en maximisant sa visibilité et en optimisant son retour sur investissement. Avec une approche personnalisée et axée sur les résultats, BDNF Marketing Solutions est votre partenaire idéal pour réussir dans le paysage marketing moderne. Ensemble, faisons briller votre entreprise!</p>
+                <h2 class="mb-3">Bienvenue chez <span class="tite-about">Teranga Com</span><br> L’hospitalité au cœur de votre
+                  communication</h2>
+                <p class="mb-3">Je suis Ndeye Diama Niang, fondatrice de Teranga Com, une entreprise individuelle spécialisée dans le
+                  marketing et la
+                  communication.
+                  Ma mission : vous accompagner dans la création et la mise en valeur de votre image, avec une approche humaine et sur
+                  mesure.</p>
+
+                <h3><span class="orange-text"> <img src="/assets/image/objectif.png" class="img-fluid img-objectfif" alt=""> </span> Ce que je fais pour vous :</h3>
+                <ul class="list-unstyled my-4 gap-4">
+                  <li class="list-unstyle"><i class="bi bi-bullseye  me-3 icon-about"></i>Élaboration de stratégies marketing adaptées à
+                    vos objectifs</li>
+                  <li><i class="bi bi-people-fill  me-3 icon-about "></i>Gestion et animation de vos réseaux sociaux</li>
+                  <li><i class="bi bi-brush  me-3 icon-about"></i>Création de contenus visuels et textuels impactants</li>
+                  <li><i class="bi bi-megaphone  me-3 icon-about"></i>Campagnes publicitaires ciblées</li>
+                  <li><i class="bi bi-graph-up-arrow  me-3 icon-about"></i>Conseil et suivi pour optimiser vos résultats</li>
+                </ul>
               <!-- <div class="row gy-2 gx-4 mb-4">
                   <div class="col-sm-6">
                       <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>Skilled Instructors</p>
@@ -81,6 +72,15 @@
                       <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>International Certificate</p>
                   </div>
               </div> -->
+          </div>
+          <!-- CARD -->
+          <div class="service-item text-center pt-3 rounded-2">
+            <div class="p-4">
+              <i class="fa fa-3x fa-graduation-cap text-primary mb-4"></i>
+              <p>Inspirée par les valeurs de la teranga – hospitalité, écoute et partage – je mets mon expertise et ma passion au service
+              de votre réussite</p>
+              <h4>Votre image, ma mission.</h4>
+            </div>
           </div>
       </div>
   </div>
