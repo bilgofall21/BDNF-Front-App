@@ -52,8 +52,8 @@ articleForm!: FormGroup;
   this.dataCategorie = data.data
   // this.checkLoadingStatus();
   // this.loadingData = false;
-  console.log('voir datacategorie✅✅', data)
-  console.log('voir datacategorie✅✅', this.dataCategorie)
+  // //console.log('voir datacategorie✅✅', data)
+  // //console.log('voir datacategorie✅✅', this.dataCategorie)
     })
   }
 
@@ -62,7 +62,7 @@ articleForm!: FormGroup;
     const uuidArtice = this.activeRoute.snapshot.params['uuid'];
     this.articleService.getArticleById(uuidArtice).subscribe((response: any) =>{
       this.onlyArticleData = response.data;
-      console.log('voir my articl ✅✅', this.onlyArticleData)
+      // //console.log('voir my articl ✅✅', this.onlyArticleData)
 
     })
   }
@@ -71,23 +71,23 @@ onlyCommentaireData: any[]= [];
     const uuidArtice = this.activeRoute.snapshot.params['uuid'];
     this.commentaireService.getCommentaire(uuidArtice).subscribe((response: any) =>{
       this.onlyCommentaireData = response.data;
-      console.log('voir mes commentaires����', this.onlyCommentaireData)
+      // //console.log('voir mes commentaires����', this.onlyCommentaireData)
   })
 }
 comentSelected: any;
 detailComment(comment: any): void {
-  console.log('😒😒😒😒😒😒😒😒😒')
+  //console.log('😒😒😒😒😒😒😒😒😒')
 this.comentSelected = comment;
 }
 
 articleSelected: any;
   detailArticle(article: any): void {
-    console.log('������������������')
+    //console.log('������������������')
 this.articleSelected = article;
 }
 
 supprimerComment(id: any) {
-  console.log('Demande de confirmation pour supprimer le service');
+  //console.log('Demande de confirmation pour supprimer le service');
   Swal.fire({
     title: "Voulez-vous vraiment supprimer ce commentaire?",
     icon: "warning",
@@ -100,11 +100,11 @@ supprimerComment(id: any) {
     color: '#ffff',
     background: '#E7DCD6'
   }).then((result) => {
-    console.log('Résultat de l\'alerte:', result);
+    //console.log('Résultat de l\'alerte:', result);
     if (result.isConfirmed) {
-      console.log('Suppression confirmée');
+      //console.log('Suppression confirmée');
       this.commentaireService.deleteCommentaire(id).subscribe((response: any) => {
-        console.log('Réponse de la suppression:', response);
+        //console.log('Réponse de la suppression:', response);
         this.toastrService.success('Commentaire Supprimé avec succès');
         this.getOnlycommentaire();
       },
@@ -113,7 +113,7 @@ supprimerComment(id: any) {
         this.toastrService.error('Erreur lors de la suppression de ce commentaire');
       });
     } else {
-      console.log('Suppression annulée');
+      //console.log('Suppression annulée');
       this.toastrService.warning('Suppression annulée');
     }
   }).catch((error) => {
@@ -123,7 +123,7 @@ supprimerComment(id: any) {
 
 
 supprimerArticle(id: any) {
-  console.log('Demande de confirmation pour supprimer le service');
+  //console.log('Demande de confirmation pour supprimer le service');
   Swal.fire({
     title: "Voulez-vous vraiment supprimer cette realistation?",
     icon: "warning",
@@ -136,11 +136,11 @@ supprimerArticle(id: any) {
     color: '#ffff',
     background: '#E7DCD6'
   }).then((result) => {
-    console.log('Résultat de l\'alerte:', result);
+    //console.log('Résultat de l\'alerte:', result);
     if (result.isConfirmed) {
-      console.log('Suppression confirmée');
+      //console.log('Suppression confirmée');
       this.articleService.delateArice(id).subscribe((response: any) => {
-        console.log('Réponse de la suppression:', response);
+        //console.log('Réponse de la suppression:', response);
         // this.toastrService.success('Article Supprimé avec succès');
         this.onlyArticleData = null;
         this.articleSupprimeMessage = "L'article a été supprimé avec succès.";
@@ -151,7 +151,7 @@ supprimerArticle(id: any) {
         this.toastrService.error('Erreur lors de la suppression de cette article');
       });
     } else {
-      console.log('Suppression annulée');
+      //console.log('Suppression annulée');
       this.toastrService.warning('Suppression annulée');
     }
   }).catch((error) => {
@@ -162,7 +162,7 @@ supprimerArticle(id: any) {
 selectedFile: File | null = null;
 onFileSelected(event: any) {
   this.selectedFile = event.target.files[0];
-  console.log('Fichier sélectionné :', this.selectedFile);
+  //console.log('Fichier sélectionné :', this.selectedFile);
 }
 
 loadRealisation(realisation: any){
@@ -188,8 +188,8 @@ modifierAricle(){
   ).then(confirmed =>{
     if(confirmed){
       this.articleService.updateArticle(formData, this.elementSelectionner).subscribe((response : any) =>{
-        console.log('step uuid', this.elementSelectionner)
-        console.log('stepp1', response)
+        //console.log('step uuid', this.elementSelectionner)
+        //console.log('stepp1', response)
         this.getOnlyArticle();
         this.toastrService.success('article modifié avec succès')
         // this.allArticle();

@@ -50,7 +50,7 @@ constructor(private realisationService : RealisationService, private fb: FormBui
 
 onFileSelected(event: any) {
   this.selectedFile = event.target.files[0];
-  console.log('Fichier sélectionné :', this.selectedFile);
+  //console.log('Fichier sélectionné :', this.selectedFile);
 }
 
  selectedFile: File | null = null;
@@ -59,7 +59,7 @@ onFileSelected(event: any) {
   const file = event.target.files[0];
   if (file) {
     this.selectedFile = file;
-    console.log('Fichier sélectionné : ', this.selectedFile);
+    //console.log('Fichier sélectionné : ', this.selectedFile);
   } else {
     console.error('Aucun fichier sélectionné');
   }
@@ -76,7 +76,7 @@ allRealisation(): void {
   this.realisationService.gatAllRealisation().subscribe((reasponse: any) =>{
     this.dataRealisation = reasponse.data;
     this.loadinData = false;
-    console.log("����Rea ❤️❤️❤️ ",this.dataRealisation)
+    //console.log("����Rea ❤️❤️❤️ ",this.dataRealisation)
 
   })
 }
@@ -98,17 +98,17 @@ ajoutRealisation(){
     if(confirmed){
       try {
         this.realisationService.addRealistion(newrea).subscribe((response : any)=>{
-          console.log('voir reposeback✅✅', response);
+          //console.log('voir reposeback✅✅', response);
           this.toastrService.success('Réalisation ajoutée avec succès')
           this.realisationForm.reset();
 
           if(this.selectedFile){
             const formData = new FormData();
             formData.append('image', this.selectedFile);
-            console.log('Contenu de FormData avant l\'envoi :', formData.get('image'));
-            console.log('Contenu de FormData avant l\'envoi :', formData);
+            //console.log('Contenu de FormData avant l\'envoi :', formData.get('image'));
+            //console.log('Contenu de FormData avant l\'envoi :', formData);
             this.realisationService.addImageRealisation(response.data.uuid, formData).subscribe((respons)=>{
-              console.log('Image ajoutée avec succes', respons)
+              //console.log('Image ajoutée avec succes', respons)
               this.allRealisation();
             },(error) =>{
               console.error('Erreur lors de l\'ajout de l\'image', error)
@@ -162,7 +162,7 @@ modifierRealisa() {
       if (confirmed) {
         this.realisationService.updateRealisation(formData, this.elementSelectionner).subscribe(
           (response: any) => {
-            console.log('Réalisation modifiée avec succès', response);
+            //console.log('Réalisation modifiée avec succès', response);
             this.toastrService.success('Réalisation modifiée avec succès');
             this.allRealisation();
             this.realisationForm.reset();
@@ -189,7 +189,7 @@ annuler(): void {
 
 
 supprimerRealisation(id: any) {
-  console.log('Demande de confirmation pour supprimer le service');
+  //console.log('Demande de confirmation pour supprimer le service');
   Swal.fire({
     title: "Voulez-vous vraiment supprimer cette realistation?",
     icon: "warning",
@@ -202,11 +202,11 @@ supprimerRealisation(id: any) {
     color: '#ffff',
     background: '#E7DCD6'
   }).then((result) => {
-    console.log('Résultat de l\'alerte:', result);
+    //console.log('Résultat de l\'alerte:', result);
     if (result.isConfirmed) {
-      console.log('Suppression confirmée');
+      //console.log('Suppression confirmée');
       this.realisationService.delatRealisation(id).subscribe((response: any) => {
-        console.log('Réponse de la suppression:', response);
+        //console.log('Réponse de la suppression:', response);
         this.toastrService.success('Realisation Supprimé avec succès');
         this.allRealisation();
       },
@@ -215,7 +215,7 @@ supprimerRealisation(id: any) {
         this.toastrService.error('Erreur lors de la suppression de cette realisation');
       });
     } else {
-      console.log('Suppression annulée');
+      //console.log('Suppression annulée');
       this.toastrService.warning('Suppression annulée');
     }
   }).catch((error) => {

@@ -36,7 +36,7 @@ export class NewsletterComponent implements OnInit {
 
   onFileSelected(event: any) {
     this.selectedFile = event.target.files[0];
-    console.log('Fichier sélectionné :', this.selectedFile);
+    //console.log('Fichier sélectionné :', this.selectedFile);
   }
 
    selectedFile: File | null = null;
@@ -57,7 +57,7 @@ export class NewsletterComponent implements OnInit {
       email: this.newsletterForm.get('email')?.value,
     }
     this.newsLetterService.addNewsletter(newResonse).subscribe((response: any) =>{
-      console.log('voir reposeback����', response)
+      //console.log('voir reposeback����', response)
       this.newsletterForm.reset();
       if(response.status!== 200) {
         throw new Error('Ajout non realise')
@@ -71,7 +71,7 @@ export class NewsletterComponent implements OnInit {
     this.newsLetterService.getAllNewsLetter().subscribe((respose: any)=> {
       this.allNewsletterData = respose.data;
       this.loadinData = false;
-      console.log('voir mes news',this.allNewsletterData);
+      //console.log('voir mes news',this.allNewsletterData);
     })
   }
 

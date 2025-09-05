@@ -25,28 +25,28 @@ export class HomeAdminComponent {
   dataService: any[] = []
   allServiice(): void {
     this.serviceService.allService().subscribe((response) => {
-      console.log("All services", response.data);
+      //console.log("All services", response.data);
       this.dataService = response.data;
     })
   }
   dataRealisation: any[] = []
   allrealosation(): void {
     this.realisationService.gatAllRealisation().subscribe((response) => {
-      console.log("All realisation", response.data);
+      //console.log("All realisation", response.data);
       this.dataRealisation = response.data;
     })
   }
   dataArticles: any[] = []
   allArticle(): void {
     this.articleServicxe.allArticle().subscribe((response) => {
-      console.log("All article", response.data);
+      //console.log("All article", response.data);
       this.dataArticles = response.data;
     })
   }
   dataNewsletter: any[] = []
   allNewsletter(): void {
     this.newsletterService.getAllNewsLetter().subscribe((response) => {
-      console.log("All newsletter", response.data);
+      //console.log("All newsletter", response.data);
       this.dataNewsletter = response.data;
     })
   }

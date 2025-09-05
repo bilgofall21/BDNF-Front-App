@@ -55,7 +55,7 @@ export class HomeComponent implements OnInit {
       email: this.email
     }
     this.newsletterService.addNewsletter(myEmail).subscribe((response: any)=>{
-      console.log("voir le nws", response);
+      //console.log("voir le nws", response);
       this.toast?.showToast('Inscription aux newsletter réussi')
 
       this.email = '';
@@ -78,12 +78,12 @@ getRealisationImage(realisa: any) {
     this.temoignageService.allTemoignage().subscribe((response: any) => {
       this.loadingData = false;
       this.temoignageData = response.data;
-      console.log("All temoignage", this.temoignageData);
+      //console.log("All temoignage", this.temoignageData);
       const lastTemoignage = this.temoignageData.sort((a: {created_at: string | number | Date}, b: {created_at: string | number | Date}) =>{
         return new Date(b.created_at).getTime() - new Date(a.created_at).getTime();
       })
       this. lastFourTemoignage = lastTemoignage.slice(0, 4);
-      console.log("Liste des 4 temoignages", this. lastFourTemoignage)
+      //console.log("Liste des 4 temoignages", this. lastFourTemoignage)
 
     })
   }
@@ -92,12 +92,12 @@ getRealisationImage(realisa: any) {
     this.serviceService.allService().subscribe((data: any)=> {
       this.loadingData = false;
       this.servicaData = data.data;
-      console.log("✅✅Service",this.servicaData)
+      //console.log("✅✅Service",this.servicaData)
       const lastService = this.servicaData.sort((a: {created_at: string | number | Date}, b: {created_at: string | number | Date}) =>{
         return new Date(b.created_at).getTime() - new Date(a.created_at).getTime();
       })
       this.lastFourService = lastService.slice(0, 3)
-      console.log("😁😁😁",this.lastFourService)
+      //console.log("😁😁😁",this.lastFourService)
     })
   }
   dataRealisation: any[] = [];
@@ -127,7 +127,7 @@ getRealisationImage(realisa: any) {
   //     return new Date(b.created_at).getTime() - new Date(a.created_at).getTime();
   //   })
   //   this.lastFourArticel = lastArticle.slice(0, 4)
-  //   console.log('step article 🤣🤣', this.lastFourArticel)
+  //   //console.log('step article 🤣🤣', this.lastFourArticel)
   // })
   // }
   allArticle(): void {
@@ -142,14 +142,14 @@ getRealisationImage(realisa: any) {
       });
       this.lastFourArticel = lastArticle.slice(0, 2);
       this.loadingData = false;
-      console.log('step article 🤣🤣', this.lastFourArticel);
+      //console.log('step article 🤣🤣', this.lastFourArticel);
     });
   }
 
   letsFo(id: any, event: Event): void {
     event.preventDefault();
     this.router.navigate(['/blog', id]);
-    console.log("✅✅✅")
+    //console.log("✅✅✅")
   }
 
 }

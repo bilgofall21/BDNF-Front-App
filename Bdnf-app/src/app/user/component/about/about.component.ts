@@ -34,7 +34,7 @@ export class AboutComponent implements OnInit {
       this.dataService = response.data;
       this.last4Service = this.dataService.slice(-4);
       this.loadingData = false;
-      console.log('dataService', this.dataService);
+      //console.log('dataService', this.dataService);
     });
   }
 }

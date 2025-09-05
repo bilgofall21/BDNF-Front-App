@@ -32,7 +32,7 @@ export class UserServiceComponent implements OnInit {
     this.serviceService.allService().subscribe((response)=> {
       this.dataService = response.data;
       this.loadingData = false;
-      console.log('dataService', this.dataService);
+      //console.log('dataService', this.dataService);
     })
   }
 

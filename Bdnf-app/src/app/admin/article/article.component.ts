@@ -56,7 +56,7 @@ constructor(
   selectedFile: File | null = null;
   onFileSelected(event: any) {
     this.selectedFile = event.target.files[0];
-    console.log('Fichier sélectionné :', this.selectedFile);
+    // //console.log('Fichier sélectionné :', this.selectedFile);
   }
 
 
@@ -66,8 +66,8 @@ allCtagoreie(): void{
 this.dataCategorie = data.data
 // this.checkLoadingStatus();
 this.loadingData = false;
-console.log('voir datacategorie✅✅', data)
-console.log('voir datacategorie✅✅', this.dataCategorie)
+// //console.log('voir datacategorie✅✅', data)
+// //console.log('voir datacategorie✅✅', this.dataCategorie)
   })
 }
 
@@ -83,10 +83,10 @@ ajouterCategorie(){
   }
   try {
     this.categorieService.addCategorie(newCatego).subscribe((response : any) =>{
-      console.log('Service ajouté avec succès', response);
+      // //console.log('Service ajouté avec succès', response);
       this.allCtagoreie();
       this.nomCategorie = '';
-      console.log('voir ajout',newCatego )
+      // //console.log('voir ajout',newCatego )
 
       // this.showAllService();
     })
@@ -103,7 +103,7 @@ ajouterArticle(): void {
     categorie_id: this.articleForm.value.categorie_id
   };
 
-  console.log('valeur categorie_id', this.articleForm.value.categorie_id);
+  // //console.log('valeur categorie_id', this.articleForm.value.categorie_id);
 try {
   // Affichage de la confirmation via le service de notification
   this.notificationService.confirmAlert(
@@ -113,7 +113,7 @@ try {
       // Envoyer les données de l'article via le service HTTP
       this.articleService.addArticle(newArticle).subscribe(
         (response) => {
-          console.log("Réponse du serveur: ✅✅✅✅✅✅", response);
+          // //console.log("Réponse du serveur: ✅✅✅✅✅✅", response);
 
           // Si la réponse n'est pas de succès, lever une erreur
           if (response.status !== 200) {
@@ -131,7 +131,7 @@ try {
             formData.append('image', this.selectedFile);
             this.articleService.addArticleImag(response.data.uuid, formData).subscribe(
               (response: any) => {
-                console.log('ajout image response 💕💕💕💕', response);
+                // //console.log('ajout image response 💕💕💕💕', response);
                 this.allArticle(); // Mise à jour après ajout de l'image
               },
               (error) => {
@@ -174,7 +174,7 @@ allArticle(): void {
         this.loadingData = false;
         return article;
       });
-      console.log('voir tous les articles', this.dataArticle);
+      // //console.log('voir tous les articles', this.dataArticle);
     });
   } catch (error) {
     console.error('Erreur lors de la récupération des articles', error);
@@ -205,8 +205,8 @@ modifierAricle(){
       ).then(confirmed =>{
         if(confirmed){
           this.articleService.updateArticle(formData, this.elementSelectionner).subscribe((response : any) =>{
-            console.log('step uuid', this.elementSelectionner)
-            console.log('stepp1', response)
+            // //console.log('step uuid', this.elementSelectionner)
+            // //console.log('stepp1', response)
             this.toastrService.success('Realisation modifié avec succès')
             this.allArticle();
             this.articleForm.reset();
@@ -232,20 +232,20 @@ modifierCatego(){
       const updateCategorie = {
         nomCategorie: this.nomCategorie
       }
-      console.log('fffffffffffff😒😒😒😒', updateCategorie)
-      console.log('step uuid 😒😒😒😒😒 ', this.categoSelectionner)
+      // //console.log('fffffffffffff😒😒😒😒', updateCategorie)
+      // //console.log('step uuid 😒😒😒😒😒 ', this.categoSelectionner)
       this.notificationService.confirmAlert('voulez-vous vraiment modifier cette categorie'
       ).then(confirmed =>{
         if(confirmed){
           this.categorieService.updateCategorie(updateCategorie, this.categoSelectionner).subscribe((response : any) =>{
 
-            console.log('stepp1 😂😂😂😂', response)
+            // //console.log('stepp1 😂😂😂😂', response)
             this.toastrService.success('Categorie modifié avec succès')
           this.allCtagoreie();
             this.nomCategorie = '';
           },
           (error) =>{
-            console.log('❌❌❌❌❌❌')
+            // //console.log('❌❌❌❌❌❌')
 
             console.error('Erreur lors de la modification de cette Categorie',error)
             this.toastrService.error('Erreur lors de la modification de cette categorie')
@@ -291,7 +291,7 @@ annuler(): void {
 
 
 supprimerCategorie(id: any) {
-  console.log('Demande de confirmation pour supprimer le service');
+  // //console.log('Demande de confirmation pour supprimer le service');
   Swal.fire({
     title: "Voulez-vous vraiment supprimer cette catégirie?",
     icon: "warning",
@@ -304,11 +304,11 @@ supprimerCategorie(id: any) {
     color: '#ffff',
     background: '#E7DCD6'
   }).then((result) => {
-    console.log('Résultat de l\'alerte:', result);
+    // //console.log('Résultat de l\'alerte:', result);
     if (result.isConfirmed) {
-      console.log('Suppression confirmée');
+      // //console.log('Suppression confirmée');
       this.categorieService.deleteCategorie(id).subscribe((response: any) => {
-        console.log('Réponse de la suppression:', response);
+        // //console.log('Réponse de la suppression:', response);
         this.toastrService.success('Catégorie Supprimé avec succès');
         this.allCtagoreie();
       },
@@ -317,7 +317,7 @@ supprimerCategorie(id: any) {
         this.toastrService.error('Erreur lors de la suppression de cette rcatégorie');
       });
     } else {
-      console.log('Suppression annulée');
+      // //console.log('Suppression annulée');
       this.toastrService.warning('Suppression annulée');
     }
   }).catch((error) => {

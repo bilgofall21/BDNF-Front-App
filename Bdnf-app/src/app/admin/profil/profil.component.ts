@@ -53,7 +53,7 @@ dataProfil: any= [];
     this.authService.getProfil().subscribe((data : any) =>{
       this.dataProfil = data
       this.profilId = data.id
-      console.log('✅✅✅', this.dataProfil)
+      //console.log('✅✅✅', this.dataProfil)
     })
   }
 
@@ -74,7 +74,7 @@ dataProfil: any= [];
 
     // Pour déboguer les valeurs de FormData
     for (let [key, value] of formDataEntries.entries()) {
-      console.log(`${key}:`, value);
+      //console.log(`${key}:`, value);
   }
    const newProfil = {
       prenom: this.registerProfil.prenom,
@@ -86,7 +86,7 @@ dataProfil: any= [];
     // Appeler le service pour mettre à jour le profil
     this.authService.updateProfil(newProfil).subscribe({
       next: (response) => {
-        console.log('Profil mis à jour avec succès', response);
+        //console.log('Profil mis à jour avec succès', response);
       },
       error: (error) => {
         console.error('Erreur lors de la mise à jour du profil', error);

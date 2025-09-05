@@ -29,7 +29,7 @@ export class ServiceService {
   }
 
   allService(): Observable<any>{
-    console.log('allService HHHHHHHHHHHHHHHHHHHHHHHH');
+    //console.log('allService HHHHHHHHHHHHHHHHHHHHHHHH');
     const headers = this.getHeaders();
     return this.http.get<any[]>(`${this.apiUrl}/get/service/all`, { headers });
   }

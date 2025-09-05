@@ -6,20 +6,20 @@ import { Observable } from 'rxjs';
 export class TokenInterceptorService implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    console.log("Interceptor appelé");
+    //console.log("Interceptor appelé");
 
     const token = localStorage.getItem('access_token');
     if (token) {
-      console.log("Token trouvé:", token);
+      //console.log("Token trouvé:", token);
       const clonedReq = req.clone({
         setHeaders: {
           Authorization: `Bearer ${token}`
         }
       });
-      console.log("Requête clonée avec en-têtes:", clonedReq.headers.keys());
+      //console.log("Requête clonée avec en-têtes:", clonedReq.headers.keys());
       return next.handle(clonedReq);
     } else {
-      console.log("Aucun token trouvé");
+      //console.log("Aucun token trouvé");
       return next.handle(req);
     }
   }

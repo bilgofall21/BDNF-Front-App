@@ -16,7 +16,7 @@ export class AuthService {
 private baseUrl = 'https://bdnf-api.terangacode.com/api';
 
   registerAdmin( registerData: any): Observable<any>{
-    console.log('😊😊😊')
+    //console.log('😊😊😊')
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
 return this.http.post<any>(`${this.baseUrl}/register`, registerData)
   }

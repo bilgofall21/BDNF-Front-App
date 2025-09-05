@@ -35,7 +35,7 @@ showAllTemoignage(){
   this.temoignageService.allTemoignage().subscribe((data: any) =>{
 this.temoignageData = data.data
 this.loadinData = false;
-console.log( '❤️❤️❤️❤️❤️❤️ ', this.temoignageData)
+//console.log( '❤️❤️❤️❤️❤️❤️ ', this.temoignageData)
   })
 }
 
@@ -50,7 +50,7 @@ ajouterTemoignage(): void{
     if(confirmed){
       this.temoignageService.addTemoignage(newTemoignage).subscribe((data: any) => {
         this.toastrService.success('Témoignage ajouté avec succée')
-        console.log("temignega ajoute",data);
+        //console.log("temignega ajoute",data);
         this.showAllTemoignage();
         this.nomClient = '';
         this.contenue  = '';
@@ -86,7 +86,7 @@ supprimerTemoignage(uuid: any){
     if(confirmed){
       this.temoignageService.deleteTemoignage(uuid).subscribe((response : any) =>{
         this.toastrService.success('Témoignage supprimé avec succée')
-        console.log("voir element supprimer", response)
+        //console.log("voir element supprimer", response)
         this.showAllTemoignage();
       },
       (error) =>{
@@ -118,7 +118,7 @@ loadTemoignage(temoignage: any){
             if(confirmed){
               this.temoignageService.updateTemoignage(updatedData, this.elementSelectionner).subscribe((response : any) =>{
                 this.toastrService.success('Témoignage modifié avec succès')
-                console.log("voir element modifie", response);
+                //console.log("voir element modifie", response);
                 this.showAllTemoignage();
               },
               (error) =>{

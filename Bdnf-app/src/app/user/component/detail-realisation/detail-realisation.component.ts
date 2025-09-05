@@ -37,10 +37,10 @@ export class DetailRealisationComponent implements OnInit {
   realisation_uuid : any;
   gatRealisationById(): void{
     this.realisation_uuid =  this.activeRoute.snapshot.params['uuid'];
-    console.log('realisation uuid', this.realisation_uuid);
+    //console.log('realisation uuid', this.realisation_uuid);
     this.loadingData = true;
     this.realisationService.getRealisationById( this.realisation_uuid).subscribe((response: any)=>{
-      console.log('voir la realisation', response);
+      //console.log('voir la realisation', response);
       this.loadingData = false;
       this.dataRealisationData = response.data;
       this.dataRealisationData = response.data;
@@ -61,12 +61,12 @@ allTemoignage(): void {
  this.temoignageService.allTemoignage().subscribe((response: any) => {
   //  this.loadingData = false;
    this.temoignageData = response.data;
-   console.log("All temoignage", this.temoignageData);
+   //console.log("All temoignage", this.temoignageData);
    const lastTemoignage = this.temoignageData.sort((a: {created_at: string | number | Date}, b: {created_at: string | number | Date}) =>{
      return new Date(b.created_at).getTime() - new Date(a.created_at).getTime();
    })
    this. lastTwoTemoignage = lastTemoignage.slice(0, 2);
-   console.log("Liste des 4 temoignages", this. lastTwoTemoignage)
+   //console.log("Liste des 4 temoignages", this. lastTwoTemoignage)
 
  })
 }

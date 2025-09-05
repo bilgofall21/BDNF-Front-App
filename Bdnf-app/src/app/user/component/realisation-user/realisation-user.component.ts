@@ -35,7 +35,7 @@ export class RealisationUserComponent implements OnInit {
     this.realisationService.gatAllRealisation().subscribe((data: any)=>{
       this.dataRealisation = data.data;
       this.loadingData = false;
-      console.log("😁✅Rea",this.dataRealisation)
+      //console.log("😁✅Rea",this.dataRealisation)
 
     })
   }

@@ -63,7 +63,7 @@ loginForm : FormGroup
     this.image= event.target.files[0] as File ;
   }
   // registerAdmin():void{
-  //   console.log("✅✅ donee saisie",this.registerData)
+  //   //console.log("✅✅ donee saisie",this.registerData)
   //   let formData = new FormData();
   //   formData.append('nom', this.registerData.nom);
   //   formData.append('prenom', this.registerData.prenom);
@@ -71,10 +71,10 @@ loginForm : FormGroup
   //   formData.append('password', this.registerData.password);
   //   formData.append('photo', this.image);
 
-  //   console.log("✅✅✅", formData)
+  //   //console.log("✅✅✅", formData)
 
   //   this.authService.registerAdmin(formData).subscribe((response: any) =>{
-  //     console.log('inscription reussi 😊😊',response);
+  //     //console.log('inscription reussi 😊😊',response);
   //     this.loadingLogin  = false
   //   })
   // }
@@ -87,7 +87,7 @@ loginForm : FormGroup
 
   //   try {
   //     this.authService.loginAdmin(loginUser).subscribe((user: any)=>{
-  //       console.log('voir objet', user)
+  //       //console.log('voir objet', user)
   //       localStorage.setItem('access_token', user.access_token);
   //       this.toastrService.success('Connexion réussie', 'Connexion');
   //       if(user.access_token){
@@ -95,7 +95,7 @@ loginForm : FormGroup
   //         this.router.navigate(['admin/home-admin'])
 
   //       }
-  //   console.log('voir utilisateur', user)
+  //   //console.log('voir utilisateur', user)
 
   //     })
   //   } catch (error) {
@@ -107,7 +107,7 @@ loginForm : FormGroup
   // }
 
   registerAdmin(): void {
-    console.log("✅✅ donee saisie", this.registerData);
+    //console.log("✅✅ donee saisie", this.registerData);
     let formData = new FormData();
     formData.append('nom', this.registerData.nom);
     formData.append('prenom', this.registerData.prenom);
@@ -120,11 +120,11 @@ loginForm : FormGroup
       console.error('The selected file is not valid.');
     }
 
-    console.log("✅✅✅", formData);
+    //console.log("✅✅✅", formData);
 
     this.authService.registerAdmin(formData).subscribe(
       (response: any) => {
-        console.log('Inscription réussie 😊😊', response);
+        //console.log('Inscription réussie 😊😊', response);
         this.loadingLogin = false;
       },
       (error: any) => {
@@ -143,7 +143,7 @@ loginForm : FormGroup
   this.loadingLogin = true;
   this.authService.loginAdmin(loginUser).subscribe(
     (user: any) => {
-      console.log("voir user", user);
+      //console.log("voir user", user);
       if (user && user.access_token) {
         localStorage.setItem('access_token', user.access_token);
         this.authService.setLoggedIn(true);
@@ -171,7 +171,7 @@ loginForm : FormGroup
 // this.loadingLogin = true;
 //     this.authService.loginAdmin(loginUser).subscribe(
 //       (user: any) => {
-//         console.log("voir user", user)
+//         //console.log("voir user", user)
 //         if (user && user.access_token) {
 //           localStorage.setItem('access_token', user.access_token);
 //           this.authService.setLoggedIn(true);

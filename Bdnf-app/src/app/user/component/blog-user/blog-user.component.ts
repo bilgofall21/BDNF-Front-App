@@ -37,7 +37,7 @@ export class BlogUserComponent implements OnInit {
     this.articleService.allArticle().subscribe((data)=> {
       this.loadingData = false;
       this.allArticleData = data.data
-      console.log("✅✅✅",this.allArticleData)
+      //console.log("✅✅✅",this.allArticleData)
 
     })
     }

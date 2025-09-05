@@ -61,7 +61,7 @@ this.articleService.allArticle().subscribe((data)=> {
     return new Date(b.created_at).getTime() - new Date(a.created_at).getTime();
   })
   this.lastTreArticle = lastArticle.slice(0, 3)
-console.log('step article 🤣🤣', this.lastTreArticle)
+//console.log('step article 🤣🤣', this.lastTreArticle)
 })
 }
 articleByIdData: any=[];
@@ -78,14 +78,14 @@ articleById(): void{
     this.articleByIdData = data.data
 
 
-    console.log('💕💕💕💕💕💕💕💕💕💕💕💕💕💕💕💕', this.articleService)
+    //console.log('💕💕💕💕💕💕💕💕💕💕💕💕💕💕💕💕', this.articleService)
     this.showComment();
     const IdComment = this.articleByIdData.id
     // this.ariticle_uuid = this.articleByIdData.uuid
-    console.log('voir uuid article', this.ariticle_uuid)
+    //console.log('voir uuid article', this.ariticle_uuid)
     this.commentId = IdComment
 
-    console.log('✅✅dddd✅',this.articleByIdData)
+    //console.log('✅✅dddd✅',this.articleByIdData)
   })
 }
 getArticleImage(article: any) {
@@ -107,14 +107,14 @@ addComment(): void {
     article_id: this.commentId
 
   }
-  console.log('👌👌👌👌', this.ariticle_uuid)
+  //console.log('👌👌👌👌', this.ariticle_uuid)
 
-  console.log('👌👌👌👌 aaaaaaaaaaaaaaaaaaaaaaa', newComment)
+  //console.log('👌👌👌👌 aaaaaaaaaaaaaaaaaaaaaaa', newComment)
   this.commentService.addComment(newComment).subscribe((response: any) =>{
-    // console.log('voir id', newComment.article_id)
-    // console.log("step 1",response)
+    // //console.log('voir id', newComment.article_id)
+    // //console.log("step 1",response)
 
-    console.log('👍👍👍👍👍👍👍bbbbb', response)
+    //console.log('👍👍👍👍👍👍👍bbbbb', response)
     this.showComment();
     this.pseudo = '';
     this.contenue = '';
@@ -123,7 +123,7 @@ addComment(): void {
 
 ajouterCommentaire(): void {
   if (this.categoForm.invalid) {
-    console.log('Formulaire invalide', this.categoForm);
+    //console.log('Formulaire invalide', this.categoForm);
     return;
   }
 
@@ -134,7 +134,7 @@ ajouterCommentaire(): void {
   };
 
   this.commentService.addComment(newComment).subscribe((response: any) => {
-    console.log('Réponse du serveur', response);
+    //console.log('Réponse du serveur', response);
     this.toast?.showToast('Commentaire ajouter avec succée')
 
     this.showComment();
@@ -147,16 +147,16 @@ newDataComment: any[] = [];
 currentDisplayCount: number = 3;
 showComment(): void{
  const iddd = this.ariticle_uuid;
- console.log('ffffff', iddd)
+ //console.log('ffffff', iddd)
  this.commentService.getCommentaire(this.ariticle_uuid).subscribe((data)=>{
    this.dataCommnent = data.data
-   console.log('🤴🤴🤴 stepdddddddddddddddddddd1', this.dataCommnent)
+   //console.log('🤴🤴🤴 stepdddddddddddddddddddd1', this.dataCommnent)
     this.dataCommnent.sort((a: {created_at: string| number| Date}, b: {created_at: string| number| Date}) =>{
-      console.log('step3', this.dataCommnent)
+      //console.log('step3', this.dataCommnent)
       return new Date(b.created_at).getTime() - new Date(a.created_at).getTime();
     })
     this.newDataComment = this.dataCommnent.slice(0, this.currentDisplayCount)
-    console.log('step3', this.newDataComment)
+    //console.log('step3', this.newDataComment)
 
   })
 }
@@ -174,7 +174,7 @@ loadLessComments(): void {
 letsFo(id: any, event: Event): void {
   event.preventDefault();
   this.router.navigate(['/blog', id]);
-  console.log("✅✅✅")
+  //console.log("✅✅✅")
 }
 
 }

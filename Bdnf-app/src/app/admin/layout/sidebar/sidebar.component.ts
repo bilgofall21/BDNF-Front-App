@@ -67,7 +67,7 @@ export class SidebarComponent {
         this.notificationService.errorAlert( 'Erreur', 'Une erreur est survenue lors de la déconnexion'  );
       });
       }else{
-        console.log('Déconnexion annulée');
+        //console.log('Déconnexion annulée');
         this.notificationService.warningAlert( 'Echec', 'Déconnexion annulée'  );
       }
     })

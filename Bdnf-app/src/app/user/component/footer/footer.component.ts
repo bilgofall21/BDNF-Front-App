@@ -24,7 +24,7 @@ const myEmail = {
   email: this.email
 }
 this.newsletterService.addNewsletter(myEmail).subscribe((response: any)=>{
-  console.log("voir le nws", response);
+  //console.log("voir le nws", response);
   this.toast?.showToast('Inscription aux newsletter réussi')
 
   this.email = '';

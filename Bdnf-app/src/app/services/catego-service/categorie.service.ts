@@ -44,7 +44,7 @@ export class CategorieService {
     return this.http.get<any[]>(`${this.apiUrl}/get/categorie/all`, { headers })
       .pipe(
         map((response: any) => {
-          console.log('Response:', response); // Ajoutez cette ligne pour voir la réponse
+          //console.log('Response:', response); // Ajoutez cette ligne pour voir la réponse
           return response;
         }),
       );

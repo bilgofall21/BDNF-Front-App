@@ -39,10 +39,10 @@ serviceData: any[]= [];
     this.loadinData = true
     this.servicesService.allService().subscribe((data: any) =>{
       this.isloadingService = false;
-      console.log('voir me service 1111✅✅✅✅✅ ',data)
+      //console.log('voir me service 1111✅✅✅✅✅ ',data)
 this.serviceData = data.data
 this.loadinData = false;
-console.log('voir me service ✅✅✅✅✅ ',this.serviceData)
+//console.log('voir me service ✅✅✅✅✅ ',this.serviceData)
     })
   }
   ajouterService(){
@@ -50,15 +50,15 @@ console.log('voir me service ✅✅✅✅✅ ',this.serviceData)
       nomService: this.nomService,
       descriptionService: this.descriptionService
     }
-    console.log('voir nesssss', newService)
+    //console.log('voir nesssss', newService)
     this.notificationService.confirmAlert(
       'Voulez-vous vraiment ajouter ce service'
     ).then(confirmed => {
-      console.log('111111111111')
+      //console.log('111111111111')
       if(confirmed){
-        console.log('111111111111222222222')
+        //console.log('111111111111222222222')
         this.servicesService.addService(newService).subscribe((data : any) =>{
-          console.log('😁😁😁😁😁😁😁', data)
+          //console.log('😁😁😁😁😁😁😁', data)
           this.toastrService.success('Service ajouter avec succée')
           this.showAllService();
           this.nomService ='';
@@ -77,7 +77,7 @@ console.log('voir me service ✅✅✅✅✅ ',this.serviceData)
 
   }
   supprimerService(id: any) {
-    console.log('Demande de confirmation pour supprimer le service');
+    //console.log('Demande de confirmation pour supprimer le service');
     Swal.fire({
       title: "Voulez-vous vraiment supprimer ce service ?",
       icon: "warning",
@@ -90,11 +90,11 @@ console.log('voir me service ✅✅✅✅✅ ',this.serviceData)
       color: '#ffff',
       background: '#E7DCD6'
     }).then((result) => {
-      console.log('Résultat de l\'alerte:', result);
+      //console.log('Résultat de l\'alerte:', result);
       if (result.isConfirmed) {
-        console.log('Suppression confirmée');
+        //console.log('Suppression confirmée');
         this.servicesService.deleteService(id).subscribe((response: any) => {
-          console.log('Réponse de la suppression:', response);
+          //console.log('Réponse de la suppression:', response);
           this.toastrService.success('Service Supprimé avec succès');
           this.showAllService();
         },
@@ -103,7 +103,7 @@ console.log('voir me service ✅✅✅✅✅ ',this.serviceData)
           this.toastrService.error('Erreur lors de la suppression du service');
         });
       } else {
-        console.log('Suppression annulée');
+        //console.log('Suppression annulée');
         this.toastrService.warning('Suppression annulée');
       }
     }).catch((error) => {

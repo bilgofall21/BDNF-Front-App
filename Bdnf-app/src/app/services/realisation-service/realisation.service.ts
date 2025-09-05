@@ -45,25 +45,25 @@ gatAllRealisation(): Observable<any>{
 getRealisationById(uuid: any): Observable<any>{
   const headers = this.getHeaders();
   return this.http.get<any>(`${this.apiUrl}/show/realisation/${uuid}`, { headers})
-  
+
 }
 
   addRealistion(realisation: any): Observable<any> {
     const headers = this.getHeaders();
-    // console.log('realisation service❌❌', realisation.get('titre'))
+    // //console.log('realisation service❌❌', realisation.get('titre'))
     return this.http.post<any>(`${this.apiUrl}/create/newRealisation`, realisation,{ headers })
   }
 
 
 
   addImageRealisation(id: any, image: FormData) {
-    console.log('❓❓voir image envoyé', image);
+    //console.log('❓❓voir image envoyé', image);
     const headers = this.getHeaders(true); // Passer `true` pour les en-têtes de fichier
     return this.http.post<any>(`${this.apiUrl}/ajouter-image/realisation/${id}`, image, { headers });
   }
 
 updateRealisation(realisation: any, uuid: any): Observable<any> {
-  console.log('❓❓voir image envoyé', realisation);
+  //console.log('❓❓voir image envoyé', realisation);
   const headers = this.getHeaders(true);
   return this.http.post<any>(`${this.apiUrl}/update/realisation/${uuid}`, realisation,{ headers })
 }
