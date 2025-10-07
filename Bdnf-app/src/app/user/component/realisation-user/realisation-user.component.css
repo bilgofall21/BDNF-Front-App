@@ -4,6 +4,7 @@
   height: auto;
   width: 100%;
   object-fit: cover;
+  /* height: 600px; */
 }
 
 .heading-section h2 {

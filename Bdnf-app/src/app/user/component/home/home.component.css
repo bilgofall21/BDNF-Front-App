@@ -381,6 +381,19 @@ a.read-more-btn:hover {
 .mytestitimonial .card {
   background-color: #e7dcd6;
   width: 100%;
+  height: 350px;
+}
+.mytestitimonial .content-temoignage {
+  height: 180px;
+  overflow: hidden;
+    /* Empêche le débordement du texte */
+    text-overflow: ellipsis;
+    /* font-size: 18px; */
+    /* Ajoute des points de suspension si le texte est trop long */
+    display: -webkit-box;
+    -webkit-line-clamp: 6;
+    /* Limite à 3 lignes par exemple */
+    -webkit-box-orient: vertical;
 }
 
 .mytestitimonial :hover {
@@ -606,3 +619,5 @@ a.boxed-btn:hover {
 #newsletter h2 {
   color: var(--redColor);
 }
+
+

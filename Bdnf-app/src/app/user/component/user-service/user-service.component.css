@@ -12,9 +12,10 @@ font-size:  24px;
 .banner img{
   /* height: 70vh;
   width: 100%; */
-  height: auto;
+  /* height: auto; */
   width: 100%;
   object-fit: cover;
+  /* height: 600px; */
 }
 .services {
   -moz-transition: all 0.3s ease;
