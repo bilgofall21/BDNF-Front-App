@@ -2,6 +2,12 @@
   --redColor: #A12825;
   --beigeColor: #E7DCD6;
 }
+.admingestioncontainer {
+  margin-left: 220px;
+  padding: 20px;
+  min-height: 100vh;
+  /* background-color: var(--beigeColor); */
+}
 
 #row-style{
   row-gap: 10px;

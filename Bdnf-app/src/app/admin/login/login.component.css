@@ -1,168 +1,154 @@
 :root {
-  --light: #f6f6f9;
-  --primary: #A12825;
-  --redColor: #A12825;
-  --beigeColor: #E7DCD6;
+  --primary: #a12825;
+  --primary-dark: #7a1c1a;
+  --light-bg: #f9f9f9;
+  --text-color: #333;
+  --radius: 12px;
 }
 
-.active {
-  color: green;
+body {
+  font-family: "Karla", sans-serif;
+  background: linear-gradient(135deg, #a12825 0%, #7a1c1a 100%);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-#connexion,
-#inscription {
-  margin: 0 auto;
-  width: 80%;
-  padding: 0px;
+.go-to-home-style button{
+  color: #a12825 ! important;
+  margin-bottom: 15px;
+  cursor: pointer;
+  text-decoration: underline;
+  font-size: 24px;
 }
 
-.row {
-  /* width: 100%; */
-  /* background-color: rgb(255, 47, 234); */
-  margin: 0 auto;
-  /* width: 100%; */
-  /* gap: 0; */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.row .login-wrap {
-  background-color: var(--beigeColor);
-  border-top-right-radius: 10px;
-  border-bottom-right-radius: 10px;
-}
-
-.img img {
+/* --- STRUCTURE --- */
+.login-container {
   width: 100%;
-  height: 415px;
-  border-top-left-radius: 10px;
-  border-bottom-left-radius: 10px;
+  max-width: 950px;
+  margin: 30px auto;
+  padding: 20px;
 }
 
-.inscription button {
-  width: 20%;
+.login-card {
+  display: flex;
+  background: #fff;
+  border-radius: var(--radius);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
 }
 
-/* Responsive styles */
-@media (max-width: 1300px) {
-
-  #connexion,
-  #inscription {
-    margin-right: 200px;
-    /* background-color: royalblue; */
-  }
-  .row {
-    /* flex-direction: column; */
-    margin: 0 auto;
-  }
-}
-@media (max-width: 1200px) {
-
-  #connexion,
-  #inscription {
-    /* margin: 0 auto; */
-    /* background-color: royalblue; */
-  }
-  .row {
-    /* flex-direction: column; */
-    margin: 0 auto;
-  }
+/* --- IMAGE --- */
+.login-image {
+  flex: 1;
+  background: var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
+.login-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* --- FORMULAIRE --- */
+.login-form-side {
+  flex: 1;
+  padding: 40px 35px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.login-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 25px;
+  /* color: var(--primary); */
+  color: #a12825;
+}
+
+/* --- CHAMPS --- */
+.form-group {
+  margin-bottom: 20px;
+}
+
+label {
+  font-weight: 600;
+  margin-bottom: 8px;
+  display: block;
+  color: var(--text-color);
+}
+
+.form-control {
+  width: 100%;
+  padding: 12px 15px;
+  border-radius: var(--radius);
+  border: 1px solid #ddd;
+  outline: none;
+  font-size: 1rem;
+  transition: border-color 0.3s;
+}
+
+.form-control:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px rgba(161, 40, 37, 0.2);
+}
+
+/* --- MOT DE PASSE --- */
+.password-wrapper {
+  position: relative;
+}
+
+.password-wrapper i {
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #777;
+  font-size: 1.1rem;
+}
+
+/* --- BOUTON --- */
+.btn-submit {
+  width: 100%;
+  background:  #a12825;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: var(--radius);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.btn-submit:hover:not(:disabled) {
+  background: #e7dcd6;
+  color: black;
+}
+
+.btn-submit:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+/* --- RESPONSIVE --- */
 @media (max-width: 992px) {
-  .row {
-    /* flex-direction: column; */
-    margin: 0 auto;
-  }
-
-
-  .row .login-wrap,
-  .img img {
-    border-radius: 10px;
-  }
-
-  .img img {
-    /* height: auto; */
-  }
-
-  .inscription button {
-    width: 50%;
-  }
-}
-
-@media (max-width: 768px) {
-
-  #connexion,
-  #inscription {
-    /* margin-right: 50px; */
-  }
-
-  .inscription button {
-    width: 70%;
-  }
-}
-
-@media (max-width: 740px) {
-  /* .row {
+  .login-card {
     flex-direction: column;
-    padding: 0 15px;
-  } */
-   #connexion,
-#inscription {
-  margin: 0 auto;
-  width: 100%;
-  padding: 0px;
-}
-
-  .row .login-wrap,
-  .img img {
-    border-radius: 10px;
   }
 
-  .img img {
-    height: auto;
+  .login-image {
+    display: none;
+    /* cache l’image sur mobile */
   }
 
-  .inscription button {
-    width: 100%;
-  }
-
-
-}
-
-@media (max-width: 576px) {
-
-
-
-  .inscription button {
-    width: 100%;
-  }
-}
-@media (max-width: 800px) {
-
-  #connexion,
-  #inscription {
-
-  /* .row {
-    flex-direction: column;
-    padding: 0 15px;
-  } */
-
-  .row .login-wrap,
-  .img img {
-    border-radius: 10px;
-  }
-
-  .img img {
-    /* height: auto; */
-  }
-
-  .inscription button {
-    width: 100%;
-  }
-
-  #connexion,
-  #inscription {
-    margin: 0 auto;
-    /* margin-bottom: 20px; */
+  .login-form-side {
+    padding: 30px 25px;
   }
 }

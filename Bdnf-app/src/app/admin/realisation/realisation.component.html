@@ -20,76 +20,138 @@
   </div>
 </div>
 <h4 class="mt-4 text-center">Liste des realisations</h4>
-<div class="container">
-  <div class="row  my-4" id="myCard">
+<div class="">
+  <div class="row my-4" id="myCard">
     @if (loadinData) {
       <app-spinner></app-spinner>
-    }@else if (noSearchResult) {
-    <p class="text-center"> {{noSearchResult}}</p>
-    }
-    @else if ( dataRealisation && dataRealisation.length > 0; ) {
-        <div class="col-sm-12 col-md-6 col-lg-3 "  id="card-real" *ngFor="let service of getArticlesPage()">
-          <div class="card shadow-lg">
-            <div>
-              <!-- <img [src]="'https://api.bdnf-marketing-solutions.com/' + service.image" class="img-fluid" alt="..."> -->
-              <img [src]="getRealisationImage(service)" class="img-fluid" alt="...">
-
-            </div>
-            <div class="card-body ">
-              <div class="titleService">
-                <h5 class="text-center mt-1 fw-bold">{{service.titre | paragraph:10}} </h5>
+    } @else if (noSearchResult) {
+      <p class="text-center">{{noSearchResult}}</p>
+    } @else if (dataRealisation && dataRealisation.length > 0) {
+      <div class="col-sm-12 col-md-6 col-lg-3" id="card-real"
+           *ngFor="let service of getArticlesPage()">
+        <div class="card shadow-lg">
+          <div class="card-image-container position-relative">
+            <!-- Affichage conditionnel selon le type de fichier -->
+            @if (getFileType(service) === 'image') {
+              <img [src]="getRealisationImage(service)"
+                   class="img-fluid card-img"
+                   alt="{{service.titre}}"
+                   (error)="onImageError($event)">
+            } @else {
+              <!-- Aperçu PDF avec icône et overlay -->
+              <div class="pdf-preview"
+                   (click)="openPdfViewer(service)">
+                <div class="pdf-icon-overlay">
+                  <i class="bi bi-file-pdf-fill text-danger"
+                     style="font-size: 4rem;"></i>
+                  <p class="mt-2 mb-0 text-muted">
+                    <small>Cliquer pour voir le PDF</small>
+                  </p>
+                </div>
+                <!-- Badge pour indiquer que c'est un PDF -->
+                <span class="badge bg-danger position-absolute top-0 end-0 m-2">
+                  <i class="bi bi-file-pdf"></i> PDF
+                </span>
               </div>
-              <p class="card-text"> {{service.description}} </p>
-            </div>
-            <div class="iconbottom w-50 d-flex justify-content-around">
-              <div>
-                <i class="bi bi-pencil"  (click)="loadRealisation(service)" data-bs-toggle="modal" data-bs-target="#modalModif" ></i>
-              </div>
-              <div>
-                <i  class="bi bi-eye"  data-bs-toggle="modal" data-bs-target="#exampleModal-detail"  (click)="detailRealisation(service)" ></i>
-              </div>
-              <div>
-                <i  class="bi bi-trash3"(click)="supprimerRealisation(service.uuid)" ></i>
-              </div>
-            </div>
-            <div class="cardfooter"></div>
+            }
           </div>
+
+          <div class="card-body">
+            <div class="titleService">
+              <h5 class="text-center mt-1 fw-bold">
+                {{service.titre | paragraph:10}}
+              </h5>
+            </div>
+            <p class="card-text">{{service.description}}</p>
+          </div>
+
+          <div class="iconbottom w-50 d-flex justify-content-around">
+            <div>
+              <i class="bi bi-pencil"
+                 (click)="loadRealisation(service)"
+                 data-bs-toggle="modal"
+                 data-bs-target="#modalModif"
+                 title="Modifier"></i>
+            </div>
+            <div>
+              <i class="bi bi-eye"
+                 data-bs-toggle="modal"
+                 data-bs-target="#exampleModal-detail"
+                 (click)="detailRealisation(service)"
+                 title="Voir les détails"></i>
+            </div>
+            <div>
+              <i class="bi bi-trash3"
+                 (click)="supprimerRealisation(service.uuid)"
+                 title="Supprimer"></i>
+            </div>
+          </div>
+          <div class="cardfooter"></div>
         </div>
-      } @else {
-        <p class="text-center my-4">Aucune réalisation disponible 😒.</p>
-      }
-
-
-    <ng-template #noProfession>
-      <!-- <h4 class="text-center">Liste des services vide</h4> -->
-      <!-- <div class="text-center mt-5" *ngIf="loadingCard">
-        <div class="spinner-indicator">
-
-        </div>
-        <div class="spinner"></div>
-        <div class="mt2">Chargement en cour...</div>
-        </div> -->
-
-
-    </ng-template>
-
-
-
-
-
+      </div>
+    } @else {
+      <p class="text-center my-4">Aucune réalisation disponible 😒.</p>
+    }
   </div>
 
-  <div class="d-flex flex-wrap justify-content-center my-5 ms-5 " id="pagination">
+  <!-- Pagination -->
+  <div class="d-flex flex-wrap justify-content-center my-5 ms-5" id="pagination">
     <nav aria-label="Page navigation example">
       <ul class="pagination">
-        <li class="page-item  "><button class="paginate"  [disabled]="pageActuelle === 1" (click)="pageActuelle = pageActuelle - 1"  >Précédent</button></li>
-        <li class="page-item"><button class="paginatee" *ngFor="let page of pages" [class.current]="page === pageActuelle"
-          (click)="pageActuelle = page"> {{ page }}</button></li>
-        <li class="page-item"><button class="paginat"  [disabled]="pageActuelle === totalPages"
-          (click)="pageActuelle = pageActuelle + 1">Suivant</button></li>
+        <li class="page-item">
+          <button class="paginate"
+                  [disabled]="pageActuelle === 1"
+                  (click)="pageActuelle = pageActuelle - 1">
+            Précédent
+          </button>
+        </li>
+        <li class="page-item">
+          <button class="paginatee"
+                  *ngFor="let page of pages"
+                  [class.current]="page === pageActuelle"
+                  (click)="pageActuelle = page">
+            {{page}}
+          </button>
+        </li>
+        <li class="page-item">
+          <button class="paginat"
+                  [disabled]="pageActuelle === totalPages"
+                  (click)="pageActuelle = pageActuelle + 1">
+            Suivant
+          </button>
+        </li>
       </ul>
     </nav>
+  </div>
 </div>
+
+<!-- Modal pour visualiser les PDFs -->
+<div class="modal fade" id="pdfViewerModal" tabindex="-1">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">{{selectedPdfTitle}}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <iframe [src]="safePdfUrl"
+                width="100%"
+                height="600px"
+                style="border: none;">
+        </iframe>
+      </div>
+      <div class="modal-footer">
+        <a [href]="currentPdfUrl"
+           target="_blank"
+           class="btn btn-primary">
+          <i class="bi bi-download"></i> Télécharger
+        </a>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Fermer
+        </button>
+      </div>
+    </div>
+  </div>
 </div>
 </div>
 

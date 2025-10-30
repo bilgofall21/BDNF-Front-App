@@ -12,6 +12,7 @@ import Swal from 'sweetalert2';
 import { ParagraphPipe } from "../../pipes/paragraph.pipe";
 import { SpinnerComponent } from '../../anmation/spinner/spinner.component';
 import { DateFormatPipe } from "../../pipes/date-format.pipe";
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-realisation',
@@ -24,7 +25,7 @@ import { DateFormatPipe } from "../../pipes/date-format.pipe";
 export class RealisationComponent implements OnInit {
   realisationForm!: FormGroup ;
   imageURL: boolean = false;
-constructor(private realisationService : RealisationService, private fb: FormBuilder, private notificationService: NotificationService,
+constructor(private realisationService : RealisationService, private sanitizer: DomSanitizer, private fb: FormBuilder, private notificationService: NotificationService,
   private toastrService: ToastrService
 ){
 
@@ -64,13 +65,61 @@ onFileSelected(event: any) {
     console.error('Aucun fichier sélectionné');
   }
 }
-getRealisationImage(realisa: any) {
+getRealisationImageld(realisa: any) {
   // Utilisez une expression régulière pour extraire le chemin relatif correct
   const relativePath = realisa.image.replace(/^.*public\//, '');
   return `https://bdnf-api.terangacode.com/public/${relativePath}`;
 }
 
-dataRealisation: any[] = [];
+  dataRealisation: any[] = [];
+  selectedPdfTitle: string = '';
+  currentPdfUrl: string = '';
+  safePdfUrl: SafeResourceUrl | null = null;
+
+  // constructor(private sanitizer: DomSanitizer) {}
+
+  getRealisationImage(realisa: any): string {
+    const relativePath = realisa.image.replace(/^.*public\//, '');
+    return `https://bdnf-api.terangacode.com/public/${relativePath}`;
+  }
+
+  getFileType(realisa: any): 'image' | 'pdf' {
+    const extension = realisa.image.split('.').pop()?.toLowerCase();
+    return extension === 'pdf' ? 'pdf' : 'image';
+  }
+
+/*************  ✨ Windsurf Command 🌟  *************/
+  openPdfViewer(service: any): void {
+    this.selectedPdfTitle = service.titre;
+    this.currentPdfUrl = this.getRealisationImage(service);
+    this.safePdfUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.currentPdfUrl);
+
+    // Ouvrir le modal Bootstrap
+    const modalElement = document.getElementById('pdfViewerModal');
+    if (modalElement) {
+      const modal = new (window as any).bootstrap.Modal(modalElement);
+      modal.show();
+    }
+  }
+/*******  2efb98a2-6071-43da-8565-262964186690  *******/
+
+  onImageError(event: any): void {
+    // Image de fallback en cas d'erreur
+    event.target.src = 'assets/images/placeholder.jpg';
+  }
+
+  detailRealisation(service: any): void {
+    // Si c'est un PDF, ouvrir le viewer au lieu du modal de détails
+    if (this.getFileType(service) === 'pdf') {
+      this.openPdfViewer(service);
+    } else {
+      // Votre logique existante pour les images
+    }
+  }
+
+
+
+// dataRealisation: any[] = [];
 allRealisation(): void {
   this.loadinData = true;
   this.realisationService.gatAllRealisation().subscribe((reasponse: any) =>{
@@ -83,7 +132,7 @@ allRealisation(): void {
 
 realisationSelected: any;
 
-detailRealisation(realisation: any): void {
+detailRealisationOld(realisation: any): void {
   this.realisationSelected = realisation;
 }
 

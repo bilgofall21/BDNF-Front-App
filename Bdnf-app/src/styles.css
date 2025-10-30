@@ -86,7 +86,7 @@ font-weight: 400;
 
 .content {
   transition: margin-left 0.3s;
-  margin-left: 200px;
+  /* margin-left: 200px; */
 }
 
 .content.expanded {

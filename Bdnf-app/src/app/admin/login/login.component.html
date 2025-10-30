@@ -1,116 +1,53 @@
-
-<!-- <app-header></app-header> -->
-
-@if (showConnexion ) {
-
-  <div class="container">
-  <section class="ftco-section mt-5n bg-primary" id="connexion">
-      <div class="row">
-        <div class="img col-sm-12 col-md-6 col-lg-6 p-0 ">
-          <img src="./assets/image/login2.jpg" alt="">
-        </div>
-        <div class="login-wrap p-4 p-md-5 col-sm-12 col-md-6 col-lg-6">
-          <div class="d-flex">
-            <div class="w-100">
-              <h5 class="mb-4">Connexion</h5>
-            </div>
-            <div class="w-100">
-              <p class="social-media d-flex justify-content-end">
-
-              </p>
-            </div>
-          </div>
-
-          <form [formGroup]="loginForm" (ngSubmit)="loginAdmin()" class="signin-form">
-            <div class="form-group mb-3">
-              <label class="label" for="email">Email</label>
-              <input type="text" formControlName="email" class="form-control" placeholder="Entrez votre email">
-              <div *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched" class="text-danger">
-                <small *ngIf="loginForm.get('email')?.hasError('required')">L'email est requis.</small>
-                <small *ngIf="loginForm.get('email')?.hasError('email')">L'email n'est pas valide.</small>
-              </div>
-            </div>
-
-            <div class="form-group mb-3">
-              <label class="label" for="password">Mot de passe</label>
-              <div class="d-flex justify-content-between ">
-                <input [type]="showPassword ? 'text' : 'password'" formControlName="password" class="form-control   www" placeholder="Entrez votre mot de passe">
-                <div class="vvvv form-control w-25 d-flex justify-items-center align-items-center"  (click)="togglePasswordVisibility()">
-                  <i class="bi" [ngClass]="showPassword ? 'bi-eye' : 'bi-eye-slash'" style="cursor: pointer;"></i>
-                </div>
-              </div>
-              <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched" class="text-danger">
-                <small *ngIf="loginForm.get('password')?.hasError('required')">Le mot de passe est requis.</small>
-                <small *ngIf="loginForm.get('password')?.hasError('minlength')">Le mot de passe doit contenir au moins 6 caractères.</small>
-              </div>
-            </div>
-            <div class="form-group">
-              <button type="submit" class="form-control rounded submit px-3" [disabled]="loginForm.invalid">
-                <ng-container *ngIf="!loadingLogin" >Connexion</ng-container>
-                <span class="spinner-border spinner-border-sm" *ngIf="loadingLogin"></span>
-
-                </button>
-            </div>
-          </form>
-
-
-        </div>
-      </div>
-    </section>
+@if (showConnexion) {
+  <!-- button return home -->
+  <div class="text-center go-to-home-style">
+    <button type="button" class=" btn btn-link btn-sm btn-rounded text-decoration-none" (click)="goToHome()">
+      <i class="bi bi-arrow-left-circle"></i> Retour à l'accueil
+    </button>
   </div>
+<div class="login-container">
+  <div class="login-card">
+    <div class="login-image">
+      <img src="./assets/image/login2.jpg" alt="Connexion">
+    </div>
 
+    <div class="login-form-side">
+      <h2 class="login-title">Connexion</h2>
 
-
-}
-
-<!-- @if (showRegister) {
-
-  <section class="ftco-section mt-5" id="inscription">
-      <div class="container">
-      <div class="row justify-content-center">
-
-            <div class="login-wrap  col-sm-12 col-md-12 col-lg-12  ">
-              <div class="text-center">
-                  <h4 class="mb-4 mt-3">Connexion</h4>
-                </div>
-              <form (ngSubmit)="registerAdmin()" class="signin-form">
-
-
-                <div class="row w-100">
-                  <div class="w-100 d-flex justify-content-center ">
-                    <i class="me-3"><span class="lnr lnr-camera"></span></i>
-                    <input class="form-control w-50"   type="file" (change)="getFile($event)" >
-                </div>
-                  <div class="form-group mb-3 col-6">
-                    <label class="label" for="name">Prenom</label>
-                    <input type="text" class="form-control" placeholder="Enter votre prenom" [(ngModel)]="registerData.prenom" name="prenom" required>
-                  </div>
-                  <div class="form-group mb-3 col-6">
-                    <label class="label" for="name">Nom</label>
-                    <input type="text" class="form-control" placeholder="Enter votre nom" [(ngModel)]="registerData.nom" name="nom"  required>
-                  </div>
-                  <div class="form-group mb-3 col-6 mt-3">
-                    <label class="label" for="name">Email</label>
-                    <input type="text" class="form-control" placeholder="Enter votre email" [(ngModel)]="registerData.email" name="email" required>
-                  </div>
-                  <div class="form-group mb-3 mt-3 col-6">
-                    <label class="label" for="password">Mot de pass</label>
-                    <input type="password" class="form-control" placeholder="Entrer votre mot de passe" [(ngModel)]="registerData.password" name="password"  required>
-                  </div>
-
-                </div>
-                <div class="form-group d-flex justify-content-center mt-3">
-                  <button type="submit" class="form-control w-50 rounded submit px-3">Connexion</button>
-                </div>
-                <div class="form-group text-center mt-3">
-                  <p class="text-center"><a class="text-decoration-none" (click)="afficherSection('connexion', $event)" data-toggle="tab" href="#signup">Se connecter</a></p>
-                </div>
-              </form>
-            </div>
+      <form [formGroup]="loginForm" (ngSubmit)="loginAdmin()">
+        <!-- Email -->
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="text" formControlName="email" placeholder="Entrez votre email" class="form-control" />
+          <div *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched" class="text-danger">
+            <small *ngIf="loginForm.get('email')?.hasError('required')">L'email est requis.</small>
+            <small *ngIf="loginForm.get('email')?.hasError('email')">L'email n'est pas valide.</small>
           </div>
         </div>
-  </section>
-} -->
 
+        <!-- Mot de passe -->
+        <div class="form-group password-group">
+          <label for="password">Mot de passe</label>
+          <div class="password-wrapper">
+            <input [type]="showPassword ? 'text' : 'password'" formControlName="password"
+              placeholder="Entrez votre mot de passe" class="form-control" />
+            <i class="bi" [ngClass]="showPassword ? 'bi-eye' : 'bi-eye-slash'" (click)="togglePasswordVisibility()"></i>
+          </div>
 
+          <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched" class="text-danger">
+            <small *ngIf="loginForm.get('password')?.hasError('required')">Le mot de passe est requis.</small>
+            <small *ngIf="loginForm.get('password')?.hasError('minlength')">Le mot de passe doit contenir au moins 6
+              caractères.</small>
+          </div>
+        </div>
 
+        <!-- Bouton -->
+        <button type="submit" class="btn-submit" [disabled]="loginForm.invalid">
+          <ng-container *ngIf="!loadingLogin">Se connecter</ng-container>
+          <span class="spinner-border spinner-border-sm" *ngIf="loadingLogin"></span>
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+}
