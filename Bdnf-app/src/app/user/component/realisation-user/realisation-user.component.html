@@ -66,7 +66,7 @@
                   <div class="latest-news-bg-container position-relative">
                     @if (isPdf(realisa)) {
                     <!-- Aperçu PDF avec overlay cliquable -->
-                    <div class="latest-news-bg pdf-preview-card" [ngStyle]="getBackgroundStyle(realisa)"
+                    <div class="latest-news-bg pdf-preview-card"[routerLink]="['/detail-realisation', realisa.uuid]"   [ngStyle]="getBackgroundStyle(realisa)"
                       style="cursor: pointer;">
                       <div class="pdf-overlay-content text-center text-white">
                         <i class="bi bi-file-pdf-fill" style="font-size: 4rem;"></i>
