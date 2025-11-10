@@ -71,7 +71,7 @@
             }@else if(getArticlesPage() && getArticlesPage().length > 0) {
             @for (article of getArticlesPage(); track article) {
               <article class="postcard light blue">
-                <a class="postcard__img_link" href="#">
+                <a class="postcard__img_link" [routerLink]="['/blog',article.uuid]"  >
                   <img class="postcard__img" [src]="getArticleImage(article)" alt="Image Title" />
                 </a>
                 <div class="postcard__text t-dark">
