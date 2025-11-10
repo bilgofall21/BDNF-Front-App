@@ -21,13 +21,13 @@
 </div>
 <h4 class="mt-4 text-center">Liste des realisations</h4>
 <div class="">
-  <div class="row my-4" id="myCard">
+  <div class=" my-4" id="myCard">
     @if (loadinData) {
       <app-spinner></app-spinner>
     } @else if (noSearchResult) {
       <p class="text-center">{{noSearchResult}}</p>
     } @else if (dataRealisation && dataRealisation.length > 0) {
-      <div class="col-sm-12 col-md-6 col-lg-3" id="card-real"
+      <div class="" id="card-real"
            *ngFor="let service of getArticlesPage()">
         <div class="card shadow-lg">
           <div class="card-image-container position-relative">
@@ -75,8 +75,7 @@
             </div>
             <div>
               <i class="bi bi-eye"
-                 data-bs-toggle="modal"
-                 data-bs-target="#exampleModal-detail"
+
                  (click)="detailRealisation(service)"
                  title="Voir les détails"></i>
             </div>
@@ -158,7 +157,7 @@
 
 <!-- Modal detail realisation -->
 <div class="modal fade" id="exampleModal-detail" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header text-center">
         <h5 class="modal-title" id="exampleModalLabel"> Details Réalisation</h5>
@@ -182,7 +181,7 @@
 
         }
 
-          <div class="validajout d-flex justify-content-end" id="valada-final">
+          <div class="validajout d-flex justify-content-end gap-4" id="valada-final">
 
             <button href="" class="mt-2 btn btn-link btn-sm btn-rounded text-decoration-none" data-bs-dismiss="modal"> FERMER</button>
           </div>
@@ -194,13 +193,13 @@
 
 <!-- modal ajout -->
 <div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"   aria-hidden="true">
-  <div class="modal-dialog ">
+  <div class="modal-dialog modal-lg ">
     <div class="modal-content ">
       <div class="modal-header text-center">
         <h5 class="modal-title " id="exampleModalLabel">Ajouter une realisation</h5>
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body  ">
+      <div class="modal-body   ">
 
 
 
@@ -229,9 +228,9 @@
               </div>
             </div>
 
-            <div class="d-flex justify-content-end" id="valada-final">
+            <div class="d-flex justify-content-end gap-4" id="valada-final">
+              <a href="#" class=" bg-gray" data-bs-dismiss="modal" (click)="annuler()" >Annuler</a>
               <button type="submit" class="btn-custom" data-bs-dismiss="modal" >Ajouter</button>
-              <a href="#" class="ms-3" data-bs-dismiss="modal" (click)="annuler()" >Annuler</a>
             </div>
           </form>
 
@@ -244,7 +243,7 @@
 
 <!-- modal modifer -->
 <div class="modal fade " id="modalModif" tabindex="-1" aria-labelledby="exampleModalLabel"   aria-hidden="true">
-  <div class="modal-dialog ">
+  <div class="modal-dialog  modal-lg">
     <div class="modal-content ">
       <div class="modal-header text-center">
         <h5 class="modal-title " id="exampleModalLabel">Modifier une realisation</h5>
@@ -279,7 +278,7 @@
               </div>
             </div>
 
-            <div class="d-flex justify-content-end" id="valada-final">
+            <div class="d-flex justify-content-end gap-4" id="valada-final">
               <button type="submit" class="btn-custom"  data-bs-dismiss="modal" >Modifier</button>
               <a href="#" class="ms-3" data-bs-dismiss="modal"(click)="annuler()"  >Annuler</a>
             </div>

@@ -25,7 +25,8 @@ export class NotificationService {
       width: 450,
       padding: 10,
       color: '#ffff',
-      background: '#E7DCD6'
+      background: '#E7DCD6',
+       reverseButtons: true //
     }).then(result => result.isConfirmed);
   }
 

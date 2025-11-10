@@ -42,14 +42,14 @@ h5{
 #valada-final button {
   background-color: var(--redColor);
   border-radius: 10px;
-  padding: 8px;
+  padding: 12px;
   border: none;
   color: #fff;
 }
 #valada-final a{
-  background-color: var(--beigeColor);
+  background-color: gray;
   border-radius: 10px;
-  padding: 8px;
+  padding: 12px;
   border: none;
   color: #fff;
   text-decoration: none;
@@ -71,26 +71,28 @@ h5{
 color: var(--redColor);
 }
 #myCard{
-  row-gap: 10px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
 }
 
 #card-real .card{
-  width: 18rem;
-  height: 24rem;
+  width: 28rem;
+  height: 30rem;
 
 }
 #card-real .card-body{
   padding: 10px;
 }
 #card-real img{
-  height: 13rem;
+  height: 240px;
   width: 100%;
   object-fit: cover;
 }
 
 
 .card-image-container {
-  height: 200px;
+  height: 220px;
   overflow: hidden;
   background-color: #f8f9fa;
   display: flex;
@@ -150,3 +152,129 @@ color: var(--redColor);
     transform: translateY(0);
   }
 }
+
+/* media quary for responsive */
+@media (min-width: 1400px) {
+  #myCard {
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      gap: 30px;
+    }
+}
+@media (max-width: 1285px) {
+  #myCard {
+      grid-template-columns: 1fr 1fr ;
+      gap: 30px;
+    }
+}
+@media (max-width: 1175px) {
+  #myCard {
+      grid-template-columns: 1fr 1fr ;
+      column-gap: 5px;
+      row-gap: 20px;
+    }
+}
+@media (max-width: 1150px) {
+  #card-real .card {
+      width: 25rem;
+      height: 30rem;
+
+    }
+
+    #card-real .card-body {
+      padding: 10px;
+    }
+
+    #card-real img {
+      height: 240px;
+      width: 100%;
+      object-fit: cover;
+    }
+
+}
+
+
+@media (max-width: 1045px) {
+  #myCard {
+      row-gap: 20px;
+    }
+  #card-real .card {
+      width: 23rem;
+      height: 30rem;
+
+    }
+
+    #card-real .card-body {
+      padding: 10px;
+    }
+
+    #card-real img {
+      height: 240px;
+      width: 100%;
+      object-fit: cover;
+    }
+
+
+    .card-image-container {
+      height: 220px;
+      overflow: hidden;
+      background-color: #f8f9fa;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+}
+@media (max-width: 990px) {
+  #myCard {
+      row-gap: 20px;
+    }
+  #card-real .card {
+      width: 21rem;
+      height: 30rem;
+
+    }
+
+    #card-real .card-body {
+      padding: 10px;
+    }
+
+    #card-real img {
+      height: 240px;
+      width: 100%;
+      object-fit: cover;
+    }
+
+
+    .card-image-container {
+      height: 220px;
+      overflow: hidden;
+      background-color: #f8f9fa;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+}
+
+@media (max-width: 950px) {
+  #myCard {
+      grid-template-columns: 1fr ;
+      column-gap: 5px;
+      row-gap: 20px;
+    }
+        #card-real .card {
+          width: auto;
+          height: auto;
+
+        }
+                .card-image-container {
+                  height: auto;
+                  overflow: hidden;
+                  background-color: #f8f9fa;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                }
+}
+
+/* medis quary */

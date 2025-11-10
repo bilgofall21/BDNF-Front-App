@@ -169,11 +169,11 @@
               [(ngModel)]="nomCategorie" required />
           </div>
 
-          <div class="validajout d-flex justify-content-end" id="valada-final">
+          <div class="validajout d-flex justify-content-end gap-4" id="valada-final">
+            <a href="" class="ms-3" data-bs-dismiss="modal" (click)="annuler()"> Annuler</a>
             <button data-bs-dismiss="modal" type="submit" (click)="ajouterCategorie()" class="btn-custom">
               Ajouter
             </button>
-            <a href="" class="ms-3" data-bs-dismiss="modal" (click)="annuler()"> Annuler</a>
           </div>
         </form>
       </div>
@@ -200,10 +200,10 @@
           </div>
 
           <div class="validajout d-flex justify-content-end" id="valada-final">
+            <a href="" class="ms-3" data-bs-dismiss="modal" (click)="annuler()" > Annuler</a>
             <button data-bs-dismiss="modal" type="submit" (click)="modifierCatego()" class="btn-custom">
               Modifier
             </button>
-            <a href="" class="ms-3" data-bs-dismiss="modal" (click)="annuler()" > Annuler</a>
           </div>
         </form>
       </div>
@@ -233,7 +233,7 @@
 
         }
 
-          <div class="validajout d-flex justify-content-end" id="valada-final">
+          <div class="validajout d-flex justify-content-end gap-4" id="valada-final">
 
             <button href="" class="mt-2 btn btn-link btn-sm btn-rounded text-decoration-none" data-bs-dismiss="modal"> Fermer</button>
           </div>
@@ -297,9 +297,9 @@
               L'image est requise.
             </div>
           </div>
-          <div class="d-flex justify-content-end" id="valada-final">
-            <button type="submit" class="btn-custom" data-bs-dismiss="modal">Ajouter</button>
+          <div class="d-flex justify-content-end gap-4" id="valada-final">
             <a href="#" class="ms-3" data-bs-dismiss="modal"  (click)="annuler()">Annuler</a>
+            <button type="submit" class="btn-custom" data-bs-dismiss="modal">Ajouter</button>
           </div>
         </form>
       </div>

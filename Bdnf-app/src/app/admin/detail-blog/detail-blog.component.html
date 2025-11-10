@@ -1,6 +1,12 @@
 <app-sidebar></app-sidebar>
 <div class="admingestioncontainer mt-5">
   <div class="container">
+    <!-- button back -->
+    <div class="mb-4  p-3 d-flex justify-content-end ">
+      <button type="button" class="btn btn-link btn-sm btn-rounded" (click)="goBack()">
+        <i class="bi bi-arrow-left-circle"></i> Retour à la liste des articles
+      </button>
+      </div>
     <div class="row">
       <div class="col-sm-12 col-md-12 col-lg-10 text-article">
         @if (onlyArticleData) {
@@ -82,7 +88,7 @@
 
 <!-- modal detail commentaire -->
 <div class="modal fade" id="exampleModal-detail" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
+  <div class="modal-dialog ">
     <div class="modal-content">
       <div class="modal-header text-center">
         <h5 class="modal-title" id="exampleModalLabel"> Details Commentaire</h5>
@@ -156,7 +162,7 @@
 <!-- modal modifier article -->
  <!-- modal modif article -->
 <div class="modal fade" id="modalModif" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
+  <div class="modal-dialog  modal-lg ">
     <div class="modal-content">
       <div class="modal-header text-center">
         <h5 class="modal-title" id="exampleModalLabel">Modifier un article</h5>
@@ -208,9 +214,9 @@
               L'image est requise.
             </div>
           </div>
-          <div class="d-flex justify-content-end" id="valada-final">
-            <button type="submit" class="btn-custom btn btn-link btn-sm btn-rounded " data-bs-dismiss="modal">Modifier</button>
+          <div class="d-flex justify-content-end gap-4" id="valada-final">
             <a href="#" class="ms-3" data-bs-dismiss="modal">Annuler</a>
+            <button type="submit" class="btn-custom btn btn-link btn-sm btn-rounded " data-bs-dismiss="modal">Modifier</button>
           </div>
         </form>
       </div>

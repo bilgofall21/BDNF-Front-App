@@ -6,6 +6,7 @@ import { RouterLink ,Router, NavigationEnd} from '@angular/router';
 import { ServiceService } from '../../../services/services-service/service.service';
 import { RealisationService } from '../../../services/realisation-service/realisation.service';
 import { DateFormatPipe } from "../../../pipes/date-format.pipe";
+import { TimeAgoPipe } from '../../../pipes/time-ago.pipe';
 import { SpinnerComponent } from '../../../anmation/spinner/spinner.component';
 import { NgStyle } from '@angular/common';
 import { NewsletterService } from '../../../services/news-service/newsletter.service';
@@ -24,6 +25,7 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
     FooterComponent,
     RouterLink,
     DateFormatPipe,
+    TimeAgoPipe,
     NgStyle,
     ToastComponent,
     FormsModule,
@@ -325,11 +327,41 @@ export class HomeComponent implements OnInit {
           );
         }
       );
-      this.lastFourArticel = lastArticle.slice(0, 2);
+      this.lastFourArticel = lastArticle.slice(0, 1);
       this.loadingData = false;
       //console.log('step article 🤣🤣', this.lastFourArticel);
     });
   }
+
+  // date depuis sa cration
+  // getTimeSinceCreation(dateString: string): string {
+  //   const createdDate = new Date(dateString);
+  //   const currentDate = new Date();
+  //   const timeDifference = currentDate.getTime() - createdDate.getTime();
+
+  //   const minutes = Math.floor(timeDifference / (1000 * 60));
+  //   const hours = Math.floor(timeDifference / (1000 * 60 * 60));
+  //   const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+  //   const weeks = Math.floor(timeDifference / (1000 * 60 * 60 * 24 * 7));
+  //   const months = Math.floor(timeDifference / (1000 * 60 * 60 * 24 * 30));
+  //   const years = Math.floor(timeDifference / (1000 * 60 * 60 * 24 * 365));
+
+  //   if (years > 0) {
+  //     return years === 1 ? '1 an' : `${years} ans`;
+  //   } else if (months > 0) {
+  //     return months === 1 ? '1 mois' : `${months} mois`;
+  //   } else if (weeks > 0) {
+  //     return weeks === 1 ? '1 semaine' : `${weeks} semaines`;
+  //   } else if (days > 0) {
+  //     return days === 1 ? '1 jour' : `${days} jours`;
+  //   } else if (hours > 0) {
+  //     return hours === 1 ? '1 heure' : `${hours} heures`;
+  //   } else if (minutes > 0) {
+  //     return minutes === 1 ? '1 minute' : `${minutes} minutes`;
+  //   } else {
+  //     return 'À l\'instant';
+  //   }
+  // }
 
   letsFo(id: any, event: Event): void {
     event.preventDefault();

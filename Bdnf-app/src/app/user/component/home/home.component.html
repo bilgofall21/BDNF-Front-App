@@ -338,7 +338,7 @@
 
 
     <!-- section blog -->
-    <section  class="blog-section  ">
+    <!-- <section  class="blog-section  ">
       <div class="container">
 
         <div class="row">
@@ -366,7 +366,7 @@
                 <div class="post-entry">
                   <a [routerLink]="['/blog',article.uuid]"  class="post-thumbnail">
                     <img [src]="getArticleImage(article)" class="img-fluid" alt="...">
-                    <!-- <img [src]="'https://bdnf-api.terangacode.com/' + article.image" class="img-fluid" alt="..."> -->
+
                   </a>
                   <div class="post-content-entry">
                     <h3><a [routerLink]="['/blog',article.uuid]" > {{article.titre}} </a></h3>
@@ -387,7 +387,91 @@
 
         </div>
       </div>
+    </section> -->
+
+
+
+    <section class="light">
+      <div class="container py-2">
+
+        <div class="row">
+          <div class="col-lg-8 offset-lg-2 text-center">
+            <div class="section-title">
+              <h3><span class="orange-text">Nos</span> Articles</h3>
+              <p> Restez informé avec nos articles sur les dernières tendances et stratégies en marketing digital.</p>
+            </div>
+          </div>
+        </div>
+        <div class="row mb-5 link-blog">
+          <div class="col-md-6">
+            <h4 class="section-title">Nos récents articles</h4>
+          </div>
+          <div class="col-md-6 text-start text-md-end">
+            <a class="text-decoration-none boxed-btn" [routerLink]="['/blog-user']">Voir tous les articles <i
+                class="bi bi-arrow-right-circle ms-2"></i></a>
+          </div>
+        </div>
+        <!-- <div class="h1 text-center text-dark" id="pageHeaderTitle">My Cards Light</div> -->
+        @if(lastFourArticel && lastFourArticel.length > 0){
+          @for (article of  lastFourArticel; track article) {
+            <article class="postcard light blue">
+              <a class="postcard__img_link" href="#">
+                <img class="postcard__img" [src]="getArticleImage(article)" alt="Image Title" />
+              </a>
+              <div class="postcard__text t-dark">
+                <h1 class="postcard__title blue"><a href="#">{{article.titre}}</a></h1>
+                <div class="postcard__subtitle small">
+                  <time datetime="2020-05-25 12:00:00">
+                    <i class="fas fa-calendar-alt mr-2"></i>{{article.created_at | dateFormat}}
+                  </time>
+                </div>
+                <div class="postcard__bar"></div>
+                <div class="postcard__preview-txt">{{article.contenue | paragraph: 250}}</div>
+                <ul class="postcard__tagbox">
+                  <li class="tag__item"><i class="fas fa-tag mr-2"></i>Article</li>
+                  <li class="tag__item"><i class="fas fa-clock mr-2"></i>{{article.created_at | timeAgo}}</li>
+                  <li class="tag__item play blue">
+                    <a [routerLink]="['/blog',article.uuid]" ><i class="fas fa-play mr-2"></i>Lire l'article</a>
+                  </li>
+                </ul>
+              </div>
+            </article>
+          }
+        } @else {
+          <p class="text-center my-4">Aucun article disponible pour le moment 😒.</p>
+         }
+
+
+        <!-- <article class="postcard light blue">
+          <a class="postcard__img_link" href="#">
+            <img class="postcard__img" src="https://picsum.photos/1000/1000" alt="Image Title" />
+          </a>
+          <div class="postcard__text t-dark">
+            <h1 class="postcard__title blue"><a href="#">Podcast Title</a></h1>
+            <div class="postcard__subtitle small">
+              <time datetime="2020-05-25 12:00:00">
+                <i class="fas fa-calendar-alt mr-2"></i>Mon, May 25th 2020
+              </time>
+            </div>
+            <div class="postcard__bar"></div>
+            <div class="postcard__preview-txt">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi, fugiat
+              asperiores inventore beatae accusamus odit minima enim, commodi quia, doloribus eius! Ducimus nemo accusantium
+              maiores velit corrupti tempora reiciendis molestiae repellat vero. Eveniet ipsam adipisci illo iusto
+              quibusdam, sunt neque nulla unde ipsum dolores nobis enim quidem excepturi, illum quos!</div>
+            <ul class="postcard__tagbox">
+              <li class="tag__item"><i class="fas fa-tag mr-2"></i>Podcast</li>
+              <li class="tag__item"><i class="fas fa-clock mr-2"></i>55 mins.</li>
+              <li class="tag__item play blue">
+                <a href="#"><i class="fas fa-play mr-2"></i>Play Episode</a>
+              </li>
+            </ul>
+          </div>
+        </article> -->
+
+
+      </div>
     </section>
+
 
     <!-- Section About -->
 
@@ -425,14 +509,14 @@
                   </div>
                   <div class="card-body">
                     <i class="bi bi-quote crochet"></i> <p class="card-text content-temoignage lead">  {{temoignage.contenue}}  <i class="bi bi-quote crochet1"></i></p>
-                    <div class="d-flex justify-content-center align-items-center ">
+                    <!-- <div class="d-flex justify-content-center align-items-center ">
                       <div class="">
                         <i class="bi bi-person-fill me-3 align-items-center"></i>
                       </div>
                       <div class="pt-3">
                         <p class=" fw-medium">Chef entreprise</p>
                       </div>
-                    </div>
+                    </div> -->
                   </div>
                 </div>
               </div>
