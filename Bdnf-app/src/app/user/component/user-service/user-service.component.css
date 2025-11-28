@@ -86,5 +86,131 @@ font-size:  24px;
 }
 
 
+ .service-card-wrapper {
+   position: relative;
+   cursor: pointer;
+   transition: transform 0.3s ease;
+ }
+
+ .service-card-wrapper:hover {
+   transform: translateY(-5px);
+ }
+
+ .service-card-wrapper:hover .media {
+   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15) !important;
+ }
+
+ .service-description {
+   display: -webkit-box;
+   -webkit-line-clamp: 3;
+   -webkit-box-orient: vertical;
+   overflow: hidden;
+   text-overflow: ellipsis;
+ }
+
+ /* Modal flottant */
+ .service-modal {
+   position: fixed;
+   background: white;
+   border-radius: 12px;
+   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+   padding: 0;
+   width: 350px;
+   z-index: 9999;
+   pointer-events: none;
+   animation: fadeIn 0.2s ease-out;
+   border: 1px solid rgba(0, 0, 0, 0.08);
+   overflow: hidden;
+ }
+
+ @keyframes fadeIn {
+   from {
+     opacity: 0;
+     transform: translateY(-10px);
+   }
+
+   to {
+     opacity: 1;
+     transform: translateY(0);
+   }
+ }
+
+ /* e7dcd6 */
+
+ .modal-header {
+   background: linear-gradient(135deg, #a12825 0%, #a12825 60%);
+   color: white;
+   padding: 20px;
+   display: flex;
+   align-items: center;
+   gap: 12px;
+ }
+
+ .modal-icon {
+   font-size: 24px;
+   background: rgba(255, 255, 255, 0.2);
+   padding: 8px;
+   border-radius: 8px;
+ }
+
+ .modal-header h4 {
+   margin: 0;
+   font-size: 18px;
+   font-weight: 600;
+   color: #fff;
+ }
+
+ .modal-body {
+   padding: 20px;
+ }
+
+ .info-row {
+   margin-bottom: 16px;
+   display: flex;
+   flex-direction: column;
+   gap: 6px;
+ }
+
+ .info-row:last-child {
+   margin-bottom: 0;
+ }
+
+ .label {
+   font-size: 12px;
+   font-weight: 600;
+   text-transform: uppercase;
+   color: #667eea;
+   letter-spacing: 0.5px;
+ }
+
+ .value {
+   font-size: 14px;
+   color: #333;
+   margin: 0;
+   line-height: 1.5;
+ }
+
+ .badge {
+   display: inline-block;
+   padding: 4px 12px;
+   border-radius: 20px;
+   font-size: 12px;
+   font-weight: 600;
+   background: #e0e0e0;
+   color: #666;
+ }
+
+ .badge.active {
+   background: #d4edda;
+   color: #155724;
+ }
+
+ /* Responsive */
+ @media (max-width: 768px) {
+   .service-modal {
+     width: 280px;
+   }
+ }
+
 
 

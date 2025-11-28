@@ -97,7 +97,7 @@
           </div>
         </div>
 
-         <div class="row row-gap-5">
+         <!-- <div class="row row-gap-5">
           @if (lastFourService && lastFourService.length > 0 ) {
 
             @for (service of lastFourService; track service) {
@@ -116,11 +116,45 @@
             <p class="text-center my-4">Aucun service disponible pour le moment 😒.</p>
            }
 
-         </div>
-         <!-- <div class="boutonService text-center mb-3">
-           <button class="btn" [routerLink]="['/user-service']" > Voir tous les services</button>
          </div> -->
 
+          <div class="row row-gap-5">
+            @if (lastFourService && lastFourService.length > 0) {
+            @for (service of lastFourService; track service) {
+            <div class="col-md-6 col-lg-4">
+              <div class="service-card-wrapper" (mouseenter)="showModal(service, $event)" (mouseleave)="hideModal()">
+                <div class="media block-6 services d-block rounded-lg shadow ftco-animate">
+                  <div class="icon d-flex align-items-center justify-content-center">
+                    <i class="bi bi-graph-up"></i>
+                  </div>
+                  <div class="media-body">
+                    <h3 class="heading mb-3">{{service.nomService}}</h3>
+                    <p class="service-description">{{service.descriptionService}}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            }
+            } @else {
+            <p class="text-center my-4">Aucun service disponible pour le moment 😒.</p>
+            }
+          </div>
+
+          <!-- Modal flottant -->
+          @if (hoveredService && isModalVisible) {
+          <div class="service-modal" [style.top.px]="modalPosition.y" [style.left.px]="modalPosition.x" [@fadeIn]>
+            <div class="modal-header">
+              <i class="bi bi-graph-up modal-icon"></i>
+              <h4>{{hoveredService.nomService}}</h4>
+            </div>
+            <div class="modal-body">
+              <div class="info-row">
+                <span class="label">Description</span>
+                <p class="value">{{hoveredService.descriptionService}}</p>
+              </div>
+            </div>
+          </div>
+          }
        </div>
      </section>
 
@@ -205,10 +239,10 @@
                       (click)="openPdfInNewTab(realisa); $event.stopPropagation()" title="Ouvrir dans un nouvel onglet">
                       <i class="bi bi-box-arrow-up-right"></i>
                     </button>
-                    <button class="btn btn-sm btn-light shadow-sm" (click)="downloadPdf(realisa); $event.stopPropagation()"
+                    <!-- <button class="btn btn-sm btn-light shadow-sm" (click)="downloadPdf(realisa); $event.stopPropagation()"
                       title="Télécharger">
                       <i class="bi bi-download"></i>
-                    </button>
+                    </button> -->
                     <button class="btn btn-sm btn-primary shadow-sm" [routerLink]="['/detail-realisation', realisa.uuid]"
                       (click)="$event.stopPropagation()" title="Voir les détails">
                       <i class="bi bi-eye"></i>

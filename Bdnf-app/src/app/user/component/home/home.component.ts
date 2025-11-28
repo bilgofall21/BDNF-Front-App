@@ -15,7 +15,8 @@ import { FormsModule } from '@angular/forms';
 import { TemoignageService } from '../../../services/temoigna-service/temoignage.service';
 import { ParagraphPipe } from '../../../pipes/paragraph.pipe';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
-
+import { Service } from '../../../models/service.model';
+import { trigger, style, animate, transition } from '@angular/animations';
 
 @Component({
   selector: 'app-home',
@@ -30,6 +31,17 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
     ToastComponent,
     FormsModule,
     ParagraphPipe,
+  ],
+   animations: [
+    trigger('fadeIn', [
+      transition(':enter', [
+        style({ opacity: 0, transform: 'translateY(5px)' }),
+        animate('200ms ease-out', style({ opacity: 1, transform: 'translateY(0)' }))
+      ]),
+      transition(':leave', [
+        animate('150ms ease-in', style({ opacity: 0 }))
+      ])
+    ])
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
@@ -368,4 +380,58 @@ export class HomeComponent implements OnInit {
     this.router.navigate(['/blog', id]);
     //console.log("✅✅✅")
   }
+
+  // =================================================================
+
+  hoveredService: Service | null = null;
+  isModalVisible = false;
+  modalPosition = { x: 0, y: 0 };
+  private hideTimeout: any;
+
+  showModal(service: Service, event: MouseEvent) {
+    // alert("ok")
+    clearTimeout(this.hideTimeout);
+
+    this.hoveredService = service;
+
+    console.log('Service survolé:', service);
+
+    // Position du modal près du curseur
+    const offset = 20;
+    let x = event.clientX + offset;
+    let y = event.clientY + offset;
+
+    // Empêcher le modal de sortir de l'écran
+    const modalWidth = 350;
+    const modalHeight = 300; // Estimation
+
+    if (x + modalWidth > window.innerWidth) {
+      x = event.clientX - modalWidth - offset;
+    }
+
+    if (y + modalHeight > window.innerHeight) {
+      y = window.innerHeight - modalHeight - offset;
+    }
+
+    this.modalPosition = { x, y };
+
+    // Petit délai pour une meilleure UX
+    setTimeout(() => {
+      this.isModalVisible = true;
+    }, 200);
+  }
+
+  hideModal() {
+    // Délai avant de cacher pour éviter le clignotement
+    this.hideTimeout = setTimeout(() => {
+      this.isModalVisible = false;
+      setTimeout(() => {
+        this.hoveredService = null;
+      }, 200);
+    }, 100);
+  }
 }
+
+
+
+
